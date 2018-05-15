@@ -1,6 +1,28 @@
 # LoFiFreestyleGame
 Love2d freestyle/sandbox game
 
+Keys:
+F11: editor 
+	page down: next editor item
+	RMB: place editor item
+F12 debugger
+LMB: move
+RMB: use active item (seeds in slot 1 plants grass)
+
+
+
+Features: 
+	4096*4096 px world
+	128*128 px (4x scaled) window
+	walking
+	basic ai (pantera and sheep)
+
+Screenshot:
+	https://ibb.co/f0Jy5d
+
+
+
+
 
 https://www.twitch.tv/marvelme
 
