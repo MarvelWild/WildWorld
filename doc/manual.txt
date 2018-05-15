@@ -1,0 +1,3 @@
+Cmd params:
+	sandbox - execute sandbox code
+	new			- force new game

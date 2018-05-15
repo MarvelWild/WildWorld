@@ -1,0 +1,253 @@
+
+
+
+
+
+profiler
+		mixed!
+	architecture: generic or specific?
+	
+	
+	pet ai: follow player
+>sheep
+	
+	client mode
+	server mode
+multiplayer!
+					
+					
+					no customizable editor item? [solved: hybrid items, auto+custom]
+				con:
+				pro:easy auto items
+			new(isProto?) - way to create entity without id and registering?
+			register all possible somewhere
+		entity prototypes for editor - mb later, or never, just build them for now
+		
+		
+		
+
+		+editor: draw proto entity manually
+	+editor items should not be saved, and even registered
+			+went off with new save
+			+log draw calls
+		+bug: inactive entity still draws
+	+editor entities should not run ai or updates
+	+closing hides active
+	+displays current item under cursor
+	+opens/closes by f11
+	+rmb places item
+	
+		way for entity to listen for keys better way
+		+way for entity to listen for keys-later, use hack
+	+scroll items
+	
+creative mode editor: place any item
+
+
+carrots
+
+ai update: future commands queue instead of update()	
+more fun - some simulation
+
+
+
+			
+				proto image
+				then show available actions on right bar (todo)
+			rclick select object (cycle if many)
+				con: multiple objects
+			rclick?
+		ability to start dialog, by...
+	talk to npc (dialog system proto)
+>quests and npc!
+combat?
+fire
+areas (generic)
+adventures
+heat/cold
+fishing?
+mating?
+animations?
+swimming
+flowers..
+trees from seeds..
+editor: ability to place any entity
+more content?
+hunger games?
+what next?
+
+		profile
+		faster sprites
+		less off-screen activity
+	opt plan: 
+performance: 350 panteras at 15 fps (0 optimizations yet)		
++ai some randomness
+		+make move command, like for player
+			+test
+		+updateable entities
+		+call it
+	+slow update func "updateAi" - every x frames for now
+	ai architecture
++pantera ai : walk around randomly
+
+	+saving
+	+spawn from seed for now
++panteras )
++what next?
+
+
+
++save grass(world entities)
+
+
++rmb: plant seed
++randomness of seeds
+
+
+problem: entities are data-only (serialization). Need a way to fast sprites. (see Entity._drawable, assign sprite once somewhere)
+
+sprite lookup optimization.
+
+knowledge system (ability to id game objects)
+y sort
++player not drawn
+
+
+	
+	+draw favorites
++give stack of random seeds into fav slot 1
+
++deactivate debugger
+	
+	+scale 4x
++recover action bar
++recover ingame debugger
+	+no, do 1 calc in move command
+	+con: slower
+	+pro: convenient
++draw from bottom? (gamey=entY+h)
++draw player (all entities)
++make runnable
+	+player sprite after load
++Save/Load
++move world/
+
+
++Refactor: easier architecture:
++	data(only! easy serializable) entities maintained by Entity module
++	%entity% contains all code, new() and the rest. keep new() at top
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+убрать isBuilt
+	
+	сохранение саб сущностей
+			or split func and data?
+				
+					try dump()
+				>deaerialize crash
+			>disable func serialization
+		>try https://github.com/pkulchenko/serpent
+	alt: advanced serializer?
+		pro: resolves cross-entity reference
+	use entity.pack/unpack to handle references?
+activeFavorite: save as reference	
+	save formatted
+bug: player: no sprite after load (new game is ok)
+
+	
+	growth process
+	
+			react to click
+		right click=default action with active slot
+	>plant action
+			+highlight in action bar
+			+test
+		+define active item
+		+draw count (seeds.stackCount)
+		+draw favorites on toolbar
+			+"new" command line parameter to force new game
+		+test
+		+describe entity
+	+give player mixed seeds
+i want to plant some grass and flowers
+
+
+
++механизм пост-десериал инициализации
++дебаггер старт деактивир
++дебаггер деактивировать
+дебаггер - объявить ui+
++entity=component
++затайлить
+
+	в слот belt-1
+	>дать семя
+	убрать картинки
+	как компонент
+	отрисовка
+ui 
+	рандомный объект по рклик
+заселить 
+world tiling (tiled mb)
+
+	register as entity+
+rmb target select object
+	если несколько - действие с объектом по умолчанию, во
+	если коллизия одна - действия с объектом
+спрайты пересеклись - коллизия
+	
+		entities
+	bounds
+
+player origin legs+
+		stop prev
+	make command
+	unscale+
+	read coord+
+mouse walking
+scale+
+lowres+
+download tutorials
+
+
+-- low
+
+для компонентов не выдавать ид
