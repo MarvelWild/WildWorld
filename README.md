@@ -12,7 +12,7 @@ RMB: use active item (seeds in slot 1 plants grass)
 
 
 Features: 
-	4096*4096 px world
+	4096x4096 px world
 	128*128 px (4x scaled) window
 	walking
 	basic ai (pantera and sheep)

@@ -10,6 +10,7 @@ _.new=function()
 	player.id=Id.new(name)
 	player.x=0
 	player.y=0
+	player.xScale=1 -- todo: implement
 	player.editorVisible=false
 	player.isDrawable=true
 
@@ -38,6 +39,21 @@ _.draw=function(player)
 	-- todo: opt
 	local sprite=Img[player.spriteName]
 	LG.draw(sprite,player.x,player.y)
+	
+	
+	-- animation proto
+--	local animSprite1=Img.pantera_walk_1
+--	local animSprite2=Img.pantera_walk_2
+	
+--	local time=Lume.round(Session.frame/60)
+--	time=math.floor(time)
+--	if (time % 2 == 0) then
+--		log("frame1")
+--    LG.draw(animSprite1,player.x,player.y)
+--	else
+--		log("frame2")
+--		LG.draw(animSprite2,player.x,player.y)
+--	end
 end
 
 

@@ -23,9 +23,8 @@ end
 
 -- managed by Entity
 _.updateAi=function(sheep)
-	local r=Lume.random() 
 	
-	log("sheep update ai")
+	-- log("sheep update ai")
 --	local nextX=sheep.x+Lume.random(-20,20)
 --	local nextY=sheep.y+Lume.random(-20,20)
 	local nextX=World.player.x+Lume.random(-40,40)

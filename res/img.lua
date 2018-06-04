@@ -21,10 +21,13 @@ Img.get=function(id)
 		end
 		
 		Img[id]=result
+		
+		-- log("image loaded:"..id)
 	end
 	
 	return result
 end
+
 
 local mt={}
 mt.__index=function(t,key)

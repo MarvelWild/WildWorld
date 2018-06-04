@@ -1,4 +1,25 @@
 
+	затем просто включиться в цикл команд, например помнить фрейм снапшота, и с него запрашивать. а лучше - сервер
+		сам начинает слать с момента первого снапа
+
+		получить ок
+		послать логин+
+	в состоянии клиента не включать аи, объекты запросить с сервера
+	clients all authoritative
+		c mode
+	client connect
+	+client is server (server mode)
+server/client
+	
+	setAnimation - можно ф draw менять тут
+animation
+
+
+rotate image left when walking left
+object origin: bottom left by default
+	animate pantera walk later
+animation
++fun: change player skin to any pic (home)
 
 
 

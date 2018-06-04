@@ -39,3 +39,6 @@ combat mode, peace mode
 
 
 вызвать или получить функцию вызова - второе мб удобней-быстрей, попробовать
+
+sprite properties
+embed radio scenemusic

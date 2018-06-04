@@ -1,3 +1,4 @@
+-- WIP: move common logic, inherit pantera and sheep from here?
 local _={}
 
 _.new=function()

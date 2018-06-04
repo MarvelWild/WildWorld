@@ -8,6 +8,7 @@ _.new=function()
 	-- change via Entity.setDrawable
 	result.isDrawable=false
 	result.aiEnabled=false
+	-- result.entity="" через это связь данных с утилитным кодом класса
 	
 	return result
 end

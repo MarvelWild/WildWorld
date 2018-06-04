@@ -12,12 +12,16 @@ Lume=require "lib/lume/lume"
 Tween=require "lib/tween/tween"
 Flux=require "lib/flux/flux"
 Debug = require "lib/debug"
+Debug.useFile=true
 
 Const=require "data/const"
 Config=require "data/config"
 
 Util=require "tech/util"
 Id=require "tech/id"
+
+-- удивительно, но точка - это важно, иначе не находится core
+Grease=require 'lib/grease/grease.init'
 
 Event=require "core/event"
 SortedList=require "lib/Wiki-Lua-Libraries/StandardLibraries/SortedList"
@@ -26,6 +30,8 @@ Entity=require "core/entity"
 -- todo: mass-load (util loader to global space, or globalize method)
 BaseEntity=require "entity/baseEntity"
 Debugger=require "entity/debugger"
+Server=require "entity/server"
+Client=require "entity/client"
 Editor=require "entity/editor"
 Player=require "entity/player"
 Actionbar=require "entity/actionbar"
@@ -49,6 +55,9 @@ Session={
 
 -- lowercase Globals - frequently used
 log=Debug.log
+pack=TSerial.pack
+
+log("*** Start ***")
 
 
 -- declare globals
@@ -91,6 +100,21 @@ local startUi=function()
 	local actionBar=Actionbar.new()
 end
 
+local preloadImages=function()
+	local tmp=Img.dracon
+end
+
+local startClient=function()
+	log("starting client")
+	ClientEntity=Client.new()
+	Client.connect(ClientEntity)
+end
+
+local startServer=function()
+	log("starting server")
+	ServerEntity=Server.new()
+end
+
 
 
 love.load=function()
@@ -107,6 +131,8 @@ love.load=function()
 	--love.graphics.scale(scale,scale)
 	Img=require "res/img"
 	
+	preloadImages()
+	
 	local isNewGame=Util.hasArg("new")
 	--arg[#arg] == "-debug"
 	
@@ -121,6 +147,8 @@ love.load=function()
 	--local actionBar=Actionbar.new()
 	
 	if Util.hasArg("sandbox") then require "sandbox" end
+	if Util.hasArg("s") then startServer() end
+	if Util.hasArg("c") then startClient() end
 end
 
 
@@ -261,12 +289,44 @@ end
 love.keypressed=function(key,unicode)
 	log("keypressed:"..key)
 	if key==Config.keyDebugger then
+		Debug.writeLogs()
 		toggleDebugger()
 	elseif key==Config.keyEditor then
 		toggleEditor()
 	elseif key==Config.keyEditorNextItem then
 		-- todo: editor listens for key when active
 		Editor.nextItem(_editor)
+	elseif key=="home" then
+		
+		local isFound=false
+		local first=nil
+		local currSprite=Img[World.player.spriteName]
+		local nextSpriteName=nil
+		for k,v in pairs(Img) do
+			local t=type(v)
+			if t=="userdata" then 
+				if first==nil then 
+					if not string.find(k,"tile") then
+						first=k
+					end
+				end
+				
+				if v==currSprite then
+					isFound=true
+				elseif isFound then
+					if not string.find(k,"tile") then
+						nextSpriteName=k
+						break
+					end
+					
+					
+				end
+			end
+		end
+		
+		if nextSpriteName==nil then nextSpriteName=first end
+		
+		World.player.spriteName=nextSpriteName
 	end
 	
 end
@@ -286,5 +346,8 @@ end
 
 love.quit=function()
 	saveGame()
+	
+	log("*** Quit ***")
+	Debug.writeLogs()
 	return false
 end

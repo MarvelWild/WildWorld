@@ -29,20 +29,20 @@ end
 -- managed by Entity
 _.updateAi=function(pantera)
 	local r=Lume.random() 
-	if r>0.2 then 
+	if r>0.1 then 
 		--log("not upd")
 		return 
 	end -- 50%?
 	
-	log("pantera update ai")
-	local nextX=pantera.x+Lume.random(-20,20)
-	local nextY=pantera.y+Lume.random(-20,20)
+--	log("pantera update ai")
+	local nextX=pantera.x+Lume.random(-200,200)
+	local nextY=pantera.y+Lume.random(-200,200)
 	
 	local moveEvent={}
 	moveEvent.code="move"
 	moveEvent.x=nextX
 	moveEvent.y=nextY
-	moveEvent.duration=6
+	moveEvent.duration=12
 	
 	moveEvent.entity=pantera.entity
 	moveEvent.entityId=pantera.id

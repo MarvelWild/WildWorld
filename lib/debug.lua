@@ -28,7 +28,9 @@ debug.writeLogs=function()
 		log=log..v.."\n"
 	end
 	
-	love.filesystem.write("log.txt", log)
+	love.filesystem.append("log.txt", log)
+	
+	debug.messages={}
 end
 
 
