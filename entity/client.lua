@@ -30,6 +30,7 @@ local recv=function(data) -- search alias: receive
 	for k,dataCommand in pairs(dataParts) do
 		local response=TSerial.unpack(dataCommand)
 		
+		-- todo: mem leak
 		local singleHandler=_.singleResponseHandlers[response.requestId]
 		if singleHandler~=nil then
 			singleHandler(response)
@@ -74,9 +75,9 @@ _.send=function(data, onResponse)
 	data.requestId=_.requestId
 	_.requestId=_.requestId+1
 	
---	if onResponse~=nil then
---		_.singleResponseHandlers[data.requestId]=onResponse
---	end
+	if onResponse~=nil then
+		_.singleResponseHandlers[data.requestId]=onResponse
+	end
 	
 	local packed=TSerial.pack(data)
 	log("send:"..packed)
