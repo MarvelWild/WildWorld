@@ -1,7 +1,7 @@
 local _={}
 
 _.new=function()
-	local result={}
+	local result=BaseEntity.new()
 	
 	result.id=Id.new("alien")
 	result.entity="Alien"

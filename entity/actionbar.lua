@@ -1,8 +1,7 @@
 local _={}
-	-- wip
 
 _.new=function()
-	local r={}
+	local r=BaseEntity.new()
 	r.entity="Actionbar"
 	r.isUiDrawable=true
 	r.editorVisible=false
@@ -17,7 +16,6 @@ _.drawUi=function(bar)
 	
 	LG.draw(Img.ui_low,0,0)
 	
-	-- wip favs
 	
 	local y=2
 	local x=2

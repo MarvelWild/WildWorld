@@ -1,6 +1,6 @@
 local _={}
 
--- all registered
+-- all registered, except services
 local _all={}
 
 -- k=entity, v=draw function
@@ -15,6 +15,23 @@ local _ai={}
 _.getAll=function()
 	return _all
 end
+
+
+_.getLocal=function()
+	local result={}
+	for k,entity in pairs(_all) do
+		if not entity.isRemote then
+			table.insert(result,entity)
+		end
+	end
+	
+	return result
+end
+
+_.getSaving=function()
+	return _.getLocal()
+end
+
 
 
 _.get=function(name)
@@ -65,9 +82,11 @@ local activate=function(entity)
 		_scaleduidrawable[entity]=entityCode.drawScaledUi
 	end
 	
-	local fnUpdate=entityCode.update
-	if fnUpdate~=nil then
-		_updateable[entity]=fnUpdate
+	if not entity.isRemote then
+		local fnUpdate=entityCode.update
+		if fnUpdate~=nil then
+			_updateable[entity]=fnUpdate
+		end
 	end
 	
 	
@@ -143,9 +162,9 @@ _.register=function(entity)
 	end
 end
 
-_.find=function(entityName,id)
+_.find=function(entityName,id,login)
 	for k,v in pairs(_all) do
-		if v.entity==entityName and v.id==id then
+		if v.entity==entityName and v.id==id and v.login==login then
 			return v
 		end
 	end

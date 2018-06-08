@@ -1,0 +1,1 @@
+"c:\Program Files\LOVE\love.exe" c:\Gamedev\Love\LoFiFreestyleGame s

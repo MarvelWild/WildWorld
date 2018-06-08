@@ -1,5 +1,9 @@
 local login=function(data,clientId)
 	log("login:"..pack(data))
+	
+	local login=data.login
+	Server.registerClient(clientId,login)
+	
 --	for clId,client in pairs(Server.clients) do
 --		if client.login==data.login then
 --			log("todo: Disconnect existing session")

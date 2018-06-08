@@ -3,6 +3,10 @@ local _={}
 -- static
 
 _.responseHandlers={}
+
+-- wip:load handlers
+loadScripts("client/handlers/", _.responseHandlers)
+
 _.singleResponseHandlers={}
 
 -- incomplete part accumulated here
@@ -39,7 +43,7 @@ local recv=function(data) -- search alias: receive
 		end
 		
 		
-		local handler=_.responseHandlers[response.responseType]
+		local handler=_.responseHandlers[response.cmd]
 		if handler~=nil then 
 			handler(response)
 			isProcessed=true
@@ -86,6 +90,16 @@ _.send=function(data, onResponse)
 	tcpClient:send(packed..NET_MSG_SEPARATOR)
 end
 
+local afterJoin=function(response)
+	log("after join")
+	
+	for k,entity in pairs(response.entities) do
+		entity.isRemote=true
+		Entity.register(entity)
+	end
+end
+
+
 local afterLogin=function(response)
 --	local players=response.players
 --	local state=require "client/state_pick_player"
@@ -93,6 +107,12 @@ local afterLogin=function(response)
 --	switchState(state)
 --	_.isLoggedIn=true
 	log("after login")
+	
+	local data={
+		cmd="join",
+		player=World.player
+	}
+	_.send(data,afterJoin)
 
 end
 
@@ -101,6 +121,8 @@ local login=function()
 		cmd="login",
 		login="moo",
 	}
+	
+	Session.login=data.login
 	_.send(data,afterLogin)
 end
 

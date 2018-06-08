@@ -50,8 +50,15 @@ Session={
 	windowHeight=512,
 	windowWidth=512,
 	scale=4,
+	isClient=false,
+	login="defaultLogin",
 }
 
+Session.isClient=Util.hasArg("c")
+
+if Session.isClient then
+	love.filesystem.setIdentity("ULR_Client")
+end
 
 -- lowercase Globals - frequently used
 log=Debug.log
@@ -70,7 +77,7 @@ local _editor=Editor.new()  ---EntityFactory.debugger()
 
 local saveGame=function()
 	Id.save()
-	World.entities=Entity.getAll()
+	World.entities=Entity.getSaving()
 	local str=serialize(World)
 	love.filesystem.write(Const.worldSaveFile, str)
 end
@@ -106,12 +113,16 @@ end
 
 local startClient=function()
 	log("starting client")
+	love.window.setTitle(love.window.getTitle().." | client")
 	ClientEntity=Client.new()
 	Client.connect(ClientEntity)
+	
+	newGame()
 end
 
 local startServer=function()
 	log("starting server")
+	love.window.setTitle(love.window.getTitle().." | server")
 	ServerEntity=Server.new()
 end
 
@@ -133,13 +144,7 @@ love.load=function()
 	
 	preloadImages()
 	
-	local isNewGame=Util.hasArg("new")
-	--arg[#arg] == "-debug"
-	
-	if isNewGame or not loadGame() then newGame() end
-	
-	startUi()
-	_cam:setScale(Session.scale)
+
 	
 	--love.graphics.setLineWidth(scale)
 	
@@ -148,7 +153,17 @@ love.load=function()
 	
 	if Util.hasArg("sandbox") then require "sandbox" end
 	if Util.hasArg("s") then startServer() end
-	if Util.hasArg("c") then startClient() end
+	
+	local isNewGame=Util.hasArg("new")
+
+	if Session.isClient then
+		startClient() 
+	elseif isNewGame or not loadGame() then 
+		newGame()
+	end
+	
+	startUi()
+	_cam:setScale(Session.scale)
 end
 
 
@@ -234,7 +249,7 @@ love.mousepressed=function(x,y,button,istouch)
 	log("Mouse pressed:"..xy(gameX,gameY).." btn:"..button)
 	
 	if button==1 then
-		local moveEvent={}
+		local moveEvent=Event.new()
 		moveEvent.code="move"
 		moveEvent.x=gameX-7
 		moveEvent.y=gameY+1-World.player.height
@@ -243,7 +258,7 @@ love.mousepressed=function(x,y,button,istouch)
 		moveEvent.entity=World.player.entity
 		moveEvent.entityId=World.player.id
 		
-		Event.new(moveEvent)
+		
 	elseif button==2 then	
 		log("rmb:default action")
 

@@ -2,7 +2,7 @@
 local _={}
 
 _.new=function()
-	local result={}
+	local result=BaseEntity.new()
 	
 	result.id=Id.new("creature")
 	result.entity="Creature"
@@ -39,7 +39,7 @@ _.updateAi=function(creature)
 	local nextX=creature.x+Lume.random(-20,20)
 	local nextY=creature.y+Lume.random(-20,20)
 	
-	local moveEvent={}
+	local moveEvent=Event.new()
 	moveEvent.code="move"
 	moveEvent.x=nextX
 	moveEvent.y=nextY
@@ -47,8 +47,6 @@ _.updateAi=function(creature)
 	
 	moveEvent.entity=creature.entity
 	moveEvent.entityId=creature.id
-	
-	Event.new(moveEvent)
 end
 
 

@@ -2,11 +2,13 @@
 
 local _={}
 
+_.name="Player"
+
 _.new=function()
 	-- try to keep it flat
 	local name="player"
 	
-	local player={}
+	local player=BaseEntity.new()
 	player.id=Id.new(name)
 	player.x=0
 	player.y=0

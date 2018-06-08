@@ -1,7 +1,7 @@
 local _={}
 
 _.new=function(options)
-	local result=BaseEntity.new()
+	local result=BaseEntity.new(options)
 	
 	result.entity="Sheep"
 	result.x=0

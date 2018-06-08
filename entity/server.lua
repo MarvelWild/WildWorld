@@ -1,7 +1,7 @@
 local _={}
 
 _.new=function()
-	local result={}
+	local result=BaseEntity.new()
 	result.entity="Server"
 	result.id=nil -- we are service, no serialization
 	result.isActive=true
@@ -13,8 +13,52 @@ _.new=function()
 end
 
 -- Static
+_.clientsByLogin={}
+_.loginByClient={}
 _.commandHandlers={}
 loadScripts("server/handlers/", _.commandHandlers)
+
+_.registerClient=function(clientId,login)
+	_.clientsByLogin[login]=clientId
+	_.loginByClient[clientId]=login
+end
+
+local prepareEventsForLogin=function(login,events)
+	local result={}
+	
+	for k,event in pairs(events) do
+		if event.login~=login then
+			table.insert(result,event)
+		end
+	end
+	
+	return result
+end
+
+
+_.sendEventsToClients=function(events)
+	for login,client in pairs(_.clientsByLogin) do
+		local preparedEvents=prepareEventsForLogin(login,events)
+		
+		if next(preparedEvents)~=nil then
+			local command=
+			{
+				cmd="events_client",
+				events=events
+			}
+			-- wip: exclude own event for each client
+			-- wip: login? и проверить чтобы в мире тоже был, изначальном
+			Server.send(command)
+		else
+			log("no events for:"..login)
+		end
+	end
+	
+
+	-- wip: проверяем на клиенте что пришло
+end
+
+
 
 -- единственная точка через которую сервер отправляет сообщения
 _.send=function(data, clientId,requestId)

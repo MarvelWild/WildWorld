@@ -23,7 +23,7 @@ end
 
 
 _.new=function()
-	local r={}
+	local r=BaseEntity.new()
 	r.items=getEditorItems()
 	r.entity="Editor"
 	r.activeItem=nil

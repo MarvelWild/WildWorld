@@ -1,7 +1,7 @@
 local _={}
 
 _.new=function(options)
-	local result=BaseEntity.new()
+	local result=BaseEntity.new(options)
 	
 	local isProto=false
 	if options then

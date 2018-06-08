@@ -2,7 +2,7 @@ local _={}
 
 
 _.new=function()
-	local r={}
+	local r=BaseEntity.new()
 	r.entity="Debugger"
 	r.isActive=false
 	r.isUiDrawable=false --4x

@@ -1,7 +1,7 @@
 local _={}
 
 _.new=function(options)
-	local result=BaseEntity.new()
+	local result=BaseEntity.new(options)
 	
 	result.entity="Pantera"
 	result.x=0
@@ -38,7 +38,7 @@ _.updateAi=function(pantera)
 	local nextX=pantera.x+Lume.random(-200,200)
 	local nextY=pantera.y+Lume.random(-200,200)
 	
-	local moveEvent={}
+	local moveEvent=Event.new()
 	moveEvent.code="move"
 	moveEvent.x=nextX
 	moveEvent.y=nextY
@@ -46,8 +46,6 @@ _.updateAi=function(pantera)
 	
 	moveEvent.entity=pantera.entity
 	moveEvent.entityId=pantera.id
-	
-	Event.new(moveEvent)
 end
 
 
