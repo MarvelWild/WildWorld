@@ -12,11 +12,11 @@ RMB: use active item (seeds in slot 1 plants grass)
 
 
 Features so far: 
-	4096x4096 px world
-	128*128 px (4x scaled) window
-	walking
-	basic ai (pantera and sheep)
-	network: server-client mode
+* 4096x4096 px world
+* 128*128 px (4x scaled) window
+* walking
+* basic ai (pantera and sheep)
+* network: server-client mode
 
 Screenshot:
 	https://ibb.co/f0Jy5d
