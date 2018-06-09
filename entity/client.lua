@@ -119,7 +119,7 @@ end
 local login=function()
 	local data={
 		cmd="login",
-		login="moo",
+		login=Session.login,
 	}
 	
 	Session.login=data.login

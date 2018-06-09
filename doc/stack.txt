@@ -1,11 +1,12 @@
 emotes: dance, jump,anything
 	
-	but saves self
-client does not save world
+		and loads+
+	but saves self+
+client does not save world+
 
 
 
-динамическое создание объектов с помощб. импорта или рисования в игре
+динамическое создание объектов с помощъю импорта или рисования в игре
 
 
 	+сохраняются в 1 и ту же папку, разделить

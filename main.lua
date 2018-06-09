@@ -58,6 +58,7 @@ Session.isClient=Util.hasArg("c")
 
 if Session.isClient then
 	love.filesystem.setIdentity("ULR_Client")
+	Session.login="client1"
 end
 
 -- lowercase Globals - frequently used
@@ -83,6 +84,7 @@ local saveGame=function()
 end
 
 local loadGame=function()
+	log("loadGame")
 	Id.load()
 	
 	local info=love.filesystem.getInfo(Const.worldSaveFile)
@@ -113,11 +115,12 @@ end
 
 local startClient=function()
 	log("starting client")
+	if not loadGame() then newGame() end
 	love.window.setTitle(love.window.getTitle().." | client")
 	ClientEntity=Client.new()
 	Client.connect(ClientEntity)
 	
-	newGame()
+	-- newGame()
 end
 
 local startServer=function()
