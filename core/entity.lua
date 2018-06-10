@@ -57,8 +57,7 @@ _.registerWorld=function()
 		register(entity)
 	end
 
-	
-	
+
 	
 end
 
@@ -162,7 +161,23 @@ _.register=function(entity)
 	end
 end
 
+-- alias: unregister
+_.delete=function(entityName,entityId)
+	-- untested
+	local entity=_.find(entityName,entityId)
+	assert(entity)
+	
+	if entity.isActive then deactivate(entity) end
+	
+	
+	local isRemoved=table_removeByVal(_all,entity)
+	assert(isRemoved)
+end
+
+
 _.find=function(entityName,id,login)
+	if login==nil then login=Session.login end
+	
 	for k,v in pairs(_all) do
 		if v.entity==entityName and v.id==id and v.login==login then
 			return v
@@ -274,6 +289,17 @@ _.update=function(dt)
 	
 end
 
+
+
+_.transferToServer=function(entities)
+	for k,entity in pairs(entities) do
+		entity.isTransferring=true
+	end
+	
+	local event=Event.new()
+	event.entities=entities
+	event.code="transfer_to_server"
+end
 
 return _
 

@@ -1,3 +1,60 @@
+
+
+
+	
+	сервер сеет семя
+		
+				для этого сервер у трансфернутых отдаёт oldId
+			если его - разрегистрирует прежние
+			если не его логин - просто регистрирует их
+		>клиент отвечает на entities_transferred
+				с такими не взаимодействуем/или с ожиданием трансфера
+			пометить isTransferring+
+		+transfer_to_server созданную сущность
+	>клиент сеет семя
+>новый день
+
+
+Процесс использования семян:
+	выбран вариант 1 : умный клиент
+		клиент создаёт их у себя, делает трансфер сущности
+		сервер после трансфера уведомляет клиенты о добавившейся сущности
+		клиент заменяет трансфернутую у себя
+		
+		плюсы: мгновенный респонз на клиенте
+		минусы: 
+			до трансфера если сущность куда то уйдёт - после трансфера референсы станут неактуальны
+			до трансфера взаимодействовать с сущностью - неопределённость, нужно помечать сущность как нестабильную
+			
+		
+	вариант 2 : умный сервер
+		клиент отправляет команду
+		сервер создаёт
+			плюсы:
+			минусы:
+				клиент ждёт результата
+
+
+
+возможность заслать ответ всем, а запросившему-также передать requestId
+possibility to detect changed entities (for networking)
+		по этой модели теряется авторитативность клиента в своих действиях, стоило бы оставить - например 
+			+клиент создаёт сущность, 
+			+и выполняет ивент помещения сущности на сервер, 
+			+и передачу серверу её
+	+response is new entity
+	+seed use creates plant on server
++event response could be different from processing event
+
+
+grass from client should be saved on server
+	register player items on join
+		check creation code
+	seed not found
+	
+	>use on client, send entity create event
+>item use: network
+	ui for that / chat is ok
 emotes: dance, jump,anything
 	
 		and loads+
@@ -13,15 +70,15 @@ client does not save world+
 +на сервере наблюдается 2 одинаковых игрока:
 				
 				
-		ServerEntity.tcpServer:send(packed..NET_MSG_SEPARATOR, clientId)
-	sendEventsToClients implement, сейчас по этой причине клиент получает свои же.
->client events echo		
+		+ServerEntity.tcpServer:send(packed..NET_MSG_SEPARATOR, clientId)
+	+sendEventsToClients implement, сейчас по этой причине клиент получает свои же.
++client events echo		
 +логин привязывать к clientId	
 
-			player still have no login on serv - old save
-			inherit all remote entities from base
-		player.login was nil from server
-	клиент их принимает (events_client)
+			+player still have no login on serv - old save
+			+inherit all remote entities from base
+		+player.login was nil from server
+	+клиент их принимает (events_client)
 +сервер шлёт ивенты на клиентов
 			+привязка к клиенту (login у сущности)
 		+понимание ремот сущностей
@@ -39,19 +96,17 @@ client does not save world+
 	
 	+клиент получает мир из сервера
 +загрузить состояние мира с сервера
-клиент не активирует аи
++клиент не активирует аи
 
 
 
-клиент не создаёт мир, только себя (клиентская анархия ради мягкого экспериенса, мы ведь все равно песочница) позже
++клиент не создаёт мир, только себя (клиентская анархия ради мягкого экспериенса, мы ведь все равно песочница) позже
 
-	свобода, делай что хочешь, тут тоже бывай.
-сфокусироваться на SC, сюда вернуться одному.
 клиент запускается без загрузки+
 
 
-	затем просто включиться в цикл команд, например помнить фрейм снапшота, и с него запрашивать. а лучше - сервер
-		сам начинает слать с момента первого снапа
+	+затем просто включиться в цикл команд, например помнить фрейм снапшота, и с него запрашивать. а лучше - сервер
+		+сам начинает слать с момента первого снапа
 
 			как single response handler+
 		получить ок+
@@ -64,10 +119,10 @@ client does not save world+
 server/client
 	
 	setAnimation - можно ф draw менять тут
-animation
+animation - later
 
 
-rotate image left when walking left
+rotate image left when walking left later
 object origin: bottom left by default
 	animate pantera walk later
 animation
@@ -81,12 +136,12 @@ profiler
 	architecture: generic or specific?
 	
 	
-	pet ai: follow player
->sheep
+	+pet ai: follow player
++sheep
 	
-	client mode
-	server mode
-multiplayer!
+	+client mode
+	+server mode
++multiplayer!
 					
 					
 					no customizable editor item? [solved: hybrid items, auto+custom]
@@ -114,17 +169,12 @@ multiplayer!
 		+way for entity to listen for keys-later, use hack
 	+scroll items
 	
-creative mode editor: place any item
++creative mode editor: place any item
 
 
 carrots
 
-ai update: future commands queue instead of update()	
-more fun - some simulation
-
-
-
-			
++ai update: future commands queue instead of update()	
 				proto image
 				then show available actions on right bar (todo)
 			rclick select object (cycle if many)
@@ -132,7 +182,7 @@ more fun - some simulation
 			rclick?
 		ability to start dialog, by...
 	talk to npc (dialog system proto)
->quests and npc!
+quests and npc!
 combat?
 fire
 areas (generic)

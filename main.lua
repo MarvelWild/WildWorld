@@ -265,9 +265,6 @@ love.mousepressed=function(x,y,button,istouch)
 	elseif button==2 then	
 		log("rmb:default action")
 
-
-		-- wip editor
-		
 		if _editor.isActive then
 			log("editor place item")
 			Editor.placeItem(_editor)
@@ -282,14 +279,37 @@ love.mousepressed=function(x,y,button,istouch)
 			return
 		end
 		
-		-- todo: can we ask for mouse coord and get same one during frame?
+		-- wip: use locally, send new entity as event to others
+		
+		local entity=Entity.find(activeEntity.entity, activeEntity.id,Session.login)
 		local entityCode=Entity.get(activeEntity.entity)
 		if entityCode.use~=nil then
-			log("use:"..activeEntity.entity)
-			entityCode.use(activeEntity,gameX,gameY)
+			log("use:"..entity.entity)
+			-- wip: тут внутри создастся ивент
+			entityCode.use(entity,gameX,gameY)
 		else
-			log("entity has no 'use' func:"..activeEntity.entity)
+			log("entity has no 'use' func:"..event.entity)
 		end
+		
+--		-- wip а этот уйдёт
+--		local useEvent=Event.new()
+--		useEvent.entity=activeEntity.entity
+--		useEvent.x=gameX
+--		useEvent.y=gameY
+--		useEvent.code="use"
+--		useEvent.entityId=activeEntity.id
+		
+		
+--		local entityCode=Entity.get(activeEntity.entity)
+--		if entityCode.use~=nil then
+--			log("use:"..activeEntity.entity)
+--			entityCode.use(activeEntity,gameX,gameY)
+			
+			
+			
+--		else
+--			log("entity has no 'use' func:"..activeEntity.entity)
+--		end
 		
 	end
 end

@@ -1,0 +1,1 @@
+-- q: can we ask for mouse coord and get same one during frame? a:y.

@@ -14,10 +14,7 @@ _.new=function(options)
 	result.y=0
 	result.isDrawable=true
 	
-	if not isProto then
-		result.id=Id.new("grass")
-		Entity.register(result)
-	end
+	BaseEntity.init(result,options)
 	
 	return result
 end

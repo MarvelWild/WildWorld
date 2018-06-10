@@ -10,7 +10,7 @@ _.new=function()
 	result.spriteName="alien"
 	result.isDrawable=true
 	
-	Entity.register(result)
+	BaseEntity.init(result,nil)
 	
 	return result
 end

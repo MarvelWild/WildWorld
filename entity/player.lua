@@ -9,7 +9,6 @@ _.new=function()
 	local name="player"
 	
 	local player=BaseEntity.new()
-	player.id=Id.new(name)
 	player.x=0
 	player.y=0
 	player.xScale=1 -- todo: implement
@@ -33,7 +32,7 @@ _.new=function()
 	player.abilities={}
 	player.activeFavorite=nil
 	
-	Entity.register(player)
+	BaseEntity.init(player)
 	return player
 end
 
