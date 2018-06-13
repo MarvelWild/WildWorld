@@ -43,6 +43,15 @@ local processEvent=function(event)
 		else
 			log("entity has no 'use' func:"..event.entity)
 		end
+	elseif eventCode=="transfer_to_server" then
+		-- server only event, not processed on client
+		-- event чтобы была возможность стакать
+		
+		if not Session.isClient then
+			log("processing transfer_to_server event")
+			Entity.acceptAtServer(event.entities)
+		end
+		
 	else
 		log("error:event unprocessed:"..pack(event))
 	end

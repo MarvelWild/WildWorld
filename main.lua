@@ -93,6 +93,29 @@ local loadGame=function()
 	World=deserialize(packed)
 	assert(World)
 	
+	if Session.isClient then
+		
+--		for k,entity in pairs(World.entities) do
+--			if entity.entity=="Player" then
+--				World.entities={}
+--				table.insert(World.entities,entity)
+--				break
+--			end
+--		end
+		
+		local newEntities={}
+		for k,entity in pairs(World.entities) do
+			if entity.entity=="Player" or entity.entity=="Seed" then
+				table.insert(newEntities,entity)
+			end
+		end
+		
+		World.entities=newEntities
+	end
+	
+
+	
+	
 	Entity.registerWorld()
 	
 	return true
@@ -115,6 +138,7 @@ end
 
 local startClient=function()
 	log("starting client")
+	-- todo: load player only. 
 	if not loadGame() then newGame() end
 	love.window.setTitle(love.window.getTitle().." | client")
 	ClientEntity=Client.new()

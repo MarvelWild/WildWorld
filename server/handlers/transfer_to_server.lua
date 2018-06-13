@@ -1,6 +1,7 @@
 -- server accepts entity, and sends update to clients
+-- unused: moved to event
 local transfer_to_server=function(data,clientId)
-	log("transfer_to_server:"..pack(data))
+	log("[UNUSED] transfer_to_server:"..pack(data))
 	
 	local login=Server.loginByClient[clientId]
 	
@@ -9,7 +10,7 @@ local transfer_to_server=function(data,clientId)
 		entity.login=Session.login
 
 		entity.prevId=entity.id
-		entity.id=Id.new(entity.Entity)
+		entity.id=Id.new(entity.entity)
 		
 		Entity.register(entity)
 	end

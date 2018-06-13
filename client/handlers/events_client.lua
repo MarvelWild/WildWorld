@@ -1,3 +1,4 @@
+-- с сервера на клиент пришли события
 local events_client=function(data,clientId)
 	log("events_client:"..pack(data))
 	
@@ -6,9 +7,6 @@ local events_client=function(data,clientId)
 	
 	for k,event in pairs(events) do
 		event.isRemote=true
-		-- wip
-		-- event.login=login
-		-- ожидаем что есть
 		Event.register(event)
 	end
 end

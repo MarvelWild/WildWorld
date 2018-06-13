@@ -11,7 +11,6 @@ _.new=function(options)
 	
 	-- assert(Session.login~=nil) -- defaultLogin by default
 	result.login=Session.login
-	--wip 
 	result.isRemote=false
 	-- result.entity="" через это связь данных с утилитным кодом класса
 	

@@ -98,7 +98,7 @@ _.table_removeByVal=function(t, x)
 end
 
 _.hasArg=function(name)
-	return Lume.find(arg, name)
+	return Lume.find(arg, name)~=nil
 end
 
 -- game coords
