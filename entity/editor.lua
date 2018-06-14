@@ -87,6 +87,8 @@ _.placeItem=function(editor)
 	local newEntity=editor.activeItemCode.new()
 	newEntity.x=editor.activeItem.x
 	newEntity.y=editor.activeItem.y
+	
+	return newEntity
 end
 
 

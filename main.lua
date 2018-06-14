@@ -55,10 +55,13 @@ Session={
 }
 
 Session.isClient=Util.hasArg("c")
+Session.isServer=not Session.isClient
 
 if Session.isClient then
 	love.filesystem.setIdentity("ULR_Client")
 	Session.login="client1"
+else
+	love.window.setPosition(20,100)
 end
 
 -- lowercase Globals - frequently used
@@ -291,7 +294,8 @@ love.mousepressed=function(x,y,button,istouch)
 
 		if _editor.isActive then
 			log("editor place item")
-			Editor.placeItem(_editor)
+			local item=Editor.placeItem(_editor)
+			Entity.transferToServer({item})
 			return
 		end
 		
@@ -303,8 +307,6 @@ love.mousepressed=function(x,y,button,istouch)
 			return
 		end
 		
-		-- wip: use locally, send new entity as event to others
-		
 		local entity=Entity.find(activeEntity.entity, activeEntity.id,Session.login)
 		local entityCode=Entity.get(activeEntity.entity)
 		if entityCode.use~=nil then
@@ -314,27 +316,6 @@ love.mousepressed=function(x,y,button,istouch)
 		else
 			log("entity has no 'use' func:"..event.entity)
 		end
-		
---		-- wip а этот уйдёт
---		local useEvent=Event.new()
---		useEvent.entity=activeEntity.entity
---		useEvent.x=gameX
---		useEvent.y=gameY
---		useEvent.code="use"
---		useEvent.entityId=activeEntity.id
-		
-		
---		local entityCode=Entity.get(activeEntity.entity)
---		if entityCode.use~=nil then
---			log("use:"..activeEntity.entity)
---			entityCode.use(activeEntity,gameX,gameY)
-			
-			
-			
---		else
---			log("entity has no 'use' func:"..activeEntity.entity)
---		end
-		
 	end
 end
 
@@ -380,8 +361,6 @@ love.keypressed=function(key,unicode)
 						nextSpriteName=k
 						break
 					end
-					
-					
 				end
 			end
 		end

@@ -84,7 +84,7 @@ _.send=function(data, onResponse)
 	end
 	
 	local packed=TSerial.pack(data)
-	log("send:"..packed)
+	log("send cmd:"..data.cmd.." data:"..packed)
 	
 	local tcpClient=ClientEntity.tcpClient
 	tcpClient:send(packed..NET_MSG_SEPARATOR)
@@ -94,7 +94,9 @@ local afterJoin=function(response)
 	log("after join")
 	
 	for k,entity in pairs(response.entities) do
+		-- можно порефакторить в entity.acceptRemote, оно ещё на приёме трансфера есть
 		entity.isRemote=true
+		entity.aiEnabled=false
 		Entity.register(entity)
 	end
 end

@@ -31,6 +31,9 @@ local processEvent=function(event)
 --			local a=1
 --			local entity=Entity.find(event.entity, event.entityId,event.login)
 --		end
+		if entity==nil then
+			log("error in event:"..pack(event))
+		end
 		
 		assert(entity~=nil)
 		Flux.to(entity, event.duration, { x = event.x, y = event.y }):ease("quadout")

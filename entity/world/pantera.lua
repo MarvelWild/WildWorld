@@ -8,7 +8,7 @@ _.new=function(options)
 	result.y=0
 	result.spriteName="pantera"
 	result.isDrawable=true
-	result.aiEnabled=true
+	result.aiEnabled=Session.isServer
 	
 	BaseEntity.init(result,options)
 	
@@ -28,11 +28,11 @@ end
 
 -- managed by Entity
 _.updateAi=function(pantera)
-	local r=Lume.random() 
-	if r>0.1 then 
-		--log("not upd")
-		return 
-	end -- 50%?
+--	local r=Lume.random() 
+--	if r>0.1 then 
+--		--log("not upd")
+--		return 
+--	end -- 50%?
 	
 --	log("pantera update ai")
 	local nextX=pantera.x+Lume.random(-200,200)

@@ -24,16 +24,6 @@ _.use=function(seed,x,y)
 	grass.y=y
 	
 	Entity.transferToServer({grass})
-	
-
-	-- wip: process on server
-	-- wip: respond to entities_transferred
-	
-	
-	-- wip: send event
-	-- если на сервере - разослать клиентам новую сущность
-	-- если на клиенте - инициализировать трансфер сущности, принять ответ о успешном
-	-- как вариант - селить с клиентским логином
 end
 
 

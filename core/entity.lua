@@ -3,6 +3,7 @@ local _={}
 -- all registered, except services
 local _all={}
 
+
 -- k=entity, v=draw function
 local _drawable={}
 local _uidrawable={}
@@ -10,6 +11,10 @@ local _scaleduidrawable={}
 
 local _updateable={}
 local _ai={}
+
+-- debug
+_._all=_all
+_._drawable=_drawable
 
 -- read only please
 _.getAll=function()
@@ -107,7 +112,8 @@ local deactivate=function(entity)
 	-- make setDrawable func? ok
 	
 	if entity.isDrawable then
-		table_removeByVal(_drawable,entityCode.draw)
+		_drawable[entity]=nil
+		-- table_removeByVal(_drawable,entityCode.draw)
 	end
 	
 	if entity.isUiDrawable then
@@ -141,7 +147,7 @@ end
 
 
 _.register=function(entity)
-	
+	log("registering:"..pack(entity))
 	-- service entity created at runtime, and do not need to be serialized
 	local isService=entity.id==nil
 	local isActive=not (entity.isActive==false) -- true or nil
@@ -163,7 +169,8 @@ end
 
 -- alias: unregister
 _.delete=function(entityName,entityId)
-	-- untested
+	
+	log("deleting entity:"..entityId)
 	local entity=_.find(entityName,entityId)
 	assert(entity)
 	
@@ -293,6 +300,12 @@ end
 
 -- client side
 _.transferToServer=function(entities)
+	if not Session.isClient then
+		_.acceptAtServer(entities)
+		return
+	end
+	
+	
 	for k,entity in pairs(entities) do
 		entity.isTransferring=true
 	end
@@ -302,6 +315,12 @@ _.transferToServer=function(entities)
 	event.entities=entities
 	event.code="transfer_to_server"
 end
+
+local getProto=function(entity,entityCode)
+	local result=entityCode.new({isProto=true})
+	return result
+end
+
 
 _.acceptAtServer=function(entities)
 	log("Entity.acceptAtServer")
@@ -316,6 +335,13 @@ _.acceptAtServer=function(entities)
 
 		entity.prevId=entity.id
 		entity.id=Id.new(entity.entity)
+
+		local entityCode=Entity.get(entity.entity)
+		local proto=getProto(entity,entityCode)
+		if proto.aiEnabled then
+			entity.aiEnabled=true
+		end
+		
 		
 		Entity.register(entity)
 	end
@@ -333,6 +359,31 @@ _.acceptAtServer=function(entities)
 	
 	Server.send(response)
 end
+
+_.debugPrint=function()
+	log("Entity debug print start: -------[")
+	log("All:")
+	
+	local toString=Entity.toString
+	
+	for k,v in pairs(_all) do
+		log(toString(v))
+	end
+	
+	log("Drawable:")
+	for k,v in pairs(_drawable) do
+		log(toString(k))
+	end
+	
+	log("Entity debug print end:   ]-------")
+end
+
+_.toString=function(entity)
+	if entity==nil then return "nil" end
+	local result=entity.entity.." id:"..tostring(entity.id).." rm:"..tostring(entity.isRemote)
+	return result
+end
+
 
 
 return _
