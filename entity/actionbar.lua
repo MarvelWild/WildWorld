@@ -19,10 +19,16 @@ _.drawUi=function(bar)
 	
 	local y=2
 	local x=2
+	local activeFavorite=player.activeFavorite
 	for k,v in pairs(player.favorites) do
 		-- opt: no lookups every frame
 		local sprite=Img[v.spriteName]
 		LG.draw(sprite,x,y)
+		
+		-- wip
+		if v==activeFavorite then
+			LG.draw(Img.frame_active_item,x,y)
+		end
 		x=x+16
 	end
 	
@@ -32,6 +38,20 @@ end
 
 
 
+
+
+
+_.keypressed=function(entity,key,unicode)
+	-- wip: subscribe
+	log("actionbar keypressed:"..key)
+	-- wip: handle
+	if key=="1" then
+		Player.setActiveFavorite(1)
+	elseif key=="2" then
+		Player.setActiveFavorite(2)
+	end
+	
+end
 
 
 return _

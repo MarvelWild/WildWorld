@@ -59,15 +59,28 @@ end
 
 
 _.giveStarterPack=function(player)
+	log("giveStarterPack")
+	
 	local seed=Seed.new()
 	seed.type="mixed"
 	
 	assert(player.favorites[1]==nil)
 	
 	_.setFavorite(player,seed,1)
+	
+	
+	local slot2=BirchSapling.new()
+	_.setFavorite(player,slot2,2)
 end
 
 
+_.setActiveFavorite=function(slot)
+	local player=World.player
+	player.activeFavorite=player.favorites[slot]
+end
+
+
+-- set new item into fav slot
 _.setFavorite=function(player,item,slot)
 	if player.favorites[slot] then log("error: not implemented") end
 		

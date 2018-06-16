@@ -41,6 +41,8 @@ Creature=require "entity/world/creature"
 Pantera=require "entity/world/pantera"
 Sheep=require "entity/world/sheep"
 Alien=require "entity/world/alien"
+BirchSapling=require "entity/world/birch_sapling"
+BirchTree=require "entity/world/birch_tree"
 
 Cam = Gamera.new(0,0,Config.levelWidth,Config.levelHeight)
 local _cam=Cam
@@ -331,6 +333,14 @@ end
 
 love.keypressed=function(key,unicode)
 	log("keypressed:"..key)
+	
+	local isProcessedByEntities=Entity.keypressed(key,unicode)
+	if isProcessedByEntities then
+		log("key processed by entities")
+		return
+	end
+	
+	
 	if key==Config.keyDebugger then
 		Debug.writeLogs()
 		toggleDebugger()

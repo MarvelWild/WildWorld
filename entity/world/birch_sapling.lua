@@ -4,8 +4,8 @@ _.new=function(options)
 	local result=BaseEntity.new()
 	
 	
-	result.spriteName="seeds"
-	result.entity="Seed"
+	result.spriteName="birch_sapling"
+	result.entity="BirchSapling"
 	result.id=Id.new(result.entity)
 	result.stackCount=42
 	
@@ -19,11 +19,11 @@ _.use=function(seed,x,y)
 	
 	log("Seed plant at:"..xy(x,y))
 	
-	local grass=Grass.new()
-	grass.x=x
-	grass.y=y
+	local spawned=BirchTree.new()
+	spawned.x=x
+	spawned.y=y
 	
-	Entity.transferToServer({grass})
+	Entity.transferToServer({spawned})
 end
 
 

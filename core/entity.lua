@@ -11,6 +11,7 @@ local _scaleduidrawable={}
 
 local _updateable={}
 local _ai={}
+local _keyListeners={}
 
 -- debug
 _._all=_all
@@ -98,6 +99,11 @@ local activate=function(entity)
 		_ai[entity]=entityCode.updateAi
 	end
 	
+	if entityCode.keypressed~=nil then
+		_keyListeners[entity]=entityCode.keypressed
+	end
+	
+	
 	entity.isActive=true
 end
 
@@ -141,6 +147,10 @@ local deactivate=function(entity)
 		assert(isRemoved)
 	end
 	
+	if entityCode.keypressed~=nil then
+		_keyListeners[entity]=nil
+	end
+	
 	entity.isActive=false
 end
 
@@ -153,10 +163,7 @@ _.register=function(entity)
 	local isActive=not (entity.isActive==false) -- true or nil
 	
 	if not isService then
-		-- was bug: entity.id could be the same for diff ent
-		-- _all[entity.id]=entity
 		table.insert(_all,entity)
-		
 	end
 	
 	
@@ -297,6 +304,19 @@ _.update=function(dt)
 end
 
 
+
+_.keypressed=function(key,unicode)
+	--local isProcessed=false
+	
+	-- todo: sort
+	-- todo: locking
+	for entity,fnPressed in pairs(_keyListeners) do
+		local isProcessed=fnPressed(entity,key,unicode)
+		if isProcessed then return true end
+	end
+	
+	return false
+end
 
 -- client side
 _.transferToServer=function(entities)
