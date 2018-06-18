@@ -71,6 +71,12 @@ _.giveStarterPack=function(player)
 	
 	local slot2=BirchSapling.new()
 	_.setFavorite(player,slot2,2)
+	
+	local slot3=Cauldron.new()
+	_.setFavorite(player,slot3,3)
+	
+	local slot4=Bucket.new()
+	_.setFavorite(player,slot4,4)
 end
 
 
@@ -79,6 +85,19 @@ _.setActiveFavorite=function(slot)
 	player.activeFavorite=player.favorites[slot]
 end
 
+
+
+-- fav slots
+_.removeItem=function(item)
+	local player=World.player
+	for k,v in pairs(player.favorites) do
+		if v==item then player.favorites[k]=nil end
+	end
+	
+	if player.activeFavorite==item then 
+		player.activeFavorite=nil 
+	end
+end
 
 -- set new item into fav slot
 _.setFavorite=function(player,item,slot)

@@ -4,6 +4,8 @@ _.new=function(options)
 	local result={}
 	
 	result.isActive=true
+	result.x=0
+	result.y=0
 	
 	-- change via Entity.setDrawable 
 	result.isDrawable=false

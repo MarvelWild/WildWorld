@@ -12,6 +12,7 @@ Lume=require "lib/lume/lume"
 Tween=require "lib/tween/tween"
 Flux=require "lib/flux/flux"
 Debug = require "lib/debug"
+Inspect=require "lib/inspect/inspect"
 Debug.useFile=true
 
 Const=require "data/const"
@@ -42,6 +43,8 @@ Pantera=require "entity/world/pantera"
 Sheep=require "entity/world/sheep"
 Alien=require "entity/world/alien"
 BirchSapling=require "entity/world/birch_sapling"
+Cauldron=require "entity/world/cauldron"
+Bucket=require "entity/world/bucket"
 BirchTree=require "entity/world/birch_tree"
 
 Cam = Gamera.new(0,0,Config.levelWidth,Config.levelHeight)
@@ -313,10 +316,10 @@ love.mousepressed=function(x,y,button,istouch)
 		local entityCode=Entity.get(activeEntity.entity)
 		if entityCode.use~=nil then
 			log("use:"..entity.entity)
-			-- wip: тут внутри создастся ивент
+			-- тут внутри создастся ивент
 			entityCode.use(entity,gameX,gameY)
 		else
-			log("entity has no 'use' func:"..event.entity)
+			log("entity has no 'use' func:"..entity.entity)
 		end
 	end
 end

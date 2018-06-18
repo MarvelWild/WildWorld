@@ -4,8 +4,10 @@ local _={}
 local _all={}
 
 
--- k=entity, v=draw function
+
+-- k=1..max, v={entity,draw}
 local _drawable={}
+-- k=entity, v=draw function
 local _uidrawable={}
 local _scaleduidrawable={}
 
@@ -76,7 +78,8 @@ local activate=function(entity)
 	
 	
 	if entity.isDrawable then
-		_drawable[entity]=entityCode.draw
+		table.insert(_drawable,{entity=entity,draw=entityCode.draw})
+		-- _drawable[entity]=entityCode.draw
 	end
 	
 	if entity.isUiDrawable then
@@ -107,6 +110,18 @@ local activate=function(entity)
 	entity.isActive=true
 end
 
+local removeDrawable=function(entity,container)
+	for k,info in ipairs(container) do
+		if info.entity==entity then 
+			container[k]=nil
+			return
+		end
+	end
+	
+	log("error: removeDrawable")
+end
+
+
 local deactivate=function(entity)
 	local entityCode=_get(entity.entity)
 	
@@ -118,7 +133,8 @@ local deactivate=function(entity)
 	-- make setDrawable func? ok
 	
 	if entity.isDrawable then
-		_drawable[entity]=nil
+		--_drawable[entity]=nil
+		removeDrawable(entity,_drawable)
 		-- table_removeByVal(_drawable,entityCode.draw)
 	end
 	
@@ -203,27 +219,55 @@ end
 
 
 
-local luaCompareByY=function(entity1,entity2)
+
+local compareByY=function(info1,info2)
+	local entity1=info1.entity
+	local entity2=info2.entity
 	if entity1.y>entity2.y then return false end
 	if entity1.y<entity2.y then return true end
 	return false
 end
 
+local updateYSort=function()
+--	local testSort={} 
+--	local e1={y=10}
+--	local e2={y=2}
+--	local e3={y=40}
+	
+	
+--	testSort[e1]="e1"
+--	testSort[e2]="e2"
+--	testSort[e3]="e3"
+	
+--	local sorter=function(a, b)
+--		return a.y > b.y 
+--	end
+--	local beforeSort=Inspect(testSort)
+--	table.sort(testSort,sorter)
+--	local afterSort=Inspect(testSort)
+	
+	
+--	local beforeSort2=Inspect(_drawable)
+	table.sort(_drawable,compareByY)
+--	local afterSort2=Inspect(_drawable)
+	
+--	local a
+end
+
+
+
 
 _.draw=function()
 	
-	-- todo y sort
+	updateYSort()
 	
-	-- table.sort(_drawable,luaCompareByY)
---	for i = 1, #_drawable do
---		local entity=_drawable[i]
-----		log("draw entity:"..pack(entity))
-
+-- bottom origin - later	
 --		LG.draw(entity.sprite,entity.x,entity.y-entity.height)
---	end
 	
-	for entity,code in pairs(_drawable) do
-		code(entity)
+	for k,info in ipairs(_drawable) do
+		local entity=info.entity
+--		log("draw:"..entity.entity.." at:"..xy(entity.x,entity.y))
+		info.draw(entity)
 	end
 end
 

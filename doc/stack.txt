@@ -1,4 +1,7 @@
-	>cauldron
+
+	bucket
+	+при нахождении котла в инвентаре - не рисовать его в мире
+	+cauldron
 witchery
 	
 		+components can subscribe to keys

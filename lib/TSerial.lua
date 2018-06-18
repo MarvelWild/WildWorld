@@ -23,7 +23,13 @@ function TSerial.pack(t, drop, indent)
 	
 	local type_=type(t)
 	assert(type_ == "table", "Can only TSerial.pack tables., got:"..type_)
-	local s, empty, indent = "{"..(indent and "\n" or ""), true, indent and math.max(type(indent)=="number" and indent or 0,0)
+	
+	local empty=true
+	local indent=indent and math.max(type(indent)=="number" and indent or 0,0)
+	if indent==nil then indent=0 end
+	
+	local s = "{"..(indent and "\n" or "")
+	
 	local function proc(k,v, omitKey)	-- encode a key/value pair
 		empty = nil	-- helps ensure empty tables return as "{}"
 		local tk, tv, skip = type(k), type(v)
@@ -56,12 +62,20 @@ function TSerial.pack(t, drop, indent)
 
 	
 	for k,v in pairs(t) do
-		s = s..proc(k, v)
+		local nextPart=proc(k, v)
+		s = s..nextPart
 	end
 	
-	if not empty then s = string.sub(s,1,string.len(s)-1) end
-	if indent then s = string.sub(s,1,string.len(s)-1).."\n" end
-	return s..string.rep("\t",(indent or 1)-1).."}"
+	if not empty then
+		s = string.sub(s,1,string.len(s)-1) 
+	end
+	
+	if indent then
+		s = string.sub(s,1,string.len(s)-1).."\n" 
+	end
+	
+	local result=s..string.rep("\t",(indent or 1)-1).."}"
+	return result
 end
 
 --- Loads a table into memory from a string (like those output by Tserial.pack)

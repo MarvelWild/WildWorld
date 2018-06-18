@@ -46,16 +46,12 @@ _.sendEventsToClients=function(events)
 				cmd="events_client",
 				events=events
 			}
-			-- wip: exclude own event for each client
-			-- wip: login? и проверить чтобы в мире тоже был, изначальном
+			-- todo: exclude own event for each client
 			Server.send(command)
 		else
 			log("no events for:"..login)
 		end
 	end
-	
-
-	-- wip: проверяем на клиенте что пришло
 end
 
 

@@ -4,7 +4,6 @@ local _={}
 
 _.responseHandlers={}
 
--- wip:load handlers
 loadScripts("client/handlers/", _.responseHandlers)
 
 _.singleResponseHandlers={}
