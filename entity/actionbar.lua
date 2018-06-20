@@ -18,17 +18,19 @@ _.drawUi=function(bar)
 	
 	
 	local y=2
-	local x=2
+	local x
 	local activeFavorite=player.activeFavorite
 	for k,v in pairs(player.favorites) do
 		-- opt: no lookups every frame
+		
+		x=k*16-14
 		local sprite=Img[v.spriteName]
 		LG.draw(sprite,x,y)
 		
 		if v==activeFavorite then
 			LG.draw(Img.frame_active_item,x,y)
 		end
-		x=x+16
+		
 	end
 	
 	

@@ -95,6 +95,8 @@ end
 
 _.setActiveFavorite=function(slot)
 	local player=World.player
+	
+	-- todo: remember slot number even if its empty (mc style)
 	player.activeFavorite=player.favorites[slot]
 end
 
