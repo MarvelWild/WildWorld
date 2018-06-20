@@ -117,7 +117,7 @@ local removeDrawable=function(entity,container)
 	for k,info in ipairs(container) do
 		if info.entity==entity then 
 			table.remove(container,k)
-			-- container[k]=nil
+			-- container[k]=nil wrong way (sort crash on nil)
 			return
 		end
 	end
