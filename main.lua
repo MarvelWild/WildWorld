@@ -440,7 +440,10 @@ love.keypressed=function(key,unicode)
 		log("roll:"..rnd)
 		if rnd > 0.9 then
 			World.player.spriteName="bee"
-		elseif rnd > 0.5 then
+		elseif rnd > 0.8 then
+			World.player.spriteName="dragon"
+
+		elseif rnd > 0.4 then
 			World.player.spriteName="player"
 		else
 			World.player.spriteName="girl"
