@@ -450,4 +450,18 @@ end
 
 
 
+
+_.isPointCollide=function(entity,x,y)
+	-- wip
+	
+	return false
+end
+
+_.getAt=function(x,y)
+	-- wip
+	local result={}
+	
+	return result
+end
+
 return _

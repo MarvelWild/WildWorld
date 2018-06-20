@@ -1,5 +1,11 @@
 
-	bucket
+	selected ui
+	objects by coord
+	+react to click
+>object select by shift click
+
+
+	+bucket
 	+при нахождении котла в инвентаре - не рисовать его в мире
 	+cauldron
 witchery

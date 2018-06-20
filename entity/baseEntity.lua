@@ -6,6 +6,8 @@ _.new=function(options)
 	result.isActive=true
 	result.x=0
 	result.y=0
+	result.w=0
+	result.h=0
 	
 	-- change via Entity.setDrawable 
 	result.isDrawable=false

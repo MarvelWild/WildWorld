@@ -78,6 +78,11 @@ _.table_delete=function(t,fnIsDeleteItem)
 	end
 end
 
+_.table_isEmpty=function(t)
+	return next(t)~=nil
+end
+
+
 -- returns isRemoved
 _.table_removeByVal=function(t, x)
   local iter = Lume.getiter(t)
@@ -138,6 +143,7 @@ end
 -- global exports (frequently used)
 table_removeByVal=_.table_removeByVal
 table_delete=_.table_delete
+table_isEmpty=_.table_isEmpty
 loadScripts=_.loadScripts
 xy=_.xy
 serialize=_.serialize

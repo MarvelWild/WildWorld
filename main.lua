@@ -2,6 +2,7 @@ local isDebug=arg[#arg] == "-debug"
 if isDebug then require("mobdebug").start() end
 
 LG=love.graphics
+LK=love.keyboard
 
 Gamera=require "lib/gamera/gamera"
 Allen=require "lib/Allen/allen"
@@ -57,6 +58,7 @@ Session={
 	scale=4,
 	isClient=false,
 	login="defaultLogin",
+	selectedEntity=nil,
 }
 
 Session.isClient=Util.hasArg("c")
@@ -275,6 +277,36 @@ love.update=function(dt)
 	--log("cam pos:".._cam:getPosition())
 end
 
+local selectObject=function(entity)
+	if Session.selectedEntity==entity then
+		if entity~=nil then
+			log("already selected")
+		end
+		
+		return
+	end
+	
+	Session.selectedEntity=entity
+end
+
+
+local selectObjectByCoord=function(x,y)
+	log("selectObject:"..xy(x,y))
+	local entities=Entity.getAt(x,y)
+	
+	local first
+	if entities~=nil then
+		first=next(entities)
+	end
+	
+	if first==nil then
+		log("nothing to select")
+	end
+	
+	-- todo: cycle all
+	selectObject(first)
+end
+
 
 love.mousepressed=function(x,y,button,istouch)
 	local gameX,gameY
@@ -284,6 +316,11 @@ love.mousepressed=function(x,y,button,istouch)
 	log("Mouse pressed:"..xy(gameX,gameY).." btn:"..button)
 	
 	if button==1 then
+		if LK.isDown("lshift") then
+			selectObjectByCoord(gameX,gameY)
+			return
+		end
+		
 		local moveEvent=Event.new()
 		moveEvent.code="move"
 		moveEvent.x=gameX-7
@@ -335,7 +372,7 @@ end
 
 
 love.keypressed=function(key,unicode)
-	log("keypressed:"..key)
+	log("keypressed:"..key.." u:"..unicode)
 	
 	local isProcessedByEntities=Entity.keypressed(key,unicode)
 	if isProcessedByEntities then

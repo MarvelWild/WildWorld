@@ -1,5 +1,5 @@
 # LoFiFreestyleGame
-Love2d freestyle/sandbox game
+Love2d freestyle/multiplayer/sandbox game
 
 Keys:
 F11: editor 
