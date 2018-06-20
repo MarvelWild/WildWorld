@@ -11,10 +11,16 @@ TSerial=require "lib/TSerial"
 Serpent=require "lib/serpent/src/serpent"
 Lume=require "lib/lume/lume"
 Tween=require "lib/tween/tween"
+
+--tweening
 Flux=require "lib/flux/flux"
 Debug = require "lib/debug"
 Inspect=require "lib/inspect/inspect"
 Debug.useFile=true
+
+-- collisions
+Hc=require "lib/HC/init"
+
 
 Const=require "data/const"
 Config=require "data/config"
@@ -59,6 +65,7 @@ Session={
 	isClient=false,
 	login="defaultLogin",
 	selectedEntity=nil,
+	isOnHorse=true, -- tmp kiss
 }
 
 Session.isClient=Util.hasArg("c")
@@ -165,6 +172,11 @@ end
 
 
 
+
+local testHc=function()
+	-- wip collision lib understanding
+end
+
 love.load=function()
 	Id.init()
 	Fonts={}
@@ -201,6 +213,8 @@ love.load=function()
 	
 	startUi()
 	_cam:setScale(Session.scale)
+	
+	testHc()
 end
 
 
@@ -349,7 +363,7 @@ love.mousepressed=function(x,y,button,istouch)
 			return
 		end
 		
-		local entity=Entity.find(activeEntity.entity, activeEntity.id,Session.login)
+		local entity=activeEntity-- Entity.find(activeEntity.entity, activeEntity.id,Session.login)
 		local entityCode=Entity.get(activeEntity.entity)
 		if entityCode.use~=nil then
 			log("use:"..entity.entity)
@@ -418,6 +432,19 @@ love.keypressed=function(key,unicode)
 		if nextSpriteName==nil then nextSpriteName=first end
 		
 		World.player.spriteName=nextSpriteName
+	elseif key=="x" then
+		log("horse mount")
+		Session.isOnHorse=not Session.isOnHorse
+	elseif key=="z" then
+		local rnd=Lume.random()
+		log("roll:"..rnd)
+		if rnd > 0.9 then
+			World.player.spriteName="bee"
+		elseif rnd > 0.5 then
+			World.player.spriteName="player"
+		else
+			World.player.spriteName="girl"
+		end
 	end
 	
 end

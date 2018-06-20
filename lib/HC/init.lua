@@ -25,6 +25,9 @@ THE SOFTWARE.
 ]]--
 
 local _NAME, common_local = ..., common
+
+_NAME=string.sub(_NAME,1,7)
+
 if not (type(common) == 'table' and common.class and common.instance) then
 	assert(common_class ~= false, 'No class commons specification available.')
 	require(_NAME .. '.class')

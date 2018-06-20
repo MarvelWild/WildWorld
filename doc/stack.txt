@@ -1,8 +1,17 @@
 
++client crash on using sapling	
+	faster speed
+	+x button: mount/unmount
+	+stick to player
+	+img
+horse
+
 	selected ui
+		
+		learn hc lib
 	objects by coord
 	+react to click
->object select by shift click
+object select by shift click
 
 
 	+bucket

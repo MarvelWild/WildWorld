@@ -20,7 +20,14 @@ _.new=function()
 	player.entity="Player"
 	-- player.isDrawable=true
 	
+	
 	player.spriteName=name
+	
+	local rnd=Lume.random()
+	if rnd > 0.5 then
+		player.spriteName="girl"
+	end
+	
 	
 	local sprite=Img[player.spriteName]
 	player.height=sprite:getHeight()
@@ -39,7 +46,13 @@ end
 _.draw=function(player)
 	-- todo: opt
 	local sprite=Img[player.spriteName]
+	
 	LG.draw(sprite,player.x,player.y)
+	
+	if Session.isOnHorse then
+		LG.draw(Img.horse_white,player.x,player.y+4)
+	end
+	
 	
 	
 	-- animation proto

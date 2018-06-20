@@ -78,6 +78,8 @@ local activate=function(entity)
 	
 	
 	if entity.isDrawable then
+		
+		
 		table.insert(_drawable,{entity=entity,draw=entityCode.draw})
 		-- _drawable[entity]=entityCode.draw
 	end
@@ -111,12 +113,16 @@ local activate=function(entity)
 end
 
 local removeDrawable=function(entity,container)
+	log("drawables before remove:"..#container)
 	for k,info in ipairs(container) do
 		if info.entity==entity then 
-			container[k]=nil
+			table.remove(container,k)
+			-- container[k]=nil
 			return
 		end
 	end
+	
+	log("drawables after remove:"..#container)
 	
 	log("error: removeDrawable")
 end
@@ -208,9 +214,9 @@ end
 _.find=function(entityName,id,login)
 	if login==nil then login=Session.login end
 	
-	for k,v in pairs(_all) do
-		if v.entity==entityName and v.id==id and v.login==login then
-			return v
+	for k,entity in pairs(_all) do
+		if entity.entity==entityName and entity.id==id and entity.login==login then
+			return entity
 		end
 	end
 	
@@ -221,6 +227,11 @@ end
 
 
 local compareByY=function(info1,info2)
+	if info2==nil then
+		a=1
+	end
+	
+	
 	local entity1=info1.entity
 	local entity2=info2.entity
 	if entity1.y>entity2.y then return false end
@@ -314,9 +325,10 @@ _.setDrawable=function(entity, isDrawable)
 	
 	if isDrawable then
 		local entityCode=_get(entity.entity)
-		_drawable[entity]=entityCode.draw
+		
+		table.insert(_drawable,{entity=entity,draw=entityCode.draw})
 	else
-		_drawable[entity]=nil
+		removeDrawable(entity,_drawable)
 	end
 	
 end
@@ -436,7 +448,7 @@ _.debugPrint=function()
 	
 	log("Drawable:")
 	for k,v in pairs(_drawable) do
-		log(toString(k))
+		log(toString(v.entity))
 	end
 	
 	log("Entity debug print end:   ]-------")
