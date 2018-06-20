@@ -8,6 +8,9 @@ F11: editor
 F12 debugger
 LMB: move
 RMB: use active item (seeds in slot 1 plants grass)
+1-4: switch active item
+X: mount/dismount horse
+Z: change player skin
 
 
 
