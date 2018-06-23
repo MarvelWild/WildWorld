@@ -7,7 +7,7 @@ _.new=function()
 	result.entity="Alien"
 	result.x=0
 	result.y=0
-	result.spriteName="alien"
+	Entity.setSprite(result,"alien")
 	result.isDrawable=true
 	
 	BaseEntity.init(result,nil)

@@ -8,7 +8,7 @@ _.new=function()
 	result.entity="Creature"
 	result.x=0
 	result.y=0
-	result.spriteName="creature"
+	Entity.setSprite(result,"creature")
 	result.isDrawable=true
 	
 	Entity.register(result)

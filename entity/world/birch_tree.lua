@@ -4,7 +4,7 @@ _.new=function(options)
 	local result=BaseEntity.new()
 	
 	
-	result.spriteName="birch_tree_1"
+	Entity.setSprite(result,"birch_tree_1")
 	result.entity="BirchTree"
 	result.id=Id.new(result.entity)
 	result.isDrawable=true

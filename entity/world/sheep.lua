@@ -6,7 +6,7 @@ _.new=function(options)
 	result.entity="Sheep"
 	result.x=0
 	result.y=0
-	result.spriteName="sheep2"
+	Entity.setSprite(result,"sheep2")
 	result.isDrawable=true
 	result.aiEnabled=true
 	

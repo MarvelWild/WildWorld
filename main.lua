@@ -38,21 +38,11 @@ Entity=require "core/entity"
 -- todo: mass-load (util loader to global space, or globalize method)
 BaseEntity=require "entity/baseEntity"
 Debugger=require "entity/debugger"
-Server=require "entity/server"
-Client=require "entity/client"
-Editor=require "entity/editor"
-Player=require "entity/player"
 Actionbar=require "entity/actionbar"
-Seed=require "entity/world/seed"
-Grass=require "entity/world/grass"
-Creature=require "entity/world/creature"
-Pantera=require "entity/world/pantera"
-Sheep=require "entity/world/sheep"
-Alien=require "entity/world/alien"
-BirchSapling=require "entity/world/birch_sapling"
-Cauldron=require "entity/world/cauldron"
-Bucket=require "entity/world/bucket"
-BirchTree=require "entity/world/birch_tree"
+
+Collision=require "core/collision"
+
+
 
 Cam = Gamera.new(0,0,Config.levelWidth,Config.levelHeight)
 local _cam=Cam
@@ -90,7 +80,7 @@ Fonts=nil -- init in load()
 World=nil
 
 local _debugger=Debugger.new()  ---EntityFactory.debugger()
-local _editor=Editor.new()  ---EntityFactory.debugger()
+local _editor=nil
 
 
 local saveGame=function()
@@ -174,7 +164,21 @@ end
 
 
 local testHc=function()
-	-- wip collision lib understanding
+	-- collision lib understanding
+	-- http://hc.readthedocs.org
+	
+	local rect1 = Hc.rectangle(200,400,400,20)
+	local pointInside = Hc.point(201,401)
+	local pointOutside = Hc.point(2201,401)
+	
+	local c1=pointInside:collidesWith(rect1)
+	local c2=pointOutside:collidesWith(rect1)
+	assert(c1==true)
+	assert(c2==false)
+	
+	
+	
+	
 end
 
 love.load=function()
@@ -193,6 +197,22 @@ love.load=function()
 	
 	preloadImages()
 	
+	Player=require "entity/player"
+	Seed=require "entity/world/seed"
+	Grass=require "entity/world/grass"
+	Creature=require "entity/world/creature"
+	Pantera=require "entity/world/pantera"
+	Sheep=require "entity/world/sheep"
+	Alien=require "entity/world/alien"
+	BirchSapling=require "entity/world/birch_sapling"
+	Cauldron=require "entity/world/cauldron"
+	Bucket=require "entity/world/bucket"
+	BirchTree=require "entity/world/birch_tree"
+	
+	Server=require "entity/server"
+	Client=require "entity/client"
+	Editor=require "entity/editor"
+	_editor=Editor.new()  ---EntityFactory.debugger()
 
 	
 	--love.graphics.setLineWidth(scale)
@@ -301,16 +321,18 @@ local selectObject=function(entity)
 	end
 	
 	Session.selectedEntity=entity
+	
+	log("Selected:"..Entity.toString(entity))
 end
 
 
 local selectObjectByCoord=function(x,y)
-	log("selectObject:"..xy(x,y))
-	local entities=Entity.getAt(x,y)
+	-- log("selectObject:"..xy(x,y))
+	local entities=Collision.getAtPoint(x,y)
 	
-	local first
+	local k,first
 	if entities~=nil then
-		first=next(entities)
+		k,first=next(entities)
 	end
 	
 	if first==nil then
@@ -338,7 +360,7 @@ love.mousepressed=function(x,y,button,istouch)
 		local moveEvent=Event.new()
 		moveEvent.code="move"
 		moveEvent.x=gameX-7
-		moveEvent.y=gameY+1-World.player.height
+		moveEvent.y=gameY+1-World.player.h
 		moveEvent.duration=2
 		
 		moveEvent.entity=World.player.entity
@@ -431,7 +453,7 @@ love.keypressed=function(key,unicode)
 		
 		if nextSpriteName==nil then nextSpriteName=first end
 		
-		World.player.spriteName=nextSpriteName
+		Entity.setSprite(World.player, "nextSpriteName")
 	elseif key=="x" then
 		log("horse mount")
 		Session.isOnHorse=not Session.isOnHorse
@@ -439,14 +461,13 @@ love.keypressed=function(key,unicode)
 		local rnd=Lume.random()
 		log("roll:"..rnd)
 		if rnd > 0.9 then
-			World.player.spriteName="bee"
+			Entity.setSprite(World.player, "bee")
 		elseif rnd > 0.8 then
-			World.player.spriteName="dragon"
-
+			Entity.setSprite(World.player, "dragon")
 		elseif rnd > 0.4 then
-			World.player.spriteName="player"
+			Entity.setSprite(World.player, "player")
 		else
-			World.player.spriteName="girl"
+			Entity.setSprite(World.player, "girl")
 		end
 	end
 	

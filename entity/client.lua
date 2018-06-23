@@ -131,7 +131,8 @@ end
 
 local handshake=">>"
 local port="8421"
-local host="lore"
+local host="2620:9b::1953:9fbe"
+host="lore"
 
 
 

@@ -1,4 +1,14 @@
-play as dragon
+	update collision system
+change x,y via function (anim too)
+lovebird
+ride together
+anything can change color
+dragon shoot fire and burns everything
+fly
+collectable flowers
+plantable flower seeds
+венки
++play as dragon
 +actiobar slot 4 becomes 3
 +client crash on using sapling	
 	faster speed
@@ -8,10 +18,25 @@ play as dragon
 +horse
 
 
+
+		draw once
 	selected ui
 		
-		>learn hc lib
-	objects by coord
+				+"with size"
+			+define that object: greass,bottle,any entity with size.
+				
+			+player has empty h,w
+		+register selectable objects / all collidable
+		
+					+seems fine for now
+				+as post-collision filter?
+				+as hc instances? no (intersection?)
+			+groups?
+					con: may require multiple requests per frame for precise calc
+				alternative: update entire system on request?
+			notify collision system on movement/sprite swap (x,y,w,h change)
+		+learn hc lib
+	+objects by coord
 	+react to click
 object select by shift click
 

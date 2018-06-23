@@ -21,16 +21,14 @@ _.new=function()
 	-- player.isDrawable=true
 	
 	
-	player.spriteName=name
-	
+	local spriteName=name
 	local rnd=Lume.random()
 	if rnd > 0.5 then
-		player.spriteName="girl"
+		spriteName="girl"
 	end
 	
-	
-	local sprite=Img[player.spriteName]
-	player.height=sprite:getHeight()
+	Entity.setSprite(player,spriteName)
+	--player.spriteName=name
 	
 	player.inventory={}
 	-- 8 on-screen items/actions.

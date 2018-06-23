@@ -6,7 +6,7 @@ _.new=function(options)
 	result.entity="Pantera"
 	result.x=0
 	result.y=0
-	result.spriteName="pantera"
+	Entity.setSprite(result,"pantera")
 	result.isDrawable=true
 	result.aiEnabled=Session.isServer
 	

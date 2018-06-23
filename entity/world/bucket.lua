@@ -6,7 +6,7 @@ _.new=function(options)
 	result.entity="Bucket"
 	result.x=0
 	result.y=0
-	result.spriteName="bucket_empty"
+	Entity.setSprite(result,"bucket_empty")
 	result.isDrawable=true
 	result.isInWorld=false
 	--result.aiEnabled=true

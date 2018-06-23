@@ -50,6 +50,26 @@ _.xy=function(x,y)
 	return x..","..y
 end
 
+_.xywh=function(x,y,w,h)
+	if type(x) == "table" then
+		assert(y==nil)
+		assert(w==nil)
+		assert(h==nil)
+		y=x.y
+		w=x.w
+		h=x.h
+		
+		x=x.x -- shold remain last )
+	end
+	
+	if x==nil then x="nil" end
+	if y==nil then y="nil" end
+	if w==nil then w="nil" end
+	if h==nil then h="nil" end
+	
+	return x..","..y..","..w..","..h
+end
+
 -- example: loadScripts("server/handlers/", destTable)
 _.loadScripts=function(dir, container)
 	local files=love.filesystem.getDirectoryItems(dir)
@@ -147,6 +167,7 @@ table_delete=_.table_delete
 table_isEmpty=_.table_isEmpty
 loadScripts=_.loadScripts
 xy=_.xy
+xywh=_.xywh
 serialize=_.serialize
 deserialize=_.deserialize
 

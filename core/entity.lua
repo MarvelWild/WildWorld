@@ -70,6 +70,13 @@ _.registerWorld=function()
 end
 
 local activate=function(entity)
+	log("activating:"..Entity.toString(entity))
+	
+	if entity.entity=="Cauldron" then
+		local a=1
+	end
+	
+	
 	local entityCode=_get(entity.entity)
 	
 	if entityCode.activate then
@@ -110,6 +117,13 @@ local activate=function(entity)
 	
 	
 	entity.isActive=true
+	
+	if entity.w>0 and entity.h>0 then
+		Collision.add(entity)
+	else
+--		log("not square entity:"..entity.entity)
+	end
+	
 end
 
 local removeDrawable=function(entity,container)
@@ -179,7 +193,7 @@ end
 
 
 _.register=function(entity)
-	log("registering:"..pack(entity))
+--	log("registering:"..pack(entity))
 	-- service entity created at runtime, and do not need to be serialized
 	local isService=entity.id==nil
 	local isActive=not (entity.isActive==false) -- true or nil
@@ -280,6 +294,13 @@ _.draw=function()
 --		log("draw:"..entity.entity.." at:"..xy(entity.x,entity.y))
 		info.draw(entity)
 	end
+	
+	local activeEntity=Session.selectedEntity
+	if activeEntity~=nil then
+		LG.rectangle('line',activeEntity.x-1,activeEntity.y-1,activeEntity.w+2,activeEntity.h+2)
+	end
+	
+		
 end
 
 _.drawUi=function()
@@ -332,6 +353,19 @@ _.setDrawable=function(entity, isDrawable)
 	end
 	
 end
+
+_.setSprite=function(entity,spriteName)
+	entity.spriteName=spriteName
+	
+	local sprite=Img[spriteName]
+	
+	entity.w=sprite:getWidth()
+	entity.h=sprite:getHeight()
+	
+	-- notify collision system?
+end
+
+	
 
 
 _.setAiEnabled=function(entity, aiEnabled)
@@ -456,24 +490,22 @@ end
 
 _.toString=function(entity)
 	if entity==nil then return "nil" end
-	local result=entity.entity.." id:"..tostring(entity.id).." rm:"..tostring(entity.isRemote)
+	local result=entity.entity.." id:"..tostring(entity.id).." rm:"..tostring(entity.isRemote)..
+		xywh(entity)
 	return result
 end
 
 
 
 
-_.isPointCollide=function(entity,x,y)
-	-- wip
+-- Collision.getAtPoint
+--_.getAt=function(x,y)
+--	-- wp
+--	local result={}
 	
-	return false
-end
+--	return result
+--end
 
-_.getAt=function(x,y)
-	-- wip
-	local result={}
-	
-	return result
-end
+
 
 return _

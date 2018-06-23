@@ -6,7 +6,7 @@ _.new=function(options)
 	result.entity="Cauldron"
 	result.x=0
 	result.y=0
-	result.spriteName="cauldron"
+	Entity.setSprite(result,"cauldron")
 	result.isDrawable=true
 	result.isInWorld=false
 	--result.aiEnabled=true

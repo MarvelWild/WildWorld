@@ -108,6 +108,7 @@ function HC:neighbors(shape)
 	return neighbors
 end
 
+-- returns todo
 function HC:collisions(shape)
 	local candidates = self:neighbors(shape)
 	for other in pairs(candidates) do

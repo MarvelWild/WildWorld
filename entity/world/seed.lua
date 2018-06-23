@@ -4,7 +4,7 @@ _.new=function(options)
 	local result=BaseEntity.new()
 	
 	
-	result.spriteName="seeds"
+	Entity.setSprite(result,"seeds")
 	result.entity="Seed"
 	result.id=Id.new(result.entity)
 	result.stackCount=42

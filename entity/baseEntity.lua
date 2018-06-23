@@ -6,6 +6,7 @@ _.new=function(options)
 	result.isActive=true
 	result.x=0
 	result.y=0
+	
 	result.w=0
 	result.h=0
 	
@@ -16,6 +17,7 @@ _.new=function(options)
 	-- assert(Session.login~=nil) -- defaultLogin by default
 	result.login=Session.login
 	result.isRemote=false
+	result.spriteName=nil -- use Entity.setSprite
 	-- result.entity="" через это связь данных с утилитным кодом класса
 	
 	return result
