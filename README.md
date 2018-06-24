@@ -1,40 +1,70 @@
 # LoFiFreestyleGame
 Love2d freestyle/multiplayer/sandbox game
 
-Keys:
+<details>
+ <summary>Controls</summary>
+
 F11: editor 
+
 	page down: next editor item
+
 	RMB: place editor item
+
 F12 debugger
+
 LMB: move
+
+Shift-LMB: select
+
 RMB: use active item (seeds in slot 1 plants grass)
+
 1-4: switch active item
+
 X: mount/dismount horse
+
 Z: change player skin
 
+Home: change player sprite to any sprite
 
-
-Features so far: 
-* 4096x4096 px world
-* 128*128 px (4x scaled) window
-* walking
-* basic ai (pantera and sheep)
-* network: server-client mode
-
-Screenshot:
-	https://ibb.co/f0Jy5d
+</details>
 
 
 
+
+<details>
+ <summary>Features</summary>
+
+4096x4096 px world
+
+128*128 px (4x scaled) resizable window
+
+walking
+
+basic ai (pantera and sheep)
+
+network: server-client mode
+
+
+</details>
+
+
+![Screenshot](https://3.bp.blogspot.com/-Thgk56DZZus/Wyma2y5au_I/AAAAAAAADGU/AFKZd2obv0ktZX56X_aJU8iQzYdBeeOoACLcBGAs/s1600/Blog-ULR-1.jpg)
 
 
 https://www.twitch.tv/marvelme
 
 
-Tools:
+<details>
+ <summary>Tools</summary>
+
 love2d (engine)
+
 ZeroBrane (ide)
+
 Aseprite (sprites)
+
+</details>
+
 
 Influenced by Sketch Tales, World of Warcraft, Minecraft, Don't Starve, Realm of the Mad God, Atari 2600 games.
 
