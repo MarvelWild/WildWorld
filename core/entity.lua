@@ -70,7 +70,7 @@ _.registerWorld=function()
 end
 
 local activate=function(entity)
-	log("activating:"..Entity.toString(entity))
+--	log("activating:"..Entity.toString(entity))
 	
 	if entity.entity=="Cauldron" then
 		local a=1
@@ -491,7 +491,7 @@ end
 _.toString=function(entity)
 	if entity==nil then return "nil" end
 	local result=entity.entity.." id:"..tostring(entity.id).." rm:"..tostring(entity.isRemote)..
-		xywh(entity)
+		" xywh:"..xywh(entity)
 	return result
 end
 
@@ -506,6 +506,20 @@ end
 --	return result
 --end
 
+--should be called after move to update collision sytem
+_.onMoved=function(entity)
+	-- log("Entity moved:"..Entity.toString(entity))
+	Collision.moved(entity)
+end
 
+
+
+
+_.getCenter=function(entity)
+	local x=entity.x+(entity.w/2)
+	local y=entity.y+(entity.h/2)
+	
+	return x,y
+end
 
 return _

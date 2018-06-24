@@ -37,6 +37,9 @@ local processEvent=function(event)
 		
 		assert(entity~=nil)
 		Flux.to(entity, event.duration, { x = event.x, y = event.y }):ease("quadout")
+			:onupdate(function()
+						Entity.onMoved(entity)
+					end)
 	elseif eventCode=="use" then
 		local entity=Entity.find(event.entity, event.entityId,event.login)
 		local entityCode=Entity.get(event.entity)

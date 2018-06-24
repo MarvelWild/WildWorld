@@ -277,6 +277,7 @@ local function doDraw(l,t,w,h)
 	--log("doDraw("..l..","..t..","..w..","..h)
 	drawTiles(l,t,w,h)
 	Entity.draw()
+	Collision.draw()
 end
 
 
