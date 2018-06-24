@@ -1,5 +1,6 @@
 # LoFiFreestyleGame
 Love2d freestyle/multiplayer/sandbox game
+Influenced by Sketch Tales, World of Warcraft, Minecraft, Don't Starve, Realm of the Mad God, Atari 2600 games.
 
 <details>
  <summary>Controls</summary>
@@ -47,13 +48,6 @@ network: server-client mode
 
 </details>
 
-
-![Screenshot](https://3.bp.blogspot.com/-Thgk56DZZus/Wyma2y5au_I/AAAAAAAADGU/AFKZd2obv0ktZX56X_aJU8iQzYdBeeOoACLcBGAs/s1600/Blog-ULR-1.jpg)
-
-
-https://www.twitch.tv/marvelme
-
-
 <details>
  <summary>Tools</summary>
 
@@ -66,7 +60,10 @@ Aseprite (sprites)
 </details>
 
 
-Influenced by Sketch Tales, World of Warcraft, Minecraft, Don't Starve, Realm of the Mad God, Atari 2600 games.
+https://www.twitch.tv/marvelme
+
+![Screenshot](https://3.bp.blogspot.com/-Thgk56DZZus/Wyma2y5au_I/AAAAAAAADGU/AFKZd2obv0ktZX56X_aJU8iQzYdBeeOoACLcBGAs/s1600/Blog-ULR-1.jpg)
+
 
 Thanks for support
 
