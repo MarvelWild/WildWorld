@@ -60,7 +60,16 @@ Aseprite (sprites)
 </details>
 
 
+<details>
+ <summary>Links</summary>
+
+Stream (mostly inactive/slow 3g internet)
+
 https://www.twitch.tv/marvelme
+
+</details>
+
+
 
 ![Screenshot](https://3.bp.blogspot.com/-Thgk56DZZus/Wyma2y5au_I/AAAAAAAADGU/AFKZd2obv0ktZX56X_aJU8iQzYdBeeOoACLcBGAs/s1600/Blog-ULR-1.jpg)
 
