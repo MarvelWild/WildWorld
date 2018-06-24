@@ -39,7 +39,11 @@ Aseprite (sprites)
 Influenced by Sketch Tales, World of Warcraft, Minecraft, Don't Starve, Realm of the Mad God, Atari 2600 games.
 
 Thanks for support
+
+<details>
+ <summary>Donate</summary>
 https://www.patreon.com/marvelme
 http://yasobe.ru/na/make_me_happy
 btc: 3MV443JyoGvd1WX1UhwLSKfS1VmTQg4QBr
 eth: 0xF58BD9894f9039C76d9329d7570011DB280049BD
+</details>
