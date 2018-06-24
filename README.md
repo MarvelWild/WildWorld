@@ -51,11 +51,11 @@ network: server-client mode
 <details>
  <summary>Tools</summary>
 
-love2d (engine)
+[love2d (engine)](https://love2d.org/)
 
-ZeroBrane (ide)
+[ZeroBrane (ide)](https://studio.zerobrane.com/)
 
-Aseprite (sprites)
+[Aseprite (sprites)](https://www.aseprite.org/)
 
 </details>
 
