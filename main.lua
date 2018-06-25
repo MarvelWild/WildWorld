@@ -406,6 +406,33 @@ local toggleEditor=function()
 	Entity.setActive(_editor,not _editor.isActive)
 end
 
+local pickup=function()
+	log("pickup")
+	local extraRange=10
+	
+	local player=World.player
+	
+	local doubleRange=extraRange+extraRange
+	local x=player.x-extraRange
+	local y=player.y-extraRange
+	local w=player.w+doubleRange
+	local h=player.h+doubleRange
+	
+	
+	local candidateEntities=Collision.getAtRect(x,y,w,h)
+	
+	if not candidateEntities then
+		log("nothing to pick up")
+		return
+	end
+	
+	
+	local toPickup={}
+	
+	log("pickup candidates:"..Inspect(candidateEntities))
+	-- wip
+	
+end
 
 
 love.keypressed=function(key,unicode)
@@ -454,7 +481,7 @@ love.keypressed=function(key,unicode)
 		
 		if nextSpriteName==nil then nextSpriteName=first end
 		
-		Entity.setSprite(World.player, "nextSpriteName")
+		Entity.setSprite(World.player, nextSpriteName)
 	elseif key=="x" then
 		log("horse mount")
 		Session.isOnHorse=not Session.isOnHorse
@@ -470,6 +497,8 @@ love.keypressed=function(key,unicode)
 		else
 			Entity.setSprite(World.player, "girl")
 		end
+	elseif key==Config.keyItemPickup then
+		pickup()
 	end
 	
 end

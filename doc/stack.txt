@@ -1,7 +1,16 @@
-	update collision system
-change x,y via function (anim too)
-lovebird
-ride together
++girl collision lookup crash
+		save validation to catch this
+	double same bucket in save
+bug double bucket registered
+			+define pickable: isInWorld is ok for now
+		>filter pickable
+		+grab collisions
+	space key (no selection required)
+item pickup
++update collision system on player move
+try lovebird lib
+ride together (mount anything: other player, ai pantera)
+	color picker
 anything can change color
 dragon shoot fire and burns everything
 fly
@@ -17,10 +26,8 @@ plantable flower seeds
 	+img
 +horse
 
-
-
-		draw once
-	selected ui
+	+draw once
+	+selected ui
 		
 				+"with size"
 			+define that object: greass,bottle,any entity with size.
@@ -38,7 +45,7 @@ plantable flower seeds
 		+learn hc lib
 	+objects by coord
 	+react to click
-object select by shift click
++object select by shift click
 
 
 	+bucket
@@ -396,7 +403,7 @@ bug: player: no sprite after load (new game is ok)
 	
 			react to click
 		right click=default action with active slot
-	>plant action
+	+plant action
 			+highlight in action bar
 			+test
 		+define active item
@@ -406,7 +413,7 @@ bug: player: no sprite after load (new game is ok)
 		+test
 		+describe entity
 	+give player mixed seeds
-i want to plant some grass and flowers
++i want to plant some grass and flowers
 
 
 
@@ -422,10 +429,10 @@ i want to plant some grass and flowers
 	убрать картинки
 	как компонент
 	отрисовка
-ui 
++ui 
 	рандомный объект по рклик
 заселить 
-world tiling (tiled mb)
++world tiling (tiled mb)
 
 	register as entity+
 rmb target select object
@@ -433,15 +440,15 @@ rmb target select object
 	если коллизия одна - действия с объектом
 спрайты пересеклись - коллизия
 	
-		entities
-	bounds
+		+entities
+	+bounds
 
 player origin legs+
 		stop prev
 	make command
 	unscale+
 	read coord+
-mouse walking
++mouse walking
 scale+
 lowres+
 download tutorials
@@ -449,4 +456,4 @@ download tutorials
 
 -- low
 
-для компонентов не выдавать ид
++для компонентов не выдавать ид

@@ -2,3 +2,8 @@
 
 
 Conditionals (such as the ones in control structures) consider false and nil as false and anything else as true. Beware that, unlike some other scripting languages, Lua considers both zero and the empty string as true in conditional tests.
+
+
+HC lib
+
+share:

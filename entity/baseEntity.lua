@@ -13,6 +13,7 @@ _.new=function(options)
 	-- change via Entity.setDrawable 
 	result.isDrawable=false
 	result.aiEnabled=false
+	result.isInWorld=nil
 	
 	-- assert(Session.login~=nil) -- defaultLogin by default
 	result.login=Session.login

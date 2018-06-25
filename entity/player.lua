@@ -125,4 +125,10 @@ _.setFavorite=function(player,item,slot)
 end
 
 
+
+_.canPickup=function(player,entity)
+	-- todo: available space, other checks
+	return entity.isInWorld==true
+end
+
 return _
