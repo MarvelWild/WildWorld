@@ -11,4 +11,7 @@ _.keyDebugger="f12"
 _.keyEditorNextItem="pagedown"
 _.keyItemPickup="space"
 
+
+_.isDebug=true
+
 return _

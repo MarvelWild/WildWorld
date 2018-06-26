@@ -1,11 +1,30 @@
+	login via cmd line
+	~2 clients test
 +girl collision lookup crash
-		save validation to catch this
-	double same bucket in save
-bug double bucket registered
+
+
+		+dont req at acceptAtServer if login match
+	+first reg at create, second at acceptAtServer
+		+save validation to catch this (or container validation on add)
+	+double same bucket in save
++bug double bucket registered
+	
+			con: block item till accepted by server
+		way 2: exec on client
+			
+			con: delay (its ok, make this)
+			pro: 
+		way 1: exec on server
+		
+		
+		receive world update
+		receive inventory update
+		send event (see)
+	>implement Player.pickup
 			+define pickable: isInWorld is ok for now
-		>filter pickable
+		+filter pickable
 		+grab collisions
-	space key (no selection required)
+	+space key (no selection required)
 item pickup
 +update collision system on player move
 try lovebird lib

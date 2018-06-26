@@ -41,6 +41,7 @@ Debugger=require "entity/debugger"
 Actionbar=require "entity/actionbar"
 
 Collision=require "core/collision"
+ClientAction=require 'client/action'
 
 
 
@@ -61,9 +62,26 @@ Session={
 Session.isClient=Util.hasArg("c")
 Session.isServer=not Session.isClient
 
+local setClientLogin=function()
+	local loginPos= Lume.find(arg, "login")
+	local login
+	if loginPos then
+		login=arg[loginPos+1]
+	end
+	
+	if login then
+		Session.login=login
+	else
+		Session.login="client1"
+	end
+
+end
+
+
 if Session.isClient then
 	love.filesystem.setIdentity("ULR_Client")
-	Session.login="client1"
+	setClientLogin()
+	
 else
 	love.window.setPosition(20,100)
 end
@@ -119,9 +137,6 @@ local loadGame=function()
 		
 		World.entities=newEntities
 	end
-	
-
-	
 	
 	Entity.registerWorld()
 	
@@ -427,11 +442,21 @@ local pickup=function()
 	end
 	
 	
-	local toPickup={}
+--	local toPickup={}
 	
-	log("pickup candidates:"..Inspect(candidateEntities))
-	-- wip
+--	log("pickup candidates:"..Inspect(candidateEntities))
 	
+--	for k,entity in pairs(candidateEntities) do
+--		if Player.canPickup(World.player,entity) then
+--			table.insert(toPickup,entity)
+--		end
+--	end
+
+	-- pick one by one
+	
+	local i,first=next(candidateEntities)
+	
+	ClientAction.pickup(first)
 end
 
 

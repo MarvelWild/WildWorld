@@ -27,7 +27,8 @@ _.add=function(entity)
 	_shapeByEntity[entity]=shape
 	_entityByShape[shape]=entity
 	
-	log("Collidable entity registered: "..xywh(entity).." "..entity.entity)
+	--log("Collidable entity registered: "..xywh(entity).." "..entity.entity)
+	log("Collidable entity registered: "..Entity.toString(entity))
 end
 
 _.moved=function(entity)

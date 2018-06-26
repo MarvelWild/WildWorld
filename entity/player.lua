@@ -131,4 +131,8 @@ _.canPickup=function(player,entity)
 	return entity.isInWorld==true
 end
 
+
+
+
+
 return _

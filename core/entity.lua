@@ -199,6 +199,16 @@ _.register=function(entity)
 	local isActive=not (entity.isActive==false) -- true or nil
 	
 	if not isService then
+		if Config.isDebug then
+			local alreadyRegistered,regged=Lume.find(_all,entity)
+			if alreadyRegistered then
+				log("error: attempt to register entity twice:"..Entity.toString(entity))
+			end
+			
+			
+		end
+		
+		
 		table.insert(_all,entity)
 	end
 	
@@ -441,7 +451,7 @@ _.acceptAtServer=function(entities)
 			login=entity.login
 		end
 		
-		entity.login=Session.login
+
 
 		entity.prevId=entity.id
 		entity.id=Id.new(entity.entity)
@@ -452,8 +462,10 @@ _.acceptAtServer=function(entities)
 			entity.aiEnabled=true
 		end
 		
-		
-		Entity.register(entity)
+		if entity.login~=Session.login then
+			entity.login=Session.login
+			Entity.register(entity)
+		end
 	end
 	
 	assert(login~=nil)
@@ -463,7 +475,7 @@ _.acceptAtServer=function(entities)
 	local response={}
 	response.cmd="entities_transferred"
 	
-	-- лучше сделать у каждой сущности, но можно позже, пока что все с одного логина
+	-- todo: лучше сделать у каждой сущности, но можно позже, пока что все с одного логина
 	response.originalLogin=login
 	response.entities=entities
 	

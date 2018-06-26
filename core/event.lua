@@ -6,6 +6,13 @@ _.new=function()
 	local event=BaseEntity.new()
 	event.entity="Event"
 	event.id=Id.new(event.entity)
+	
+	-- client do not send remote event to server, and should mark received as remote
+	event.isRemote=nil
+	
+	-- wip: implement
+	event.isServerOnly=nil
+	event.code=nil
 	table.insert(unprocessed,event)
 	
 	return event
