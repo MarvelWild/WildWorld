@@ -1,5 +1,9 @@
 	login via cmd line
-	~2 clients test
+		
+		ai move
+		place item
+		move
+	>2 clients test
 +girl collision lookup crash
 
 
@@ -8,6 +12,10 @@
 		+save validation to catch this (or container validation on add)
 	+double same bucket in save
 +bug double bucket registered
++	not world entities not included in collision
++bug: inventory items are selectable
++bug: cauldron not selectable (collision box not moved on play)
+
 	
 			con: block item till accepted by server
 		way 2: exec on client
@@ -20,7 +28,7 @@
 		receive world update
 		receive inventory update
 		send event (see)
-	>implement Player.pickup
+	~implement Player.pickup
 			+define pickable: isInWorld is ok for now
 		+filter pickable
 		+grab collisions

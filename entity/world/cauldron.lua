@@ -34,7 +34,7 @@ _.use=function(cauldron,x,y)
 	Player.removeItem(cauldron)
 	
 	Entity.transferToServer({cauldron})
-	cauldron.isInWorld=true
+	Entity.placeInWorld(cauldron)
 end
 
 

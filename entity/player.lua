@@ -14,6 +14,7 @@ _.new=function()
 	player.xScale=1 -- todo: implement
 	player.editorVisible=false
 	player.isDrawable=true
+	player.isInWorld=true
 
 	
 	-- name of controlling entity for this data

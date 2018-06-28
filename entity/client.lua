@@ -58,7 +58,7 @@ end
 -- static end
 
 _.new=function()
-	local result={}
+	local result=BaseEntity.new()
 	result.entity="Client"
 	result.id=nil -- we are service, no serialization
 	result.isActive=true

@@ -64,10 +64,17 @@ _.registerWorld=function()
 	for k,entity in pairs(World.entities) do
 		register(entity)
 	end
-
-
-	
 end
+
+local addToCollision=function(entity)
+	log("addToCollision:"..Entity.toString(entity))
+	if entity.w>0 and entity.h>0 and entity.isInWorld then
+		Collision.add(entity)
+	else
+--		log("not square entity:"..entity.entity)
+	end
+end
+
 
 local activate=function(entity)
 --	log("activating:"..Entity.toString(entity))
@@ -117,13 +124,7 @@ local activate=function(entity)
 	
 	
 	entity.isActive=true
-	
-	if entity.w>0 and entity.h>0 then
-		Collision.add(entity)
-	else
---		log("not square entity:"..entity.entity)
-	end
-	
+	addToCollision(entity)
 end
 
 local removeDrawable=function(entity,container)
@@ -462,6 +463,7 @@ _.acceptAtServer=function(entities)
 			entity.aiEnabled=true
 		end
 		
+		-- wip: bucket not selectable
 		if entity.login~=Session.login then
 			entity.login=Session.login
 			Entity.register(entity)
@@ -533,5 +535,11 @@ _.getCenter=function(entity)
 	
 	return x,y
 end
+
+_.placeInWorld=function(entity)
+	entity.isInWorld=true
+	addToCollision(entity)
+end
+
 
 return _

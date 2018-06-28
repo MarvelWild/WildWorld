@@ -32,7 +32,7 @@ _.use=function(bucket,x,y)
 	Player.removeItem(bucket)
 	
 	Entity.transferToServer({bucket})
-	bucket.isInWorld=true
+	Entity.placeInWorld(bucket)
 end
 
 
