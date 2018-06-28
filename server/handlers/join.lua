@@ -13,11 +13,18 @@ local join=function(data,clientId)
 	Entity.register(joiningPlayer)
 	
 	local joinResponse={}
+	
 		-- todo: also from other clients
-	joinResponse.entities=Entity.getLocal()
+--	joinResponse.entities=Entity.getLocal()
+	joinResponse.entities=Entity.getWorld(login)
 	
 	Server.send(joinResponse, clientId, data.requestId)
 	
+	local response={}
+	response.cmd="entity_add"
+	response.entities={joiningPlayer}
+	
+	Server.sendFiltered(response,login)
 end
 
 return join

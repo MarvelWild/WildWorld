@@ -24,6 +24,21 @@ _.getAll=function()
 	return _all
 end
 
+_.getWorld=function(login)
+	local result={}
+	for k,entity in pairs(_all) do
+		if entity.isInWorld then
+			if entity.entity=="Player" and entity.login==login then
+				-- client responsible for its player, we dont send it
+			else
+				table.insert(result,entity)
+			end
+			
+		end
+	end
+	
+	return result
+end
 
 _.getLocal=function()
 	local result={}
@@ -67,7 +82,7 @@ _.registerWorld=function()
 end
 
 local addToCollision=function(entity)
-	log("addToCollision:"..Entity.toString(entity))
+--	log("addToCollision:"..Entity.toString(entity))
 	if entity.w>0 and entity.h>0 and entity.isInWorld then
 		Collision.add(entity)
 	else
@@ -463,7 +478,6 @@ _.acceptAtServer=function(entities)
 			entity.aiEnabled=true
 		end
 		
-		-- wip: bucket not selectable
 		if entity.login~=Session.login then
 			entity.login=Session.login
 			Entity.register(entity)
@@ -505,7 +519,7 @@ end
 _.toString=function(entity)
 	if entity==nil then return "nil" end
 	local result=entity.entity.." id:"..tostring(entity.id).." rm:"..tostring(entity.isRemote)..
-		" xywh:"..xywh(entity)
+		" xywh:"..xywh(entity).." l:"..entity.login
 	return result
 end
 

@@ -8,6 +8,13 @@ _.pickup=function(entity)
 --end
 	-- wip
 	
+	-- event vs command?
+	--[[
+	
+	
+	]]--
+	
+	
 	-- wip pickup event
 	local event=Event.new()
 	event.code="pickup"

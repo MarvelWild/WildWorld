@@ -79,8 +79,8 @@ end
 
 
 if Session.isClient then
-	love.filesystem.setIdentity("ULR_Client")
 	setClientLogin()
+	love.filesystem.setIdentity("ULR_Client_"..Session.login)
 	
 else
 	love.window.setPosition(20,100)
@@ -162,7 +162,7 @@ local startClient=function()
 	log("starting client")
 	-- todo: load player only. 
 	if not loadGame() then newGame() end
-	love.window.setTitle(love.window.getTitle().." | client")
+	love.window.setTitle(love.window.getTitle().." | client | "..Session.login)
 	ClientEntity=Client.new()
 	Client.connect(ClientEntity)
 	

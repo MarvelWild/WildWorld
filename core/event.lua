@@ -10,8 +10,8 @@ _.new=function()
 	-- client do not send remote event to server, and should mark received as remote
 	event.isRemote=nil
 	
-	-- wip: implement
-	event.isServerOnly=nil
+	-- not implemented
+--	event.isServerOnly=nil
 	event.code=nil
 	table.insert(unprocessed,event)
 	

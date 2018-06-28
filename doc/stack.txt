@@ -1,9 +1,15 @@
-	login via cmd line
+	
++login via cmd line
 		
-		ai move
-		place item
-		move
-	>2 clients test
+	ai move
+	+place item
+	+move
+	+c2 sees no c1
+		+no c2 on c1. join should broadcast
+	+c1 crash on c2 (join/move)
+		+include login into save dir
+	+c2 no player
++2 clients test
 +girl collision lookup crash
 
 
@@ -28,12 +34,12 @@
 		receive world update
 		receive inventory update
 		send event (see)
-	~implement Player.pickup
+	>implement Player.pickup
 			+define pickable: isInWorld is ok for now
 		+filter pickable
 		+grab collisions
 	+space key (no selection required)
-item pickup
+>item pickup
 +update collision system on player move
 try lovebird lib
 ride together (mount anything: other player, ai pantera)

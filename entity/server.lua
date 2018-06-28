@@ -5,6 +5,8 @@ _.new=function()
 	result.entity="Server"
 	result.id=nil -- we are service, no serialization
 	result.isActive=true
+	
+	-- Grease.tcpServer
 	result.tcpServer=nil
 	
 	Entity.register(result)
@@ -54,6 +56,13 @@ _.sendEventsToClients=function(events)
 	end
 end
 
+_.sendFiltered=function(data,excludedLogin)
+	for login,client in pairs(_.clientsByLogin) do
+		if login~=excludedLogin then
+			Server.send(data,client)
+		end
+	end
+end
 
 
 -- единственная точка через которую сервер отправляет сообщения
