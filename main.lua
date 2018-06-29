@@ -53,6 +53,7 @@ Session={
 	windowHeight=512,
 	windowWidth=512,
 	scale=Config.scale,
+	uiScale=Config.scale,
 	isClient=false,
 	login="defaultLogin",
 	selectedEntity=nil,
@@ -298,7 +299,7 @@ end
 
 love.draw=function()
 	-- active for draw only
-	local scale=Session.scale
+	local scale=Session.uiScale
 
 --	love.graphics.scale(1,0.5)
 	_cam:draw(doDraw)
@@ -524,6 +525,14 @@ love.keypressed=function(key,unicode)
 		end
 	elseif key==Config.keyItemPickup then
 		pickup()
+	elseif key=="kp+" then
+		Session.scale=Session.scale+1
+		_cam:setScale(Session.scale)
+	elseif key=="kp-" then
+		if Session.scale>=2 then
+			Session.scale=Session.scale-1		
+			_cam:setScale(Session.scale)
+		end
 	end
 	
 end

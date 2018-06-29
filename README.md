@@ -27,6 +27,8 @@ Z: change player skin
 
 Home: change player sprite to any sprite
 
+Scale: kp+,kp-
+
 </details>
 
 

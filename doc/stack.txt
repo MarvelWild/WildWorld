@@ -1,3 +1,5 @@
++scaling
+cam: look at player mid, not corner
 			con: block item till accepted by server
 		way 2: exec on client
 			
