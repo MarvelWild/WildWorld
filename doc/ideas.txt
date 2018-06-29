@@ -1,3 +1,4 @@
+private/public skins
 easy select : hover and wait?
 pause mode
 флора фауна

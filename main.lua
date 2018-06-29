@@ -42,6 +42,7 @@ Actionbar=require "entity/actionbar"
 
 Collision=require "core/collision"
 ClientAction=require 'client/action'
+TilesView=require 'view/tiles'
 
 
 
@@ -90,7 +91,7 @@ end
 -- lowercase Globals - frequently used
 log=Debug.log
 pack=TSerial.pack
-local draw=LG.draw
+draw=LG.draw
 
 log("*** Start ***")
 
@@ -257,8 +258,18 @@ love.load=function()
 	
 	testHc()
 	
-	local limits = love.graphics.getSystemLimits()
-	log("Graphic limits:"..Inspect(limits))
+--[[ My intel 4000	
+	anisotropy = 16,
+  canvasmsaa = 8,
+  cubetexturesize = 16384,
+  multicanvas = 8,
+  pointsize = 255,
+  texturelayers = 2048,
+  texturesize = 16384,
+  volumetexturesize = 2048	
+]]--	
+--	local limits = love.graphics.getSystemLimits()
+--	log("Graphic limits:"..Inspect(limits))
 end
 
 
@@ -284,60 +295,7 @@ end
 --end
 
 
-
-
--- left, top
-local drawTiles=function(l,t,w,h)
-	-- log("drawTiles("..l..","..t..","..w..","..h)
-	
-	local tileSize=TILE_SIZE
-	local dualTile=tileSize+tileSize
-	
-	local startY=Lume.round(t,tileSize)-tileSize
-	local endY=startY+h+dualTile
-	
-	local startX=Lume.round(l,tileSize)-tileSize
-	local endX=startX+w+dualTile
-	
-	if startY<0 then startY=0 end
-	if startX<0 then startX=0 end
-	local max=4096-tileSize
-	if endX>max then endX=max end
-	if endY>max then endY=max end
-	
---	log("drawTiles("..l..","..t..","..w..","..h.." x:"..xy(startX,endX))
-	
---	-- tile version (same performance)
---	local startTileX=startX/tileSize
---	local startTileY=startY/tileSize
---	local endTileX=endY/tileSize
---	local endTileY=endY/tileSize
-	
---	for tileY=startTileY,endTileY,1 do
---		for tileX=startTileX,endTileX,1 do
---			--opt precalc tiles
---			local tileNumber=tileX+((tileY)*128)
---			local imgId="level_main/tile"..tileNumber
---			local img=Img[imgId]
-			
---			LG.draw(img,x*tileSize,y*tileSize)
---		end
---	end
-	
--- prev pixel version	
-	for y=startY,endY,tileSize do
-		for x=startX,endX,tileSize do
-			local tileX=x/tileSize
-			local tileY=y/tileSize
-			--opt precalc tiles
-			local tileNumber=tileX+((tileY)*128)
-			
-			local img=Tile[tileNumber]
-			draw(img,x,y)
-			-- drawTile(tileNumber,x,y)
-		end
-	end
-end
+local drawTiles=TilesView.draw
 
 local function doDraw(l,t,w,h)
 	--log("doDraw("..l..","..t..","..w..","..h)
@@ -361,6 +319,9 @@ love.draw=function()
 	Entity.drawScaledUi()
 	
 	-- double scale is trouble (first applied, second not)
+	
+	
+	-- why every draw call? for ui
 	love.graphics.scale(scale,scale)
 	--love.graphics.scale(1,1)
 	

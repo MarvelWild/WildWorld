@@ -16,7 +16,8 @@ end
 _.drawScaledUi=function(debugger)
 	LG.print("debugger")
 	love.graphics.print("FPS: "..tostring(love.timer.getFPS( )), 0, 70)
-	love.graphics.printf("Player: "..Util.debugPrint(World.player), 0, 94,Session.windowWidth)
+	--Util.debugPrint(World.player)
+	love.graphics.printf("Player: "..Entity.toString(World.player), 0, 94,Session.windowWidth)
 	
 	local x=love.mouse.getX()
 	local y=love.mouse.getY()

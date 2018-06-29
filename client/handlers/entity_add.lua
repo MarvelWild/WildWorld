@@ -10,6 +10,8 @@ local _=function(data,clientId)
 	
 	if isOurs then
 		-- unregister old
+		
+		-- todo: looks unfinished
 		for k,entity in pairs(entities) do
 			log("entities_transferred deleting prev:"..entity.entity.." id:"..entity.prevId)
 			Entity.delete(entity.entity,entity.prevId)
@@ -21,7 +23,7 @@ local _=function(data,clientId)
 			
 		end
 	else
-		log("entities_transferred not ours")
+		log("entities_add not ours")
 	end
 	
 	-- register new

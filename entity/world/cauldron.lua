@@ -33,8 +33,8 @@ _.use=function(cauldron,x,y)
 
 	Player.removeItem(cauldron)
 	
-	Entity.transferToServer({cauldron})
 	Entity.placeInWorld(cauldron)
+	Entity.transferToServer({cauldron})
 end
 
 

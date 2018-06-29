@@ -57,7 +57,7 @@ _.update=function(profiler)
 end
 
 
-_.deactivate=function(editor)
+_.deactivate=function(profiler)
 	log("profiler deactivated")
 	profiler.engine.stop()
 end

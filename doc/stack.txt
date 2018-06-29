@@ -1,5 +1,18 @@
+ai: stay in bounds
+	+not reprod, ok for now
++bug: server placed cauldron, client crash
+		+isInWorld=false
+	+read logs
+	+reproduce on clean game
++bug: server placed cauldron, nothing on client
+optional network compression
+flight
+mount: networking
+		+Entity.getWorld should give pantera
+	+pantera try move, but wasnt transferred to client
++client crash
 +pickup player bug
-cam: look at player mid, not corner
++cam: look at player mid, not corner
 			con: block item till accepted by server
 		way 2: exec on client
 			

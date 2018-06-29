@@ -35,8 +35,10 @@ _.updateAi=function(pantera)
 --	end -- 50%?
 	
 --	log("pantera update ai")
-	local nextX=pantera.x+Lume.random(-200,200)
-	local nextY=pantera.y+Lume.random(-200,200)
+	local x=pantera.x+Lume.random(-200,200)
+	local y=pantera.y+Lume.random(-200,200)
+	local nextX=Lume.clamp(x,0,Config.levelWidth)
+	local nextY=Lume.clamp(y,0,Config.levelHeight)
 	
 	local moveEvent=Event.new()
 	moveEvent.code="move"

@@ -67,7 +67,8 @@ _.xywh=function(x,y,w,h)
 	if w==nil then w="nil" end
 	if h==nil then h="nil" end
 	
-	return x..","..y..","..w..","..h
+	local result=string.format("%02d,%02d,%02d,%02d",x,y,w,h)
+	return result
 end
 
 -- example: loadScripts("server/handlers/", destTable)
