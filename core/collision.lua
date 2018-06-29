@@ -72,14 +72,14 @@ _.getAtRect=function(x,y,w,h)
 	
 	local result=nil
 	for shape,v in pairs(collisions) do
-		log("collision:"..Inspect(shape).. " v:"..Inspect(v))
+--		log("collision:".._.shapeToString(shape).. " v:"..Inspect(v))
 		
 		local entity=_entityByShape[shape]
-		if entity==nil then
-			local test1=_pointer==shape
+--		if entity==nil then
+--			local test1=_pointer==shape
 			
-			local a
-		end
+--			local a
+--		end
 		
 		assert(entity)
 		
@@ -97,6 +97,14 @@ _.draw=function()
 	end
 	
 end
+
+_.shapeToString=function(shape)
+--	return Inspect(shape)
+	
+	local centroid=shape._polygon.centroid
+	return "shape:"..xy(centroid.x,centroid.y)
+end
+
 
 
 

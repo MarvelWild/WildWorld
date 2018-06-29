@@ -1,5 +1,9 @@
+-- global ClientAction
 local _={}
 
+--[[
+
+]]--
 _.pickup=function(entity)
 	---- canPickup is done, do pickup
 --_.pickup=function(player,entity)
@@ -10,7 +14,8 @@ _.pickup=function(entity)
 	
 	-- event vs command?
 	--[[
-	
+		event idea: send something to all clients (example: move)
+		command: server only, or server-client conversation (currently events only)
 	
 	]]--
 	
@@ -20,6 +25,7 @@ _.pickup=function(entity)
 	event.code="pickup"
 	event.entityId=entity.idntity
 	event.entityLogin=entity.login
+	event.isServerOnly=true
 	
 	-- пример события, не отправляемого на сервере, а обрабатываемого локально (server only event)
 		-- с клиента отправляется на сервер

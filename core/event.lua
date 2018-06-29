@@ -10,8 +10,7 @@ _.new=function()
 	-- client do not send remote event to server, and should mark received as remote
 	event.isRemote=nil
 	
-	-- not implemented
---	event.isServerOnly=nil
+	event.isServerOnly=nil
 	event.code=nil
 	table.insert(unprocessed,event)
 	
@@ -90,9 +89,8 @@ _.update=function()
 			table.insert(eventsToSend,event)
 		end
 	end
-	
-	-- WIP: сервер посылает другим клиентам ремот
-	
+
+	-- todo: split server/client
 	if Session.isClient then
 		if next(eventsToSend)~=nil then
 			sendToServer(eventsToSend)

@@ -29,7 +29,7 @@ local prepareEventsForLogin=function(login,events)
 	local result={}
 	
 	for k,event in pairs(events) do
-		if event.login~=login then
+		if event.login~=login and not event.isServerOnly then
 			table.insert(result,event)
 		end
 	end

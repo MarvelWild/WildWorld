@@ -1,3 +1,23 @@
+			con: block item till accepted by server
+		way 2: exec on client
+			
+			con: delay (its ok, make this)
+			pro: 
+		way 1: exec on server
+		
+		
+		receive world update
+		receive inventory update
+		send event (see)
+		>implement event.isServerOnly
+	>implement Player.pickup
+			+define pickable: isInWorld is ok for now
+		+filter pickable
+		+grab collisions
+	+space key (no selection required)
+>item pickup
+	
+	
 	
 +login via cmd line
 		
@@ -23,23 +43,7 @@
 +bug: cauldron not selectable (collision box not moved on play)
 
 	
-			con: block item till accepted by server
-		way 2: exec on client
-			
-			con: delay (its ok, make this)
-			pro: 
-		way 1: exec on server
-		
-		
-		receive world update
-		receive inventory update
-		send event (see)
-	>implement Player.pickup
-			+define pickable: isInWorld is ok for now
-		+filter pickable
-		+grab collisions
-	+space key (no selection required)
->item pickup
+
 +update collision system on player move
 try lovebird lib
 ride together (mount anything: other player, ai pantera)
