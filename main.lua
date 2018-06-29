@@ -90,6 +90,7 @@ end
 -- lowercase Globals - frequently used
 log=Debug.log
 pack=TSerial.pack
+local draw=LG.draw
 
 log("*** Start ***")
 
@@ -100,6 +101,7 @@ World=nil
 
 local _debugger=Debugger.new()  ---EntityFactory.debugger()
 local _editor=nil
+local _profiler=nil
 
 
 local saveGame=function()
@@ -210,6 +212,7 @@ love.load=function()
 	-- active for draw only
 	--love.graphics.scale(scale,scale)
 	Img=require "res/img"
+	Tile=require "res/tile"
 	
 	preloadImages()
 	
@@ -228,7 +231,9 @@ love.load=function()
 	Server=require "entity/server"
 	Client=require "entity/client"
 	Editor=require "entity/editor"
+	Profiler=require "entity/profiler"
 	_editor=Editor.new()  ---EntityFactory.debugger()
+	_profiler=Profiler.new()
 
 	
 	--love.graphics.setLineWidth(scale)
@@ -251,6 +256,32 @@ love.load=function()
 	_cam:setScale(Session.scale)
 	
 	testHc()
+	
+	local limits = love.graphics.getSystemLimits()
+	log("Graphic limits:"..Inspect(limits))
+end
+
+
+local drawTile2=function(img,x,y)
+	draw(img,x,y)
+end
+
+
+local drawTile=function(tileNumber,x,y)
+	-- local imgId="level_main/tile"..tileNumber
+	
+	--wip: try separate images for tiles, preloaded
+	local img=Tile[tileNumber]
+	
+	if img==nil then
+		local a=1
+		log("no tile:"..tileNumber)
+	else
+		drawTile2(img,x,y)
+	end
+	
+	
+	--LG.draw(img,x,y)
 end
 
 
@@ -260,31 +291,48 @@ end
 local drawTiles=function(l,t,w,h)
 	-- log("drawTiles("..l..","..t..","..w..","..h)
 	
+	local tileSize=TILE_SIZE
+	local dualTile=tileSize+tileSize
 	
-	local startY=Lume.round(t,TILE_SIZE)-TILE_SIZE
-	local endY=startY+h+TILE_SIZE+TILE_SIZE
+	local startY=Lume.round(t,tileSize)-tileSize
+	local endY=startY+h+dualTile
 	
-	local startX=Lume.round(l,TILE_SIZE)-TILE_SIZE
-	local endX=startX+w+TILE_SIZE+TILE_SIZE
+	local startX=Lume.round(l,tileSize)-tileSize
+	local endX=startX+w+dualTile
 	
 	if startY<0 then startY=0 end
 	if startX<0 then startX=0 end
-	local max=4096-TILE_SIZE
+	local max=4096-tileSize
 	if endX>max then endX=max end
 	if endY>max then endY=max end
 	
 --	log("drawTiles("..l..","..t..","..w..","..h.." x:"..xy(startX,endX))
 	
-	for y=startY,endY,TILE_SIZE do
-		for x=startX,endX,TILE_SIZE do
-			local tileX=x/TILE_SIZE
-			local tileY=y/TILE_SIZE
+--	-- wip tile version
+--	local startTileX=startX/tileSize
+--	local startTileY=startY/tileSize
+--	local endTileX=endY/tileSize
+--	local endTileY=endY/tileSize
+	
+--	for tileY=startTileY,endTileY,1 do
+--		for tileX=startTileX,endTileX,1 do
+--			--opt precalc tiles
+--			local tileNumber=tileX+((tileY)*128)
+--			local imgId="level_main/tile"..tileNumber
+--			local img=Img[imgId]
+			
+--			LG.draw(img,x*tileSize,y*tileSize)
+--		end
+--	end
+	
+-- prev pixel version	
+	for y=startY,endY,tileSize do
+		for x=startX,endX,tileSize do
+			local tileX=x/tileSize
+			local tileY=y/tileSize
 			--opt precalc tiles
 			local tileNumber=tileX+((tileY)*128)
-			local imgId="level_main/tile"..tileNumber
-			local img=Img[imgId]
-			
-			LG.draw(img,x,y)
+			drawTile(tileNumber,x,y)
 		end
 	end
 end
@@ -422,6 +470,11 @@ local toggleEditor=function()
 	Entity.setActive(_editor,not _editor.isActive)
 end
 
+local toggleProfiler=function()
+	Entity.setActive(_profiler,not _profiler.isActive)
+end
+
+
 local pickup=function()
 	log("pickup")
 	local extraRange=10
@@ -455,9 +508,14 @@ local pickup=function()
 
 	-- pick one by one
 	
-	local i,first=next(candidateEntities)
+	--local i,first=next(candidateEntities)
 	
-	ClientAction.pickup(first)
+	for k,candidate in pairs(candidateEntities) do
+		if candidate.entity~="Player" then
+			ClientAction.pickup(candidate)
+			break
+		end
+	end
 end
 
 
@@ -476,6 +534,8 @@ love.keypressed=function(key,unicode)
 		toggleDebugger()
 	elseif key==Config.keyEditor then
 		toggleEditor()
+	elseif key==Config.keyProfiler then
+		toggleProfiler()		
 	elseif key==Config.keyEditorNextItem then
 		-- todo: editor listens for key when active
 		Editor.nextItem(_editor)
@@ -557,3 +617,4 @@ love.quit=function()
 	Debug.writeLogs()
 	return false
 end
+

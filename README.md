@@ -5,29 +5,31 @@ Influenced by Sketch Tales, World of Warcraft, Minecraft, Don't Starve, Realm of
 <details>
  <summary>Controls</summary>
 
-F11: editor 
+editor: F11
 
-	page down: next editor item
+	next editor item: page down
 
-	RMB: place editor item
+	place editor item: rmb
 
-F12 debugger
+debugger: F12
 
-LMB: move
+move: lmb
 
-Shift-LMB: select
+select world object: shift+lmb
 
-RMB: use active item (seeds in slot 1 plants grass)
+use active item: rmb
 
-1-4: switch active item
+switch active item: 1-4
 
-X: mount/dismount horse
+mount/dismount horse: x
 
-Z: change player skin
+change player skin: z
 
-Home: change player sprite to any sprite
+change player sprite to any sprite: home
 
-Scale: kp+,kp-
+scale: kp+,kp-
+
+profiler: F10
 
 </details>
 

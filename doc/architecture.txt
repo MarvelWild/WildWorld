@@ -1,0 +1,8 @@
+	-- event vs command?
+	--[[
+		event idea: send something to all clients (example: move)
+		command: server only, or server-client conversation (currently events only, stick to events for uniform way (think replays, undo, abstraction from network))
+	]]--
+	
+	
+	

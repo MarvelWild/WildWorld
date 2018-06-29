@@ -1,4 +1,4 @@
-+scaling
++pickup player bug
 cam: look at player mid, not corner
 			con: block item till accepted by server
 		way 2: exec on client
@@ -44,7 +44,15 @@ cam: look at player mid, not corner
 +bug: inventory items are selectable
 +bug: cauldron not selectable (collision box not moved on play)
 
-	
+
+	+separate tiles for faster lookup
+			try draw all tiles to canvas, too much draw calls - later
+			
+			+add profiler
+		+take profiling snapshot
+	+optimize at large scale
++scaling
+
 
 +update collision system on player move
 try lovebird lib

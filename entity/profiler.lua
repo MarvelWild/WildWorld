@@ -1,38 +1,66 @@
 -- frontend to lib/profile/profile
 
-local newProfiler=function()
-	local result=Entity.new(
-		function(profiler)
-			profiler.engine=require('lib/profile/profile') 
-			profiler.report="no report yet"
-			profiler.editorVisible=false
+local _={}
+
+_.new=function()
+	local r=BaseEntity.new()
+	r.entity="Profiler"
+	r.isDrawable=false
+	r.isUiDrawable=false --4x
+	r.isScaledUiDrawable=true -- 1x
+	r.isActive=false
+	
+	r.engine=require('lib/profile/profile') 
+	r.report="no report yet"
+	
+	Entity.register(r)
+	
+	return r	
+end
+	
+	
 			
-			profiler.activate=function()
-				profiler.engine.hookall("Lua")
-				profiler.engine.start()
-			end
-		
-			profiler.deactivate=function()
-			end
+--			profiler.drawUi=function()
+--				LG.print(profiler.report)
+--			end
+			
+--			profiler.update=function()
+--				if Session.frame%100 == 0 then
+--					profiler.report = profiler.engine.report('time', 20)
+--					profiler.engine.reset()
+--				end
+--			end
 			
 			
 			
-			profiler.drawUi=function()
-				LG.print(profiler.report)
-			end
-			
-			profiler.update=function()
-				if Session.frame%100 == 0 then
-					profiler.report = profiler.engine.report('time', 20)
-					profiler.engine.reset()
-				end
-			end
-			
-			
-			
-		end
-	)
-	return result
+--		end
+--	)
+--	return result
+--end
+
+_.drawScaledUi=function(profiler)
+	LG.print("I am profiler")
+	LG.print(profiler.report,0,42)
 end
 
-return newProfiler
+_.activate=function(profiler)
+	log("profiler activated")
+	profiler.engine.hookall("Lua")
+	profiler.engine.start()
+end
+
+_.update=function(profiler)
+	if Session.frame%100 == 0 then
+		profiler.report = profiler.engine.report('time', 20)
+		profiler.engine.reset()
+	end
+end
+
+
+_.deactivate=function(editor)
+	log("profiler deactivated")
+-- wip
+end
+
+
+return _
