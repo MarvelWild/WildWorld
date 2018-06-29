@@ -59,7 +59,7 @@ end
 
 _.deactivate=function(editor)
 	log("profiler deactivated")
--- wip
+	profiler.engine.stop()
 end
 
 

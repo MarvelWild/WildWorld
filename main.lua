@@ -262,27 +262,26 @@ love.load=function()
 end
 
 
-local drawTile2=function(img,x,y)
-	draw(img,x,y)
-end
+--local drawTile2=function(img,x,y)
+--	draw(img,x,y)
+--end
 
 
-local drawTile=function(tileNumber,x,y)
-	-- local imgId="level_main/tile"..tileNumber
+--local drawTile=function(tileNumber,x,y)
+--	-- local imgId="level_main/tile"..tileNumber
 	
-	--wip: try separate images for tiles, preloaded
-	local img=Tile[tileNumber]
+--	local img=Tile[tileNumber]
 	
-	if img==nil then
-		local a=1
-		log("no tile:"..tileNumber)
-	else
-		drawTile2(img,x,y)
-	end
+--	if img==nil then
+--		local a=1
+--		log("no tile:"..tileNumber)
+--	else
+--		drawTile2(img,x,y)
+--	end
 	
 	
-	--LG.draw(img,x,y)
-end
+--	--LG.draw(img,x,y)
+--end
 
 
 
@@ -308,7 +307,7 @@ local drawTiles=function(l,t,w,h)
 	
 --	log("drawTiles("..l..","..t..","..w..","..h.." x:"..xy(startX,endX))
 	
---	-- wip tile version
+--	-- tile version (same performance)
 --	local startTileX=startX/tileSize
 --	local startTileY=startY/tileSize
 --	local endTileX=endY/tileSize
@@ -332,7 +331,10 @@ local drawTiles=function(l,t,w,h)
 			local tileY=y/tileSize
 			--opt precalc tiles
 			local tileNumber=tileX+((tileY)*128)
-			drawTile(tileNumber,x,y)
+			
+			local img=Tile[tileNumber]
+			draw(img,x,y)
+			-- drawTile(tileNumber,x,y)
 		end
 	end
 end
@@ -371,8 +373,8 @@ love.update=function(dt)
 	
 	Entity.update(dt)
 	Event.update(dt)
-	
-	_cam:setPosition(World.player.x, World.player.y)
+
+	_cam:setPosition(Entity.getCenter(World.player))
 	--log("cam pos:".._cam:getPosition())
 end
 

@@ -36,7 +36,13 @@ _.moved=function(entity)
 	local movedRect=_shapeByEntity[entity]
 	
 	-- bug: still not working
-	movedRect:moveTo(Entity.getCenter(entity))
+	if movedRect~=nil then
+		movedRect:moveTo(Entity.getCenter(entity))
+	else
+		-- Pantera. Its ok for now
+		--log("entity has no collision:"..entity.entity)
+	end
+	
 	
 	-- _debugShape=movedRect
 end
