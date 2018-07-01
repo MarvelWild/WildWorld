@@ -11,6 +11,7 @@ _.scale=4
 _.keyProfiler="f10"
 _.keyEditor="f11"
 _.keyDebugger="f12"
+_.keyDebuggerDump="f1"
 _.keyEditorNextItem="pagedown"
 _.keyItemPickup="space"
 

@@ -13,7 +13,7 @@ local _=function(data,clientId)
 		
 		-- todo: looks unfinished
 		for k,entity in pairs(entities) do
-			log("entities_transferred deleting prev:"..entity.entity.." id:"..entity.prevId)
+			log("entities_transferred deleting prev:"..Entity.toString(entity).." prevId:"..entity.prevId)
 			Entity.delete(entity.entity,entity.prevId)
 			
 			local testIsDeleted=Entity.find(entity.entity,entity.prevId)

@@ -122,8 +122,21 @@ _.setFavorite=function(player,item,slot)
 	if not player.activeFavorite then
 		player.activeFavorite=item
 	end
-	
 end
+
+_.addFavorite=function(player,item)
+	local favs=player.favorites
+	local slot=1
+	while true do
+		local fav=favs[slot]
+		if not fav then break end
+		
+		slot=slot+1
+	end
+	
+	favs[slot]=item
+end
+
 
 
 

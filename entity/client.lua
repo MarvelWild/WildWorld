@@ -25,7 +25,7 @@ local recv=function(data) -- search alias: receive
 		receiveBuffer=""
 	end
 	
-	log("recv:"..data)	
+	log("recv:"..Util.oneLine(data))	
 	
 	local isProcessed=false
 	local dataParts=string.split(data,NET_MSG_SEPARATOR)
@@ -83,7 +83,7 @@ _.send=function(data, onResponse)
 	end
 	
 	local packed=TSerial.pack(data)
-	log("send cmd:"..data.cmd.." data:"..packed)
+	log("send cmd:"..data.cmd)--.." data:"..packed)
 	
 	local tcpClient=ClientEntity.tcpClient
 	tcpClient:send(packed..NET_MSG_SEPARATOR)

@@ -1,4 +1,30 @@
-ai: stay in bounds
+	entity updated message
+skin change: networking
+			+old:receive world update
+			+old:receive inventory update
+		+receive pickup_ok
+		+send event (see)
+			+respond with picked event to everyone on success
+		+implement event.isServerOnly
+	+implement Player.pickup
+			+define pickable: isInWorld is ok for now
+		+filter pickable
+		+grab collisions
+	+space key (no selection required)
+		
+			+item disappeared, not appeared in inventory
+		+server place, client join and pick
+
++debugger: dump feature
+
+		aplying picked item: no item in world
+	test
+>item pickup
+
+
+	separate log for networking data
++less log spam
++ai: stay in bounds
 	+not reprod, ok for now
 +bug: server placed cauldron, client crash
 		+isInWorld=false
@@ -13,26 +39,6 @@ mount: networking
 +client crash
 +pickup player bug
 +cam: look at player mid, not corner
-			con: block item till accepted by server
-		way 2: exec on client
-			
-			con: delay (its ok, make this)
-			pro: 
-		way 1: exec on server
-		
-		
-		receive world update
-		receive inventory update
-		send event (see)
-		>implement event.isServerOnly
-	>implement Player.pickup
-			+define pickable: isInWorld is ok for now
-		+filter pickable
-		+grab collisions
-	+space key (no selection required)
->item pickup
-	
-	
 	
 +login via cmd line
 		
@@ -442,7 +448,7 @@ y sort
 
 
 
-убрать isBuilt
++убрать isBuilt
 	
 	сохранение саб сущностей
 			or split func and data?
@@ -451,12 +457,12 @@ y sort
 				>deaerialize crash
 			>disable func serialization
 		>try https://github.com/pkulchenko/serpent
-	alt: advanced serializer?
+	+alt: advanced serializer?
 		pro: resolves cross-entity reference
 	use entity.pack/unpack to handle references?
-activeFavorite: save as reference	
-	save formatted
-bug: player: no sprite after load (new game is ok)
++activeFavorite: save as reference	
+	+save formatted
++bug: player: no sprite after load (new game is ok)
 
 	
 	growth process

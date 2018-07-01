@@ -14,6 +14,7 @@ _.new=function(options)
 	result.isDrawable=false
 	result.aiEnabled=false
 	result.isInWorld=nil
+	result.isFlying=false
 	
 	-- assert(Session.login~=nil) -- defaultLogin by default
 	result.login=Session.login

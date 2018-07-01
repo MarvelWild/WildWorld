@@ -1,10 +1,11 @@
 -- send initial world state, and subscribe client to updates
 local join=function(data,clientId)
-	log("join:"..pack(data))
+	
 	
 	
 	-- receive player entity 
 	local joiningPlayer=data.player
+	log("join:"..Entity.toString(joiningPlayer))
 	joiningPlayer.isRemote=true
 	
 	local login=Server.loginByClient[clientId]

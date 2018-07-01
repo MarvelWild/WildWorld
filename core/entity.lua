@@ -90,6 +90,10 @@ local addToCollision=function(entity)
 	end
 end
 
+local removeFromCollision=function(entity)
+	Collision.remove(entity)
+end
+
 
 local activate=function(entity)
 --	log("activating:"..Entity.toString(entity))
@@ -236,11 +240,11 @@ _.register=function(entity)
 	end
 end
 
--- alias: unregister
-_.delete=function(entityName,entityId)
-	
-	log("deleting entity:"..entityId)
-	local entity=_.find(entityName,entityId)
+
+-- nil entityLogin means local entity
+_.delete=function(entityName,entityId,entityLogin)
+	log("deleting entity:"..entityId.." n:"..entityName.." l:"..entityLogin)
+	local entity=_.find(entityName,entityId,entityLogin)
 	assert(entity)
 	
 	if entity.isActive then deactivate(entity) end
@@ -248,9 +252,20 @@ _.delete=function(entityName,entityId)
 	
 	local isRemoved=table_removeByVal(_all,entity)
 	assert(isRemoved)
+	
+-- local only, remote should react to event	
+--	local event=Event.new()
+--	event.code="entity_remove"
+--	event.entityName=entityName
+--	event.entityId=entityId
+--	event.entityLogin=entityLogin
+
+	return entity
 end
 
+_.unregister=_.delete
 
+-- nil login means local entity (same login as current)
 _.find=function(entityName,id,login)
 	if login==nil then login=Session.login end
 	
@@ -554,6 +569,16 @@ _.placeInWorld=function(entity)
 	entity.isInWorld=true
 	addToCollision(entity)
 end
+
+_.removeFromWorld=function(entity)
+	if entity.isInWorld then
+		entity.isInWorld=false
+		removeFromCollision(entity)
+	else
+		log("warn: removeFromWorld: entity not in world")
+	end
+end
+
 
 
 return _

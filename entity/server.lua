@@ -71,10 +71,7 @@ _.send=function(data, clientId,requestId)
 	local packed=pack(data)
 	
 	local sendLen=string.len(packed)
-	local sendInfo="sending size="..sendLen
-	if sendLen<8192 then
-		sendInfo=sendInfo.." data:"..packed
-	end
+	local sendInfo="sending size="..sendLen.." data:"..Util.oneLine(packed)
 	log(sendInfo)
 	
 	ServerEntity.tcpServer:send(packed..NET_MSG_SEPARATOR, clientId)
@@ -93,7 +90,7 @@ local connect=function(id)
 end
 
 local recv=function(data, id)
-	log("recv:"..data)
+	log("recv:"..Util.oneLine(data))
 	local dataParts=string.split(data,NET_MSG_SEPARATOR)
 	
 	for k,dataCommand in pairs(dataParts) do

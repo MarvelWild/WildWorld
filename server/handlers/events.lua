@@ -1,6 +1,6 @@
 -- server handle events from clients
 local events=function(data,clientId)
-	log("events:"..pack(data))
+	log("events:"..Util.oneLine(pack(data)))
 	
 	local events=data.events
 	local login=Server.loginByClient[clientId]

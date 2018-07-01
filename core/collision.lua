@@ -1,3 +1,4 @@
+-- glob Collision
 -- top collision abstraction layer / api
 
 local _={}
@@ -30,6 +31,20 @@ _.add=function(entity)
 	--log("Collidable entity registered: "..xywh(entity).." "..entity.entity)
 	log("Collidable entity registered: "..Entity.toString(entity))
 end
+
+_.remove=function(entity)
+	log("collision.remove:"..Entity.toString(entity))
+	local shape=_shapeByEntity[entity]
+	if not shape then
+		log("warn: entity wasnt in collision system:"..Entity.toString(entity))
+		return
+	end
+	
+	_shapeByEntity[entity]=nil
+	_entityByShape[shape]=nil
+	Hc.remove(shape)
+end
+
 
 _.moved=function(entity)
 --	log("Collision moved:"..Entity.toString(entity))

@@ -26,6 +26,33 @@ _.drawScaledUi=function(debugger)
 
 end
 
+local dumpAll=function()
+	log("wip dump all")
+	
+	local all={}
+	all.world=World
+	
+	local data=serialize(all)
+	
+	local now = os.date('*t') --get the date/time
+--print(Now.hour)
+--print(Now.min)
+--print(Now.sec)
+	
+	love.filesystem.write("dump_"..now.hour.."."..now.min.."."..now.sec, data)
+	
+end
+
+
+_.keypressed=function(debugger, key)
+	log("debugger receive key:"..key)
+	
+	if key==Config.keyDebuggerDump then
+		dumpAll()
+	end
+	
+	
+end
 
 
 

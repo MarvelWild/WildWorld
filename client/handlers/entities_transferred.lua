@@ -1,6 +1,6 @@
 -- client updates transferred entities
 local entities_transferred=function(data,clientId)
-	log("entities_transferred:"..pack(data))
+	log("entities_transferred:"..Util.oneLine(pack(data)))
 	
 	local entities=data.entities
 	local login=data.originalLogin

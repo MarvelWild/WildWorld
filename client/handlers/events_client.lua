@@ -1,6 +1,6 @@
 -- с сервера на клиент пришли события
 local events_client=function(data,clientId)
-	log("events_client:"..pack(data))
+	log("events_client:"..Util.oneLine(pack(data)))
 	
 	local events=data.events
 	--local login=Server.loginByClient[clientId] 

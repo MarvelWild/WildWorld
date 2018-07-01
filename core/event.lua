@@ -10,6 +10,7 @@ _.new=function()
 	event.entity="Event"
 	event.id=Id.new(event.entity)
 	
+	-- alias doNotSend
 	-- client do not send remote event to server, and should mark received as remote
 	event.isRemote=nil
 	
@@ -32,7 +33,8 @@ local processEvent=function(event)
 	end
 	
 	if Session.isClient and event.isServerOnly then
-		log("error: try to process server event on client")
+		-- its ok (pickup)
+		--log("error: try to process server event on client")
 		return
 	end
 	

@@ -36,3 +36,4 @@ combat mode, peace mode
 sprite properties
 embed radio scenemusic
 open computers integration
+merge personal worlds on client join

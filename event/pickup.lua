@@ -1,5 +1,5 @@
 local _=function(event)
-	log("wip pickup event:"..Inspect(event))
+	log("pickup event:"..Util.oneLine(Inspect(event)))
 	--[[example:
 pickup event:{
   aiEnabled = false,
@@ -24,8 +24,25 @@ pickup event:{
 	
 	local entity=Entity.find(event.entityName,event.entityId,event.entityLogin)
 	
-	-- wip remove from world
-	-- wip: broadcast entity removed from world 
+	
+	-- problem: broadcasted delete will return later
+	-- solution1: do not broadcast deletion to caller
+	-- generic: broadcast from Entity.delete
+	-- problem: server can reject deletion
+	-- sol: handle delete event on serv, respond to deletion on caller
+	-- way to respond to event? direct command?
+	if not entity then 
+		log("warn: pickup: no entity")
+		return
+	end
+	
+	local responseEvent=Event.new()
+	responseEvent.code="pickup_ok"
+	responseEvent.entityName=entity.entity
+	responseEvent.entityId=entity.id
+	responseEvent.entityLogin=entity.login
+	responseEvent.actorLogin=event.login
+	
 end
 
 return _

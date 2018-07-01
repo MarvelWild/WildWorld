@@ -12,12 +12,12 @@ _.debugPrint=function(data)
 	return TSerial.pack(data,true,false)
 end
 
--- max info
+-- max info, no reference handling
 _.dump=function(data)
 	return Serpent.dump(data)
 end
 
--- save
+-- save, references ok
 _.serialize=function(data)
 	return Serpent.dump(data, serpentOptions)
 end
@@ -157,6 +157,20 @@ function string.split(str, div)
 end
 
 
+_.oneLine=function(string)
+	local noNewLine=string.gsub(string,"\n","_")
+	local noSpaces=string.gsub(noNewLine,"%s+"," ")
+	local strlen=string.len(noSpaces)
+	
+	local result
+	if strlen>80 then
+		result=string.sub(noSpaces, 0,80).."..."
+	else
+		result=noSpaces
+	end
+	
+	return result
+end
 
 
 
