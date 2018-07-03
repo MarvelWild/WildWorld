@@ -13,6 +13,8 @@ editor: F11
 
 debugger: F12
 
+	dump world F1
+
 move: lmb
 
 select world object: shift+lmb
