@@ -25,36 +25,10 @@ _.registerClient=function(clientId,login)
 	_.loginByClient[clientId]=login
 end
 
-local prepareEventsForLogin=function(login,events)
-	local result={}
-	
-	for k,event in pairs(events) do
-		if event.login~=login and not event.isServerOnly then
-			table.insert(result,event)
-		end
-	end
-	
-	return result
-end
 
 
-_.sendEventsToClients=function(events)
-	for login,client in pairs(_.clientsByLogin) do
-		local preparedEvents=prepareEventsForLogin(login,events)
-		
-		if next(preparedEvents)~=nil then
-			local command=
-			{
-				cmd="events_client",
-				events=events
-			}
-			-- todo: exclude own event for each client
-			Server.send(command)
-		else
-			log("no events for:"..login)
-		end
-	end
-end
+
+
 
 _.sendFiltered=function(data,excludedLogin)
 	for login,client in pairs(_.clientsByLogin) do
@@ -132,5 +106,24 @@ _.update=function(server,dt)
 	server.tcpServer:update(dt)
 end
 
+
+
+
+_.sendEventsToClients=function(events)
+	for login,client in pairs(_.clientsByLogin) do
+		local preparedEvents=Event.prepareEventsForLogin(login,events)
+		
+		if next(preparedEvents)~=nil then
+			local command=
+			{
+				cmd="events_client",
+				events=events
+			}
+			Server.send(command)
+		else
+			log("no events for:"..login)
+		end
+	end
+end
 
 return _

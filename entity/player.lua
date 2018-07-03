@@ -1,5 +1,3 @@
--- 2.0 ready
-
 local _={}
 
 _.name="Player"

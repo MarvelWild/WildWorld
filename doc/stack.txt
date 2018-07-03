@@ -1,4 +1,28 @@
-	entity updated message
+food
+wolf
+stamina
+water
+привязать маунта
+canvas, entity controls update
+debugger entity count
+ai control for player 
+ai control for horse
+ride horse pnly
+any ai as mount
+any creature as mount
+easy creature add (put sprite into folder)
+		
+		+synthetic tests? nah, real world only
+		'server' event: pickup
+		'all' event: move
+	tests
+	+make refactor
+event system refactor: add event.target
+		aplying picked item: no item in world
+	test
+>item pickup
+		send event to all except self
+	entity updated event
 skin change: networking
 			+old:receive world update
 			+old:receive inventory update
@@ -17,12 +41,11 @@ skin change: networking
 
 +debugger: dump feature
 
-		aplying picked item: no item in world
-	test
->item pickup
 
 
-	separate log for networking data
+
+		>test log channels
+	>separate log for networking data
 +less log spam
 +ai: stay in bounds
 	+not reprod, ok for now

@@ -11,7 +11,9 @@ local _drawable={}
 local _uidrawable={}
 local _scaleduidrawable={}
 
+-- k=entity, v=upd function
 local _updateable={}
+local _slowUpdateable={}
 local _ai={}
 local _keyListeners={}
 
@@ -130,6 +132,11 @@ local activate=function(entity)
 		if fnUpdate~=nil then
 			_updateable[entity]=fnUpdate
 		end
+		
+		local fnSlowUpdate=entityCode.slowUpdate
+		if fnSlowUpdate~=nil then
+			_slowUpdateable[entity]=fnSlowUpdate
+		end
 	end
 	
 	
@@ -189,6 +196,12 @@ local deactivate=function(entity)
 	local fnUpdate=entityCode.update
 	if fnUpdate~=nil then
 		local isRemoved=table_removeByVal(_updateable,fnUpdate)
+		assert(isRemoved)
+	end
+	
+	local fnSlowUpdate=entityCode.slowUpdate
+	if fnSlowUpdate~=nil then
+		local isRemoved=table_removeByVal(_slowUpdateable,fnSlowUpdate)
 		assert(isRemoved)
 	end
 	
@@ -435,6 +448,13 @@ _.update=function(dt)
 end
 
 
+_.slowUpdate=function()
+		for entity,updateFunc in pairs(_slowUpdateable) do
+		updateFunc(entity)
+	end
+end
+
+
 
 _.keypressed=function(key,unicode)
 	--local isProcessed=false
@@ -577,6 +597,10 @@ _.removeFromWorld=function(entity)
 	else
 		log("warn: removeFromWorld: entity not in world")
 	end
+end
+
+_.getCount=function()
+	return #_all
 end
 
 

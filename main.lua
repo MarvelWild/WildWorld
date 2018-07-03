@@ -334,6 +334,11 @@ love.update=function(dt)
 	
 	Entity.update(dt)
 	Event.update(dt)
+	
+	if Session.frame%60==0 then
+		Entity.slowUpdate(dt)
+	end
+	
 
 	_cam:setPosition(Entity.getCenter(World.player))
 	--log("cam pos:".._cam:getPosition())

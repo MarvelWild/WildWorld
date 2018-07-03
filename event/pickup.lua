@@ -1,23 +1,6 @@
 local _=function(event)
 	log("pickup event:"..Util.oneLine(Inspect(event)))
 	--[[example:
-pickup event:{
-  aiEnabled = false,
-  code = "pickup",
-  entity = "Event",
-	entityName = "Bucket",
-  entityId = 3,
-  entityLogin = "defaultLogin",
-  h = 0,
-  id = 52,
-  isActive = true,
-  isDrawable = false,
-  isServerOnly = true,
-  login = "defaultLogin",
-  w = 0,
-  x = 0,
-  y = 0
-}	
 	]]--
 	
 	assert(Session.isServer)

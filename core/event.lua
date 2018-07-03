@@ -14,7 +14,15 @@ _.new=function()
 	-- client do not send remote event to server, and should mark received as remote
 	event.isRemote=nil
 	
-	event.isServerOnly=nil
+	--[[ todo refactor: -isRemote +target
+		all			
+		self		
+		server	
+		others	except self
+		login		specified login (private chat)
+	]]--
+	event.target="all"
+	event.targetLogin=nil
 	event.code=nil
 	table.insert(unprocessed,event)
 	
@@ -26,18 +34,29 @@ _.register=function(event)
 	table.insert(unprocessed,event)
 end
 
+-- skip means 'do not process locally'
+local shouldSkipEvent=function(event)
+	assert(event.target)
+	
+	if event.target=="server" then
+		if Session.isClient then
+			return true 
+		end
+	elseif event.target=="self" then
+		if event.login~=Session.login then
+			return true 
+		end
+	end
+	
+	return false
+end
+
 
 local processEvent=function(event)
-	if event.isRemote then
-		local a=1
-	end
-	
-	if Session.isClient and event.isServerOnly then
-		-- its ok (pickup)
-		--log("error: try to process server event on client")
+	if shouldSkipEvent(event) then 
+		log("skip event:"..Event.toString(event))
 		return
 	end
-	
 	
 	local eventCode=event.code
 	
@@ -60,28 +79,60 @@ end
 
 
 
+local shouldSendEvent=function(event,login)
+	local target=event.target
+	
+	if event.login==login then return false end
+	
+	if target=="server" or target=="self" then return false end
+
+	if target=="login" and event.targetLogin~=login then return false end
+
+	return true
+end
+
+local prepareEventsForLogin=function(login,events)
+	local result={}
+	
+	for k,event in pairs(events) do
+		if shouldSendEvent(event,login) then
+			table.insert(result,event)
+		end
+	end
+	
+	return result
+end
+
+_.prepareEventsForLogin=prepareEventsForLogin
+
 
 _.update=function()
+
 	local eventsToSend={}
 	for k,event in pairs(unprocessed) do
 		processEvent(event)
-		if not event.isRemote then
+		if shouldSendEvent(event) then
 			table.insert(eventsToSend,event)
 		end
 	end
-
-	-- todo: split server/client
+	
 	if Session.isClient then
 		if next(eventsToSend)~=nil then
 			sendToServer(eventsToSend)
 		end
-	else 
+	else -- server
 		if next(unprocessed)~=nil then
+			-- server filters events for each client, so unprocessed here
 			Server.sendEventsToClients(unprocessed)
 		end
 	end
 	
 	unprocessed={}
 end
+
+_.toString=function(event)
+	local result=event.id.." t:"..event.target..' c:'..event.code
+end
+
 
 return _

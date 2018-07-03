@@ -1,5 +1,8 @@
 local _={}
 
+local _entityCount=0
+local _print=love.graphics.print
+local _printf=love.graphics.printf
 
 _.new=function()
 	local r=BaseEntity.new()
@@ -15,14 +18,15 @@ end
 
 _.drawScaledUi=function(debugger)
 	LG.print("debugger")
-	love.graphics.print("FPS: "..tostring(love.timer.getFPS( )), 0, 70)
+	_print("FPS: "..tostring(love.timer.getFPS( )), 0, 70)
 	--Util.debugPrint(World.player)
-	love.graphics.printf("Player: "..Entity.toString(World.player), 0, 94,Session.windowWidth)
+	_printf("Player: "..Entity.toString(World.player), 0, 94,Session.windowWidth)
+	_print("Entity count: ".._entityCount, 0, 111)
 	
 	local x=love.mouse.getX()
 	local y=love.mouse.getY()
 	local gameX,gameY=Cam:toWorld(x,y)
-	love.graphics.print("Mouse: "..xy(gameX,gameY), 0, Session.windowHeight-24)		
+	_print("Mouse: "..xy(gameX,gameY), 0, Session.windowHeight-24)		
 
 end
 
@@ -52,6 +56,11 @@ _.keypressed=function(debugger, key)
 	end
 	
 	
+end
+
+_.slowUpdate=function()
+	log("debugger slow update")
+	_entityCount=Entity.getCount()
 end
 
 

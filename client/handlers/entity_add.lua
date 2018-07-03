@@ -28,7 +28,9 @@ local _=function(data,clientId)
 	
 	-- register new
 	for k,entity in pairs(entities) do
-		entity.isRemote=true -- можно отказаться и проверять логин
+		
+		-- why here?
+		-- entity.isRemote=true -- можно отказаться и проверять логин
 		entity.aiEnabled=false -- ai is server-only
 		Entity.register(entity)
 	end
