@@ -1,5 +1,5 @@
 local login=function(data,clientId)
-	log("login:"..Util.oneLine(pack(data)))
+	log("login:"..pack(data))
 	
 	local login=data.login
 	Server.registerClient(clientId,login)
@@ -22,7 +22,7 @@ local login=function(data,clientId)
 --	--client.player=player
 --	--Server.sendPlayerStatus(client)
 	
-	Server.send({"yo! login ok"}, clientId, data.requestId)
+	Server.send({cmd="generic", message="yo! login ok"}, clientId, data.requestId)
 	
 end
 

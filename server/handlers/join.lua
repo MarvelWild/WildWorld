@@ -18,6 +18,7 @@ local join=function(data,clientId)
 		-- todo: also from other clients
 --	joinResponse.entities=Entity.getLocal()
 	joinResponse.entities=Entity.getWorld(login)
+	joinResponse.cmd="join_response"
 	
 	Server.send(joinResponse, clientId, data.requestId)
 	

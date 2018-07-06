@@ -9,7 +9,7 @@ _.new=function()
 	Entity.register(r)
 	
 	return r
-end
+end --new
 
 _.drawUi=function(bar)
 	local player=World.player
@@ -30,20 +30,14 @@ _.drawUi=function(bar)
 		if v==activeFavorite then
 			LG.draw(Img.frame_active_item,x,y)
 		end
-		
 	end
 	
-	
-	
-end
-
-
-
+end --drawUi
 
 
 
 _.keypressed=function(entity,key,unicode)
-	log("actionbar keypressed:"..key)
+	-- log("actionbar keypressed:"..key)
 	
 	if key=="1" then
 		Player.setActiveFavorite(1)
@@ -55,7 +49,7 @@ _.keypressed=function(entity,key,unicode)
 		Player.setActiveFavorite(4)		
 	end
 	
-end
+end -- keypressed
 
 
 return _

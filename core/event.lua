@@ -6,9 +6,12 @@ local _eventHandlers={}
 loadScripts("event/",_eventHandlers)
 
 _.new=function()
-	local event=BaseEntity.new()
+	-- BaseEntity.new() event is not a entity
+	local event={}
+
 	event.entity="Event"
 	event.id=Id.new(event.entity)
+	event.login=Session.login
 	
 	-- alias doNotSend
 	-- client do not send remote event to server, and should mark received as remote
@@ -62,6 +65,7 @@ local processEvent=function(event)
 	
 	local handler=_eventHandlers[eventCode]
 	if handler~=nil then
+		log("processing event:".._.toString(event).." full:"..pack(event))
 		handler(event)
 	else
 		log("error:event unprocessed:"..pack(event))
@@ -78,15 +82,22 @@ local sendToServer=function(events)
 end
 
 
-
+-- think both server and client
+-- login is recipient login, nil means broadcast (for server) or 
 local shouldSendEvent=function(event,login)
 	local target=event.target
 	
+	-- source==taget
 	if event.login==login then return false end
 	
-	if target=="server" or target=="self" then return false end
+	if target=="server" and Session.isServer then return false end
+	
+	if target=="self" then return false end
 
 	if target=="login" and event.targetLogin~=login then return false end
+	
+	-- not ours broadcast, should not echo
+	if target=="all" and event.login~=Session.login then return false end
 
 	return true
 end
@@ -132,6 +143,8 @@ end
 
 _.toString=function(event)
 	local result=event.id.." t:"..event.target..' c:'..event.code
+	
+	return result
 end
 
 

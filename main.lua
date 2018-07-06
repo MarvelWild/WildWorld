@@ -93,7 +93,7 @@ log=Debug.log
 pack=TSerial.pack
 draw=LG.draw
 
-log("*** Start ***")
+log("*** Start *** "..Util.getTimestamp())
 
 
 -- declare globals

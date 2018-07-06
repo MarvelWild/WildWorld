@@ -42,10 +42,15 @@ end
 -- единственная точка через которую сервер отправляет сообщения
 _.send=function(data, clientId,requestId)
 	data.requestId=requestId
+	local cmd=data.cmd
+	
 	local packed=pack(data)
 	
 	local sendLen=string.len(packed)
-	local sendInfo="sending size="..sendLen.." data:"..Util.oneLine(packed)
+	
+	if requestId==nil then requestId="nil" end
+	if cmd==nil then cmd="nil" end
+	local sendInfo="sending rqid="..requestId.." cmd="..cmd.." size="..sendLen.." data:"..packed
 	log(sendInfo)
 	
 	ServerEntity.tcpServer:send(packed..NET_MSG_SEPARATOR, clientId)
@@ -64,7 +69,7 @@ local connect=function(id)
 end
 
 local recv=function(data, id)
-	log("recv:"..Util.oneLine(data))
+	log("recv:"..data)
 	local dataParts=string.split(data,NET_MSG_SEPARATOR)
 	
 	for k,dataCommand in pairs(dataParts) do
@@ -86,7 +91,7 @@ local handshake=">>"
 local port="8421"
 
 _.activate=function(server)
-	log("server activate")
+	--log("server activate")
 	
 	local tcpServer=Grease.tcpServer()
 	server.tcpServer=tcpServer
@@ -119,6 +124,13 @@ _.sendEventsToClients=function(events)
 				cmd="events_client",
 				events=events
 			}
+			
+			if Config.isDebug then
+				for k,event in pairs(events) do
+					log("sending event:"..Event.toString(event))
+				end
+			end
+			
 			Server.send(command)
 		else
 			log("no events for:"..login)

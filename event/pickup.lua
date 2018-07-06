@@ -1,5 +1,5 @@
 local _=function(event)
-	log("pickup event:"..Util.oneLine(Inspect(event)))
+	log("pickup event:"..Inspect(event))
 	--[[example:
 	]]--
 	

@@ -25,7 +25,7 @@ local recv=function(data) -- search alias: receive
 		receiveBuffer=""
 	end
 	
-	log("recv:"..Util.oneLine(data))	
+	log("recv:"..data)	
 	
 	local isProcessed=false
 	local dataParts=string.split(data,NET_MSG_SEPARATOR)

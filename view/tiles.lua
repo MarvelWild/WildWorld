@@ -4,6 +4,8 @@ local _={}
 _.draw=function(l,t,w,h)
 	-- log("drawTiles("..l..","..t..","..w..","..h)
 	
+	-- todo: optimize
+	
 	local tileSize=TILE_SIZE
 	local dualTile=tileSize+tileSize
 	

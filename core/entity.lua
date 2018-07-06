@@ -256,7 +256,7 @@ end
 
 -- nil entityLogin means local entity
 _.delete=function(entityName,entityId,entityLogin)
-	log("deleting entity:"..entityId.." n:"..entityName.." l:"..entityLogin)
+	log("deleting entity:"..entityId.." n:"..entityName.." l:"..tostring(entityLogin))
 	local entity=_.find(entityName,entityId,entityLogin)
 	assert(entity)
 	

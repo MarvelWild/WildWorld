@@ -1,3 +1,4 @@
+-- global Debug
 local debug={}
 
 debug.useConsole=true
@@ -53,6 +54,8 @@ debug.log=function(message,channelName)
 		else
 			consoleMessage=preparedMessage
 		end
+		
+		consoleMessage=Util.oneLine(consoleMessage)
 		print(consoleMessage)
 	end
 end

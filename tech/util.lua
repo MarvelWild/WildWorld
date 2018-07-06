@@ -158,17 +158,21 @@ end
 
 
 _.oneLine=function(string)
-	local noNewLine=string.gsub(string,"\n","_")
+	local noNewLine=string.gsub(string,"\n"," ")
 	local noSpaces=string.gsub(noNewLine,"%s+"," ")
 	local strlen=string.len(noSpaces)
 	
-	local result
-	if strlen>80 then
+	local result=noSpaces
+	if not Config.isFullLog and strlen>80 then
 		result=string.sub(noSpaces, 0,80).."..."
-	else
-		result=noSpaces
 	end
 	
+	return result
+end
+
+_.getTimestamp=function()
+	local now = os.date('*t')
+	local result=now.hour..":"..now.min..":"..now.sec
 	return result
 end
 

@@ -1,3 +1,23 @@
+					+add login to event
+				+client should send event with target=all
+				+read log
+				+add event processing to log
+			+client moves server player
+					+oneLine for console only, full formatting for file
+					+better logs (send cmd, reqid)
+				+collect logs
+						>trace client
+					>client should not send back not own 'all' events
+				collect more logs
+			server move moves client too (only on server)
+		live
+		+synthetic tests? nah, real world only
+		'server' event: pickup
+		'all' event: move
+	tests
+	+make refactor
+>event system refactor: add event.target
+
 food
 wolf
 stamina
@@ -12,15 +32,8 @@ any ai as mount
 any creature as mount
 easy creature add (put sprite into folder)
 		
-		+synthetic tests? nah, real world only
-		'server' event: pickup
-		'all' event: move
-	tests
-	+make refactor
-event system refactor: add event.target
-		aplying picked item: no item in world
-	test
->item pickup
+
+
 		send event to all except self
 	entity updated event
 skin change: networking
@@ -47,6 +60,7 @@ skin change: networking
 		>test log channels
 	>separate log for networking data
 +less log spam
+separate logs for each client on server
 +ai: stay in bounds
 	+not reprod, ok for now
 +bug: server placed cauldron, client crash
