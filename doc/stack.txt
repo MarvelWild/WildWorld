@@ -1,22 +1,10 @@
-					+add login to event
-				+client should send event with target=all
-				+read log
-				+add event processing to log
-			+client moves server player
-					+oneLine for console only, full formatting for file
-					+better logs (send cmd, reqid)
-				+collect logs
-						>trace client
-					>client should not send back not own 'all' events
-				collect more logs
-			server move moves client too (only on server)
-		live
-		+synthetic tests? nah, real world only
-		'server' event: pickup
-		'all' event: move
-	tests
-	+make refactor
->event system refactor: add event.target
+drop pot,pickup,drop again- disappeared
+houses
+zombie
+e-man
+fly dragon
+random start screen creatures
+
 
 food
 wolf
@@ -109,6 +97,26 @@ mount: networking
 	+optimize at large scale
 +scaling
 
+
+					+add login to event
+				+client should send event with target=all
+				+read log
+				+add event processing to log
+			+client moves server player
+					+oneLine for console only, full formatting for file
+					+better logs (send cmd, reqid)
+				+collect logs
+						+trace client
+					+client should not send back not own 'all' events
+				+collect more logs
+			+server move moves client too (only on server)
+		+live
+		+synthetic tests? nah, real world only
+		'server' event: pickup
+		+'all' event: move
+	+tests
+	+make refactor
++event system refactor: add event.target
 
 +update collision system on player move
 try lovebird lib
