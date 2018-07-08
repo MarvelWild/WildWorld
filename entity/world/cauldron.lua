@@ -27,6 +27,7 @@ end
 _.use=function(cauldron,x,y)
 	-- todo: destroy on stack end
 	
+	log("cauldron use. isRegistered:"..tostring(Entity.isRegistered(cauldron)))
 
 	cauldron.x=x
 	cauldron.y=y

@@ -1,3 +1,4 @@
+-- used to add player on join
 local _=function(data,clientId)
 	log("entity_add:"..pack(data))
 	

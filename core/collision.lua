@@ -3,6 +3,11 @@
 
 local _={}
 
+local _log=function(message)
+	log(message,"collision")
+end
+
+
 -- registered collision objects
 
 --entity by shape
@@ -19,8 +24,9 @@ _entityByShape[_pointer]=pointerFakeEntity
 local _debugShape=nil
 
 _.add=function(entity)
+	_log("Collision.add:"..Entity.toString(entity))
 	if _shapeByEntity[entity] then
-		log("error: entity already registered:"..Inspect(entity))
+		_log("error: entity already registered in collision system:"..Inspect(entity))
 		return
 	end
 	
@@ -28,15 +34,14 @@ _.add=function(entity)
 	_shapeByEntity[entity]=shape
 	_entityByShape[shape]=entity
 	
-	--log("Collidable entity registered: "..xywh(entity).." "..entity.entity)
-	log("Collidable entity registered: "..Entity.toString(entity))
+	--_log("Collidable entity registered: "..Entity.toString(entity))
 end
 
 _.remove=function(entity)
-	log("collision.remove:"..Entity.toString(entity))
+	_log("collision.remove:"..Entity.toString(entity))
 	local shape=_shapeByEntity[entity]
 	if not shape then
-		log("warn: entity wasnt in collision system:"..Entity.toString(entity))
+		_log("warn: entity wasnt in collision system:"..Entity.toString(entity))
 		return
 	end
 	
@@ -68,10 +73,10 @@ _.getAtPoint=function(x,y)
 	local result={}
 	
 	_pointer:moveTo(x,y)
-	log("_pointer moved:"..xy(x,y))
+	_log("_pointer moved:"..xy(x,y))
 	local collisions = Hc.collisions(_pointer)
 	for shape,v in pairs(collisions) do
-		-- log("collision k:"..pack(k).." v:"..pack(v))
+		-- _log("collision k:"..pack(k).." v:"..pack(v))
 		local entity=_entityByShape[shape]
 		table.insert(result,entity)
 	end
@@ -81,7 +86,7 @@ end
 
 -- returns nil or table with entities
 _.getAtRect=function(x,y,w,h)
-	log("Collision.getAtRect")
+	_log("Collision.getAtRect")
 	
 	local rect=Hc.rectangle(x,y,w,h)
 	

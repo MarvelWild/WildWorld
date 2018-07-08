@@ -6,7 +6,6 @@ local _=function(event)
 	]]--
 	
 	local deleted=Entity.delete(event.entityName,event.entityId,event.entityLogin)
-	Entity.removeFromWorld(deleted)
 		
 	if event.actorLogin==Session.login then
 		deleted.login=event.actorLogin

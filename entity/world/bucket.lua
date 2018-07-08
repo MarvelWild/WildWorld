@@ -31,8 +31,8 @@ _.use=function(bucket,x,y)
 	
 	Player.removeItem(bucket)
 	
-	Entity.transferToServer({bucket})
 	Entity.placeInWorld(bucket)
+	Entity.transferToServer({bucket})
 end
 
 

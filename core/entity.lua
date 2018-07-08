@@ -170,6 +170,7 @@ end
 
 
 local deactivate=function(entity)
+	log("deactivating:"..Entity.toString(entity))
 	local entityCode=_get(entity.entity)
 	
 	if entityCode.deactivate then
@@ -225,6 +226,13 @@ end
 
 
 
+
+_.isRegistered=function(entity)
+	local key=Lume.find(_all,entity)
+	local result=key~=nil
+	return result
+end
+
 _.register=function(entity)
 --	log("registering:"..pack(entity))
 	-- service entity created at runtime, and do not need to be serialized
@@ -272,6 +280,11 @@ _.delete=function(entityName,entityId,entityLogin)
 --	event.entityName=entityName
 --	event.entityId=entityId
 --	event.entityLogin=entityLogin
+
+	if entity.isInWorld then 
+		Entity.removeFromWorld(entity)
+	end
+	
 
 	return entity
 end
@@ -392,7 +405,8 @@ end
 
 _.setDrawable=function(entity, isDrawable)
 	if entity.isDrawable==isDrawable then
-		log("warn: entity have same active state")
+		-- todo: uncomment for optimizations
+		--log("warn: entity have same active state")
 		return
 	end
 	
@@ -471,7 +485,7 @@ end
 
 -- client side
 _.transferToServer=function(entities)
-	if not Session.isClient then
+	if Session.isServer then
 		_.acceptAtServer(entities)
 		return
 	end
@@ -502,11 +516,8 @@ _.acceptAtServer=function(entities)
 			login=entity.login
 		end
 		
-
-
 		entity.prevId=entity.id
-		entity.id=Id.new(entity.entity)
-
+		
 		local entityCode=Entity.get(entity.entity)
 		local proto=getProto(entity,entityCode)
 		if proto.aiEnabled then
@@ -514,8 +525,13 @@ _.acceptAtServer=function(entities)
 		end
 		
 		if entity.login~=Session.login then
+			entity.id=Id.new(entity.entity)
 			entity.login=Session.login
 			Entity.register(entity)
+		else
+			if not Entity.isRegistered(entity) then
+				Entity.register(entity)
+			end
 		end
 	end
 	
@@ -587,7 +603,8 @@ end
 
 _.placeInWorld=function(entity)
 	entity.isInWorld=true
-	addToCollision(entity)
+		addToCollision(entity)
+	_.setActive(entity,true)
 end
 
 _.removeFromWorld=function(entity)
@@ -595,7 +612,8 @@ _.removeFromWorld=function(entity)
 		entity.isInWorld=false
 		removeFromCollision(entity)
 	else
-		log("warn: removeFromWorld: entity not in world")
+		-- todo:uncomment for optimizing
+		--log("warn: removeFromWorld: entity not in world")
 	end
 end
 

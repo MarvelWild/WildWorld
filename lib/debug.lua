@@ -31,7 +31,12 @@ debug.log=function(message,channelName)
 	-- local time = love.timer.getTime() -- "\t"..time
 	
 	-- TODO: write stack if error message
-	local preparedMessage = Session.frame.."\t"..message
+	local preparedMessage = Session.frame.."\t"
+	if debug.useConsole and channelName then
+		preparedMessage=preparedMessage.."["..channelName.."]\t"
+	end
+	
+	preparedMessage=preparedMessage..message
 	
 	if debug.useFile then 
 		if channelName then
@@ -48,14 +53,7 @@ debug.log=function(message,channelName)
 	end
 	
 	if debug.useConsole then
-		local consoleMessage
-		if channelName then
-			consoleMessage="["..channelName.."] "..preparedMessage
-		else
-			consoleMessage=preparedMessage
-		end
-		
-		consoleMessage=Util.oneLine(consoleMessage)
+		local consoleMessage=Util.oneLine(preparedMessage)
 		print(consoleMessage)
 	end
 end

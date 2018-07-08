@@ -1,3 +1,10 @@
+	should not be remote because it was picked up from server again
+client crash on place-pickup-place cauldron
++seeds sholdnt be in world when in action bar, but they added to collision
+client cannot pickup placed cauldron		
+		cauldron ok, but bucket not placed on client
+	test server-client
+	+server only
 drop pot,pickup,drop again- disappeared
 houses
 zombie

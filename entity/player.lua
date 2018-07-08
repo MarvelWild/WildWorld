@@ -120,6 +120,8 @@ _.setFavorite=function(player,item,slot)
 	if not player.activeFavorite then
 		player.activeFavorite=item
 	end
+	
+	Entity.removeFromWorld(item)
 end
 
 _.addFavorite=function(player,item)
@@ -133,6 +135,7 @@ _.addFavorite=function(player,item)
 	end
 	
 	favs[slot]=item
+	Entity.removeFromWorld(item)
 end
 
 
