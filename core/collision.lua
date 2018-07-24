@@ -24,7 +24,13 @@ _entityByShape[_pointer]=pointerFakeEntity
 local _debugShape=nil
 
 _.add=function(entity)
+	if entity.entity~="Player" then
+		local a=1
+	end
+	
+	
 	_log("Collision.add:"..Entity.toString(entity))
+	-- _log(debug.traceback()) -- search key: stack traceback:
 	if _shapeByEntity[entity] then
 		_log("error: entity already registered in collision system:"..Inspect(entity))
 		return
@@ -32,7 +38,7 @@ _.add=function(entity)
 	
 	local shape = Hc.rectangle(entity.x,entity.y,entity.w,entity.h)
 	_shapeByEntity[entity]=shape
-	_entityByShape[shape]=entity
+	_entityByShape[shape]=entity 
 	
 	--_log("Collidable entity registered: "..Entity.toString(entity))
 end
@@ -60,7 +66,7 @@ _.moved=function(entity)
 		movedRect:moveTo(Entity.getCenter(entity))
 	else
 		-- Pantera. Its ok for now
-		--log("entity has no collision:"..entity.entity)
+		log("entity has no collision:"..entity.entity)
 	end
 	
 	
@@ -86,8 +92,6 @@ end
 
 -- returns nil or table with entities
 _.getAtRect=function(x,y,w,h)
-	_log("Collision.getAtRect")
-	
 	local rect=Hc.rectangle(x,y,w,h)
 	
 	-- Get shapes that are colliding with shape and the vector to separate the shapes
@@ -113,6 +117,7 @@ _.getAtRect=function(x,y,w,h)
 		table.insert(result,entity)
 	end
 	
+	_log("Collision.getAtRect. Count:"..#result)
 	return result
 end
 

@@ -43,7 +43,7 @@ _.new=function()
 end
 
 _.drawScaledUi=function(debugger)
-	LG.print("debugger")
+	LG.print("debugger dump:"..Config.keyDebuggerDump.." logs:"..Config.keyDebuggerWriteLogs)
 	local perfInfo="FPS: "..tostring(love.timer.getFPS( )).." | Entity count: ".._entityCount..
 		" | draws:".._drawCountPrevFrame
 	_print(perfInfo, 0, 70)

@@ -1,3 +1,32 @@
+animate
+	сразу понятно что надо и где не реализовано! (закрывать все ходы сразу)
+	лог возможно будет крутой
+эксперимент: лог дривен девелопмент
+
+
+
+
+		+seed in world (collision), should not. спутал семена с игроками
+	+seed was added to collision, now adding only world entity
+		
+		
+
+			хотя у нас клиент авторитарен, пикапом он полностью забирает вещь себе
+		после пикапа должен происходить трансфер: шлём всем трансфер, а поднимающему - ок
+	сервер бросает котёл, клиент поднимает, ложит, не может поднять второй раз
+		+check fix
+		+trace log(all channels)
+	+server put item, client picks, puts, picks again - item duplicated in world and inv
+	+allow 5th item
+item pickup more net tests
+
+существа бегут на свой остров
+африка
+	пустыня
+		змеи да верблюды
+австралия
+разные острова
+приручить слона бананом
 	should not be remote because it was picked up from server again
 client crash on place-pickup-place cauldron
 +seeds sholdnt be in world when in action bar, but they added to collision
@@ -52,8 +81,8 @@ skin change: networking
 
 
 
-		>test log channels
-	>separate log for networking data
+		+test log channels
+	+separate log for networking data
 +less log spam
 separate logs for each client on server
 +ai: stay in bounds
@@ -64,6 +93,7 @@ separate logs for each client on server
 	+reproduce on clean game
 +bug: server placed cauldron, nothing on client
 optional network compression
+conditional code
 flight
 mount: networking
 		+Entity.getWorld should give pantera
@@ -246,8 +276,8 @@ grass from client should be saved on server
 		check creation code
 	seed not found
 	
-	>use on client, send entity create event
->item use: network
+	+use on client, send entity create event
++item use: network
 	ui for that / chat is ok
 emotes: dance, jump,anything
 	
@@ -258,7 +288,7 @@ client does not save world+
 			для этого сервер у трансфернутых отдаёт oldId
 			если его - разрегистрирует прежние
 			если не его логин - просто регистрирует их
-		>клиент отвечает на entities_transferred
+		+клиент отвечает на entities_transferred
 				с такими не взаимодействуем/или с ожиданием трансфера
 			пометить isTransferring+
 		+transfer_to_server созданную сущность
@@ -506,9 +536,9 @@ y sort
 			or split func and data?
 				
 					try dump()
-				>deaerialize crash
-			>disable func serialization
-		>try https://github.com/pkulchenko/serpent
+				deaerialize crash
+			+disable func serialization
+		+try https://github.com/pkulchenko/serpent (later)
 	+alt: advanced serializer?
 		pro: resolves cross-entity reference
 	use entity.pack/unpack to handle references?
@@ -543,7 +573,7 @@ y sort
 +затайлить
 
 	в слот belt-1
-	>дать семя
+	+дать семя
 	убрать картинки
 	как компонент
 	отрисовка

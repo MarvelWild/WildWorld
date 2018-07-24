@@ -26,8 +26,8 @@ end
 -- place self in world
 _.use=function(bucket,x,y)
 	-- todo: destroy on stack end
-	bucket.x=x
-	bucket.y=y
+	
+	Entity.move(bucket,x,y)
 	
 	Player.removeItem(bucket)
 	

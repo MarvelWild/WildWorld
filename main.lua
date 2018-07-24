@@ -31,7 +31,7 @@ Id=require "tech/id"
 -- удивительно, но точка - это важно, иначе не находится core
 Grease=require 'lib/grease/grease.init'
 
-Event=require "core/event"
+
 SortedList=require "lib/Wiki-Lua-Libraries/StandardLibraries/SortedList"
 Entity=require "core/entity"
 
@@ -87,6 +87,9 @@ if Session.isClient then
 else
 	love.window.setPosition(20,100)
 end
+
+-- requires session
+Event=require "core/event"
 
 -- lowercase Globals - frequently used
 log=Debug.log
@@ -488,7 +491,7 @@ end
 
 
 love.keypressed=function(key,unicode)
-	log("keypressed:"..key.." u:"..unicode)
+	log("keypressed:"..key.." u:"..unicode, "keyboard")
 	
 	local isProcessedByEntities=Entity.keypressed(key,unicode)
 	if isProcessedByEntities then

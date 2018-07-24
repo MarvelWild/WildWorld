@@ -2,14 +2,14 @@ local _=function(event)
 	log("pickup_ok event:"..Inspect(event))
 	
 	--[[
-	ex 
+
 	]]--
 	
-	local deleted=Entity.delete(event.entityName,event.entityId,event.entityLogin)
+	local picked=Entity.delete(event.entityName,event.entityId,event.entityLogin)
 		
 	if event.actorLogin==Session.login then
-		deleted.login=event.actorLogin
-		Player.addFavorite(World.player,deleted)
+		Entity.changeLogin(picked,event.actorLogin)
+		Player.addFavorite(World.player,picked)
 	end
 end
 

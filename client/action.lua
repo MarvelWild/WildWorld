@@ -5,6 +5,8 @@ local _={}
 
 ]]--
 _.pickup=function(entity)
+	log("picking up (create event):"..Entity.toString(entity))
+	
 	local event=Event.new()
 	event.code="pickup"
 	event.entityName=entity.entity

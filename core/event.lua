@@ -1,6 +1,6 @@
 local _={}
 
-local unprocessed={}
+local _unprocessed={}
 
 local _eventHandlers={}
 loadScripts("event/",_eventHandlers)
@@ -8,7 +8,7 @@ loadScripts("event/",_eventHandlers)
 _.new=function()
 	-- BaseEntity.new() event is not a entity
 	local event={}
-
+	
 	event.entity="Event"
 	event.id=Id.new(event.entity)
 	event.login=Session.login
@@ -27,14 +27,14 @@ _.new=function()
 	event.target="all"
 	event.targetLogin=nil
 	event.code=nil
-	table.insert(unprocessed,event)
+	table.insert(_unprocessed,event)
 	
 	return event
 end
 
 -- remote/detached
 _.register=function(event)
-	table.insert(unprocessed,event)
+	table.insert(_unprocessed,event)
 end
 
 -- skip means 'do not process locally'
@@ -85,21 +85,32 @@ end
 -- think both server and client
 -- login is recipient login, nil means broadcast (for server) or 
 local shouldSendEvent=function(event,login)
+	if event.code~="move" then
+		local a=1
+	end
+	
+	
 	local target=event.target
 	
+	local result=true
+	
 	-- source==taget
-	if event.login==login then return false end
+	if event.login==login then 
+		result=false
+	elseif target=="server" and Session.isServer then 
+		result=false 
+	elseif target=="self" then 
+		result=false 
+	elseif target=="login" and event.targetLogin~=login then
+		result=false 
+	elseif target=="all" and event.login~=Session.login then 
+		-- not ours broadcast, should not echo
+		result=false 
+	end
 	
-	if target=="server" and Session.isServer then return false end
-	
-	if target=="self" then return false end
+	log("shouldSendEvent:"..Event.toString(event).." to login:"..tostring(login).." result:"..tostring(result))
 
-	if target=="login" and event.targetLogin~=login then return false end
-	
-	-- not ours broadcast, should not echo
-	if target=="all" and event.login~=Session.login then return false end
-
-	return true
+	return result
 end
 
 local prepareEventsForLogin=function(login,events)
@@ -116,29 +127,51 @@ end
 
 _.prepareEventsForLogin=prepareEventsForLogin
 
+local cleanEvents=function()
+	if #_unprocessed>0 then
+		_unprocessed={}
+	end
+end
 
-_.update=function()
 
+local clientUpdate=function()
 	local eventsToSend={}
-	for k,event in pairs(unprocessed) do
+	for k,event in pairs(_unprocessed) do
 		processEvent(event)
 		if shouldSendEvent(event) then
 			table.insert(eventsToSend,event)
 		end
 	end
 	
-	if Session.isClient then
-		if next(eventsToSend)~=nil then
-			sendToServer(eventsToSend)
-		end
-	else -- server
-		if next(unprocessed)~=nil then
-			-- server filters events for each client, so unprocessed here
-			Server.sendEventsToClients(unprocessed)
-		end
+	if next(eventsToSend)~=nil then
+		sendToServer(eventsToSend)
 	end
 	
-	unprocessed={}
+	cleanEvents()
+
+end
+
+local serverUpdate=function()
+	if next(_unprocessed)~=nil then
+		-- server filters events for each client, so unprocessed here
+		for k,event in pairs(_unprocessed) do
+			processEvent(event)
+		end
+		
+		-- shouldSendEvent проверяется внутри
+		Server.sendEventsToClients(_unprocessed)
+	end
+	
+	cleanEvents()
+end
+
+	
+
+
+if Session.isServer then
+	_.update=serverUpdate
+else -- client
+	_.update=clientUpdate
 end
 
 _.toString=function(event)

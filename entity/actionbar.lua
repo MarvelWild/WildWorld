@@ -47,6 +47,8 @@ _.keypressed=function(entity,key,unicode)
 		Player.setActiveFavorite(3)
 	elseif key=="4" then
 		Player.setActiveFavorite(4)		
+	elseif key=="5" then
+		Player.setActiveFavorite(5)
 	end
 	
 end -- keypressed

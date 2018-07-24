@@ -1,5 +1,9 @@
 local _={}
 
+
+local _prepareEventsForLogin=Event.prepareEventsForLogin
+
+
 _.new=function()
 	local result=BaseEntity.new()
 	result.entity="Server"
@@ -69,7 +73,7 @@ local connect=function(id)
 end
 
 local recv=function(data, id)
-	log("recv:"..data)
+	log("recv:"..data, "net")
 	local dataParts=string.split(data,NET_MSG_SEPARATOR)
 	
 	for k,dataCommand in pairs(dataParts) do
@@ -114,9 +118,11 @@ end
 
 
 
+
 _.sendEventsToClients=function(events)
 	for login,client in pairs(_.clientsByLogin) do
-		local preparedEvents=Event.prepareEventsForLogin(login,events)
+		
+ 		local preparedEvents=_prepareEventsForLogin(login,events)
 		
 		if next(preparedEvents)~=nil then
 			local command=
@@ -126,7 +132,8 @@ _.sendEventsToClients=function(events)
 			}
 			
 			if Config.isDebug then
-				for k,event in pairs(events) do
+				-- стояло events - был баг с эхом
+				for k,event in pairs(preparedEvents) do
 					log("sending event:"..Event.toString(event))
 				end
 			end

@@ -85,6 +85,7 @@ end
 
 local addToCollision=function(entity)
 --	log("addToCollision:"..Entity.toString(entity))
+	-- local isInWorldDbg=entity.isInWorld
 	if entity.w>0 and entity.h>0 and entity.isInWorld then
 		Collision.add(entity)
 	else
@@ -100,7 +101,7 @@ end
 local activate=function(entity)
 --	log("activating:"..Entity.toString(entity))
 	
-	if entity.entity=="Cauldron" then
+	if entity.entity=="Seed" then
 		local a=1
 	end
 	
@@ -150,7 +151,10 @@ local activate=function(entity)
 	
 	
 	entity.isActive=true
-	addToCollision(entity)
+	
+	if entity.isInWorld then
+		addToCollision(entity)
+	end
 end
 
 local removeDrawable=function(entity,container)
@@ -159,6 +163,8 @@ local removeDrawable=function(entity,container)
 		if info.entity==entity then 
 			table.remove(container,k)
 			-- container[k]=nil wrong way (sort crash on nil)
+			
+			log("drawables after remove:"..#container)
 			return
 		end
 	end
@@ -167,7 +173,6 @@ local removeDrawable=function(entity,container)
 	
 	log("error: removeDrawable")
 end
-
 
 local deactivate=function(entity)
 	log("deactivating:"..Entity.toString(entity))
@@ -225,6 +230,8 @@ local deactivate=function(entity)
 end
 
 
+_.deactivate=deactivate
+
 
 
 _.isRegistered=function(entity)
@@ -234,7 +241,7 @@ _.isRegistered=function(entity)
 end
 
 _.register=function(entity)
---	log("registering:"..pack(entity))
+	log("registering:"..Entity.toString(entity))
 	-- service entity created at runtime, and do not need to be serialized
 	local isService=entity.id==nil
 	local isActive=not (entity.isActive==false) -- true or nil
@@ -262,6 +269,8 @@ _.register=function(entity)
 end
 
 
+-- удаляется только локально 
+
 -- nil entityLogin means local entity
 _.delete=function(entityName,entityId,entityLogin)
 	log("deleting entity:"..entityId.." n:"..entityName.." l:"..tostring(entityLogin))
@@ -274,7 +283,7 @@ _.delete=function(entityName,entityId,entityLogin)
 	local isRemoved=table_removeByVal(_all,entity)
 	assert(isRemoved)
 	
--- local only, remote should react to event	
+-- local only, remote processEven react to event	
 --	local event=Event.new()
 --	event.code="entity_remove"
 --	event.entityName=entityName
@@ -587,9 +596,16 @@ end
 
 --should be called after move to update collision sytem
 _.onMoved=function(entity)
-	-- log("Entity moved:"..Entity.toString(entity))
+	log("Entity moved:"..Entity.toString(entity))
 	Collision.moved(entity)
 end
+
+_.move=function(entity,newX,newY)
+	entity.x=newX
+	entity.y=newY
+	_.onMoved(entity)
+end
+
 
 
 
@@ -602,11 +618,18 @@ _.getCenter=function(entity)
 end
 
 _.placeInWorld=function(entity)
+	if entity.isInWorld then
+		log("error: entity already in world:"..Entity.toString(entity))
+	end
+	
+	
 	entity.isInWorld=true
-		addToCollision(entity)
+		-- was bug addToCollision in setActive->activate
+		-- addToCollision(entity)
 	_.setActive(entity,true)
 end
 
+-- убрать из системы коллизий
 _.removeFromWorld=function(entity)
 	if entity.isInWorld then
 		entity.isInWorld=false
@@ -619,6 +642,12 @@ end
 
 _.getCount=function()
 	return #_all
+end
+
+_.changeLogin=function(entity,login)
+	log("changeLogin:"..Entity.toString(entity).." new:"..login)
+	entity.login=login
+	entity.isRemote=login==Session.login
 end
 
 

@@ -16,6 +16,9 @@ local netChannel={
 
 channels.net=netChannel
 
+-- todo: настройка какие из ченнелов попадают в мейн
+-- todo: multichannel messages
+
 local newChannel=function(name)
 	local result={}
 	result.name=name
@@ -31,6 +34,11 @@ debug.log=function(message,channelName)
 	-- local time = love.timer.getTime() -- "\t"..time
 	
 	-- TODO: write stack if error message
+	if string.find(message,"error") then
+		local a=1
+	end
+	
+	
 	local preparedMessage = Session.frame.."\t"
 	if debug.useConsole and channelName then
 		preparedMessage=preparedMessage.."["..channelName.."]\t"
@@ -47,6 +55,9 @@ debug.log=function(message,channelName)
 			end
 			
 			table.insert(channel.messages, preparedMessage) 
+			
+			-- trace log, full timeline
+			table.insert(debug.messages, preparedMessage)
 		else
 			table.insert(debug.messages, preparedMessage) 
 		end
