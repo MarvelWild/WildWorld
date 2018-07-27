@@ -51,6 +51,10 @@ basic ai (pantera and sheep)
 
 network: server-client mode
 
+items: place, pickup, use
+
+inventory bar
+
 
 </details>
 

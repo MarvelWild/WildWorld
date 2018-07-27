@@ -1,3 +1,10 @@
+	
+	в идеале все симуляции - отдельный поток
+	entity_update to clients
+		on slow update
+	server simulation
+tree growth
+
 animate
 	сразу понятно что надо и где не реализовано! (закрывать все ходы сразу)
 	лог возможно будет крутой
@@ -6,19 +13,7 @@ animate
 
 
 
-		+seed in world (collision), should not. спутал семена с игроками
-	+seed was added to collision, now adding only world entity
 		
-		
-
-			хотя у нас клиент авторитарен, пикапом он полностью забирает вещь себе
-		после пикапа должен происходить трансфер: шлём всем трансфер, а поднимающему - ок
-	сервер бросает котёл, клиент поднимает, ложит, не может поднять второй раз
-		+check fix
-		+trace log(all channels)
-	+server put item, client picks, puts, picks again - item duplicated in world and inv
-	+allow 5th item
-item pickup more net tests
 
 существа бегут на свой остров
 африка
@@ -79,7 +74,19 @@ skin change: networking
 +debugger: dump feature
 
 
++seed in world (collision), should not. спутал семена с игроками
+	+seed was added to collision, now adding only world entity
+		
+		
 
+			+хотя у нас клиент авторитарен, пикапом он полностью забирает вещь себе
+		+после пикапа должен происходить трансфер: шлём всем трансфер, а поднимающему - ок
+	+сервер бросает котёл, клиент поднимает, ложит, не может поднять второй раз
+		+check fix
+		+trace log(all channels)
+	+server put item, client picks, puts, picks again - item duplicated in world and inv
+	+allow 5th item
++item pickup more net tests
 
 		+test log channels
 	+separate log for networking data

@@ -8,6 +8,7 @@ _.new=function(options)
 	result.entity="BirchTree"
 	result.id=Id.new(result.entity)
 	result.isDrawable=true
+	result.growPhase=1
 		
 	BaseEntity.init(result,options)
 	return result
@@ -18,6 +19,50 @@ _.draw=function(entity)
 	local sprite=Img[entity.spriteName]
 	LG.draw(sprite,entity.x,entity.y)
 end
+
+local getSpriteForGrowPhase=function(phase)
+	if phase==1 then return "birch_tree_1" end
+	if phase==2 then return "birch_tree_2" end
+	if phase==3 then return "birch_tree_3" end
+	if phase==4 then return "birch_tree_4" end
+	if phase==5 then return "birch_tree_5" end
+
+	return nil
+end
+
+
+local grow=function(entity)
+	-- wip
+	log("tree grow:")
+	local nextPhase=entity.growPhase+1
+	local nextSprite=getSpriteForGrowPhase(nextPhase)
+	if nextSprite==nil then 
+		-- max grow
+		return 
+	end
+	
+	entity.growPhase=nextPhase
+	Entity.setSprite(entity,nextSprite)
+	
+	
+	
+	-- wip: notify server if client. 
+	-- notify all except source on server
+end
+
+if Session.isServer then
+	_.slowUpdate=function(entity)
+		log("birch tree slow update")
+		
+		-- можно попробовать на активации на сервере вешаться на какой либо медленный таймер
+		local rnd=Lume.random()
+		if rnd>0.9 then
+			grow(entity)
+		end
+		
+	end
+end
+
 
 -- todo: growth
 

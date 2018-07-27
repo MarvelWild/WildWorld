@@ -477,7 +477,9 @@ _.update=function(dt)
 	
 end
 
+-- todo: механизм размазывания по фреймам
 
+-- now every second.
 _.slowUpdate=function()
 		for entity,updateFunc in pairs(_slowUpdateable) do
 		updateFunc(entity)
@@ -606,7 +608,7 @@ end
 
 --should be called after move to update collision sytem
 _.onMoved=function(entity)
-	log("Entity onMoved:"..Entity.toString(entity))
+--	log("Entity onMoved:"..Entity.toString(entity))
 	
 	if entity.isInWorld then
 		Collision.moved(entity)
