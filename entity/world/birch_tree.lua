@@ -17,7 +17,7 @@ end
 _.draw=function(entity)
 	-- todo: opt
 	local sprite=Img[entity.spriteName]
-	LG.draw(sprite,entity.x,entity.y)
+	draw(sprite,entity.x,entity.y)
 end
 
 local getSpriteForGrowPhase=function(phase)
