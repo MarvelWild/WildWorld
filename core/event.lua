@@ -82,35 +82,83 @@ local sendToServer=function(events)
 end
 
 
--- think both server and client
--- login is recipient login, nil means broadcast (for server) or 
-local shouldSendEvent=function(event,login)
-	if event.code~="move" then
-		local a=1
-	end
-	
+
+local shouldSendEventFromClient=function(event,targetLogin)
 	
 	local target=event.target
+	local eventLogin=event.login
+	local ourLogin=Session.login
 	
+	-- на клиенте события можно отправлять только серверу
 	local result=true
 	
 	-- source==taget
-	if event.login==login then 
+	if eventLogin==targetLogin then -- себе в любом случае не нужно слать, у нас оно уже есть
 		result=false
-	elseif target=="server" and Session.isServer then 
+	elseif eventLogin~=ourLogin then -- чужие не реброадкастим
+		result=false
+	elseif target=="self" then 
+		result=false 
+	elseif target=="server" then 
+		result=true 
+	elseif target=="others" then 
+		result=true 
+	elseif target=="all" then 
+		result=true
+	elseif target=="login" then -- подразумеваем что используется только другой логин (пока что)
+		result=true
+	else
+		log("error:unk event:"..Event.toString(event))
+	end
+	
+	log("shouldSendEventFromClient:"..Event.toString(event).." targetLogin:"..tostring(targetLogin).." result:"..tostring(result))
+
+	return result
+end
+
+
+-- login is recipient login, nil means broadcast (for server)
+local shouldSendEventFromServer=function(event,targetLogin)
+	local target=event.target
+	
+	local result=true
+	local ourLogin=Session.login
+	local sourceLogin=event.login
+	
+	-- source==taget
+	if sourceLogin==targetLogin then -- не нужно возвращать отправителю
+		result=false
+	elseif targetLogin==ourLogin then -- не нужно слать себе
+		result=false 
+	elseif target=="others" then 
+		-- result=true
+	elseif target=="server" then 
+		-- эти только принимаем
 		result=false 
 	elseif target=="self" then 
 		result=false 
-	elseif target=="login" and event.targetLogin~=login then
-		result=false 
-	elseif target=="all" and event.login~=Session.login then 
-		-- not ours broadcast, should not echo
-		result=false 
+	elseif target=="login" then
+		if event.targetLogin~=targetLogin then
+			result=false
+		-- else result=true
+		end
+	elseif target=="all" then 
+		-- result=true
+	else
+		log("error:unk event:"..Event.toString(event))
 	end
 	
-	log("shouldSendEvent:"..Event.toString(event).." to login:"..tostring(login).." result:"..tostring(result))
+	log("shouldSendEventFromServer:"..Event.toString(event).." to login:"..tostring(targetLogin).." result:"..tostring(result))
 
-	return result
+	return result	
+end
+
+
+local shouldSendEvent
+if Session.isServer then
+	shouldSendEvent=shouldSendEventFromServer
+else
+	shouldSendEvent=shouldSendEventFromClient
 end
 
 local prepareEventsForLogin=function(login,events)

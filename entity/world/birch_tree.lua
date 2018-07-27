@@ -32,8 +32,7 @@ end
 
 
 local grow=function(entity)
-	-- wip
-	log("tree grow:")
+	-- log("tree grow:")
 	local nextPhase=entity.growPhase+1
 	local nextSprite=getSpriteForGrowPhase(nextPhase)
 	if nextSprite==nil then 
@@ -45,9 +44,7 @@ local grow=function(entity)
 	Entity.setSprite(entity,nextSprite)
 	
 	
-	
-	-- wip: notify server if client. 
-	-- notify all except source on server
+	Entity.notifyUpdated(entity)
 end
 
 if Session.isServer then

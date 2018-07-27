@@ -44,7 +44,7 @@ end
 
 
 -- единственная точка через которую сервер отправляет сообщения
-_.send=function(data, clientId,requestId)
+_.send=function(data,clientId,requestId)
 	data.requestId=requestId
 	local cmd=data.cmd
 	
@@ -52,10 +52,12 @@ _.send=function(data, clientId,requestId)
 	
 	local sendLen=string.len(packed)
 	
+	local login=_.loginByClient[clientId]
+	
 	if requestId==nil then requestId="nil" end
 	if cmd==nil then cmd="nil" end
-	local sendInfo="sending rqid="..requestId.." cmd="..cmd.." size="..sendLen.." data:"..packed
-	log(sendInfo)
+	local sendInfo="send: rqid="..requestId.." to:"..tostring(login).." cmd="..cmd.." size="..sendLen.." data:"..packed
+	log(sendInfo, "net")
 	
 	ServerEntity.tcpServer:send(packed..NET_MSG_SEPARATOR, clientId)
 end
@@ -122,6 +124,7 @@ end
 _.sendEventsToClients=function(events)
 	for login,client in pairs(_.clientsByLogin) do
 		
+		-- проверка через Event shouldSendEvent
  		local preparedEvents=_prepareEventsForLogin(login,events)
 		
 		if next(preparedEvents)~=nil then
@@ -138,7 +141,7 @@ _.sendEventsToClients=function(events)
 				end
 			end
 			
-			Server.send(command)
+			Server.send(command,client)
 		else
 			log("no events for:"..login)
 		end

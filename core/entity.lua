@@ -687,6 +687,16 @@ _.usePlaceable=function(entity,x,y)
 end
 
 	
+_.notifyUpdated=function(entity)
+	-- wip: unprocessed error for now
+--	local event=Event.new()
+--	event.entities={entity}
+--	event.code="entities_updated"
+--	event.targets="others"
+	
+	-- wip: респонз обновляет текущую сущность, ссылки 1 уровня остаются живые
+end
+	
 
 
 return _
