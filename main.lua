@@ -49,17 +49,8 @@ TilesView=require 'view/tiles'
 Cam = Gamera.new(0,0,Config.levelWidth,Config.levelHeight)
 local _cam=Cam
 
-Session={
-	frame=0,
-	windowHeight=512,
-	windowWidth=512,
-	scale=Config.scale,
-	uiScale=Config.scale,
-	isClient=false,
-	login="defaultLogin",
-	selectedEntity=nil,
-	isOnHorse=true, -- tmp kiss
-}
+Session=require "core/session"
+
 
 Session.isClient=Util.hasArg("c")
 Session.isServer=not Session.isClient
@@ -97,7 +88,6 @@ pack=TSerial.pack
 draw=LG.draw
 
 log("*** Start *** "..Util.getTimestamp())
-
 
 -- declare globals
 Fonts=nil -- init in load()
@@ -329,6 +319,15 @@ love.draw=function()
 	--love.graphics.scale(1,1)
 	
 	Entity.drawUi()
+	
+	if Session.hasErrors then
+		LG.print("ERROR")
+	end
+	
+	if Session.hasWarnings then
+		LG.print("WARN")
+	end
+	
 end
 
 love.update=function(dt)

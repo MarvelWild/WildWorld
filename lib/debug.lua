@@ -35,7 +35,9 @@ debug.log=function(message,channelName)
 	
 	-- TODO: write stack if error message
 	if string.find(message,"error") then
-		local a=1
+		Session.hasErrors=true
+	elseif string.find(message,"warn") then
+		Session.hasWarnings=true
 	end
 	
 	
