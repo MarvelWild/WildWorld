@@ -26,7 +26,7 @@ local join=function(data,clientId)
 	response.cmd="entity_add"
 	response.entities={joiningPlayer}
 	
-	Server.sendFiltered(response,login)
+	Server.sendToAllClientsExcept(response,login)
 end
 
 return join

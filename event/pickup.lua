@@ -25,7 +25,7 @@ local _=function(event)
 	responseEvent.entityId=entity.id
 	responseEvent.entityLogin=entity.login
 	responseEvent.actorLogin=event.login
-	
+	-- default target: all
 end
 
 return _

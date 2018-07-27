@@ -59,7 +59,7 @@ _.drawScaledUi=function(debugger)
 end
 
 local dumpAll=function()
-	log("wip dump all")
+	log("dump all")
 	
 	local all={}
 	all.world=World

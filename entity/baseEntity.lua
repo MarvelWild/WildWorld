@@ -13,6 +13,9 @@ _.new=function(options)
 	-- change via Entity.setDrawable 
 	result.isDrawable=false
 	result.aiEnabled=false
+	
+	-- такие в будущем будут неинтерактивны, например подняли/положили предмет и ждём подтверждения от сервера
+	result.isTransferring=nil
 	result.isInWorld=nil
 	result.isFlying=false
 	

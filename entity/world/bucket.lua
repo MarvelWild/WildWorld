@@ -27,12 +27,7 @@ end
 _.use=function(bucket,x,y)
 	-- todo: destroy on stack end
 	
-	Entity.move(bucket,x,y)
-	
-	Player.removeItem(bucket)
-	
-	Entity.placeInWorld(bucket)
-	Entity.transferToServer({bucket})
+	Entity.usePlaceable(bucket,x,y)
 end
 
 

@@ -1,3 +1,5 @@
+-- 
+-- target: 
 local _=function(event)
 	log("pickup_ok event:"..Inspect(event))
 	
@@ -5,10 +7,13 @@ local _=function(event)
 
 	]]--
 	
+	-- everyones
 	local picked=Entity.delete(event.entityName,event.entityId,event.entityLogin)
 		
+	-- ours
 	if event.actorLogin==Session.login then
 		Entity.changeLogin(picked,event.actorLogin)
+		picked.isRemote=false
 		Player.addFavorite(World.player,picked)
 	end
 end

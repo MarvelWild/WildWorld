@@ -66,6 +66,7 @@ _.moved=function(entity)
 		movedRect:moveTo(Entity.getCenter(entity))
 	else
 		-- Pantera. Its ok for now
+		-- также сюда приходим при использовании котла
 		log("entity has no collision:"..entity.entity)
 	end
 	

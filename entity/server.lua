@@ -34,7 +34,7 @@ end
 
 
 
-_.sendFiltered=function(data,excludedLogin)
+_.sendToAllClientsExcept=function(data,excludedLogin)
 	for login,client in pairs(_.clientsByLogin) do
 		if login~=excludedLogin then
 			Server.send(data,client)
@@ -128,7 +128,7 @@ _.sendEventsToClients=function(events)
 			local command=
 			{
 				cmd="events_client",
-				events=events
+				events=preparedEvents
 			}
 			
 			if Config.isDebug then

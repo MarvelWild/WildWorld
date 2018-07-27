@@ -275,7 +275,7 @@ end
 _.delete=function(entityName,entityId,entityLogin)
 	log("deleting entity:"..entityId.." n:"..entityName.." l:"..tostring(entityLogin))
 	local entity=_.find(entityName,entityId,entityLogin)
-	assert(entity)
+	assert(entity, "cannot find entity")
 	
 	if entity.isActive then deactivate(entity) end
 	
@@ -393,11 +393,18 @@ _.drawScaledUi=function()
 end
 
 _.setActive=function(entity, isActive)
-	-- todo: easier, allow same state
+	log("Entity.setActive:"..Entity.toString(entity)..":"..tostring(isActive))
+	
+	
+	-- todo: easier, allow same state without warn
 	-- assert(entity.isActive~=isActive)
 	if entity.isActive==isActive then
 		log("warn: entity have same active state")
 		return
+	end
+	
+	if not Entity.isRegistered(entity) then
+		Entity.register(entity)
 	end
 	
 	entity.isActive=isActive
@@ -492,7 +499,7 @@ _.keypressed=function(key,unicode)
 	return false
 end
 
--- client side
+-- any side
 _.transferToServer=function(entities)
 	if Session.isServer then
 		_.acceptAtServer(entities)
@@ -500,6 +507,7 @@ _.transferToServer=function(entities)
 	end
 	
 	
+	-- ни на что не влияет, просто для дебага
 	for k,entity in pairs(entities) do
 		entity.isTransferring=true
 	end
@@ -517,7 +525,7 @@ end
 
 
 _.acceptAtServer=function(entities)
-	log("Entity.acceptAtServer")
+	
 	local login=nil
 	for k,entity in pairs(entities) do
 		-- register
@@ -554,6 +562,8 @@ _.acceptAtServer=function(entities)
 	-- todo: лучше сделать у каждой сущности, но можно позже, пока что все с одного логина
 	response.originalLogin=login
 	response.entities=entities
+	
+	log("Entity.acceptAtServer. originalLogin:"..login.." new login:"..Session.login)
 	
 	Server.send(response)
 end
@@ -596,8 +606,11 @@ end
 
 --should be called after move to update collision sytem
 _.onMoved=function(entity)
-	log("Entity moved:"..Entity.toString(entity))
-	Collision.moved(entity)
+	log("Entity onMoved:"..Entity.toString(entity))
+	
+	if entity.isInWorld then
+		Collision.moved(entity)
+	end
 end
 
 _.move=function(entity,newX,newY)
@@ -644,12 +657,34 @@ _.getCount=function()
 	return #_all
 end
 
+-- использовать осторожно - удалять сущности, только у детачнутых
+-- менять, т.к. нет механизма уведомления сервера о смене логина и ид
 _.changeLogin=function(entity,login)
-	log("changeLogin:"..Entity.toString(entity).." new:"..login)
+	
+	
+	assert(not entity.isActive)
 	entity.login=login
 	entity.isRemote=login==Session.login
+	local oldId=entity.id
+	entity.id=Id.new(entity.entity)
+	
+	log("changeLogin:"..Entity.toString(entity).." new:"..login.." old id:"..oldId)
 end
 
+-- 1-time use item
+_.usePlaceable=function(entity,x,y)
+		-- для move нужна коллизия, тут ее еще нет, нужно просто поставить координаты
+	Entity.move(entity,x,y)
+	
+	Player.removeItem(entity)
+	
+	-- bug: сущность не активируется, и потом на пикап_ок падает потому что не находится
+	-- хотя в placeInWorld есть активирование, сверимся с логами
+	Entity.placeInWorld(entity)
+	Entity.transferToServer({entity})
+end
+
+	
 
 
 return _

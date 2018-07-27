@@ -31,12 +31,9 @@ _.use=function(cauldron,x,y)
 		"cauldron use. isRegistered:"..tostring(Entity.isRegistered(cauldron)).." "..Entity.toString(cauldron)
 	)
 
-	Entity.move(cauldron,x,y)
-	
-	Player.removeItem(cauldron)
-	
-	Entity.placeInWorld(cauldron)
-	Entity.transferToServer({cauldron})
+	Entity.usePlaceable(cauldron,x,y)
+
+
 end
 
 

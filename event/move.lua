@@ -6,7 +6,7 @@ local _=function(event)
 --			local entity=Entity.find(event.entity, event.entityId,event.login)
 --		end
 	if entity==nil then
-		log("error in event:"..pack(event))
+		log("error in event. cannot find entity:"..pack(event))
 	end
 	
 	assert(entity~=nil)
