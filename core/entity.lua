@@ -317,11 +317,6 @@ end
 
 
 local compareByY=function(info1,info2)
-	if info2==nil then
-		a=1
-	end
-	
-	
 	local entity1=info1.entity
 	local entity2=info2.entity
 	if entity1.y>entity2.y then return false end
@@ -360,7 +355,10 @@ end
 
 _.draw=function()
 	
-	updateYSort()
+	if Session.frame%30==0 then
+		updateYSort()
+	end
+		
 	
 -- bottom origin - later	
 --		LG.draw(entity.sprite,entity.x,entity.y-entity.height)
@@ -688,15 +686,23 @@ end
 
 	
 _.notifyUpdated=function(entity)
-	-- wip: unprocessed error for now
---	local event=Event.new()
---	event.entities={entity}
---	event.code="entities_updated"
---	event.targets="others"
-	
-	-- wip: респонз обновляет текущую сущность, ссылки 1 уровня остаются живые
+	local event=Event.new()
+	event.entities={entity}
+	event.code="entities_updated"
+	event.target="others"
 end
 	
+_.updateValues=function(updatedEntity)
+	log("Event.updateValues:"..Entity.toString(updatedEntity))
+	-- респонз обновляет текущую сущность, ссылки 1 уровня остаются живые
+	
+	local originalEntity=Entity.find(updatedEntity.entity,updatedEntity.id,updatedEntity.login)
+	assert(originalEntity)
+	
+	for k,field in pairs(updatedEntity) do
+		originalEntity[k]=field
+	end
+end
 
 
 return _

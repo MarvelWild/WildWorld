@@ -49,7 +49,7 @@ end
 
 if Session.isServer then
 	_.slowUpdate=function(entity)
-		log("birch tree slow update")
+--		log("birch tree slow update")
 		
 		-- можно попробовать на активации на сервере вешаться на какой либо медленный таймер
 		local rnd=Lume.random()

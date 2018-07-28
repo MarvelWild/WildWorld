@@ -39,16 +39,21 @@ end
 
 -- skip means 'do not process locally'
 local shouldSkipEvent=function(event)
-	assert(event.target)
+	local target=event.target
+	assert(target)
 	
-	if event.target=="server" then
+	if target=="server" then
 		if Session.isClient then
 			return true 
 		end
-	elseif event.target=="self" then
+	elseif target=="self" then
 		if event.login~=Session.login then
 			return true 
 		end
+	elseif target=="others" then
+		if event.login==Session.login then
+			return true 
+		end		
 	end
 	
 	return false
