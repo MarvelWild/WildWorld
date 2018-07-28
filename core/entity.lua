@@ -683,7 +683,7 @@ _.changeLogin=function(entity,login)
 	local oldId=entity.id
 	entity.id=Id.new(entity.entity)
 	
-	log("changeLogin:"..Entity.toString(entity).." new:"..login.." old id:"..oldId)
+	log("changeLoginAndId:"..Entity.toString(entity).." new:"..login.." old id:"..oldId)
 end
 
 -- 1-time use item
@@ -717,8 +717,22 @@ _.updateValues=function(updatedEntity)
 	end
 end
 
+_.canInteract=function(entity)
+	if entity.isTransferring then
+		-- log("cannot interact:"..pack(entity))
+		return false
+	end
+	
+	return true
+end	
+
+local canInteract=_.canInteract
 
 _.canPickup=function(entity)
+	if not canInteract(entity) then 
+		return false
+	end
+	
 	return entity.canPickup
 end
 

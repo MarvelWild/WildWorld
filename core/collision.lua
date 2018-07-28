@@ -112,7 +112,7 @@ _.getAtRect=function(x,y,w,h)
 --			local a
 --		end
 		
-		assert(entity)
+		assert(entity, "entity not registered in _entityByShape. shape:"..pack(shape))
 		
 		if result==nil then result={} end
 		table.insert(result,entity)

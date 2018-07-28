@@ -1,3 +1,7 @@
+
+log context tree. enter, exit context
+	or at least center
+place item: use origin point
 	
 +make unable to pickup tree
 random starter pack
