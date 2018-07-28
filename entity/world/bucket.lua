@@ -10,6 +10,7 @@ _.new=function(options)
 	result.isDrawable=true
 	result.isInWorld=false
 	--result.aiEnabled=true
+	result.canPickup=true
 	
 	BaseEntity.init(result,options)
 	

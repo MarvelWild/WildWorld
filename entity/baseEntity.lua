@@ -18,6 +18,7 @@ _.new=function(options)
 	result.isTransferring=nil
 	result.isInWorld=nil
 	result.isFlying=false
+	result.canPickup=false
 	
 	-- assert(Session.login~=nil) -- defaultLogin by default
 	result.login=Session.login

@@ -1,3 +1,7 @@
+	
++make unable to pickup tree
+random starter pack
+name this game feature с онлайн фидбэком
 experimental video debug
 попробовать навигационные доки как альтернативу поиску по файлу (тормоза)
 	

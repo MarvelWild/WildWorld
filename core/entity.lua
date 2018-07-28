@@ -718,4 +718,10 @@ _.updateValues=function(updatedEntity)
 end
 
 
+_.canPickup=function(entity)
+	return entity.canPickup
+end
+
+
+
 return _

@@ -482,7 +482,8 @@ local pickup=function()
 	--local i,first=next(candidateEntities)
 	
 	for k,candidate in pairs(candidateEntities) do
-		if candidate.entity~="Player" then
+--		if candidate.entity~="Player" then
+		if Entity.canPickup(candidate) then
 			ClientAction.pickup(candidate)
 			break
 		end

@@ -62,11 +62,11 @@ _.xywh=function(x,y,w,h)
 		x=x.x -- shold remain last )
 	end
 	
-	if x==nil then x="nil" end
-	if y==nil then y="nil" end
-	if w==nil then w="nil" end
-	if h==nil then h="nil" end
-	
+	if x==nil then x=0 end
+	if y==nil then y=0 end
+	if w==nil then w=0 end
+	if h==nil then h=0 end
+
 	local result=string.format("%02d,%02d,%02d,%02d",x,y,w,h)
 	return result
 end
