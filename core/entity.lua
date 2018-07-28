@@ -29,6 +29,7 @@ end
 _.getWorld=function(login)
 	local result={}
 	for k,entity in pairs(_all) do
+		local dbgEntityInfo=Entity.toString(entity)
 		if entity.isInWorld then
 			if entity.entity=="Player" and entity.login==login then
 				-- client responsible for its player, we dont send it
@@ -79,6 +80,11 @@ _.registerWorld=function()
 	-- already in World.entities
 	-- register(world.player)
 	for k,entity in pairs(World.entities) do
+		if entity.entity=="BirchTree" then
+			local a=1
+		end
+		
+		
 		register(entity)
 	end
 end
@@ -98,6 +104,9 @@ local removeFromCollision=function(entity)
 end
 
 
+-- добавить в коллизии
+-- вызвать activate()
+-- подключить события
 local activate=function(entity)
 --	log("activating:"..Entity.toString(entity))
 	
@@ -397,6 +406,10 @@ _.setActive=function(entity, isActive)
 	-- todo: easier, allow same state without warn
 	-- assert(entity.isActive~=isActive)
 	if entity.isActive==isActive then
+		-- its ok now
+		-- no its not
+		-- баг на игре саженца - сущность уже активна, но не в мире,
+		-- и поэтому не проходит activate а не помещается в мир
 		log("warn: entity have same active state")
 		return
 	end
@@ -630,6 +643,8 @@ _.getCenter=function(entity)
 	return x,y
 end
 
+-- решить: можно сыграть это, поместив сущность без коллизии
+-- котёл:
 _.placeInWorld=function(entity)
 	if entity.isInWorld then
 		log("error: entity already in world:"..Entity.toString(entity))
@@ -637,7 +652,7 @@ _.placeInWorld=function(entity)
 	
 	
 	entity.isInWorld=true
-		-- was bug addToCollision in setActive->activate
+		-- was bug addToCollision in setActive->activate. непонятно уже.
 		-- addToCollision(entity)
 	_.setActive(entity,true)
 end
@@ -678,8 +693,6 @@ _.usePlaceable=function(entity,x,y)
 	
 	Player.removeItem(entity)
 	
-	-- bug: сущность не активируется, и потом на пикап_ок падает потому что не находится
-	-- хотя в placeInWorld есть активирование, сверимся с логами
 	Entity.placeInWorld(entity)
 	Entity.transferToServer({entity})
 end

@@ -35,7 +35,7 @@ _.updateAi=function(creature)
 		return 
 	end -- 50%?
 	
-	log("pantera update ai")
+	log("creature update ai")
 	local nextX=creature.x+Lume.random(-20,20)
 	local nextY=creature.y+Lume.random(-20,20)
 	

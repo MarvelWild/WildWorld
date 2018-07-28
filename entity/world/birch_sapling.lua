@@ -8,6 +8,7 @@ _.new=function(options)
 	result.entity="BirchSapling"
 	result.id=Id.new(result.entity)
 	result.stackCount=42
+	result.isActive=false
 	
 	BaseEntity.init(result,options)
 	return result
@@ -23,6 +24,7 @@ _.use=function(seed,x,y)
 	spawned.x=x
 	spawned.y=y
 	
+	Entity.placeInWorld(spawned)
 	Entity.transferToServer({spawned})
 end
 

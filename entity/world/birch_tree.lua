@@ -9,6 +9,7 @@ _.new=function(options)
 	result.id=Id.new(result.entity)
 	result.isDrawable=true
 	result.growPhase=1
+	result.isActive=false
 		
 	BaseEntity.init(result,options)
 	return result

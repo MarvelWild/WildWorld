@@ -33,11 +33,12 @@ end
 debug.log=function(message,channelName)
 	-- local time = love.timer.getTime() -- "\t"..time
 	
-	-- TODO: write stack if error message
 	if string.find(message,"error") then
 		Session.hasErrors=true
+		message=message+"\n"+_traceback()
 	elseif string.find(message,"warn") then
 		Session.hasWarnings=true
+		message=message+"\n"+_traceback()
 	end
 	
 	
