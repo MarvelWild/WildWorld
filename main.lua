@@ -216,6 +216,7 @@ love.load=function()
 	Grass=require "entity/world/grass"
 	Creature=require "entity/world/creature"
 	Pantera=require "entity/world/pantera"
+	Dragon=require "entity/world/dragon"
 	Sheep=require "entity/world/sheep"
 	Alien=require "entity/world/alien"
 	BirchSapling=require "entity/world/birch_sapling"

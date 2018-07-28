@@ -1,3 +1,4 @@
++при закрытии редактора - создаваемая сущность остаётся висеть
 
 log context tree. enter, exit context
 	or at least center

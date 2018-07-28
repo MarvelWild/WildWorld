@@ -241,7 +241,11 @@ end
 
 _.deactivate=deactivate
 
+_.isService=function(entity)
+	return entity.id==nil
+end
 
+local isService=_.isService
 
 _.isRegistered=function(entity)
 	local key=Lume.find(_all,entity)
@@ -252,7 +256,7 @@ end
 _.register=function(entity)
 	log("registering:"..Entity.toString(entity))
 	-- service entity created at runtime, and do not need to be serialized
-	local isService=entity.id==nil
+	local isService=isService(entity)
 	local isActive=not (entity.isActive==false) -- true or nil
 	
 	if not isService then
@@ -414,11 +418,11 @@ _.setActive=function(entity, isActive)
 		return
 	end
 	
-	if not Entity.isRegistered(entity) then
+	entity.isActive=isActive
+	
+	if not Entity.isRegistered(entity) and not Entity.isService(entity) then
 		Entity.register(entity)
 	end
-	
-	entity.isActive=isActive
 	
 	if isActive then
 		activate(entity)

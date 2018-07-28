@@ -1,3 +1,4 @@
+-- открывается по F11
 local _={}
 
 -- indexed table
@@ -11,6 +12,9 @@ local getEditorItems=function()
 	table.insert(result,grass)
 	
 	local item=Sheep.new({isProto=true})
+	table.insert(result,item)
+	
+	item=Dragon.new({isProto=true})
 	table.insert(result,item)
 	
 	return result
@@ -74,6 +78,7 @@ end
 
 
 _.draw=function(editor)
+	log("editor draw item")
 	editor.activeItemCode.draw(editor.activeItem)
 end
 
