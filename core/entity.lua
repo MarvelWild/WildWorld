@@ -420,15 +420,19 @@ _.setActive=function(entity, isActive)
 	
 	entity.isActive=isActive
 	
-	if not Entity.isRegistered(entity) and not Entity.isService(entity) then
-		Entity.register(entity)
-	end
-	
 	if isActive then
-		activate(entity)
+		if not Entity.isRegistered(entity) and not Entity.isService(entity) then
+			--тут activate тоже происходит
+			Entity.register(entity)
+		else
+			activate(entity)
+		end
 	else
 		deactivate(entity)
 	end
+
+	
+	
 	
 	
 end
@@ -650,6 +654,7 @@ end
 -- решить: можно сыграть это, поместив сущность без коллизии
 -- котёл:
 _.placeInWorld=function(entity)
+	dbgCtxIn("Entity.placeInWorld")
 	if entity.isInWorld then
 		log("error: entity already in world:"..Entity.toString(entity))
 	end
@@ -659,6 +664,7 @@ _.placeInWorld=function(entity)
 		-- was bug addToCollision in setActive->activate. непонятно уже.
 		-- addToCollision(entity)
 	_.setActive(entity,true)
+	dbgCtxOut()
 end
 
 -- убрать из системы коллизий
@@ -692,13 +698,19 @@ end
 
 -- 1-time use item
 _.usePlaceable=function(entity,x,y)
+	dbgCtxIn("Entity.usePlaceable")
 		-- для move нужна коллизия, тут ее еще нет, нужно просто поставить координаты
-	Entity.move(entity,x,y)
+		
+	local adjustedX=x-entity.originX
+	local adjustedY=y-entity.originY
+		
+	Entity.move(entity,adjustedX,adjustedY)
 	
 	Player.removeItem(entity)
 	
 	Entity.placeInWorld(entity)
 	Entity.transferToServer({entity})
+	dbgCtxOut()
 end
 
 	

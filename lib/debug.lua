@@ -5,6 +5,8 @@ debug.useConsole=true
 debug.useFile=false
 debug.messages={}
 
+
+local _contexts={}
 local channels={}
 
 local netChannel={
@@ -43,9 +45,31 @@ debug.log=function(message,channelName)
 	
 	
 	local preparedMessage = Session.frame.."\t"
+	
+
+	
+	
+	
 	if debug.useConsole and channelName then
 		preparedMessage=preparedMessage.."["..channelName.."]\t"
 	end
+	
+	-- contexts
+	local hasContexts=false
+	local contextsText=""
+	for k,context in ipairs(_contexts) do
+		if hasContexts then
+			contextsText=contextsText+","
+		end
+		
+		
+		contextsText=contextsText+context
+		hasContexts=true
+	end
+	
+	if hasContexts then
+		preparedMessage=preparedMessage+"|"+contextsText+"|\t"
+	end	
 	
 	preparedMessage=preparedMessage..message
 	
@@ -103,5 +127,15 @@ debug.writeLogs=function()
 	writeChannels()
 end
 
+debug.enterContext=function(context)
+	table.insert(_contexts, context)
+end
+
+debug.exitContext=function()
+	local lastPos=#_contexts
+	local context=_contexts[lastPos]
+	log("exit context:"..context)
+	table.remove(_contexts,lastPos)
+end
 
 return debug

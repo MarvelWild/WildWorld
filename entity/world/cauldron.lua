@@ -11,6 +11,8 @@ _.new=function(options)
 	result.isInWorld=false
 	--result.aiEnabled=true
 	result.canPickup=true
+	result.originX=8
+	result.originY=10
 	
 	BaseEntity.init(result,options)
 	
@@ -26,7 +28,8 @@ end
 
 -- place self in world
 _.use=function(cauldron,x,y)
-	-- todo: destroy on stack end
+	dbgCtxIn("cauldron use")
+	
 	
 	log(
 		"cauldron use. isRegistered:"..tostring(Entity.isRegistered(cauldron)).." "..Entity.toString(cauldron)
@@ -34,7 +37,7 @@ _.use=function(cauldron,x,y)
 
 	Entity.usePlaceable(cauldron,x,y)
 
-
+	dbgCtxOut()
 end
 
 

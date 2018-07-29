@@ -87,6 +87,8 @@ Event=require "core/event"
 log=Debug.log
 pack=TSerial.pack
 draw=LG.draw
+dbgCtxIn=Debug.enterContext
+dbgCtxOut=Debug.exitContext
 
 log("*** Start *** "..Util.getTimestamp())
 

@@ -1,8 +1,13 @@
+trees dying
 +при закрытии редактора - создаваемая сущность остаётся висеть
 
-log context tree. enter, exit context
-	or at least center
-place item: use origin point
++log context tree. enter, exit context
+
+
+		+cauldron
+		+sapling
+	+or at least center
++place item: use origin point
 	
 +make unable to pickup tree
 random starter pack

@@ -7,6 +7,10 @@ _.new=function(options)
 	result.x=0
 	result.y=0
 	
+	-- default point of attachment
+	result.originX=0
+	result.originY=0
+	
 	result.w=0
 	result.h=0
 	

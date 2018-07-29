@@ -21,8 +21,9 @@ _.use=function(seed,x,y)
 	log("Seed plant at:"..xy(x,y))
 	
 	local spawned=BirchTree.new()
-	spawned.x=x
-	spawned.y=y
+	
+	spawned.x=x-spawned.originX
+	spawned.y=y-spawned.originY
 	
 	Entity.placeInWorld(spawned)
 	Entity.transferToServer({spawned})

@@ -10,6 +10,8 @@ _.new=function(options)
 	result.isDrawable=true
 	result.growPhase=1
 	result.isActive=false
+	result.originX=8
+	result.originY=15
 		
 	BaseEntity.init(result,options)
 	return result

@@ -158,7 +158,7 @@ end
 
 
 _.oneLine=function(string)
-	local noNewLine=string.gsub(string,"\n"," ")
+	local noNewLine=string.gsub(string,"\n","\t")
 	local noSpaces=string.gsub(noNewLine,"%s+"," ")
 	local strlen=string.len(noSpaces)
 	

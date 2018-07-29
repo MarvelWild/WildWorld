@@ -24,13 +24,15 @@ _entityByShape[_pointer]=pointerFakeEntity
 local _debugShape=nil
 
 _.add=function(entity)
-	if entity.entity~="Player" then
-		local a=1
-	end
+--	if entity.entity~="Player" then
+--		local a=1
+--	end
 	
 	
 	_log("Collision.add:"..Entity.toString(entity))
-	-- _log(debug.traceback()) -- search key: stack traceback:
+--	_log(debug.traceback()) -- search key: stack traceback:
+	
+	
 	if _shapeByEntity[entity] then
 		_log("error: entity already registered in collision system:"..Inspect(entity))
 		return

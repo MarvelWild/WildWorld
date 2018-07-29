@@ -11,6 +11,8 @@ _.new=function(options)
 	result.isInWorld=false
 	--result.aiEnabled=true
 	result.canPickup=true
+	result.originX=8
+	result.originY=8
 	
 	BaseEntity.init(result,options)
 	
