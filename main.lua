@@ -191,7 +191,9 @@ local testHc=function()
 	assert(c1==true)
 	assert(c2==false)
 	
-	
+	Hc.remove(rect1)
+	Hc.remove(pointInside)
+	Hc.remove(pointOutside)
 	
 	
 end
@@ -469,23 +471,7 @@ local pickup=function()
 		return
 	end
 	
-	
---	local toPickup={}
-	
---	log("pickup candidates:"..Inspect(candidateEntities))
-	
---	for k,entity in pairs(candidateEntities) do
---		if Player.canPickup(World.player,entity) then
---			table.insert(toPickup,entity)
---		end
---	end
-
-	-- pick one by one
-	
-	--local i,first=next(candidateEntities)
-	
 	for k,candidate in pairs(candidateEntities) do
---		if candidate.entity~="Player" then
 		if Entity.canPickup(candidate) then
 			ClientAction.pickup(candidate)
 			break
@@ -543,9 +529,11 @@ love.keypressed=function(key,unicode)
 		if nextSpriteName==nil then nextSpriteName=first end
 		
 		Entity.setSprite(World.player, nextSpriteName)
-	elseif key=="x" then
+	elseif key=="c" then -- old mount
 		log("horse mount")
 		Session.isOnHorse=not Session.isOnHorse
+	elseif key==Config.keyMount then
+		ClientAction.mount(World.player)
 	elseif key=="z" then
 		local rnd=Lume.random()
 		log("roll:"..rnd)

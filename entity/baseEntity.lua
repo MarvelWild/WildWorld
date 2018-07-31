@@ -23,6 +23,7 @@ _.new=function(options)
 	result.isInWorld=nil
 	result.isFlying=false
 	result.canPickup=false
+	result.isMountable=nil
 	
 	-- assert(Session.login~=nil) -- defaultLogin by default
 	result.login=Session.login

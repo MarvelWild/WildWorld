@@ -78,7 +78,7 @@ end
 
 
 _.draw=function(editor)
-	log("editor draw item")
+--	log("editor draw item")
 	editor.activeItemCode.draw(editor.activeItem)
 end
 

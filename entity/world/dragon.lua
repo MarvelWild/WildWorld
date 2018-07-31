@@ -9,6 +9,7 @@ _.new=function(options)
 	Entity.setSprite(result,"dragon")
 	result.isDrawable=true
 	result.aiEnabled=Session.isServer
+	result.isMountable=true
 	
 	BaseEntity.init(result,options)
 	

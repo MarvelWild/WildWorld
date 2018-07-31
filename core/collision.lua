@@ -95,9 +95,10 @@ end
 
 -- returns nil or table with entities
 _.getAtRect=function(x,y,w,h)
+	log("Collision.getAtRect:"..xywh(x,y,w,h))
 	local rect=Hc.rectangle(x,y,w,h)
 	
-	-- Get shapes that are colliding with shape and the vector to separate the shapes
+	-- Get sh apes that are colliding with shape and the vector to separate the shapes
 	-- see http://hc.readthedocs.io/en/latest/MainModule.html
 	local collisions=Hc.collisions(rect)
 	

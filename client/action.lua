@@ -16,4 +16,63 @@ _.pickup=function(entity)
 end
 
 
+local doMount=function(actorEntity,target)
+	log("doMount:"..Entity.toString(actorEntity).." on:"..Entity.toString(target))
+	
+	local event=Event.new()
+	event.code="mount"
+	
+	event.actorEntityName=actorEntity.entity
+	event.actorEntityId=actorEntity.id
+	event.actorEntityLogin=actorEntity.login
+	
+	event.targetEntityName=target.entity
+	event.targetEntityId=target.id
+	event.targetEntityLogin=target.login
+	
+	
+	event.target="server"
+	
+	-- wip: handle mount_ok
+end
+
+
+_.mount=function(actorEntity)
+	log("Mount")
+	-- по аналогии с пикапом - шлём команду на сервер, по подтверждении - сели.
+	
+	local extraRange=10
+	local doubleRange=extraRange+extraRange
+	local x=actorEntity.x-extraRange
+	local y=actorEntity.y-extraRange
+	local w=actorEntity.w+doubleRange
+	local h=actorEntity.h+doubleRange
+	
+	local candidateEntities=Collision.getAtRect(x,y,w,h)
+	
+	if not candidateEntities then
+		log("Noone to mount on")
+		return
+	end
+	
+	-- todo: mount another player: ask first
+	
+	local toMount
+	
+	log("mount candidates:"..Inspect(candidateEntities))
+	
+	for k,candidateEntity in pairs(candidateEntities) do
+		if Entity.canMount(actorEntity,candidateEntity) then
+			toMount=candidateEntity
+			break
+		end
+	end
+	
+	if toMount~=nil then
+		doMount(actorEntity,toMount)
+	end
+end
+
+
+
 return _

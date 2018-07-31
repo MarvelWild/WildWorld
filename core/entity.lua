@@ -752,6 +752,10 @@ _.canPickup=function(entity)
 	return entity.canPickup
 end
 
+_.canMount=function(actorEntity,candidateEntity)
+	return candidateEntity.isMountable
+end
+
 
 
 return _

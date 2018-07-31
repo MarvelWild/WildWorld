@@ -15,6 +15,7 @@ _.keyDebuggerDump="f1"
 _.keyDebuggerWriteLogs="f2"
 _.keyEditorNextItem="pagedown"
 _.keyItemPickup="space"
+_.keyMount="x"
 
 
 _.isDebug=true
