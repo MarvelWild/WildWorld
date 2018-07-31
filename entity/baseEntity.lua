@@ -3,7 +3,7 @@ local _={}
 _.new=function(options)
 	local result={}
 	
-	result.isActive=true
+	result.isActive=false
 	result.x=0
 	result.y=0
 	
@@ -20,7 +20,7 @@ _.new=function(options)
 	
 	-- такие в будущем будут неинтерактивны, например подняли/положили предмет и ждём подтверждения от сервера
 	result.isTransferring=nil
-	result.isInWorld=nil
+	result.isInWorld=false
 	result.isFlying=false
 	result.canPickup=false
 	result.isMountable=nil

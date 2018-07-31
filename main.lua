@@ -89,6 +89,7 @@ pack=TSerial.pack
 draw=LG.draw
 dbgCtxIn=Debug.enterContext
 dbgCtxOut=Debug.exitContext
+_ets=Entity.toString
 
 log("*** Start *** "..Util.getTimestamp())
 
@@ -146,12 +147,14 @@ end
 local newGame=function()
 	World={}
 	World.player=Player.new()
+	Entity.setActive(World.player,true)
 	Player.giveStarterPack(World.player)
 end
 
 
 local startUi=function()
 	local actionBar=Actionbar.new()
+	Entity.setActive(actionBar,true)
 end
 
 local preloadImages=function()
@@ -239,8 +242,7 @@ love.load=function()
 	--love.graphics.setLineWidth(scale)
 	
 	-- todo later, no bar is ok
-	--local actionBar=Actionbar.new()
-	
+		
 	if Util.hasArg("sandbox") then require "sandbox" end
 	if Util.hasArg("s") then startServer() end
 	
@@ -414,7 +416,7 @@ love.mousepressed=function(x,y,button,istouch)
 		if _editor.isActive then
 			log("editor place item")
 			local item=Editor.placeItem(_editor)
-			Entity.transferToServer({item})
+			-- Entity.transferToServer({item})
 			return
 		end
 		

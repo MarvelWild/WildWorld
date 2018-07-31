@@ -92,7 +92,8 @@ _.placeItem=function(editor)
 	local newEntity=editor.activeItemCode.new()
 	newEntity.x=editor.activeItem.x
 	newEntity.y=editor.activeItem.y
-	newEntity.isInWorld=true
+	
+	Entity.usePlaceable(newEntity,newEntity.x,newEntity.y,true)
 	
 	return newEntity
 end

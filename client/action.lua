@@ -38,7 +38,7 @@ end
 
 
 _.mount=function(actorEntity)
-	log("Mount")
+	log("Mount start")
 	-- по аналогии с пикапом - шлём команду на сервер, по подтверждении - сели.
 	
 	local extraRange=10
@@ -65,11 +65,15 @@ _.mount=function(actorEntity)
 		if Entity.canMount(actorEntity,candidateEntity) then
 			toMount=candidateEntity
 			break
+		else
+			log("cannot mount:".._ets(actorEntity).." on:".._ets(candidateEntity))
 		end
 	end
 	
 	if toMount~=nil then
 		doMount(actorEntity,toMount)
+	else
+		log("noone to mount")
 	end
 end
 

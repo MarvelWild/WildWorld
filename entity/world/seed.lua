@@ -22,7 +22,7 @@ _.use=function(seed,x,y)
 	local grass=Grass.new()
 	grass.x=x
 	grass.y=y
-	
+	Entity.setActive(grass,true)
 	Entity.transferToServer({grass})
 end
 

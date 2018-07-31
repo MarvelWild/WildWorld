@@ -167,6 +167,7 @@ local activate=function(entity)
 end
 
 local removeDrawable=function(entity,container)
+	--local countBefore
 	log("drawables before remove:"..#container)
 	for k,info in ipairs(container) do
 		if info.entity==entity then 
@@ -178,9 +179,12 @@ local removeDrawable=function(entity,container)
 		end
 	end
 	
-	log("drawables after remove:"..#container)
+	local count=#container
+	log("drawables after remove:"..count)
 	
-	log("error: removeDrawable")
+	if count>0 then
+		log("error: removeDrawable failed. Entity was not in drawables:".._ets(entity))
+	end
 end
 
 local deactivate=function(entity)
@@ -609,7 +613,9 @@ end
 
 _.toString=function(entity)
 	if entity==nil then return "nil" end
-	local result=entity.entity.." id:"..tostring(entity.id).." rm:"..tostring(entity.isRemote)..
+	local result=entity.entity.." id:"..tostring(entity.id)..
+		" rm:"..tostring(entity.isRemote)..
+		" a:"..tostring(entity.isActive)..
 		" xywh:"..xywh(entity).." l:"..entity.login
 	return result
 end
@@ -697,7 +703,7 @@ _.changeLogin=function(entity,login)
 end
 
 -- 1-time use item
-_.usePlaceable=function(entity,x,y)
+_.usePlaceable=function(entity,x,y,isFromEditor)
 	dbgCtxIn("Entity.usePlaceable")
 		-- для move нужна коллизия, тут ее еще нет, нужно просто поставить координаты
 		
@@ -706,7 +712,9 @@ _.usePlaceable=function(entity,x,y)
 		
 	Entity.move(entity,adjustedX,adjustedY)
 	
-	Player.removeItem(entity)
+	if not isFromEditor then
+		Player.removeItem(entity)
+	end
 	
 	Entity.placeInWorld(entity)
 	Entity.transferToServer({entity})
