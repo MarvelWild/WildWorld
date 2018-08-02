@@ -90,6 +90,7 @@ draw=LG.draw
 dbgCtxIn=Debug.enterContext
 dbgCtxOut=Debug.exitContext
 _ets=Entity.toString
+local _cursorImg=nil
 
 log("*** Start *** "..Util.getTimestamp())
 
@@ -259,6 +260,8 @@ love.load=function()
 	
 	testHc()
 	
+	_cursorImg=Img.cusror_default
+	
 --[[ My intel 4000	
 	anisotropy = 16,
   canvasmsaa = 8,
@@ -336,6 +339,11 @@ love.draw=function()
 		LG.print("WARN")
 	end
 	
+
+	local mx=love.mouse.getX()/scale
+	local my=love.mouse.getY()/scale
+	draw(_cursorImg,mx,my)
+	love.mouse.setVisible(false)
 end
 
 love.update=function(dt)
@@ -583,3 +591,7 @@ love.quit=function()
 	return false
 end
 
+
+love.mousemoved=function( x, y, dx, dy, istouch )
+	
+end
