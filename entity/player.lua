@@ -122,7 +122,7 @@ _.setFavorite=function(player,item,slot)
 	end
 	
 	-- ожидается что вещи в инвентаре обязательно неактивны (как сущность)
-	Entity.deactivate(item)
+	Entity.setActive(item,false)
 	Entity.removeFromWorld(item)
 end
 

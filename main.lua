@@ -225,6 +225,7 @@ love.load=function()
 	Creature=require "entity/world/creature"
 	Pantera=require "entity/world/pantera"
 	Dragon=require "entity/world/dragon"
+	Pegasus=require "entity/world/pegasus"
 	Sheep=require "entity/world/sheep"
 	Alien=require "entity/world/alien"
 	BirchSapling=require "entity/world/birch_sapling"

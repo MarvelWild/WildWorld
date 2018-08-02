@@ -7,6 +7,7 @@ loadScripts("event/",_eventHandlers)
 
 _.new=function()
 	-- BaseEntity.new() event is not a entity
+	log("Event.new:".._traceback())
 	local event={}
 	
 	event.entity="Event"

@@ -17,6 +17,9 @@ local getEditorItems=function()
 	item=Dragon.new({isProto=true})
 	table.insert(result,item)
 	
+	item=Pegasus.new({isProto=true})
+	table.insert(result,item)
+	
 	return result
 end
 

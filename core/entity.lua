@@ -243,6 +243,7 @@ local deactivate=function(entity)
 end
 
 
+-- setActive is safer
 _.deactivate=deactivate
 
 _.isService=function(entity)
@@ -418,7 +419,7 @@ _.setActive=function(entity, isActive)
 		-- no its not
 		-- баг на игре саженца - сущность уже активна, но не в мире,
 		-- и поэтому не проходит activate а не помещается в мир
-		log("warn: entity have same active state")
+		log("setActive: entity have same active state:"..Entity.toString(entity))
 		return
 	end
 	

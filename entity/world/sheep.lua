@@ -30,7 +30,7 @@ _.updateAi=function(sheep)
 	local nextX=World.player.x+Lume.random(-40,40)
 	local nextY=World.player.y+Lume.random(-40,40)
 	
-	local moveEvent={}
+	local moveEvent=Event.new()
 	moveEvent.code="move"
 	moveEvent.x=nextX
 	moveEvent.y=nextY
@@ -38,8 +38,6 @@ _.updateAi=function(sheep)
 	
 	moveEvent.entity=sheep.entity
 	moveEvent.entityId=sheep.id
-	
-	Event.new(moveEvent)
 end
 
 
