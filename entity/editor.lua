@@ -26,6 +26,9 @@ local getEditorItems=function()
 	item=SheepBlack.new({isProto=true})
 	table.insert(result,item)
 	
+	item=HorseSmall.new({isProto=true})
+	table.insert(result,item)
+	
 	return result
 end
 

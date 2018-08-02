@@ -228,6 +228,7 @@ love.load=function()
 	Pegasus=require "entity/world/pegasus"
 	Sheep=require "entity/world/sheep"
 	SheepBlack=require "entity/world/sheep_black"
+	HorseSmall=require "entity/world/horse_small"
 	Zombie=require "entity/world/zombie"
 	Alien=require "entity/world/alien"
 	BirchSapling=require "entity/world/birch_sapling"
@@ -248,7 +249,7 @@ love.load=function()
 	-- todo later, no bar is ok
 		
 	if Util.hasArg("sandbox") then require "sandbox" end
-	if Util.hasArg("s") then startServer() end
+	if Session.isServer then startServer() end
 	
 	local isNewGame=Util.hasArg("new")
 

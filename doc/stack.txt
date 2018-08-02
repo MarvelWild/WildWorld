@@ -1,3 +1,7 @@
+walking horse
+stable
+
+deleting 
 colorize entity
 
 toolbar mouse interaction
