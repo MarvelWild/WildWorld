@@ -514,6 +514,9 @@ love.keypressed=function(key,unicode)
 	elseif key==Config.keyEditorNextItem then
 		-- todo: editor listens for key when active
 		Editor.nextItem(_editor)
+	elseif key==Config.keyEditorPrevItem then
+		-- todo: editor listens for key when active
+		Editor.prevItem(_editor)		
 	elseif key=="home" then
 		
 		local isFound=false

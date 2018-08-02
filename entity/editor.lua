@@ -81,6 +81,23 @@ _.nextItem=function(editor)
 	_.setActiveItem(editor,nextItem)
 end
 
+_.prevItem=function(editor)
+	
+	local currentItem=editor.activeItem
+	local items=editor.items
+	local currentPos=Lume.find(items,currentItem)
+	local maxPos=#items
+	
+	if currentPos==1 then
+		currentPos=maxPos
+	else
+		currentPos=currentPos-1
+	end
+	
+	local nextItem=items[currentPos]
+	_.setActiveItem(editor,nextItem)
+end
+
 
 _.update=function(editor)
 	local x,y=Util.getMouseXY()
