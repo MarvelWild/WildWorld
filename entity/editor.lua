@@ -20,6 +20,9 @@ local getEditorItems=function()
 	item=Pegasus.new({isProto=true})
 	table.insert(result,item)
 	
+	item=Zombie.new({isProto=true})
+	table.insert(result,item)
+	
 	return result
 end
 
