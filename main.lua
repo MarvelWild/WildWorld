@@ -227,6 +227,7 @@ love.load=function()
 	Dragon=require "entity/world/dragon"
 	Pegasus=require "entity/world/pegasus"
 	Sheep=require "entity/world/sheep"
+	SheepBlack=require "entity/world/sheep_black"
 	Zombie=require "entity/world/zombie"
 	Alien=require "entity/world/alien"
 	BirchSapling=require "entity/world/birch_sapling"

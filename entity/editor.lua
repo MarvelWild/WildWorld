@@ -23,6 +23,9 @@ local getEditorItems=function()
 	item=Zombie.new({isProto=true})
 	table.insert(result,item)
 	
+	item=SheepBlack.new({isProto=true})
+	table.insert(result,item)
+	
 	return result
 end
 

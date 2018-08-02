@@ -1,3 +1,6 @@
+colorize entity
+
+toolbar mouse interaction
 переход в другой мир
 +починить ошибки
 также видеть курсор других игроков
