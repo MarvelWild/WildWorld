@@ -1,6 +1,9 @@
 walking horse
 stable
 
+
+	при удалении осталась рисоваться рамка
+	del key for selected object
 deleting 
 colorize entity
 

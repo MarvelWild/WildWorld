@@ -494,6 +494,7 @@ local pickup=function()
 end
 
 
+
 love.keypressed=function(key,unicode)
 	log("keypressed:"..key.." u:"..unicode, "keyboard")
 	
@@ -565,6 +566,8 @@ love.keypressed=function(key,unicode)
 		end
 	elseif key==Config.keyItemPickup then
 		pickup()
+	elseif key==Config.keyDeleteEntity then
+		ClientAction.deleteSelected()
 	elseif key=="kp+" then
 		Session.scale=Session.scale+1
 		_cam:setScale(Session.scale)

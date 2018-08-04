@@ -33,7 +33,7 @@ local doMount=function(actorEntity,target)
 	
 	event.target="server"
 	
-	-- wip: handle mount_ok
+	-- todo: handle mount_ok
 end
 
 
@@ -78,5 +78,24 @@ _.mount=function(actorEntity)
 end
 
 
+
+
+_.deleteSelected=function()
+	log("ClientAction.deleteSelected")
+	
+	local selected=Session.selectedEntity
+	if selected==nil then
+		log("no selection")
+		return
+	end
+	
+	local event=Event.new()
+	event.code="entity_delete"
+	event.entityName=selected.entity
+	event.entityId=selected.id
+	event.entityLogin=selected.login
+	event.target="server" 
+	Session.selectedEntity=nil
+end
 
 return _

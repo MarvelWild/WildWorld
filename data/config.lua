@@ -17,6 +17,7 @@ _.keyEditorNextItem="pagedown"
 _.keyEditorPrevItem="pageup"
 _.keyItemPickup="space"
 _.keyMount="x"
+_.keyDeleteEntity="delete"
 
 
 _.isDebug=true

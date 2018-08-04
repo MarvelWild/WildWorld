@@ -287,16 +287,19 @@ _.register=function(entity)
 end
 
 
--- удаляется только локально 
-
--- nil entityLogin means local entity
 _.delete=function(entityName,entityId,entityLogin)
 	log("deleting entity:"..entityId.." n:"..entityName.." l:"..tostring(entityLogin))
 	local entity=_.find(entityName,entityId,entityLogin)
-	assert(entity, "cannot find entity")
+	return _.deleteByEntity(entity)
+end
+
+-- удаляется только локально 
+-- если надо везде - использовать (см пикап, или выход игрока)
+-- nil entityLogin means local entity
+_.deleteByEntity=function(entity)
+	assert(entity)
 	
 	if entity.isActive then deactivate(entity) end
-	
 	
 	local isRemoved=table_removeByVal(_all,entity)
 	assert(isRemoved)
