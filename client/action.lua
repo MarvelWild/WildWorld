@@ -89,6 +89,12 @@ _.deleteSelected=function()
 		return
 	end
 	
+	if selected.entity=="Player" then
+		log("cannot delete player")
+		return
+	end
+	
+	
 	local event=Event.new()
 	event.code="entity_delete"
 	event.entityName=selected.entity
