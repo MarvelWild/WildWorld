@@ -60,13 +60,7 @@ local shouldSkipEvent=function(event)
 	return false
 end
 
-
-local processEvent=function(event)
-	if shouldSkipEvent(event) then 
-		log("skip event:"..Event.toString(event))
-		return
-	end
-	
+local doProcessEvent=function(event)
 	local eventCode=event.code
 	
 	local handler=_eventHandlers[eventCode]
@@ -77,6 +71,25 @@ local processEvent=function(event)
 		log("error:event unprocessed:"..pack(event))
 	end
 end
+
+
+
+
+local processEvent=function(event)
+	if shouldSkipEvent(event) then 
+		log("skip event:"..Event.toString(event))
+		return
+	end
+	
+	doProcessEvent(event)
+end
+
+-- without queue, without checks
+_.doProcessEvent=function(event)
+	log("doProcessEvent:"..Event.toString(event))
+	doProcessEvent(event)
+end
+
 
 local sendToServer=function(events)
 	local command=

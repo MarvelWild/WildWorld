@@ -2,9 +2,9 @@ walking horse
 stable
 
 
-	при удалении осталась рисоваться рамка
-	del key for selected object
-deleting 
++	при удалении осталась рисоваться рамка
++	del key for selected object
++deleting 
 colorize entity
 
 toolbar mouse interaction
@@ -45,8 +45,9 @@ name this game feature с онлайн фидбэком
 experimental video debug
 попробовать навигационные доки как альтернативу поиску по файлу (тормоза)
 	
+entity ref as table	
 	+dragon as spawnable in editor
-	x-mount dragon (and any ingame entity)
+	>x-mount dragon (and any ingame entity)
 fly dragon
 
 

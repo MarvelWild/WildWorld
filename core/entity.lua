@@ -768,6 +768,18 @@ _.canMount=function(actorEntity,candidateEntity)
 	return candidateEntity.isMountable
 end
 
+-- light reference
+_.getReference=function(entity)
+	local result={}
+	
+	result.id=entity.id
+	result.login=entity.login
+	result.entity=entity.entity
+	
+	return result
+end
+
 
 
 return _
+

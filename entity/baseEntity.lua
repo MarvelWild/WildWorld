@@ -25,6 +25,10 @@ _.new=function(options)
 	result.canPickup=false
 	result.isMountable=nil
 	
+	-- entityRef or nil
+	result.mountedBy=nil
+	result.mountedOn=nil
+	
 	-- assert(Session.login~=nil) -- defaultLogin by default
 	result.login=Session.login
 	result.isRemote=false

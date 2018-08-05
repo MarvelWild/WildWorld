@@ -235,6 +235,7 @@ love.load=function()
 	Cauldron=require "entity/world/cauldron"
 	Bucket=require "entity/world/bucket"
 	BirchTree=require "entity/world/birch_tree"
+	GrowableBehavoiur=require "entity/behaviour/growable"
 	
 	Server=require "entity/server"
 	Client=require "entity/client"
@@ -411,17 +412,7 @@ love.mousepressed=function(x,y,button,istouch)
 			selectObjectByCoord(gameX,gameY)
 			return
 		end
-		
-		local moveEvent=Event.new()
-		moveEvent.code="move"
-		moveEvent.x=gameX-7
-		moveEvent.y=gameY+1-World.player.h
-		moveEvent.duration=2
-		
-		moveEvent.entity=World.player.entity
-		moveEvent.entityId=World.player.id
-		
-		
+		ClientAction.move(World.player,gameX,gameY)
 	elseif button==2 then	
 		log("rmb:default action")
 

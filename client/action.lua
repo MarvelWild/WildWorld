@@ -16,6 +16,7 @@ _.pickup=function(entity)
 end
 
 
+-- инициация цепочки
 local doMount=function(actorEntity,target)
 	log("doMount:"..Entity.toString(actorEntity).." on:"..Entity.toString(target))
 	
@@ -32,8 +33,6 @@ local doMount=function(actorEntity,target)
 	
 	
 	event.target="server"
-	
-	-- todo: handle mount_ok
 end
 
 
@@ -102,6 +101,20 @@ _.deleteSelected=function()
 	event.entityLogin=selected.login
 	event.target="server" 
 	Session.selectedEntity=nil
+end
+
+
+_.move=function(actor,x,y)
+	local moveEvent=Event.new()
+	moveEvent.code="move"
+	moveEvent.x=x-7
+	moveEvent.y=y+1-actor.h
+	moveEvent.duration=2
+	
+	moveEvent.entity=actor.entity
+	moveEvent.entityId=actor.id
+	
+	-- todo: move to entityRef, no login here, check this
 end
 
 return _

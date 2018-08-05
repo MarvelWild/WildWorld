@@ -23,7 +23,7 @@ _.draw=function(entity)
 	draw(sprite,entity.x,entity.y)
 end
 
-local getSpriteForGrowPhase=function(phase)
+_.getSpriteForGrowPhase=function(phase)
 	if phase==1 then return "birch_tree_1" end
 	if phase==2 then return "birch_tree_2" end
 	if phase==3 then return "birch_tree_3" end
@@ -34,22 +34,6 @@ local getSpriteForGrowPhase=function(phase)
 end
 
 
-local grow=function(entity)
-	-- log("tree grow:")
-	local nextPhase=entity.growPhase+1
-	local nextSprite=getSpriteForGrowPhase(nextPhase)
-	if nextSprite==nil then 
-		-- max grow
-		return 
-	end
-	
-	entity.growPhase=nextPhase
-	Entity.setSprite(entity,nextSprite)
-	
-	
-	Entity.notifyUpdated(entity)
-end
-
 if Session.isServer then
 	_.slowUpdate=function(entity)
 --		log("birch tree slow update")
@@ -57,7 +41,7 @@ if Session.isServer then
 		-- можно попробовать на активации на сервере вешаться на какой либо медленный таймер
 		local rnd=Lume.random()
 		if rnd>0.9 then
-			grow(entity)
+			GrowableBehavoiur.grow(entity)
 		end
 		
 	end
