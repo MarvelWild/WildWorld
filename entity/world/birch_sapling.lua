@@ -20,7 +20,12 @@ _.use=function(seed,x,y)
 	
 	log("Seed plant at:"..xy(x,y))
 	
-	local spawned=BirchTree.new()
+	local spawned
+	if Lume.random()>0.5 then
+		spawned=BirchTree.new()
+	else
+		spawned=FirTree.new()
+	end
 	
 	spawned.x=x-spawned.originX
 	spawned.y=y-spawned.originY

@@ -1,8 +1,8 @@
--- global GrowableBehavoiur
+-- global GrowableBehaviour
 local _={}
 
 _.setup=function(entity)
-	-- wip: set/check required data
+	-- todo: set/check required data
 	
 	-- getSpriteForGrowPhase function
 	-- growPhase prop

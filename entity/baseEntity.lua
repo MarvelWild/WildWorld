@@ -50,6 +50,13 @@ _.init=function(entity,options)
 	end
 end
 
+-- generic draw
+_.draw=function(entity)
+	-- todo: opt
+	local sprite=Img[entity.spriteName]
+	draw(sprite,entity.x,entity.y)
+end
+
 
 
 return _

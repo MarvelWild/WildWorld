@@ -235,7 +235,10 @@ love.load=function()
 	Cauldron=require "entity/world/cauldron"
 	Bucket=require "entity/world/bucket"
 	BirchTree=require "entity/world/birch_tree"
-	GrowableBehavoiur=require "entity/behaviour/growable"
+	FirTree=require "entity/world/fir_tree"
+	
+	GrowableBehaviour=require "entity/behaviour/growable"
+	MountableBehaviour=require "entity/behaviour/mountable"
 	
 	Server=require "entity/server"
 	Client=require "entity/client"
