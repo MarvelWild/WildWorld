@@ -236,6 +236,7 @@ love.load=function()
 	Bucket=require "entity/world/bucket"
 	BirchTree=require "entity/world/birch_tree"
 	FirTree=require "entity/world/fir_tree"
+	AppleTree=require "entity/world/apple_tree"
 	
 	GrowableBehaviour=require "entity/behaviour/growable"
 	MountableBehaviour=require "entity/behaviour/mountable"
