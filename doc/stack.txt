@@ -1,8 +1,14 @@
+
+	f2-dump selected
+debugger selected entity view (and mb copy)	
+editor save active item
++remove old mount system
+	
 	random fun
 	future plans
 	list features
 intro video for github/patreon
-walking horse
++walking horse
 stable
 
 
@@ -537,7 +543,7 @@ problem: entities are data-only (serialization). Need a way to fast sprites. (se
 sprite lookup optimization.
 
 knowledge system (ability to id game objects)
-y sort
++y sort
 +player not drawn
 
 
@@ -621,10 +627,10 @@ y sort
 +bug: player: no sprite after load (new game is ok)
 
 	
-	growth process
+	growth process+
 	
-			react to click
-		right click=default action with active slot
+			+react to click
+		+right click=default action with active slot
 	+plant action
 			+highlight in action bar
 			+test
@@ -646,36 +652,35 @@ y sort
 +entity=component
 +затайлить
 
-	в слот belt-1
+	в слот belt-1+
 	+дать семя
-	убрать картинки
-	как компонент
-	отрисовка
+	убрать картинки+
+	как компонент+
+	отрисовка+
 +ui 
-	рандомный объект по рклик
-заселить 
+	рандомный объект по рклик+
+заселить +
 +world tiling (tiled mb)
 
 	register as entity+
-rmb target select object
-	если несколько - действие с объектом по умолчанию, во
-	если коллизия одна - действия с объектом
-спрайты пересеклись - коллизия
+rmb target select object+
+	если несколько - действие с объектом по умолчанию, во+
+	если коллизия одна - действия с объектом+
+спрайты пересеклись - коллизия+
 	
 		+entities
 	+bounds
 
 player origin legs+
-		stop prev
-	make command
+		stop prev - later+
+	+make command
 	unscale+
 	read coord+
 +mouse walking
 scale+
 lowres+
-download tutorials
++download tutorials
 
 
--- low
 
 +для компонентов не выдавать ид

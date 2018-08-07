@@ -46,12 +46,6 @@ _.draw=function(player)
 	
 	LG.draw(sprite,player.x,player.y)
 	
-	if Session.isOnHorse then
-		LG.draw(Img.horse_white,player.x,player.y+4)
-	end
-	
-	
-	
 	-- animation proto
 --	local animSprite1=Img.pantera_walk_1
 --	local animSprite2=Img.pantera_walk_2

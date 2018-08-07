@@ -542,9 +542,6 @@ love.keypressed=function(key,unicode)
 		if nextSpriteName==nil then nextSpriteName=first end
 		
 		Entity.setSprite(World.player, nextSpriteName)
-	elseif key=="c" then -- old mount
-		log("horse mount")
-		Session.isOnHorse=not Session.isOnHorse
 	elseif key==Config.keyMount then
 		ClientAction.mount(World.player)
 	elseif key=="z" then

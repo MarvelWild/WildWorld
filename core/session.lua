@@ -8,7 +8,6 @@ local _=
 	isClient=false,
 	login="defaultLogin",
 	selectedEntity=nil,
-	isOnHorse=true, -- tmp kiss
 	hasErrors=false,
 	hasWarnings=false,
 }

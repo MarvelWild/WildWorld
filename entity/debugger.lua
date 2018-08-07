@@ -51,6 +51,12 @@ _.drawScaledUi=function(debugger)
 	_printf("Player: "..Entity.toString(World.player), 0, 94,Session.windowWidth)
 	
 	
+	
+	if Session.selectedEntity~=nil then
+		local selectedInfo=pack(Session.selectedEntity)
+		_print(selectedInfo, 0, 140)
+	end
+	
 	local x=love.mouse.getX()
 	local y=love.mouse.getY()
 	local gameX,gameY=Cam:toWorld(x,y)
@@ -75,6 +81,23 @@ local dumpAll=function()
 	
 end
 
+local dumpSelected=function()
+	
+	
+	if Session.selectedEntity==nil then
+		log("dump selected:no selection")
+		return
+	end
+	
+	
+	local data=serialize(Session.selectedEntity)
+	local now = os.date('*t')
+	local fileName="dump_selected_"..now.hour.."."..now.min.."."..now.sec
+	love.filesystem.write(fileName, data)
+	log("dump selected:"..fileName)
+end
+
+
 
 _.keypressed=function(debugger, key)
 	-- log("debugger receive key:"..key)
@@ -83,6 +106,8 @@ _.keypressed=function(debugger, key)
 		dumpAll()
 	elseif key==Config.keyDebuggerWriteLogs then
 		Debug.writeLogs()
+	elseif key==Config.keyDebuggerDumpSelected then
+		dumpSelected()		
 	end
 	
 	
