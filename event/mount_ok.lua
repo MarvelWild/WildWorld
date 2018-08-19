@@ -12,7 +12,7 @@ local _=function(event)
 		mount=Entity.find(mountEvent.targetEntityName,mountEvent.targetEntityId,
 			mountEvent.targetEntityLogin)
 		assert(mount)
-		assert(mount.mountedBy==nil)
+		--assert(mount.mountedBy==nil)
 	end
 	
 	local actor=Entity.find(mountEvent.actorEntityName,mountEvent.actorEntityId,

@@ -789,7 +789,18 @@ _.canPickup=function(entity)
 end
 
 _.canMount=function(actorEntity,candidateEntity)
-	return candidateEntity.isMountable and candidateEntity.mountedBy==nil
+	if not candidateEntity.isMountable then return false end
+	
+	if candidateEntity.mountedBy~=nil then
+		log("already mounted by:")
+		
+		-- still can mount if player not present
+		local rider=Entity.findByRef(candidateEntity.mountedBy)
+		if rider~=nil then return false end
+	end
+	
+	
+	return true
 end
 
 -- light reference

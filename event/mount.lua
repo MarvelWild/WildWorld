@@ -16,10 +16,11 @@ local _=function(event)
 			event.targetEntityLogin)
 		assert(mount)
 			
-		if mount.mountedBy then
-			log("warn: mount already mounted")
-			isAllowed=false
-		end
+-- its ok if player logged off			
+--		if mount.mountedBy then
+--			log("warn: mount already mounted")
+--			isAllowed=false
+--		end
 		
 		if actor.mountedOn then
 			log("warn: actor already mounted")

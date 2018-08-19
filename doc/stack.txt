@@ -1,3 +1,5 @@
+	server-only, ok for now
+mount could be player-owned (disappear on logoff), or server-owned (unmount on logoff)
 multi-rider mount
 	move player to mount point
 smooth mounting
