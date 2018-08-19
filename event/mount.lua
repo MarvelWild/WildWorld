@@ -1,3 +1,4 @@
+-- also is unmount when mounting nil
 local _=function(event)
 	assert(Session.isServer)
 	log("mount event handler:"..Event.toString(event))
@@ -6,21 +7,27 @@ local _=function(event)
 		event.actorEntityLogin)
 	assert(actor)
 	
-	local mount=Entity.find(event.targetEntityName,event.targetEntityId,
-		event.targetEntityLogin)
-	assert(mount)
-	
-	
 	local isAllowed=true
-	if mount.mountedBy then
-		log("warn: mount already mounted")
-		isAllowed=false
+	local mount=nil
+	local isMounting=event.targetEntityName~=nil
+	
+	if isMounting then
+		mount=Entity.find(event.targetEntityName,event.targetEntityId,
+			event.targetEntityLogin)
+		assert(mount)
+			
+		if mount.mountedBy then
+			log("warn: mount already mounted")
+			isAllowed=false
+		end
+		
+		if actor.mountedOn then
+			log("warn: actor already mounted")
+			isAllowed=false
+		end
 	end
 	
-	if actor.mountedOn then
-		log("warn: actor already mounted")
-		isAllowed=false
-	end
+	
 	
 	if not isAllowed then
 		-- todo: send response to emitter, unlock it

@@ -334,6 +334,11 @@ _.find=function(entityName,id,login)
 	return nil
 end
 
+_.findByRef=function(entityRef)
+	return _.find(entityRef.entity,entityRef.id,entityRef.login)
+end
+
+
 
 
 
@@ -636,12 +641,31 @@ end
 --end
 
 --should be called after move to update collision sytem
-_.onMoved=function(entity)
+_.onMoved=function(movedEntity)
 --	log("Entity onMoved:"..Entity.toString(entity))
 	
-	if entity.isInWorld then
-		Collision.moved(entity)
+	if movedEntity.isInWorld then
+		Collision.moved(movedEntity)
 	end
+	
+	if movedEntity.mountedBy~=nil then
+		local rider=Entity.findByRef(movedEntity.mountedBy)
+		
+		-- todo mount point
+		
+		-- дано:
+		-- mountBox=movedEntity.xy
+		-- найти:
+		-- riderBox
+		
+		local riderX=movedEntity.x
+		local riderY=movedEntity.y
+		
+		Entity.move(rider,riderX,riderY)
+		
+	end
+	
+	
 end
 
 _.move=function(entity,newX,newY)
@@ -765,7 +789,7 @@ _.canPickup=function(entity)
 end
 
 _.canMount=function(actorEntity,candidateEntity)
-	return candidateEntity.isMountable
+	return candidateEntity.isMountable and candidateEntity.mountedBy==nil
 end
 
 -- light reference

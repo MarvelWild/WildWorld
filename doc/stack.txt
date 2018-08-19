@@ -1,7 +1,18 @@
-
-	f2-dump selected
-debugger selected entity view (and mb copy)	
-editor save active item
+multi-rider mount
+	move player to mount point
+smooth mounting
+unmount+
+entity speed
+	server evt set_world
+		+by dev button from debugger
+	+portal event
+multi world
+	+dragon as spawnable in editor
+	>x-mount dragon (and any ingame entity)
+fly dragon
+	+f2-dump selected
++debugger selected entity view (and mb copy)	
++editor save active item (skip)
 +remove old mount system
 	
 	random fun
@@ -12,10 +23,12 @@ intro video for github/patreon
 stable
 
 
+show cusror to others key (hold/toggle)
 +	при удалении осталась рисоваться рамка
 +	del key for selected object
 +deleting 
-colorize entity
+	networking (entity updated)
+colorize entity (see crawl)
 
 toolbar mouse interaction
 переход в другой мир
@@ -56,9 +69,7 @@ experimental video debug
 попробовать навигационные доки как альтернативу поиску по файлу (тормоза)
 	
 entity ref as table	
-	+dragon as spawnable in editor
-	>x-mount dragon (and any ingame entity)
-fly dragon
+
 
 
 сбор профилей долгих фреймов
@@ -249,7 +260,7 @@ plantable flower seeds
 +actiobar slot 4 becomes 3
 +client crash on using sapling	
 	faster speed
-	+x button: mount/unmount
+	+x button: mount
 	+stick to player
 	+img
 +horse

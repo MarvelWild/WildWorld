@@ -42,8 +42,13 @@ _.new=function()
 	return r
 end
 
+local help="debugger dump:"..Config.keyDebuggerDump.." logs:"..	Config.keyDebuggerWriteLogs..
+
+" dump sel:"..Config.keyDebuggerDumpSelected..
+" portal:"..Config.keyDebuggerPortal
+
 _.drawScaledUi=function(debugger)
-	LG.print("debugger dump:"..Config.keyDebuggerDump.." logs:"..Config.keyDebuggerWriteLogs)
+	LG.print(help)
 	local perfInfo="FPS: "..tostring(love.timer.getFPS( )).." | Entity count: ".._entityCount..
 		" | draws:".._drawCountPrevFrame
 	_print(perfInfo, 0, 70)
@@ -98,6 +103,11 @@ local dumpSelected=function()
 end
 
 
+local portal=function()
+	log("dev portal")
+	ClientAction.setWorld("devlevel")
+end
+
 
 _.keypressed=function(debugger, key)
 	-- log("debugger receive key:"..key)
@@ -107,7 +117,9 @@ _.keypressed=function(debugger, key)
 	elseif key==Config.keyDebuggerWriteLogs then
 		Debug.writeLogs()
 	elseif key==Config.keyDebuggerDumpSelected then
-		dumpSelected()		
+		dumpSelected()
+	elseif key==Config.keyDebuggerPortal then
+		portal()	
 	end
 	
 	

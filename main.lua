@@ -543,7 +543,7 @@ love.keypressed=function(key,unicode)
 		
 		Entity.setSprite(World.player, nextSpriteName)
 	elseif key==Config.keyMount then
-		ClientAction.mount(World.player)
+		ClientAction.toggleMount(World.player)
 	elseif key=="z" then
 		local rnd=Lume.random()
 		log("roll:"..rnd)

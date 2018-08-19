@@ -68,6 +68,8 @@ local doProcessEvent=function(event)
 		log("processing event:".._.toString(event).." full:"..pack(event))
 		handler(event)
 	else
+		-- should be registered in _eventHandlers by creating
+		-- event/name.lua. autoloaded from there
 		log("error:event unprocessed:"..pack(event))
 	end
 end

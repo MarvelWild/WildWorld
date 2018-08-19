@@ -1,5 +1,7 @@
 local _=function(event)
-	local entity=Entity.find(event.entity, event.entityId,event.login)
+	
+	
+	local entity=Entity.findByRef(event.entityRef)
 --		if entity==nil then
 		
 --			local a=1

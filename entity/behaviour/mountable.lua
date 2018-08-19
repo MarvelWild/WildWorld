@@ -1,9 +1,9 @@
--- wip : use, req
+-- todo : use, req
 -- global MountableBehaviour
 local _={}
 
 _.mount=function(actor,target)
-	-- wip: actual mount
+	-- todo: actual mount
 	-- что уже имеем?
 	
 	

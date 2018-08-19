@@ -1,30 +1,40 @@
 -- evoker: mount.lua
+-- could be mount or unmount.
 local _=function(event)
 	log("mount_ok:"..pack(event))
 	
-	-- created in ClientAction.mount
+	-- created in ClientAction.toggleMount
 	local mountEvent=event.mountEvent
-	local mount=Entity.find(mountEvent.targetEntityName,mountEvent.targetEntityId,
-		mountEvent.targetEntityLogin)
-	assert(mount)
+	local isMounting=mountEvent.targetEntityName~=nil
+	local mount=nil
+	
+	if isMounting then
+		mount=Entity.find(mountEvent.targetEntityName,mountEvent.targetEntityId,
+			mountEvent.targetEntityLogin)
+		assert(mount)
+		assert(mount.mountedBy==nil)
+	end
 	
 	local actor=Entity.find(mountEvent.actorEntityName,mountEvent.actorEntityId,
 		mountEvent.actorEntityLogin)
 	assert(actor)
-
 	-- тут все проверки пройдены, садим райдера на маунта
-	assert(mount.mountedBy==nil)
-	assert(actor.mountedOn==nil)
+	
+	if isMounting then
+		assert(actor.mountedOn==nil)
+	else
+		assert(actor.mountedOn~=nil)
+	end
 	
 	-- set connection
-	mount.mountedBy=Entity.getReference(actor)
-	actor.mountedOn=Entity.getReference(mount)
-	
-	-- wip: команда мув теперь идёт маунту
-	-- wip: наездник движется с маунтом
-	-- wip: анмаунт
-	
-
+	if isMounting then
+		mount.mountedBy=Entity.getReference(actor)
+		actor.mountedOn=Entity.getReference(mount)
+	else
+		mount=Entity.findByRef(actor.mountedOn)
+		mount.mountedBy=nil
+		actor.mountedOn=nil
+	end
 end
 
 return _

@@ -27,18 +27,27 @@ local doMount=function(actorEntity,target)
 	event.actorEntityId=actorEntity.id
 	event.actorEntityLogin=actorEntity.login
 	
-	event.targetEntityName=target.entity
-	event.targetEntityId=target.id
-	event.targetEntityLogin=target.login
+	if target~=nil then
+		event.targetEntityName=target.entity
+		event.targetEntityId=target.id
+		event.targetEntityLogin=target.login
+	end
 	
 	
 	event.target="server"
 end
 
 
-_.mount=function(actorEntity)
-	log("Mount start")
+
+_.toggleMount=function(actorEntity)
+	log("toggleMount start")
 	-- по аналогии с пикапом - шлём команду на сервер, по подтверждении - сели.
+	
+	if actorEntity.mountedOn~=nil then
+		doMount(actorEntity,nil)
+		return
+	end
+	
 	
 	local extraRange=10
 	local doubleRange=extraRange+extraRange
@@ -105,16 +114,34 @@ end
 
 
 _.move=function(actor,x,y)
+	
+	local movingEntityRef
+	if actor.mountedOn~=nil then
+		movingEntityRef=actor.mountedOn
+	else
+		movingEntityRef=Entity.getReference(actor)
+	end
+	
+	
+	
 	local moveEvent=Event.new()
 	moveEvent.code="move"
+	
 	moveEvent.x=x-7
 	moveEvent.y=y+1-actor.h
 	moveEvent.duration=2
 	
-	moveEvent.entity=actor.entity
-	moveEvent.entityId=actor.id
-	
-	-- todo: move to entityRef, no login here, check this
+	moveEvent.entityRef=movingEntityRef
 end
+
+_.setWorld=function(worldName)
+	log("requesting:setWorld:"..worldName)
+	
+	local event=Event.new()
+	event.code="set_world"
+	event.worldName=worldName
+	event.target="server"
+end
+
 
 return _
