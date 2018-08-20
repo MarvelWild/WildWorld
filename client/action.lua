@@ -134,12 +134,19 @@ _.move=function(actor,x,y)
 	moveEvent.entityRef=movingEntityRef
 end
 
-_.setWorld=function(worldName)
-	log("requesting:setWorld:"..worldName)
+_.setWorld=function(worldName,actor)
+	if actor==nil then
+		-- current player
+		actor=World.player
+	end
+	
+	
+	log("requesting:setWorld:"..worldName.." for actor:".._ets(actor))
 	
 	local event=Event.new()
 	event.code="set_world"
 	event.worldName=worldName
+	event.actorRef=Entity.getReference(actor)
 	event.target="server"
 end
 

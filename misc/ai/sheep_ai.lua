@@ -1,4 +1,9 @@
 local updateAi=function(sheep)
+	if sheep.mountedBy~=nil then
+		return
+	end
+	
+	
 	-- log("sheep update ai")
 	--	local nextX=sheep.x+Lume.random(-20,20)
 	--	local nextY=sheep.y+Lume.random(-20,20)
@@ -11,8 +16,7 @@ local updateAi=function(sheep)
 	moveEvent.y=nextY
 	moveEvent.duration=6
 	
-	moveEvent.entity=sheep.entity
-	moveEvent.entityId=sheep.id
+	moveEvent.entityRef=Entity.getReference(sheep)
 end
 
 return updateAi

@@ -35,6 +35,7 @@ _.new=function()
 	player.favorites={}
 	player.abilities={}
 	player.activeFavorite=nil
+	player.worldName="world_start"
 	
 	BaseEntity.init(player)
 	return player

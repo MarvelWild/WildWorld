@@ -16,10 +16,7 @@ _.new=function(options)
 	return result
 end
 
-_.draw=function(sheep)
-	local sprite=Img[sheep.spriteName]
-	LG.draw(sprite,sheep.x,sheep.y)
-end
+_.draw=DrawableBehaviour.draw
 
 
 _.updateAi=require("misc/ai/sheep_ai")

@@ -219,6 +219,10 @@ love.load=function()
 	
 	preloadImages()
 	
+	GrowableBehaviour=require "entity/behaviour/growable"
+	DrawableBehaviour=require "entity/behaviour/drawable"
+	MountableBehaviour=require "entity/behaviour/mountable"	
+	
 	Player=require "entity/player"
 	Seed=require "entity/world/seed"
 	Grass=require "entity/world/grass"
@@ -238,8 +242,7 @@ love.load=function()
 	FirTree=require "entity/world/fir_tree"
 	AppleTree=require "entity/world/apple_tree"
 	
-	GrowableBehaviour=require "entity/behaviour/growable"
-	MountableBehaviour=require "entity/behaviour/mountable"
+
 	
 	Server=require "entity/server"
 	Client=require "entity/client"

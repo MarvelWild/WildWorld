@@ -17,8 +17,7 @@ local updateAi=function(pantera)
 	moveEvent.y=nextY
 	moveEvent.duration=12
 	
-	moveEvent.entity=pantera.entity
-	moveEvent.entityId=pantera.id
+	moveEvent.entityRef=Entity.getReference(pantera)
 end
 
 return updateAi

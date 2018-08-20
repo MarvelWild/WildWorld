@@ -15,10 +15,7 @@ _.new=function(options)
 	return result
 end
 
-_.draw=function(pantera)
-	local sprite=Img[pantera.spriteName]
-	LG.draw(sprite,pantera.x,pantera.y)
-end
+_.draw=DrawableBehaviour.draw
 
 --_.update=function(pantera,dt)
 --	log("pantera update ")

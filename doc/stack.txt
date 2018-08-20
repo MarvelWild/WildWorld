@@ -1,14 +1,14 @@
-	server-only, ok for now
-mount could be player-owned (disappear on logoff), or server-owned (unmount on logoff)
+	server evt set_world
+		+by dev button from debugger
+	+portal event
+multi world
+	+server-only, ok for now
++mount could be player-owned (disappear on logoff), or server-owned (unmount on logoff)
 multi-rider mount
 	move player to mount point
 smooth mounting
 unmount+
 entity speed
-	server evt set_world
-		+by dev button from debugger
-	+portal event
-multi world
 	+dragon as spawnable in editor
 	>x-mount dragon (and any ingame entity)
 fly dragon

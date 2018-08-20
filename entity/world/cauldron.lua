@@ -20,6 +20,7 @@ _.new=function(options)
 end
 
 _.draw=function(entity)
+	--todo: remove from drawables on removing from world
 	if not entity.isInWorld then return end
 	
 	local sprite=Img[entity.spriteName]
