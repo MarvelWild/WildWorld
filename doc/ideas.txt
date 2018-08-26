@@ -38,3 +38,4 @@ embed radio scenemusic
 open computers integration
 merge personal worlds on client join
 много всего для познавания, постоянные открытия
+concept: sandbox, roleplay, research, create, collaborate, emote, share, trade, minigames, macrogame (some story), simulate, mod, adventures (think Tom Sawyer)

@@ -630,16 +630,6 @@ _.toString=function(entity)
 end
 
 
-
-
--- Collision.getAtPoint
---_.getAt=function(x,y)
---	-- wp
---	local result={}
-	
---	return result
---end
-
 --should be called after move to update collision sytem
 _.onMoved=function(movedEntity)
 --	log("Entity onMoved:"..Entity.toString(entity))
@@ -651,7 +641,7 @@ _.onMoved=function(movedEntity)
 	if movedEntity.mountedBy~=nil then
 		local rider=Entity.findByRef(movedEntity.mountedBy)
 		
-		-- todo mount point
+		-- wip mount point
 		
 		-- дано:
 		-- mountBox=movedEntity.xy
@@ -668,6 +658,7 @@ _.onMoved=function(movedEntity)
 	
 end
 
+-- локалькое перемещение сущности. 
 _.move=function(entity,newX,newY)
 	entity.x=newX
 	entity.y=newY

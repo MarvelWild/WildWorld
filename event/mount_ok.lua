@@ -1,5 +1,6 @@
 -- evoker: mount.lua
 -- could be mount or unmount.
+-- processed on all
 local _=function(event)
 	log("mount_ok:"..pack(event))
 	
@@ -30,11 +31,17 @@ local _=function(event)
 	if isMounting then
 		mount.mountedBy=Entity.getReference(actor)
 		actor.mountedOn=Entity.getReference(mount)
+		
+		-- wip: adjust rider pos
+		-- same in update, start with upd
+		-- Entity.move(actor, )
 	else
 		mount=Entity.findByRef(actor.mountedOn)
 		mount.mountedBy=nil
 		actor.mountedOn=nil
 	end
+	
+	
 end
 
 return _

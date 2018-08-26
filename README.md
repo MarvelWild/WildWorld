@@ -41,19 +41,14 @@ profiler: F10
 <details>
  <summary>Features</summary>
 
-4096x4096 px world
+2d multiplayer world
+9 creatures (pantera, pegasus)
+	some of them mountable
+10 items (cauldron, tree seed,...)
+Ingame editor
 
-128*128 px (4x scaled) resizable window
-
-walking
-
-basic ai (pantera and sheep)
-
-network: server-client mode
-
-items: place, pickup, use
-
-inventory bar
+upcoming: 
+	multiple worlds with portals
 
 
 </details>
@@ -97,3 +92,5 @@ btc: 3MV443JyoGvd1WX1UhwLSKfS1VmTQg4QBr
 eth: 0xF58BD9894f9039C76d9329d7570011DB280049BD
 
 </details>
+
+Questions? Ask in [official thread](https://love2d.org/forums/viewtopic.php?f=14)
