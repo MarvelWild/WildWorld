@@ -68,9 +68,12 @@ upcoming:
 <details>
  <summary>Links</summary>
 
-Stream (mostly inactive/slow 3g internet)
+[Stream](https://www.twitch.tv/marvelme)
 
-https://www.twitch.tv/marvelme
+
+[official thread](https://love2d.org/forums/viewtopic.php?f=14&t=85403)
+
+[report a bug](https://github.com/MarvelWild/LoFiFreestyleGame/issues/new)
 
 </details>
 
@@ -79,7 +82,7 @@ https://www.twitch.tv/marvelme
 ![Screenshot](https://3.bp.blogspot.com/-Thgk56DZZus/Wyma2y5au_I/AAAAAAAADGU/AFKZd2obv0ktZX56X_aJU8iQzYdBeeOoACLcBGAs/s1600/Blog-ULR-1.jpg)
 
 
-Thanks for support
+
 
 <details>
  <summary>Donate</summary>
@@ -91,6 +94,7 @@ btc: 3MV443JyoGvd1WX1UhwLSKfS1VmTQg4QBr
 
 eth: 0xF58BD9894f9039C76d9329d7570011DB280049BD
 
+Thanks for support!
+
 </details>
 
-Questions? Ask in [official thread](https://love2d.org/forums/viewtopic.php?f=14&t=85403)
