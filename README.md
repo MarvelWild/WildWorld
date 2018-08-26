@@ -93,4 +93,4 @@ eth: 0xF58BD9894f9039C76d9329d7570011DB280049BD
 
 </details>
 
-Questions? Ask in [official thread](https://love2d.org/forums/viewtopic.php?f=14)
+Questions? Ask in [official thread](https://love2d.org/forums/viewtopic.php?f=14&t=85403)
