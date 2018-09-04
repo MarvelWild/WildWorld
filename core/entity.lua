@@ -26,6 +26,11 @@ _.getAll=function()
 	return _all
 end
 
+_.getDrawable=function()
+	return _drawable
+end
+
+
 _.getWorld=function(login)
 	local result={}
 	for k,entity in pairs(_all) do
@@ -380,10 +385,6 @@ end
 
 
 _.draw=function()
-	
-	if Session.frame%30==0 then
-		updateYSort()
-	end
 		
 	
 -- bottom origin - later	
@@ -399,8 +400,6 @@ _.draw=function()
 	if activeEntity~=nil then
 		LG.rectangle('line',activeEntity.x-1,activeEntity.y-1,activeEntity.w+2,activeEntity.h+2)
 	end
-	
-		
 end
 
 _.drawUi=function()
@@ -505,6 +504,10 @@ _.update=function(dt)
 		for entity,updateFunc in pairs(_ai) do
 			updateFunc(entity,dt)
 		end
+	end
+	
+	if Session.frame%30==0 then
+		updateYSort()
 	end
 	
 end
@@ -641,24 +644,24 @@ _.onMoved=function(movedEntity)
 	if movedEntity.mountedBy~=nil then
 		local rider=Entity.findByRef(movedEntity.mountedBy)
 		
-		-- wip mount point
-		
-		-- дано:
-		-- mountBox=movedEntity.xy
-		-- найти:
-		-- riderBox
-		
-		local riderX=movedEntity.x
-		local riderY=movedEntity.y
+		local riderX,riderY=_.getRiderPoint(movedEntity,rider)
 		
 		Entity.move(rider,riderX,riderY)
-		
 	end
 	
 	
 end
 
--- локалькое перемещение сущности. 
+_.getRiderPoint=function(mount, rider)
+	local riderX=mount.x+mount.mountX-rider.riderX
+	local riderY=mount.y+mount.mountY-rider.riderY
+	
+	return riderX,riderY 
+end
+
+
+-- локальное мгновенное перемещение сущности. 
+-- если нужно плавное - 
 _.move=function(entity,newX,newY)
 	entity.x=newX
 	entity.y=newY
@@ -666,10 +669,21 @@ _.move=function(entity,newX,newY)
 end
 
 
+_.smoothMove=function(entity,durationSec,x,y)
+	Flux.to(entity, durationSec, { x=x, y=y }):ease("quadout")
+		:onupdate(function()
+				Entity.onMoved(entity)
+			end)
+end
 
 
 
 _.getCenter=function(entity)
+	if entity.x==nil then
+		local a=1
+	end
+	
+	
 	local x=entity.x+(entity.w/2)
 	local y=entity.y+(entity.h/2)
 	

@@ -12,10 +12,12 @@ local _=function(event)
 	end
 	
 	assert(entity~=nil)
-	Flux.to(entity, event.duration, { x = event.x, y = event.y }):ease("quadout")
-		:onupdate(function()
-					Entity.onMoved(entity)
-				end)
+	Entity.smoothMove(entity,event.duration,event.x,event.y)
+	
+--	Flux.to(entity, event.duration, { x = event.x, y = event.y }):ease("quadout")
+--		:onupdate(function()
+--					Entity.onMoved(entity)
+--				end)
 end
 
 return _

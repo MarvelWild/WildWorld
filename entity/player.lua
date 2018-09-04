@@ -13,6 +13,14 @@ _.new=function()
 	player.editorVisible=false
 	player.isDrawable=true
 	player.isInWorld=true
+	player.riderX=7
+	player.riderY=11
+	
+	player.originX=7
+	player.originY=7
+	
+	player.footX=7
+	player.footY=15
 
 	
 	-- name of controlling entity for this data

@@ -14,6 +14,6 @@ _.new=function()
 	return entity
 end
 
--- wip: register, name conflict
+-- todo: register, name conflict
 
 return _

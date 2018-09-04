@@ -127,8 +127,8 @@ _.move=function(actor,x,y)
 	local moveEvent=Event.new()
 	moveEvent.code="move"
 	
-	moveEvent.x=x-7
-	moveEvent.y=y+1-actor.h
+	moveEvent.x=x-actor.footX
+	moveEvent.y=y-actor.footY
 	moveEvent.duration=2
 	
 	moveEvent.entityRef=movingEntityRef

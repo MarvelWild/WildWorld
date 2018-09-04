@@ -10,6 +10,8 @@ _.new=function(options)
 	result.isDrawable=true
 	result.aiEnabled=Session.isServer
 	result.isMountable=true
+	result.mountX=11
+	result.mountY=16
 	
 	BaseEntity.init(result,options)
 	

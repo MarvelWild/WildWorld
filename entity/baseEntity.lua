@@ -11,6 +11,15 @@ _.new=function(options)
 	result.originX=0
 	result.originY=0
 	
+	result.mountX=0
+	result.mountY=0
+	
+	result.riderX=0
+	result.riderY=0
+	
+	result.footX=0
+	result.footY=0	
+	
 	result.w=0
 	result.h=0
 	

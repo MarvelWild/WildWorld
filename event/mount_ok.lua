@@ -32,9 +32,10 @@ local _=function(event)
 		mount.mountedBy=Entity.getReference(actor)
 		actor.mountedOn=Entity.getReference(mount)
 		
-		-- wip: adjust rider pos
-		-- same in update, start with upd
-		-- Entity.move(actor, )
+		
+		local riderX,riderY=Entity.getRiderPoint(mount,actor)
+		Entity.smoothMove(actor,0.5,riderX,riderY)
+		
 	else
 		mount=Entity.findByRef(actor.mountedOn)
 		mount.mountedBy=nil

@@ -1,3 +1,5 @@
+debugger: entity info overlay
+
 		on mount_ok
 	attach rider to mounting point
 	>unmount to ground point

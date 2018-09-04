@@ -8,6 +8,8 @@ local _drawCount=0
 local _drawCountPrevFrame=0
 local _originalDraw=nil
 
+local _drawable=Entity.getDrawable()
+
 _.activate=function()
 	-- some parts of code (tiles) cache draw function, so this number doesnt show all
 	
@@ -36,6 +38,7 @@ _.new=function()
 	r.isActive=false
 	r.isUiDrawable=false --4x
 	r.isScaledUiDrawable=true -- 1x
+	r.isDrawable=true
 	
 	Entity.register(r)
 	
@@ -67,6 +70,13 @@ _.drawScaledUi=function(debugger)
 	local gameX,gameY=Cam:toWorld(x,y)
 	_print("Mouse: "..xy(gameX,gameY), 0, Session.windowHeight-24)
 
+end
+
+_.draw=function()
+	for entity,fnDraw in pairs(_drawable) do
+		
+	end
+	
 end
 
 local dumpAll=function()
