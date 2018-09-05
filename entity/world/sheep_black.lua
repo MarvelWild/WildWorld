@@ -20,8 +20,6 @@ _.draw=function(sheep)
 	LG.draw(sprite,sheep.x,sheep.y)
 end
 
-
--- managed by Entity
 _.updateAi=require("misc/ai/sheep_ai")
 
 

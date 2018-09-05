@@ -12,9 +12,9 @@ local _=function(event)
 	local actor=Entity.findByRef(event.actorRef)
 	actor.worldName=event.worldName
 	
-	-- wip: save location  in prev world?
-	-- wip: coords in next world
-	-- wip: return next world to client (or just notify he can reload)
+	-- todo: save location  in prev world?
+	-- todo: coords in next world
+	-- todo: return next world to client (or just notify he can reload)
 	
 	local okEvent=Event.new()
 	okEvent.code="set_world_ok"

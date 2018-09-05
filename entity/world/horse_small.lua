@@ -18,7 +18,6 @@ end
 
 _.draw=DrawableBehaviour.draw
 
--- wip: disabled for mount test
--- _.updateAi=require("misc/ai/sheep_ai")
+_.updateAi=require("misc/ai/sheep_ai")
 
 return _
