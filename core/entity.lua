@@ -809,6 +809,7 @@ _.canMount=function(actorEntity,candidateEntity)
 end
 
 -- light reference
+-- reverse: findByRef
 _.getReference=function(entity)
 	local result={}
 	

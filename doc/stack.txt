@@ -1,9 +1,11 @@
 move to foot point of mount when mounted
 debugger: entity info overlay
+ingame points editor
+debugger: draw entity points
 
-		on mount_ok
-	attach rider to mounting point
-	>unmount to ground point
+		+on mount_ok
+	+attach rider to mounting point
+	unmount to ground point
 mount: better visual
 	server evt set_world
 		+by dev button from debugger

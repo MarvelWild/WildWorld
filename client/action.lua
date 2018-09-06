@@ -115,11 +115,18 @@ end
 
 _.move=function(actor,x,y)
 	
+	local nextX,nextY
 	local movingEntityRef
 	if actor.mountedOn~=nil then
 		movingEntityRef=actor.mountedOn
+		
+		local mount=Entity.findByRef(movingEntityRef)
+		nextX=x-mount.footX
+		nextY=y-mount.footY
 	else
 		movingEntityRef=Entity.getReference(actor)
+		nextX=x-actor.footX
+		nextY=y-actor.footY
 	end
 	
 	
@@ -127,8 +134,8 @@ _.move=function(actor,x,y)
 	local moveEvent=Event.new()
 	moveEvent.code="move"
 	
-	moveEvent.x=x-actor.footX
-	moveEvent.y=y-actor.footY
+	moveEvent.x=nextX
+	moveEvent.y=nextY
 	moveEvent.duration=2
 	
 	moveEvent.entityRef=movingEntityRef
