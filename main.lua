@@ -235,6 +235,7 @@ love.load=function()
 	Sheep=require "entity/world/sheep"
 	SheepBlack=require "entity/world/sheep_black"
 	HorseSmall=require "entity/world/horse_small"
+	Camel=require "entity/world/camel"
 	Zombie=require "entity/world/zombie"
 	Alien=require "entity/world/alien"
 	BirchSapling=require "entity/world/birch_sapling"

@@ -4,30 +4,45 @@ local _={}
 -- indexed table
 local getEditorItems=function()
 	local result={}
+	
+	
+	
 	-- todo: autoload all editor-allowed entities
-	local pantera=Pantera.new({isProto=true})
-	table.insert(result,pantera)
+	local editorEntities={Pantera,Grass,Sheep,Dragon,Pegasus,Zombie,SheepBlack,HorseSmall,Camel}
 	
-	local grass=Grass.new({isProto=true})
-	table.insert(result,grass)
+	for k,entity in pairs(editorEntities) do
+		local proto=entity.new({isProto=true})
+		table.insert(result,proto)	
+	end
 	
-	local item=Sheep.new({isProto=true})
-	table.insert(result,item)
 	
-	item=Dragon.new({isProto=true})
-	table.insert(result,item)
 	
-	item=Pegasus.new({isProto=true})
-	table.insert(result,item)
+--	local pantera=Pantera.new({isProto=true})
+--	table.insert(result,pantera)
 	
-	item=Zombie.new({isProto=true})
-	table.insert(result,item)
+--	local grass=Grass.new({isProto=true})
+--	table.insert(result,grass)
 	
-	item=SheepBlack.new({isProto=true})
-	table.insert(result,item)
+--	local item=Sheep.new({isProto=true})
+--	table.insert(result,item)
 	
-	item=HorseSmall.new({isProto=true})
-	table.insert(result,item)
+--	item=Dragon.new({isProto=true})
+--	table.insert(result,item)
+	
+--	item=Pegasus.new({isProto=true})
+--	table.insert(result,item)
+	
+--	item=Zombie.new({isProto=true})
+--	table.insert(result,item)
+	
+--	item=SheepBlack.new({isProto=true})
+--	table.insert(result,item)
+	
+--	item=HorseSmall.new({isProto=true})
+--	table.insert(result,item)
+	
+--	item=Camel.new({isProto=true})
+--	table.insert(result,item)
 	
 	return result
 end
