@@ -1,3 +1,6 @@
+image independent bbox
+walk animation
+multi-rider mounts
 save flux state
 globals export
 	put to entity
