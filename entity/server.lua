@@ -108,7 +108,7 @@ _.activate=function(server)
 	tcpServer.handshake=handshake
 	
 	tcpServer:listen(port)
-	log("tcp server started on "..port)
+	log("tcp server started on "..Session.serverBindAddress..":"..port)
 end
 
 

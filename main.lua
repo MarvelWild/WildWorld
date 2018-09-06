@@ -26,6 +26,7 @@ Hc=require "lib/HC/init"
 Const=require "data/const"
 Config=require "data/config"
 
+Arg=require "lib/arg/arg"
 Util=require "tech/util"
 Id=require "tech/id"
 
@@ -55,6 +56,7 @@ Session=require "core/session"
 
 Session.isClient=Util.hasArg("c")
 Session.isServer=not Session.isClient
+Session.serverBindAddress=Arg.get("bind","*")
 
 local setClientLogin=function()
 	local loginPos= Lume.find(arg, "login")

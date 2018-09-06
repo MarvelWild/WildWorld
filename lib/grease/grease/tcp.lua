@@ -61,7 +61,7 @@ function tcpServer:createSocket()
 end
 
 function tcpServer:_listen()
-	self.socket:bind("*", self.port)
+	self.socket:bind(Session.serverBindAddress, self.port)
 	self.socket:listen(5)
 end
 

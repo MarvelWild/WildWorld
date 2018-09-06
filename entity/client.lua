@@ -131,8 +131,11 @@ end
 
 local handshake=">>"
 local port="8421"
-local host="2620:9b::1953:9fbe"
-host="lore"
+local host
+host="2620:9b::1953:9fbe"
+--host="25.83.159.190"
+--host="224-425-777.local"
+--host="lore"
 
 
 
@@ -150,7 +153,7 @@ end
 _.connect=function(client)
 	local ok, msg = client.tcpClient:connect(host, port, false)
 	if not ok then
-		log("error:Cannot connect:"..msg)
+		log("error:Cannot connect:"..msg.." host:"..host.." port:"..port)
 		return
 	else
 		log("connect ok")
