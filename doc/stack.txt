@@ -1,4 +1,6 @@
-move to foot point of mount when mounted
+player hp
+
++move to foot point of mount when mounted
 debugger: entity info overlay
 ingame points editor
 debugger: draw entity points

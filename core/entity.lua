@@ -402,12 +402,15 @@ _.draw=function()
 	end
 end
 
+
+-- zoomed ui
 _.drawUi=function()
 	for entity,code in pairs(_uidrawable) do
 		code(entity)
 	end
 end
 
+-- 1x size ui
 _.drawScaledUi=function()
 	local test=Util.dump(_scaleduidrawable)
 	for entity,code in pairs(_scaleduidrawable) do

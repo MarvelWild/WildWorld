@@ -23,6 +23,8 @@ _.new=function(options)
 	result.w=0
 	result.h=0
 	
+	result.hp=1
+	
 	-- change via Entity.setDrawable 
 	result.isDrawable=false
 	result.aiEnabled=false

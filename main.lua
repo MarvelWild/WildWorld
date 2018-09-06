@@ -41,6 +41,7 @@ Entity=require "core/entity"
 BaseEntity=require "entity/baseEntity"
 Debugger=require "entity/debugger"
 Actionbar=require "entity/actionbar"
+PlayerUi=require "entity/player_ui"
 
 Collision=require "core/collision"
 ClientAction=require 'client/action'
@@ -158,6 +159,9 @@ end
 local startUi=function()
 	local actionBar=Actionbar.new()
 	Entity.setActive(actionBar,true)
+	
+	local playerUi=PlayerUi.new()
+	Entity.setActive(playerUi,true)
 end
 
 local preloadImages=function()
@@ -551,17 +555,25 @@ love.keypressed=function(key,unicode)
 	elseif key==Config.keyMount then
 		ClientAction.toggleMount(World.player)
 	elseif key=="z" then
-		local rnd=Lume.random()
-		log("roll:"..rnd)
-		if rnd > 0.9 then
-			Entity.setSprite(World.player, "bee")
-		elseif rnd > 0.8 then
-			Entity.setSprite(World.player, "dragon")
-		elseif rnd > 0.4 then
-			Entity.setSprite(World.player, "player")
-		else
-			Entity.setSprite(World.player, "girl")
+		local nextSprite
+		while true do
+			local rnd=Lume.random()
+			log("roll:"..rnd)
+			if rnd > 0.9 then
+				nextSprite="bee"
+			elseif rnd > 0.4 then
+				nextSprite="player"
+			else
+				nextSprite="girl"
+			end
+			
+			if World.player.spriteName~=nextSprite then 
+				break
+			end
+			
 		end
+		
+		Entity.setSprite(World.player, nextSprite)
 	elseif key==Config.keyItemPickup then
 		pickup()
 	elseif key==Config.keyDeleteEntity then
