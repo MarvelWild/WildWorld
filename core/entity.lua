@@ -673,9 +673,20 @@ end
 
 
 _.smoothMove=function(entity,durationSec,x,y)
+	
+	local wasMoving=entity.isMoving
+	entity.isMoving=true
+	log("start move was:"..tostring(wasMoving)..":".._ets(entity))
+	
+	-- wip: cancel prev move
 	Flux.to(entity, durationSec, { x=x, y=y }):ease("quadout")
+--		:onstart(function()	end)
 		:onupdate(function()
 				Entity.onMoved(entity)
+			end)
+		:oncomplete(function() 
+				entity.isMoving=wasMoving
+				log("end move. now:"..tostring(wasMoving)..":".._ets(entity))
 			end)
 end
 

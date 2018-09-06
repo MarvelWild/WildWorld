@@ -139,6 +139,7 @@ function flux.group()
 end
 
 
+-- returns tween
 function flux:to(obj, time, vars)
   return flux.add(self, tween.new(obj, time, vars))
 end
@@ -183,6 +184,7 @@ function flux:clear(obj, vars)
 end
 
 
+-- returns tween
 function flux:add(tween)
   -- Add to object table, create table if it does not exist
   local obj = tween.obj

@@ -116,8 +116,9 @@ end
 
 _.update=function(editor)
 	local x,y=Util.getMouseXY()
-	editor.activeItem.x=x
-	editor.activeItem.y=y
+	local activeItem=editor.activeItem
+	activeItem.x=x-activeItem.originX
+	activeItem.y=y-activeItem.originY
 end
 
 
@@ -134,8 +135,9 @@ end
 
 _.placeItem=function(editor)
 	local newEntity=editor.activeItemCode.new()
-	newEntity.x=editor.activeItem.x
-	newEntity.y=editor.activeItem.y
+	local activeItem=editor.activeItem
+	newEntity.x=activeItem.x+activeItem.originX
+	newEntity.y=activeItem.y+activeItem.originY
 	
 	Entity.usePlaceable(newEntity,newEntity.x,newEntity.y,true)
 	

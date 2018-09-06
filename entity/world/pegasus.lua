@@ -6,6 +6,16 @@ _.new=function(options)
 	result.entity="Pegasus"
 	result.x=0
 	result.y=0
+	
+	result.mountX=27
+	result.mountY=31
+	
+	result.originX=27
+	result.originY=31	
+	
+	result.footX=22
+	result.footY=46
+	
 	Entity.setSprite(result,"pegasus")
 	result.isDrawable=true
 	result.aiEnabled=Session.isServer

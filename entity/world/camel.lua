@@ -6,8 +6,12 @@ _.new=function(options)
 	result.entity="Camel"
 	result.x=0
 	result.y=0
+	
 	result.mountX=29
 	result.mountY=44
+	
+	result.originX=29
+	result.originY=44	
 	
 	result.footX=31
 	result.footY=62

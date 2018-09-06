@@ -11,9 +11,11 @@ _.new=function(options)
 	result.originX=0
 	result.originY=0
 	
+	-- куда садятся на маунта
 	result.mountX=0
 	result.mountY=0
 	
+	-- чем садятся на маунта
 	result.riderX=0
 	result.riderY=0
 	
@@ -45,6 +47,12 @@ _.new=function(options)
 	result.isRemote=false
 	result.spriteName=nil -- use Entity.setSprite
 	-- result.entity="" через это связь данных с утилитным кодом класса
+	
+	result.isMoving=false
+	
+	-- todo: do not transfer this over net, do not persist
+	-- local state
+	--	result.loc={}
 	
 	return result
 end

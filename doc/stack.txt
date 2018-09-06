@@ -1,4 +1,12 @@
-player hp
+save flux state
+globals export
+	put to entity
+isMoving flag
+
+enemy attacks
+
+
++player hp
 
 +move to foot point of mount when mounted
 debugger: entity info overlay

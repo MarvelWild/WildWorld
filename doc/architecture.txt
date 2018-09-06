@@ -6,3 +6,10 @@
 	
 	
 	
+	
+	
+	
+	Move command (AI)
+		create move event
+		
+	
