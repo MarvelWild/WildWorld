@@ -28,6 +28,6 @@ end
 
 _.draw=DrawableBehaviour.draw
 
-_.updateAi=require("misc/ai/sheep_ai")
+_.updateAi=require("misc/ai/pantera_ai")
 
 return _
