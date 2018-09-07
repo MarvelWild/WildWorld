@@ -109,6 +109,12 @@ local _profiler=nil
 local saveGame=function()
 	Id.save()
 	World.entities=Entity.getSaving()
+	
+--	for k,entity in pairs(World.entities) do
+		
+--	end
+	
+	
 	local str=serialize(World)
 	love.filesystem.write(Const.worldSaveFile, str)
 end

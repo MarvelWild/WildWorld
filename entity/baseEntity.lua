@@ -48,12 +48,7 @@ _.new=function(options)
 	result.spriteName=nil -- use Entity.setSprite
 	-- result.entity="" через это связь данных с утилитным кодом класса
 	
-	result.isMoving=false
-	
-	-- todo: do not transfer this over net, do not persist
-	-- local state
-	--	result.loc={}
-	
+
 	return result
 end
 

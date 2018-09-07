@@ -674,20 +674,34 @@ end
 
 _.smoothMove=function(entity,durationSec,x,y)
 	
-	local wasMoving=entity.isMoving
-	entity.isMoving=true
-	log("start move was:"..tostring(wasMoving)..":".._ets(entity))
 	
-	-- wip: cancel prev move
-	Flux.to(entity, durationSec, { x=x, y=y }):ease("quadout")
---		:onstart(function()	end)
-		:onupdate(function()
-				Entity.onMoved(entity)
-			end)
-		:oncomplete(function() 
-				entity.isMoving=wasMoving
-				log("end move. now:"..tostring(wasMoving)..":".._ets(entity))
-			end)
+	log("start move:".._ets(entity))
+	
+	local entityLocals=Entity.getLocals(entity)
+	entityLocals.isMoving=true
+	
+	local prevTween=entityLocals.moveTween
+	if prevTween~=nil then
+		log("cancel prev move")
+		prevTween:stop()
+	end
+	
+	local onComplete=function() 
+		entityLocals.isMoving=false
+		entityLocals.moveTween=nil
+		log("end move:".._ets(entity))
+	end
+	
+	local onUpdate=function() 
+		Entity.onMoved(entity)
+	end
+	
+	
+	local tween=Flux.to(entity, durationSec, { x=x, y=y }):ease("quadout")
+		:onupdate(onUpdate)
+		:oncomplete(onComplete)
+		
+	entityLocals.moveTween=tween
 end
 
 
@@ -834,6 +848,20 @@ _.getReference=function(entity)
 	return result
 end
 
+
+--local entity state. key: entityId, val: {}
+local _entityLocals={}
+
+_.getLocals=function(entity)
+	local result=_entityLocals[entity]
+	if result==nil then
+		result={}
+		--table.insert(_entityLocals, result)
+		_entityLocals[entity]=result
+	end
+	
+	return result
+end
 
 
 return _
