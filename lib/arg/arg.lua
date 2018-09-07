@@ -12,7 +12,7 @@ _.get=function(prefix,fallback)
 		if pos~=nil then
 		
 			local prefixLen=string.len(prefix)
-			local value=string.sub(currentArg,pos+1+prefixLen)
+			local value=string.sub(currentArg,pos+prefixLen)
 			return value
 		end
 	end

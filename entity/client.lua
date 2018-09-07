@@ -130,12 +130,13 @@ end
 
 
 local handshake=">>"
-local port="8421"
+local port=Session.port
 local host
-host="2620:9b::1953:9fbe"
+--host="2620:9b::1953:9fbe"
 --host="25.83.159.190"
 --host="224-425-777.local"
 --host="lore"
+host=Arg.get("server=","localhost")
 
 
 

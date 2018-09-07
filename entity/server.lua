@@ -94,7 +94,7 @@ local disconnect=function(ip, port)
 end
 
 local handshake=">>"
-local port="8421"
+local port=Session.port
 
 _.activate=function(server)
 	--log("server activate")

@@ -673,8 +673,6 @@ end
 
 
 _.smoothMove=function(entity,durationSec,x,y)
-	
-	
 	log("start move:".._ets(entity))
 	
 	local entityLocals=Entity.getLocals(entity)

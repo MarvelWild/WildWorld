@@ -57,7 +57,7 @@ Session=require "core/session"
 
 Session.isClient=Util.hasArg("c")
 Session.isServer=not Session.isClient
-Session.serverBindAddress=Arg.get("bind","*")
+Session.serverBindAddress=Arg.get("bind=","*")
 
 local setClientLogin=function()
 	local loginPos= Lume.find(arg, "login")
@@ -187,7 +187,7 @@ end
 
 local startServer=function()
 	log("starting server")
-	love.window.setTitle(love.window.getTitle().." | server")
+	love.window.setTitle(love.window.getTitle().." | server "..Session.serverBindAddress..":"..Session.port)
 	ServerEntity=Server.new()
 end
 
