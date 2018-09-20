@@ -4,6 +4,9 @@ _.new=function(options)
 	local result={}
 	
 	result.isActive=false
+	
+	
+	-- top left point (draw x,y)
 	result.x=0
 	result.y=0
 	

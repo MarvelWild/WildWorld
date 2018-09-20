@@ -1,5 +1,12 @@
-image independent bbox
+
+	zombie notice player, enter chase mode
+zombie attack
+
+rain
+	animation demo 
 walk animation
+image independent bbox
+
 multi-rider mounts
 save flux state
 globals export
@@ -139,7 +146,7 @@ client cannot pickup placed cauldron
 	+server only
 drop pot,pickup,drop again- disappeared
 houses
-zombie
+zombie+
 e-man
 
 random start screen creatures

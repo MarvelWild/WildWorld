@@ -1,5 +1,6 @@
 -- glob Collision
 -- top collision abstraction layer / api
+-- HC lib beneath
 
 local _={}
 
@@ -16,9 +17,9 @@ local _shapeByEntity={}
 local _entityByShape={}
 local _pointer=Hc.point(0,0)
 
-local pointerFakeEntity={name="pointer"}
-_shapeByEntity[pointerFakeEntity]=_pointer
-_entityByShape[_pointer]=pointerFakeEntity
+local pointerEntity=Pointer.new()
+_shapeByEntity[pointerEntity]=_pointer
+_entityByShape[_pointer]=pointerEntity
 
 -- highlighted in draw
 local _debugShape=nil
@@ -92,6 +93,8 @@ _.getAtPoint=function(x,y)
 
 	return result
 end
+
+-- option to exclude self?
 
 -- returns nil or table with entities
 _.getAtRect=function(x,y,w,h)

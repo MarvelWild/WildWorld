@@ -28,6 +28,18 @@ Config=require "data/config"
 
 Arg=require "lib/arg/arg"
 Util=require "tech/util"
+
+-- global exports (frequently used)
+table_removeByVal=Util.table_removeByVal
+table_delete=Util.table_delete
+table_isEmpty=Util.table_isEmpty
+loadScripts=Util.loadScripts
+xy=Util.xy
+xywh=Util.xywh
+serialize=Util.serialize
+deserialize=Util.deserialize
+
+
 Id=require "tech/id"
 
 -- удивительно, но точка - это важно, иначе не находится core
@@ -43,7 +55,6 @@ Debugger=require "entity/debugger"
 Actionbar=require "entity/actionbar"
 PlayerUi=require "entity/player_ui"
 
-Collision=require "core/collision"
 ClientAction=require 'client/action'
 TilesView=require 'view/tiles'
 
@@ -260,6 +271,10 @@ love.load=function()
 	Server=require "entity/server"
 	Client=require "entity/client"
 	Editor=require "entity/editor"
+	Pointer=require "entity/pointer"
+	
+	Collision=require "core/collision"
+	
 	Profiler=require "entity/profiler"
 	_editor=Editor.new()  ---EntityFactory.debugger()
 	_profiler=Profiler.new()

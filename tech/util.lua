@@ -180,15 +180,7 @@ end
 
 
 
--- global exports (frequently used)
-table_removeByVal=_.table_removeByVal
-table_delete=_.table_delete
-table_isEmpty=_.table_isEmpty
-loadScripts=_.loadScripts
-xy=_.xy
-xywh=_.xywh
-serialize=_.serialize
-deserialize=_.deserialize
+
 
 
 return _
