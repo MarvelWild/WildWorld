@@ -629,13 +629,6 @@ end
 _.toString=function(entity)
 	if entity==nil then return "nil" end
 	
-	if entity.entity==nil then
-		-- wip: unexpected state
-		local a=1
-	end
-	
-	
-	
 	local result=tostring(entity.entity).." id:"..tostring(entity.id)..
 		" rm:"..tostring(entity.isRemote)..
 		" a:"..tostring(entity.isActive)..

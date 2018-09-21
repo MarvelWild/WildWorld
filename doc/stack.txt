@@ -1,4 +1,7 @@
-
+		
+			pointer
+			+self
+		exclude garbage from collision detection
 	zombie notice player, enter chase mode
 zombie attack
 

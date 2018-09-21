@@ -19,9 +19,23 @@ _.new=function(options)
 	return result
 end
 
-_.draw=function(entity)
-	local sprite=Img[entity.spriteName]
-	LG.draw(sprite,entity.x,entity.y)
+_.draw=function(zombie)
+	local sprite=Img[zombie.spriteName]
+	LG.draw(sprite,zombie.x,zombie.y)
+	
+	-- wip debug seek
+	
+	if zombie._seekRectX~=nil then
+		LG.rectangle("line",zombie._seekRectX,zombie._seekRectY,zombie._seekRectW,zombie._seekRectH)
+	end
+	
+	-- todo: generic solution
+	if zombie._debugText~=nil then
+		LG.print(zombie._debugText, zombie.x,zombie.y)
+	end
+	
+	
+	
 end
 
 

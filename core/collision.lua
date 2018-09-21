@@ -1,6 +1,7 @@
 -- glob Collision
 -- top collision abstraction layer / api
 -- HC lib beneath
+-- todo: debug mode (draw collision shapes)
 
 local _={}
 

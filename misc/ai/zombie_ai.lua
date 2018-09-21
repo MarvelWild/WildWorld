@@ -28,6 +28,8 @@ local moveRandomly=function(actor)
 end
 
 
+
+
 local updateAi=function(zombie)
 	if stateCode==0 then -- idle
 	
@@ -58,19 +60,36 @@ local updateAi=function(zombie)
 		local w=seekRadiusX*2
 		local h=seekRadiusY*2
 		
-		-- wip: exclude self
 		local allInRange=Collision.getAtRect(seekX,seekY,w,h)
+		
+		
+		-- hack: draw debug seek
+		zombie._seekRectX=seekX
+		zombie._seekRectY=seekY
+		zombie._seekRectW=w
+		zombie._seekRectH=h
+		
+		-- wip: debug area (draw rectangle)
+		
+		local isOther=function(entity)
+			return entity~=zombie
+		end
+		
+		
+		-- wip: bug does not see player
+		-- works on fresh game, could be save related
+		
+		local allInRangeExceptSelf=Lume.filter(allInRange,isOther)
+		
+		-- wip: exclude pointer
 		
 		local easyToRead=""
 		
-		for k,entity in pairs(allInRange) do
+		for k,entity in pairs(allInRangeExceptSelf) do
 			-- Entity.toString
 			easyToRead=easyToRead.._ets(entity).."\n"
 		end
 		
-		
-		
-		-- log("I am zombie, and i see:"..Inspect(allInRange))
 		log("I am zombie, and i see:"..easyToRead)
 		
 		-- wip test this
