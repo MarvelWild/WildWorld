@@ -51,6 +51,8 @@ _.new=function(options)
 	result.spriteName=nil -- use Entity.setSprite
 	-- result.entity="" через это связь данных с утилитным кодом класса
 	
+	result.tags={}
+	
 
 	return result
 end

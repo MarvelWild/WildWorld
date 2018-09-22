@@ -2,11 +2,11 @@
 -- 1-chase player
 
 
-local stateCode=0
+--local stateCode=0
 
 -- seekbox for target
-local seekRadiusX=200
-local seekRadiusY=200
+local seekRadiusX=18
+local seekRadiusY=18
 local walkRadius=30
 
 
@@ -27,86 +27,100 @@ local moveRandomly=function(actor)
 	moveEvent.entityRef=Entity.getReference(actor)
 end
 
+local dealDamage=function(target,amount)
+	-- wip: networking
+	
+	DamageableBehaviour.takeDamage(target,amount)
+	
+end
 
 
 
 local updateAi=function(zombie)
-	if stateCode==0 then -- idle
+	-- random walk
+
+	-- todo: make calls less frequent, remove such checks
 	
-		
-		-- random walk
-	
-		-- todo: make calls less frequent, remove such checks
-		
 -- wip commented for debug		
 --		local r=Lume.random() 
 --		if r>0.1 then 
 --			--log("not upd")
 --			return 
 --		end -- 50%?
+	
+	--todo: fov instead of box
+	
+	local seekX=zombie.x+zombie.originX-seekRadiusX
+	local seekY=zombie.y+zombie.originY-seekRadiusY
+	
+	local w=seekRadiusX*2
+	local h=seekRadiusY*2
+	
+	local allInRange=Collision.getAtRect(seekX,seekY,w,h)
+	
+	
+	-- hack: draw debug seek
+	zombie._seekRectX=seekX
+	zombie._seekRectY=seekY
+	zombie._seekRectW=w
+	zombie._seekRectH=h
+	
+	-- done: debug area (draw rectangle)
+	
+	local isPossibleTarget=function(entity)
 		
+		-- exclude self
+		if entity==zombie then return false end
 		
-		--local target=Entity.inRange(w,h,)
-		-- wip get all entities in area
+		-- todo: collision should not return some entities like pointer by default?
+		if entity.entity=="Pointer" then return false end
 		
-		-- wip: seek rect
+		if Entity.isTagged(entity, "tree") then return false end
 		
-		
-		--todo: fov instead of box
-		
-		local seekX=zombie.x+zombie.originX-seekRadiusX
-		local seekY=zombie.y+zombie.originY-seekRadiusY
-		
-		local w=seekRadiusX*2
-		local h=seekRadiusY*2
-		
-		local allInRange=Collision.getAtRect(seekX,seekY,w,h)
-		
-		
-		-- hack: draw debug seek
-		zombie._seekRectX=seekX
-		zombie._seekRectY=seekY
-		zombie._seekRectW=w
-		zombie._seekRectH=h
-		
-		-- wip: debug area (draw rectangle)
-		
-		local isOther=function(entity)
-			return entity~=zombie
-		end
-		
-		
-		-- wip: bug does not see player
-		-- works on fresh game, could be save related
-		
-		local allInRangeExceptSelf=Lume.filter(allInRange,isOther)
-		
-		-- wip: exclude pointer
-		
-		local easyToRead=""
-		
-		for k,entity in pairs(allInRangeExceptSelf) do
-			-- Entity.toString
-			easyToRead=easyToRead.._ets(entity).."\n"
-		end
-		
-		log("I am zombie, and i see:"..easyToRead)
-		
-		-- wip test this
-		
-		
-		moveRandomly(zombie)
-		
-		
-		-- wip: seek for player
-		
-		
-		
-		
-		
-	else
-		log("error: unk ai state")
+		return true
 	end
+
+	local allTargetable=Lume.filter(allInRange,isPossibleTarget)
+	
+	local easyToRead=""
+	
+	for k,entity in pairs(allTargetable) do
+		-- Entity.toString
+		easyToRead=easyToRead.._ets(entity).."\n"
+	end
+	
+	local pickedTarget=Lume.randomchoice(allTargetable)
+	
+	--		local msg="I am zombie, and i see:"..easyToRead
+--		log(msg)
+	
+--		zombie._debugText=msg
+
+	
+	if pickedTarget==nil then
+		log("no targets")
+	else
+		log("Attack target:"+pickedTarget.entity)
+		dealDamage(pickedTarget,1)
+	end
+	
+	-- wip: actual attack
+	
+	-- wip: approach target if far
+	
+	-- wip: attack animation
+	
+	-- wip: cooldown
+	
+	-- wip: deliver damage
+	-- wip: different damage amounts
+	
+	
+	
+	
+	
+	
+	moveRandomly(zombie)
 end
 
 return updateAi

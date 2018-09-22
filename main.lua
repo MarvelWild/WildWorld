@@ -242,9 +242,11 @@ love.load=function()
 	
 	preloadImages()
 	
+	-- todo: autoload
 	GrowableBehaviour=require "entity/behaviour/growable"
 	DrawableBehaviour=require "entity/behaviour/drawable"
 	MountableBehaviour=require "entity/behaviour/mountable"	
+	DamageableBehaviour=require "entity/behaviour/damageable"	
 	
 	Player=require "entity/player"
 	Seed=require "entity/world/seed"

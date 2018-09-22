@@ -124,7 +124,7 @@ function lume.random(a, b)
   return a + math_random() * (b - a)
 end
 
-
+-- t should be array
 function lume.randomchoice(t)
 	local count=#t
 	local index=math_random(count)
@@ -364,7 +364,7 @@ function lume.concat(...)
   return rtn
 end
 
-
+-- returns key or nil
 function lume.find(t, value)
   local iter = getiter(t)
   for k, v in iter(t) do

@@ -48,6 +48,7 @@ _.getWorld=function(login)
 	return result
 end
 
+-- return table with all local entities
 _.getLocal=function()
 	local result={}
 	for k,entity in pairs(_all) do
@@ -861,6 +862,26 @@ _.getLocals=function(entity)
 	
 	return result
 end
+
+
+
+--does not checks if exists
+_.addTag=function(entity,tag)
+	if entity.tags==nil then
+		--** wip
+		local a=1
+	end
+	
+	
+	table.insert(entity.tags, tag)
+end
+
+_.isTagged=function(entity, tag)
+	local key=Lume.find(entity.tags,tag)
+	local result=key~=nil
+	return result
+end
+
 
 
 return _

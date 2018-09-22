@@ -1,9 +1,10 @@
-		
-			pointer
-			+self
-		exclude garbage from collision detection
-	zombie notice player, enter chase mode
-zombie attack
+
+
+>have some break, pick next task
+
+
+attach debugger by command, not at program start (performance)
+
 
 rain
 	animation demo 
@@ -48,6 +49,9 @@ fly dragon
 +debugger selected entity view (and mb copy)	
 +editor save active item (skip)
 +remove old mount system
+	+deliver damage
+	zombie notice player, enter chase mode (later)
++zombie attack p2 (enough for now)
 	
 	random fun
 	future plans
@@ -726,6 +730,20 @@ scale+
 lowres+
 +download tutorials
 
+							
+							+skip, zombie._debugText is ok for now
+						+debug text over any entity
+					+zombie tells what it sees
+				+test this
+				+tag them (implement tag system)
+			+recognize trees
+			+pointer (testing)
+			+self
+		+exclude garbage from collision detection
++zombie attack p1
+
 
 
 +для компонентов не выдавать ид
+
++Error: core/entity.lua:870: bad argument #1 to 'insert' (table expected, got nil)

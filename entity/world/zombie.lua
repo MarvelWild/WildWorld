@@ -23,16 +23,17 @@ _.draw=function(zombie)
 	local sprite=Img[zombie.spriteName]
 	LG.draw(sprite,zombie.x,zombie.y)
 	
-	-- wip debug seek
+--	debug seek
 	
-	if zombie._seekRectX~=nil then
-		LG.rectangle("line",zombie._seekRectX,zombie._seekRectY,zombie._seekRectW,zombie._seekRectH)
-	end
+--	if zombie._seekRectX~=nil then
+--		LG.rectangle("line",zombie._seekRectX,zombie._seekRectY,zombie._seekRectW,zombie._seekRectH)
+--	end
 	
-	-- todo: generic solution
-	if zombie._debugText~=nil then
-		LG.print(zombie._debugText, zombie.x,zombie.y)
-	end
+--	-- todo: generic solution
+--	if zombie._debugText~=nil then
+--		-- text too big
+--		LG.print(zombie._debugText, zombie.x,zombie.y)
+--	end
 	
 	
 	

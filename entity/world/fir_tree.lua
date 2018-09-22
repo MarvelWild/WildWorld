@@ -12,6 +12,8 @@ _.new=function(options)
 	result.isActive=false
 	result.originX=16
 	result.originY=60
+	
+	Entity.addTag(result,"tree")
 		
 	BaseEntity.init(result,options)
 	return result
