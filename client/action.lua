@@ -155,7 +155,7 @@ end
 _.setWorld=function(worldName,actor)
 	if actor==nil then
 		-- current player
-		actor=World.player
+		actor=CurrentPlayer
 	end
 	
 	

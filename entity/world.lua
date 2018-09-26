@@ -1,3 +1,4 @@
+
 local _={}
 
 _.name="World"
@@ -9,11 +10,11 @@ _.new=function()
 	entity.isInWorld=false
 
 	entity.entity="World"
+	entity.name="New world"
 	
 	BaseEntity.init(entity)
 	return entity
 end
 
--- todo: register, name conflict
 
 return _

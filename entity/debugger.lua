@@ -55,8 +55,7 @@ _.drawScaledUi=function(debugger)
 	local perfInfo="FPS: "..tostring(love.timer.getFPS( )).." | Entity count: ".._entityCount..
 		" | draws:".._drawCountPrevFrame
 	_print(perfInfo, 0, 70)
-	--Util.debugPrint(World.player)
-	_printf("Player: "..Entity.toString(World.player), 0, 94,Session.windowWidth)
+	_printf("Player: "..Entity.toString(CurrentPlayer), 0, 94,Session.windowWidth)
 	
 	
 	
@@ -83,7 +82,12 @@ local dumpAll=function()
 	log("dump all")
 	
 	local all={}
-	all.world=World
+	
+	if Session.isServer then
+		all.universe=CurrentUniverse
+	else
+		all.world=CurrentWorld
+	end
 	
 	local data=serialize(all)
 	

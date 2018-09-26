@@ -1,8 +1,59 @@
+	portal entity
+multi world p2
+	
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+			
+error on deleting sheep: c:\Gamedev\Love\LoFiFreestyleGame\_task\sheep_del\stack.txt 
+
+	seeds can grow
+	drop seeds
+	plants and grass die
+vegetation simulation
+
+
+removeFromWorld put into deactivate, test this
+
+	fish
+	pantera: do not walk into water
+	detect water by point
+water
+
+	day/night
+	some random events
+	idle animation
+	ai for afk player
+fun stuff			
+			
+				#its convenient to make multi worlds first, so we have world entity
+			weather is world property
+		start and stop
 		visual
+			find public domain sound
 		sound
-	>rain
->weather
+	rain
+weather
 
 
 
@@ -39,10 +90,7 @@ debugger: draw entity points
 	+attach rider to mounting point
 	unmount to ground point
 mount: better visual
-	server evt set_world
-		+by dev button from debugger
-	+portal event
-multi world
+
 	+server-only, ok for now
 +mount could be player-owned (disappear on logoff), or server-owned (unmount on logoff)
 multi-rider mount
@@ -762,3 +810,80 @@ lowres+
 		+standing system
 	+wild mounts move on their own
 +mountable pantera
+
+
++cauldron pickup - infinite loop
+	error: removeDrawable failed. Entity was not in drawables:Cauldron
+	trace placing cauldron- should register self in drawables
+	
+	Entity.usePlaceable
+	
+	placeInWorld->setActive - there i expect it to be registered in drawables
+	
+	yes, registered
+	
+	
+	trace pickup
+		>main.pickup
+			ClientAction.pickup emit pickup event
+			responded with pickup_ok
+				deleting
+					present in drawables
+					
+	
+	removed Entity.deactivate (use Entity.setActive
+	
+	
++cauldron:
+	drop-pickup-drop-cannot pickup
+	not in collision system after second drop
+	
+	trace second drop
+	
+	
+		usePlaceable
+			>placeInWorld - should be in collision after this
+				setActive expected to place entity, but it was already active, and entity in inventory should not
+				+trace picking up, should deactivate - ok
+				
+				
+			transferToServer
+				response:	
+				
+				
+current task info:
+	chain:
+		ClientAction.setWorld("devlevel"),
+		emit event set_world
+		
+		>server sets client to new world (wip)
+		client deletes old world
+		loads new
+
+
+	q: where server stores world
+	a: global World (was)
+
+
+			server (saves world and self)
+			client (saves self, diablo 2 style)
+		save/load
+					load game-later
+					+new game
+				+make it runnable again
+			+process World usages
+			+introduce CurrentUniverse on server
+			+introduce CurrentPlayer on both
+			+introduce CurrentWorld on both
+				
+			+some random tests
+		+remove global World (at least on server)
+	+split world and level (introduce Universe)
+	full version: worlds can co-exist in simulation
+	simple version: all players enter new world
+	server evt set_world
+			portal entity
+		by entering portal in game
+		+by dev button from debugger (f4)
+	+portal event
++multi world p1				

@@ -13,7 +13,7 @@ _.new=function()
 end --new
 
 _.drawScaledUi=function()
-	local player=World.player
+	local player=CurrentPlayer
 	
 	
 	local hp=string.format("%0d",player.hp)

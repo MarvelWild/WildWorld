@@ -72,25 +72,15 @@ end
 
 local _get=_.get
 
-_.registerWorld=function()
-	-- reload not supported yet
-	
-	--we have editor items
-	--assert(Lume.count(_all)==0)
-	
-	local world=World
-	
-	
+-- attaches all entities from world to simulation
+_.registerWorld=function(world)
 	local register=_.register
 	
-	-- already in World.entities
+	-- already in W_orld.entities
 	-- register(world.player)
-	for k,entity in pairs(World.entities) do
-		if entity.entity=="BirchTree" then
-			local a=1
-		end
-		
-		
+	
+	-- 1 liner/ shorter? no, could be slower
+	for k,entity in pairs(CurrentWorld.entities) do
 		register(entity)
 	end
 end
@@ -244,13 +234,15 @@ local deactivate=function(entity)
 	if entityCode.keypressed~=nil then
 		_keyListeners[entity]=nil
 	end
+
+	if entity.isInWorld then 
+		Entity.removeFromWorld(entity)
+	end
+	
 	
 	entity.isActive=false
 end
 
-
--- setActive is safer
-_.deactivate=deactivate
 
 _.isService=function(entity)
 	return entity.id==nil
@@ -317,9 +309,7 @@ _.deleteByEntity=function(entity)
 --	event.entityId=entityId
 --	event.entityLogin=entityLogin
 
-	if entity.isInWorld then 
-		Entity.removeFromWorld(entity)
-	end
+
 	
 
 	return entity
@@ -420,6 +410,8 @@ _.drawScaledUi=function()
 end
 
 _.setActive=function(entity, isActive)
+	if isActive==nil then isActive=true end
+	
 	log("Entity.setActive:"..Entity.toString(entity)..":"..tostring(isActive))
 	
 	
@@ -437,7 +429,8 @@ _.setActive=function(entity, isActive)
 	entity.isActive=isActive
 	
 	if isActive then
-		if not Entity.isRegistered(entity) and not Entity.isService(entity) then
+		local isRegged=Entity.isRegistered(entity)
+		if not isRegged and not Entity.isService(entity) then
 			--тут activate тоже происходит
 			Entity.register(entity)
 		else
@@ -707,10 +700,10 @@ end
 
 
 _.getCenter=function(entity)
-	if entity.x==nil then
+	if entity==nil then
 		local a=1
+		-- load refactoring, no player
 	end
-	
 	
 	local x=entity.x+(entity.w/2)
 	local y=entity.y+(entity.h/2)
@@ -718,8 +711,6 @@ _.getCenter=function(entity)
 	return x,y
 end
 
--- решить: можно сыграть это, поместив сущность без коллизии
--- котёл:
 _.placeInWorld=function(entity)
 	dbgCtxIn("Entity.placeInWorld")
 	if entity.isInWorld then
@@ -734,7 +725,7 @@ _.placeInWorld=function(entity)
 	dbgCtxOut()
 end
 
--- убрать из системы коллизий
+-- remove from collision system
 _.removeFromWorld=function(entity)
 	if entity.isInWorld then
 		entity.isInWorld=false

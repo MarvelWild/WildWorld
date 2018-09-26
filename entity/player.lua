@@ -98,7 +98,7 @@ end
 
 
 _.setActiveFavorite=function(slot)
-	local player=World.player
+	local player=CurrentPlayer
 	
 	-- todo: remember slot number even if its empty (mc style)
 	player.activeFavorite=player.favorites[slot]
@@ -108,7 +108,7 @@ end
 
 -- fav slots
 _.removeItem=function(item)
-	local player=World.player
+	local player=CurrentPlayer
 	for k,v in pairs(player.favorites) do
 		if v==item then player.favorites[k]=nil end
 	end
@@ -130,7 +130,6 @@ _.setFavorite=function(player,item,slot)
 	
 	-- ожидается что вещи в инвентаре обязательно неактивны (как сущность)
 	Entity.setActive(item,false)
-	Entity.removeFromWorld(item)
 end
 
 _.addFavorite=function(player,item)
@@ -143,8 +142,7 @@ _.addFavorite=function(player,item)
 		slot=slot+1
 	end
 	
-	favs[slot]=item
-	Entity.removeFromWorld(item)
+	_.setFavorite(player,item,slot)
 end
 
 

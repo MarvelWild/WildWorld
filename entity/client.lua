@@ -111,7 +111,7 @@ local afterLogin=function(response)
 	
 	local data={
 		cmd="join",
-		player=World.player
+		player=CurrentPlayer
 	}
 	_.send(data,afterJoin)
 

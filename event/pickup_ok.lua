@@ -14,7 +14,7 @@ local _=function(event)
 	if event.actorLogin==Session.login then
 		Entity.changeLogin(picked,event.actorLogin)
 		picked.isRemote=false
-		Player.addFavorite(World.player,picked)
+		Player.addFavorite(CurrentPlayer,picked)
 	end
 end
 

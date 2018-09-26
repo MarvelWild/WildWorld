@@ -110,7 +110,7 @@ log("*** Start *** "..Util.getTimestamp())
 
 -- declare globals
 Fonts=nil -- init in load()
-World=nil
+
 
 local _debugger=Debugger.new()  ---EntityFactory.debugger()
 local _editor=nil
@@ -119,57 +119,26 @@ local _profiler=nil
 
 local saveGame=function()
 	Id.save()
-	World.entities=Entity.getSaving()
 	
---	for k,entity in pairs(World.entities) do
-		
---	end
-	
-	
-	local str=serialize(World)
-	love.filesystem.write(Const.worldSaveFile, str)
+	Universe.save()
 end
 
 local loadGame=function()
 	log("loadGame")
 	Id.load()
+	Universe.load()
 	
-	local info=love.filesystem.getInfo(Const.worldSaveFile)
-	if info==nil then return false end
-	local packed=love.filesystem.read(Const.worldSaveFile)
-	World=deserialize(packed)
-	assert(World)
+	-- wip: false if no save
+	return false
 	
-	if Session.isClient then
-		
---		for k,entity in pairs(World.entities) do
---			if entity.entity=="Player" then
---				World.entities={}
---				table.insert(World.entities,entity)
---				break
---			end
---		end
-		
-		local newEntities={}
-		for k,entity in pairs(World.entities) do
-			if entity.entity=="Player" or entity.entity=="Seed" then
-				table.insert(newEntities,entity)
-			end
-		end
-		
-		World.entities=newEntities
-	end
-	
-	Entity.registerWorld()
-	
-	return true
+	-- return true
 end
 
 local newGame=function()
-	World={}
-	World.player=Player.new()
-	Entity.setActive(World.player,true)
-	Player.giveStarterPack(World.player)
+	CurrentUniverse=Universe.new()
+	CurrentPlayer=Player.new()
+	Entity.setActive(CurrentPlayer,true)
+	Player.giveStarterPack(CurrentPlayer)
 end
 
 
@@ -243,6 +212,10 @@ love.load=function()
 	preloadImages()
 	
 	-- todo: autoload
+	
+	World=require "entity/world"
+	Universe=require "entity/universe"
+	
 	GrowableBehaviour=require "entity/behaviour/growable"
 	DrawableBehaviour=require "entity/behaviour/drawable"
 	MountableBehaviour=require "entity/behaviour/mountable"	
@@ -287,8 +260,14 @@ love.load=function()
 	
 	-- todo later, no bar is ok
 		
+	CurrentWorld=nil
+	CurrentPlayer=nil
+		
 	if Util.hasArg("sandbox") then require "sandbox" end
-	if Session.isServer then startServer() end
+	if Session.isServer then
+		CurrentUniverse=nil
+		startServer() 
+	end
 	
 	local isNewGame=Util.hasArg("new")
 
@@ -401,7 +380,9 @@ love.update=function(dt)
 	end
 	
 
-	_cam:setPosition(Entity.getCenter(World.player))
+	if CurrentPlayer~=nil then
+		_cam:setPosition(Entity.getCenter(CurrentPlayer))
+	end
 	--log("cam pos:".._cam:getPosition())
 end
 
@@ -450,7 +431,7 @@ love.mousepressed=function(x,y,button,istouch)
 			selectObjectByCoord(gameX,gameY)
 			return
 		end
-		ClientAction.move(World.player,gameX,gameY)
+		ClientAction.move(CurrentPlayer,gameX,gameY)
 	elseif button==2 then	
 		log("rmb:default action")
 
@@ -462,7 +443,7 @@ love.mousepressed=function(x,y,button,istouch)
 		end
 		
 
-		local player=World.player
+		local player=CurrentPlayer
 		local activeEntity=player.activeFavorite
 		if activeEntity==nil then
 			log("use bare hands todo")
@@ -498,7 +479,7 @@ local pickup=function()
 	log("pickup")
 	local extraRange=10
 	
-	local player=World.player
+	local player=CurrentPlayer
 	
 	local doubleRange=extraRange+extraRange
 	local x=player.x-extraRange
@@ -548,10 +529,10 @@ love.keypressed=function(key,unicode)
 		-- todo: editor listens for key when active
 		Editor.prevItem(_editor)		
 	elseif key=="home" then
-		
+		-- change player sprite for fun
 		local isFound=false
 		local first=nil
-		local currSprite=Img[World.player.spriteName]
+		local currSprite=Img[CurrentPlayer.spriteName]
 		local nextSpriteName=nil
 		for k,v in pairs(Img) do
 			local t=type(v)
@@ -575,9 +556,9 @@ love.keypressed=function(key,unicode)
 		
 		if nextSpriteName==nil then nextSpriteName=first end
 		
-		Entity.setSprite(World.player, nextSpriteName)
+		Entity.setSprite(CurrentPlayer, nextSpriteName)
 	elseif key==Config.keyMount then
-		ClientAction.toggleMount(World.player)
+		ClientAction.toggleMount(CurrentPlayer)
 	elseif key=="z" then
 		local nextSprite
 		while true do
@@ -591,13 +572,13 @@ love.keypressed=function(key,unicode)
 				nextSprite="girl"
 			end
 			
-			if World.player.spriteName~=nextSprite then 
+			if CurrentPlayer.spriteName~=nextSprite then 
 				break
 			end
 			
 		end
 		
-		Entity.setSprite(World.player, nextSprite)
+		Entity.setSprite(CurrentPlayer, nextSprite)
 	elseif key==Config.keyItemPickup then
 		pickup()
 	elseif key==Config.keyDeleteEntity then
