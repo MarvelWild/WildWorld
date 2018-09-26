@@ -1,6 +1,8 @@
 
-	wild mounts move on their own
-mountable pantera
+		visual
+		sound
+	>rain
+>weather
 
 
 
@@ -11,7 +13,7 @@ mountable pantera
 
 
 
-rain
+
 	animation demo 
 walk animation
 image independent bbox
@@ -23,6 +25,7 @@ globals export
 isMoving flag
 
 
+better sorting (riding on pantera)
 
 +player hp
 attach debugger by command, not at program start (performance)
@@ -752,3 +755,10 @@ lowres+
 +для компонентов не выдавать ид
 
 +Error: core/entity.lua:870: bad argument #1 to 'insert' (table expected, got nil)
+
+		+they accept move command but treat it differently
+		+check standing on move
+			+Entity.getStanding(from, to) -> -10 to 10
+		+standing system
+	+wild mounts move on their own
++mountable pantera

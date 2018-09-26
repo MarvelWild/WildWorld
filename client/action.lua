@@ -123,6 +123,17 @@ _.move=function(actor,x,y)
 		local mount=Entity.findByRef(movingEntityRef)
 		nextX=x-mount.footX
 		nextY=y-mount.footY
+		
+		
+		local mountStanding=Standing.get(actor,mount)
+		if mountStanding<0 then
+			nextX=nextX+Lume.random(-100,100)
+			nextY=nextY+Lume.random(-100,100)
+		end
+		
+		
+		
+		
 	else
 		movingEntityRef=Entity.getReference(actor)
 		nextX=x-actor.footX
