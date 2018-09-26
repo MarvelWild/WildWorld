@@ -1,4 +1,8 @@
 -- global Debug
+
+-- requirements
+-- global Session (search code for usage)
+
 local debug={}
 
 debug.useConsole=true

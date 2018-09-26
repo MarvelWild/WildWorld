@@ -1,9 +1,14 @@
 
+	wild mounts move on their own
+mountable pantera
 
->have some break, pick next task
 
 
-attach debugger by command, not at program start (performance)
+
+
+
+
+
 
 
 rain
@@ -17,10 +22,10 @@ globals export
 	put to entity
 isMoving flag
 
-enemy attacks
 
 
 +player hp
+attach debugger by command, not at program start (performance)
 
 +move to foot point of mount when mounted
 debugger: entity info overlay

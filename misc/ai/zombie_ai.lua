@@ -28,7 +28,7 @@ local moveRandomly=function(actor)
 end
 
 local dealDamage=function(target,amount)
-	-- wip: networking
+	-- todo: networking
 	
 	DamageableBehaviour.takeDamage(target,amount)
 	
@@ -41,12 +41,11 @@ local updateAi=function(zombie)
 
 	-- todo: make calls less frequent, remove such checks
 	
--- wip commented for debug		
---		local r=Lume.random() 
---		if r>0.1 then 
---			--log("not upd")
---			return 
---		end -- 50%?
+	local r=Lume.random() 
+	if r>0.1 then 
+		--log("not upd")
+		return 
+	end -- 50%?
 	
 	--todo: fov instead of box
 	
@@ -104,20 +103,12 @@ local updateAi=function(zombie)
 		dealDamage(pickedTarget,1)
 	end
 	
-	-- wip: actual attack
 	
-	-- wip: approach target if far
+	-- todo: approach target if far
 	
-	-- wip: attack animation
+	-- todo: attack animation
 	
-	-- wip: cooldown
-	
-	-- wip: deliver damage
-	-- wip: different damage amounts
-	
-	
-	
-	
+	-- todo: cooldown (now works on every ai update, ait ok)
 	
 	
 	moveRandomly(zombie)

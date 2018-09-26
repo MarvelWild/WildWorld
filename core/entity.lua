@@ -867,10 +867,9 @@ end
 
 --does not checks if exists
 _.addTag=function(entity,tag)
-	if entity.tags==nil then
-		--** wip
-		local a=1
-	end
+--	if entity.tags==nil then
+--		local a=1
+--	end
 	
 	
 	table.insert(entity.tags, tag)
