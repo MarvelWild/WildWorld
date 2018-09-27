@@ -1,8 +1,9 @@
 
-
-
-		small size: 
-	>create dev level
+			+introduce this mode as world property (bgSprite)
+		+single sprite mode instead of tiles? try it! (yes, 60 fps again!)
+			limit cam boundaries
+		small size: 32*32 tile (1024*1024px)
+	+create dev level
 multi world p3
 
 
@@ -16,7 +17,7 @@ variable world size - later
 
 
 
-
+	tool mode (cmd arg) to transform sequental tiles to x_y format
 tilemap optimization: filenames x_y
 
 +use setWorld action

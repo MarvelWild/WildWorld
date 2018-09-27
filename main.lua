@@ -332,14 +332,25 @@ end
 local drawTiles=TilesView.draw
 
 local doDraw=function(l,t,w,h)
-	if CurrentWorld==nil then
+	local world=CurrentWorld
+	if world==nil then
 		LG.print("no world loaded",2,30)
 		return
 	end
 	
-	--log("doDraw("..l..","..t..","..w..","..h)
 	
-	drawTiles(l,t,w,h)
+	-- todo: build draw function on setWorld instead of this checks
+	
+	--log("doDraw("..l..","..t..","..w..","..h)
+	if world.tileMapName~=nil then
+		drawTiles(l,t,w,h)
+	end
+	
+	if world.bgSprite~=nil then
+		local sprite=Img["level/"..world.bgSprite]
+		draw(sprite)
+	end
+	
 	Entity.draw()
 	Collision.draw()
 end

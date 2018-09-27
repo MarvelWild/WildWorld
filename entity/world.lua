@@ -19,9 +19,15 @@ _.new=function()
 	-- user name
 	entity.name="New world"
 	
-	-- internal name
-	-- should have tiles under res\img\level\_worldName_
+	-- internal name (portal target)
 	entity.worldName="main"
+	
+	-- should have tiles under res\img\level\_worldName_
+	entity.tileMapName=nil
+	
+	
+	-- res\img\level\%.png, alternative to tiles mode
+	entity.bgSprite=nil
 	
 	BaseEntity.init(entity)
 	return entity

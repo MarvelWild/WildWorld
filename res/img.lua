@@ -30,8 +30,9 @@ end
 
 
 local mt={}
+local _imgGet=Img.get
 mt.__index=function(t,key)
-	return t.get(key)
+	return _imgGet(key)
 end
 
 setmetatable(Img,mt)
