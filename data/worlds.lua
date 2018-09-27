@@ -6,7 +6,8 @@ local _={}
 
 local main=World.new()
 main.name="Island"
-main.tileMapName="main"
+--main.tileMapName="main"
+main.bgSprite="main"
 main.worldName="main"
 World.setSize(main,4096,4096)
 _.main=main

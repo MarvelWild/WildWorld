@@ -1,18 +1,8 @@
-Config
-
--- wip moving to world
-_.levelWidth=4096
-_.levelHeight=4096
-
-
-
-
-
 
 			+introduce this mode as world property (bgSprite)
 		+single sprite mode instead of tiles? try it! (yes, 60 fps again!)
-			limit cam boundaries
-		small size: 32*32 tile (1024*1024px)
+			+limit cam boundaries
+		+small size: 32*32 tile (1024*1024px)
 	+create dev level
 multi world p3
 
