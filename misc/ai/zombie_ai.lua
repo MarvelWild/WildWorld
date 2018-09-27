@@ -13,8 +13,12 @@ local walkRadius=30
 local moveRandomly=function(actor)
 	local x=actor.x+Lume.random(-walkRadius,walkRadius)
 	local y=actor.y+Lume.random(-walkRadius,walkRadius)
-	local nextX=Lume.clamp(x,0,Config.levelWidth)
-	local nextY=Lume.clamp(y,0,Config.levelHeight)
+	
+	local world=CurrentWorld
+	
+	
+	local nextX=Lume.clamp(x,0,world.wPx)
+	local nextY=Lume.clamp(y,0,world.hPx)
 	
 	local moveEvent=Event.new()
 	

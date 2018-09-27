@@ -1,3 +1,13 @@
+Config
+
+-- wip moving to world
+_.levelWidth=4096
+_.levelHeight=4096
+
+
+
+
+
 
 			+introduce this mode as world property (bgSprite)
 		+single sprite mode instead of tiles? try it! (yes, 60 fps again!)

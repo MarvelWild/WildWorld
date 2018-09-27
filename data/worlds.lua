@@ -8,15 +8,14 @@ local main=World.new()
 main.name="Island"
 main.tileMapName="main"
 main.worldName="main"
+World.setSize(main,4096,4096)
 _.main=main
 
 local dev=World.new()
 dev.name="Developer level"
 dev.bgSprite="dev"
 dev.worldName="dev"
---1024*1024px
-dev.w=32
-dev.h=32
+World.setSize(dev,1024,1024)
 _.dev=dev
 
 -- todo: add sky level

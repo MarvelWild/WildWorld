@@ -9,10 +9,14 @@ _.new=function()
 	entity.isDrawable=false
 	entity.isInWorld=false
 	
-	-- wip: implement this
-	-- in tiles
-	entity.w=128
-	entity.h=128
+	-- use setSize
+	
+	-- wip: rename from w,h
+	entity.wTiles=128
+	entity.hTiles=128
+	
+	entity.wPx=4096
+	entity.hPx=4096
 
 	entity.entity="World"
 	
@@ -36,7 +40,22 @@ end
 _.setCurrent=function(world)
 	CurrentWorld=world
 	Tile.setLevel(world.worldName)
+	
+	-- wip: camera boundaries
+	
+	Cam:setWorld(0,0,world.wPx,world.hPx)
 end
+
+-- in pixels
+_.setSize=function(world,wPx,hPx)
+	world.wPx=wPx
+	world.hPx=hPx
+	
+	world.wTiles=wPx/TILE_SIZE
+	world.hTiles=hPx/TILE_SIZE
+end
+
+
 
 
 

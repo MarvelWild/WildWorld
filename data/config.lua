@@ -1,13 +1,6 @@
 -- also see conf.lua
 local _={}
 
-_.levelWidth=4096
-_.levelHeight=4096
-
-
---_.windowHeight=512
---_.windowHeight=512
-
 _.scale=4
 
 _.keyProfiler="f10"

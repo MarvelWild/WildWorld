@@ -64,8 +64,7 @@ Tile=require "res/tile"
 TilesView=require 'view/tiles'
 
 
-
-Cam = Gamera.new(0,0,Config.levelWidth,Config.levelHeight)
+Cam = Gamera.new(0,0,128,128)
 local _cam=Cam
 
 Session=require "core/session"
