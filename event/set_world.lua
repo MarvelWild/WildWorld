@@ -14,10 +14,17 @@ local _=function(event)
 	
 	-- todo: save location  in prev world?
 	-- todo: coords in next world
-	-- todo: return next world to client (or just notify he can reload)
 	
 	local okEvent=Event.new()
 	okEvent.code="set_world_ok"
+	
+	okEvent.world=Worlds[event.worldName]
+	
+	if okEvent.world==nil then
+		log("error: no world:"..event.worldName)
+		
+	end
+	
 end
 
 return _

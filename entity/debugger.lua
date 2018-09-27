@@ -48,7 +48,8 @@ end
 local help="debugger dump:"..Config.keyDebuggerDump.." logs:"..	Config.keyDebuggerWriteLogs..
 
 " dump sel:"..Config.keyDebuggerDumpSelected..
-" portal:"..Config.keyDebuggerPortal
+" portal:"..Config.keyDebuggerPortal..
+" log entities:"..Config.keyDebuggerLogEntities
 
 _.drawScaledUi=function(debugger)
 	LG.print(help)
@@ -119,7 +120,7 @@ end
 
 local portal=function()
 	log("dev portal")
-	ClientAction.setWorld("devlevel")
+	ClientAction.setWorld("dev")
 end
 
 
@@ -134,6 +135,8 @@ _.keypressed=function(debugger, key)
 		dumpSelected()
 	elseif key==Config.keyDebuggerPortal then
 		portal()	
+	elseif key==Config.keyDebuggerLogEntities then
+		Entity.debugPrint()
 	end
 	
 	

@@ -1,10 +1,27 @@
-	portal entity
-multi world p2
+
+
+
+		small size: 
+	>create dev level
+multi world p3
+
+
+
+variable world size - later
+			
+			
+			
+
 	
 
 
 
 
+tilemap optimization: filenames x_y
+
++use setWorld action
++do not load world at start
++unload tiles on world change
 
 
 
@@ -13,10 +30,7 @@ multi world p2
 
 
 
-
-
-
-
++debugger: log entities
 
 
 
@@ -887,3 +901,17 @@ current task info:
 		+by dev button from debugger (f4)
 	+portal event
 +multi world p1				
+
+
+
+		+load next
+			+tilemap
+			+creatures
+			+trees
+				+but shouldnt be in collision? it should, we can use it later
+				+should have inWorld set
+			+grass
+		+unload current
+	+implement set_world_ok
+	+portal entity-later, use f12-f4 now
++multi world p2

@@ -1,7 +1,13 @@
+-- global Tile
 local _={}
 
-local baseDir="res/img/level_main/"
+local _levelsDir="res/img/level/"
 
+local _baseDir=_levelsDir.."main/"
+
+local _container={}
+
+-- get image by path
 local i=function(path)
 	local fileInfo=love.filesystem.getInfo(path)
 	if fileInfo==nil then return nil end
@@ -10,17 +16,23 @@ local i=function(path)
 end
 
 
+_.setLevel=function(name)
+	_baseDir=_levelsDir..name.."/"
+	_container={}
+end
+
+
 _.get=function(id)
 	
-	local result=rawget(_,id)
+	local result=_container[id]
 	
 	if result==nil then
-		result=i(baseDir..id..".png")
+		result=i(_baseDir..id..".png")
 		if result==nil then
 			log("error: no img by id:"..id)
 		end
 		
-		_[id]=result
+		_container[id]=result
 		
 		--log("tile loaded:"..id)
 	end
@@ -28,46 +40,4 @@ _.get=function(id)
 	return result
 end
 
-
-local mt={}
-mt.__index=function(t,key)
-	return t.get(key)
-end
-
-setmetatable(_,mt)
-
 return _
-
-
-
-
---local _={}
-
---local loadTiles=function()
---	local dir="res/img/level_main/"
---	local dirItems=love.filesystem.getDirectoryItems(dir)
---	for k,file in ipairs(dirItems) do
---		if Allen.endsWith(file, ".png") then
---				local pos=string.find(file,".png")
---				local key=tonumber(string.sub(file,0,pos-1))
-				
---				_[key]=LG.newImage(dir..file)
-----				log("tile loaded:"..file)
---		end
---	end
-	
---	-- tile 0 based, but table is 1 based, -1 is ok
---	log("total tiles:"..#_)
-	
---end
-
---loadTiles()
-
---local mt={}
---mt.__index=function(t,key)
---	return t.get(key)
---end
-
---setmetatable(Img,mt)
-
---return _

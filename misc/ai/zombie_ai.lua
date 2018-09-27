@@ -74,7 +74,7 @@ local updateAi=function(zombie)
 		-- todo: collision should not return some entities like pointer by default?
 		if entity.entity=="Pointer" then return false end
 		
-		if Entity.isTagged(entity, "tree") then return false end
+		if Taggable.isTagged(entity, "tree") then return false end
 		
 		return true
 	end

@@ -1,6 +1,9 @@
 -- glob TilesView
 local _={}
 
+local _getTile=Tile.get
+local _draw=love.graphics.draw
+
 _.draw=function(l,t,w,h)
 	-- log("drawTiles("..l..","..t..","..w..","..h)
 	
@@ -21,26 +24,7 @@ _.draw=function(l,t,w,h)
 	if endX>max then endX=max end
 	if endY>max then endY=max end
 	
---	log("drawTiles("..l..","..t..","..w..","..h.." x:"..xy(startX,endX))
-	
---	-- tile version (same performance)
---	local startTileX=startX/tileSize
---	local startTileY=startY/tileSize
---	local endTileX=endY/tileSize
---	local endTileY=endY/tileSize
-	
---	for tileY=startTileY,endTileY,1 do
---		for tileX=startTileX,endTileX,1 do
---			--opt precalc tiles
---			local tileNumber=tileX+((tileY)*128)
---			local imgId="level_main/tile"..tileNumber
---			local img=Img[imgId]
-			
---			LG.draw(img,x*tileSize,y*tileSize)
---		end
---	end
-	
--- prev pixel version	
+
 	for y=startY,endY,tileSize do
 		for x=startX,endX,tileSize do
 			local tileX=x/tileSize
@@ -48,9 +32,9 @@ _.draw=function(l,t,w,h)
 			--opt precalc tiles
 			local tileNumber=tileX+((tileY)*128)
 			
-			local img=Tile[tileNumber]
-			draw(img,x,y)
-			-- drawTile(tileNumber,x,y)
+			local img=_getTile(tileNumber)
+			
+			_draw(img,x,y)
 		end
 	end
 end

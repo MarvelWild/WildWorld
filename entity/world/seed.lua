@@ -22,7 +22,9 @@ _.use=function(seed,x,y)
 	local grass=Grass.new()
 	grass.x=x
 	grass.y=y
-	Entity.setActive(grass,true)
+	
+	-- Entity.setActive(grass,true) placeInWorld does it
+	Entity.placeInWorld(grass)
 	Entity.transferToServer({grass})
 end
 

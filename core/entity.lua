@@ -1,3 +1,4 @@
+-- global Entity,E
 local _={}
 
 -- all registered, except services
@@ -31,7 +32,12 @@ _.getDrawable=function()
 end
 
 
+
+
+-- except player
 _.getWorld=function(login)
+	if login==nil then login=CurrentPlayer.login end
+	
 	local result={}
 	for k,entity in pairs(_all) do
 		local dbgEntityInfo=Entity.toString(entity)
@@ -285,13 +291,14 @@ _.register=function(entity)
 end
 
 
+
+-- from local containers
 _.delete=function(entityName,entityId,entityLogin)
 	log("deleting entity:"..entityId.." n:"..entityName.." l:"..tostring(entityLogin))
 	local entity=_.find(entityName,entityId,entityLogin)
 	return _.deleteByEntity(entity)
 end
 
--- удаляется только локально 
 -- если надо везде - использовать (см пикап, или выход игрока)
 -- nil entityLogin means local entity
 _.deleteByEntity=function(entity)
@@ -625,8 +632,15 @@ _.toString=function(entity)
 	
 	local result=tostring(entity.entity).." id:"..tostring(entity.id)..
 		" rm:"..tostring(entity.isRemote)..
-		" a:"..tostring(entity.isActive)..
+		" ac:"..tostring(entity.isActive)..
+		" iw:"..tostring(entity.isInWorld)..		
 		" xywh:"..xywh(entity).." l:"..tostring(entity.login)
+	
+	if entity.isTransferring then
+		result=result.." xfer"
+	end
+	
+	
 	return result
 end
 
@@ -711,6 +725,7 @@ _.getCenter=function(entity)
 	return x,y
 end
 
+-- also activates it
 _.placeInWorld=function(entity)
 	dbgCtxIn("Entity.placeInWorld")
 	if entity.isInWorld then
@@ -851,24 +866,6 @@ _.getLocals=function(entity)
 		_entityLocals[entity]=result
 	end
 	
-	return result
-end
-
-
-
---does not checks if exists
-_.addTag=function(entity,tag)
---	if entity.tags==nil then
---		local a=1
---	end
-	
-	
-	table.insert(entity.tags, tag)
-end
-
-_.isTagged=function(entity, tag)
-	local key=Lume.find(entity.tags,tag)
-	local result=key~=nil
 	return result
 end
 

@@ -4,6 +4,7 @@ local _={}
 --[[
 
 ]]--
+
 _.pickup=function(entity)
 	log("picking up (create event):"..Entity.toString(entity))
 	
@@ -36,6 +37,7 @@ local doMount=function(actorEntity,target)
 	
 	event.target="server"
 end
+
 
 
 
@@ -88,6 +90,7 @@ end
 
 
 
+
 _.deleteSelected=function()
 	log("ClientAction.deleteSelected")
 	
@@ -111,6 +114,7 @@ _.deleteSelected=function()
 	event.target="server" 
 	Session.selectedEntity=nil
 end
+
 
 
 _.move=function(actor,x,y)
@@ -152,19 +156,15 @@ _.move=function(actor,x,y)
 	moveEvent.entityRef=movingEntityRef
 end
 
-_.setWorld=function(worldName,actor)
-	if actor==nil then
-		-- current player
-		actor=CurrentPlayer
-	end
+-- use world entity? no, name is enough
+_.setWorld=function(worldName)
 	
-	
-	log("requesting:setWorld:"..worldName.." for actor:".._ets(actor))
+	log("requesting:setWorld:"..worldName)
 	
 	local event=Event.new()
 	event.code="set_world"
 	event.worldName=worldName
-	event.actorRef=Entity.getReference(actor)
+	event.actorRef=Entity.getReference(CurrentPlayer)
 	event.target="server"
 end
 

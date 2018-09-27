@@ -13,7 +13,7 @@ _.new=function(options)
 	result.originX=8
 	result.originY=15
 	
-	Entity.addTag(result,"tree")
+	Taggable.addTag(result,"tree")
 		
 	BaseEntity.init(result,options)
 	return result

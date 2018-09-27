@@ -48,6 +48,7 @@ Grease=require 'lib/grease/grease.init'
 
 SortedList=require "lib/Wiki-Lua-Libraries/StandardLibraries/SortedList"
 Entity=require "core/entity"
+E=Entity
 
 -- todo: mass-load (util loader to global space, or globalize method)
 BaseEntity=require "entity/baseEntity"
@@ -56,6 +57,10 @@ Actionbar=require "entity/actionbar"
 PlayerUi=require "entity/player_ui"
 
 ClientAction=require 'client/action'
+
+Tile=require "res/tile"
+
+-- depend on Tile
 TilesView=require 'view/tiles'
 
 
@@ -91,6 +96,7 @@ if Session.isClient then
 	love.filesystem.setIdentity("ULR_Client_"..Session.login)
 	
 else
+	-- server-only init
 	love.window.setPosition(20,100)
 end
 
@@ -139,6 +145,7 @@ local newGame=function()
 	CurrentPlayer=Player.new()
 	Entity.setActive(CurrentPlayer,true)
 	Player.giveStarterPack(CurrentPlayer)
+	ClientAction.setWorld("main")
 end
 
 
@@ -207,8 +214,7 @@ love.load=function()
 	-- active for draw only
 	--love.graphics.scale(scale,scale)
 	Img=require "res/img"
-	Tile=require "res/tile"
-	
+		
 	preloadImages()
 	
 	-- todo: autoload
@@ -221,6 +227,7 @@ love.load=function()
 	MountableBehaviour=require "entity/behaviour/mountable"	
 	DamageableBehaviour=require "entity/behaviour/damageable"	
 	Standing=require "entity/behaviour/standing"	
+	Taggable=require "entity/behaviour/taggable"	
 	
 	Player=require "entity/player"
 	Seed=require "entity/world/seed"
@@ -266,6 +273,7 @@ love.load=function()
 	if Util.hasArg("sandbox") then require "sandbox" end
 	if Session.isServer then
 		CurrentUniverse=nil
+		Worlds=require "data/worlds"
 		startServer() 
 	end
 	
@@ -323,8 +331,14 @@ end
 
 local drawTiles=TilesView.draw
 
-local function doDraw(l,t,w,h)
+local doDraw=function(l,t,w,h)
+	if CurrentWorld==nil then
+		LG.print("no world loaded",2,30)
+		return
+	end
+	
 	--log("doDraw("..l..","..t..","..w..","..h)
+	
 	drawTiles(l,t,w,h)
 	Entity.draw()
 	Collision.draw()
