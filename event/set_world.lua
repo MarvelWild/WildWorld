@@ -18,7 +18,7 @@ local _=function(event)
 	local okEvent=Event.new()
 	okEvent.code="set_world_ok"
 	
-	okEvent.world=Worlds[event.worldName]
+	okEvent.world=Universe.getWorld(event.worldName)
 	
 	if okEvent.world==nil then
 		log("error: no world:"..event.worldName)

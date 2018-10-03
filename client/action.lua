@@ -156,7 +156,6 @@ _.move=function(actor,x,y)
 	moveEvent.entityRef=movingEntityRef
 end
 
--- use world entity? no, name is enough
 _.setWorld=function(worldName)
 	
 	log("requesting:setWorld:"..worldName)

@@ -5,7 +5,7 @@ NET_MSG_SEPARATOR="#^#"
 local _={}
 
 _.playerSaveFile="player"
-_.worldSaveFile="world"
+_.universeSaveFile="universe"
 
 return _
 

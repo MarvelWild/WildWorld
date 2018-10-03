@@ -124,7 +124,6 @@ local _profiler=nil
 
 local saveGame=function()
 	Id.save()
-	
 	Universe.save()
 end
 
@@ -140,7 +139,14 @@ local loadGame=function()
 end
 
 local newGame=function()
-	CurrentUniverse=Universe.new()
+	
+	-- client doesnt need entire universe
+	if Session.isServer then
+		CurrentUniverse=Universe.new()
+		local initWorlds=require "data/initworlds"
+		initWorlds()
+	end
+		
 	CurrentPlayer=Player.new()
 	Entity.setActive(CurrentPlayer,true)
 	Player.giveStarterPack(CurrentPlayer)
@@ -272,7 +278,6 @@ love.load=function()
 	if Util.hasArg("sandbox") then require "sandbox" end
 	if Session.isServer then
 		CurrentUniverse=nil
-		Worlds=require "data/worlds"
 		startServer() 
 	end
 	

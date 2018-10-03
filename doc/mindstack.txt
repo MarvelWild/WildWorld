@@ -1,34 +1,47 @@
 
-			+introduce this mode as world property (bgSprite)
-		+single sprite mode instead of tiles? try it! (yes, 60 fps again!)
-			+limit cam boundaries
-		+small size: 32*32 tile (1024*1024px)
-	+create dev level
-multi world p3
+	>world should contain its objects,
+	not it only saves self
+		+Universe.save
+	>saving (multi world-reimplement)
+restore save/load
 
 
 
-variable world size - later
+
+space dimension reachable by space dragon
+
+cactus
+
+
+		mount-specific options
+	mount
+commulicate with
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 			
-			
-			
-
-	
-
-
-
-	tool mode (cmd arg) to transform sequental tiles to x_y format
-tilemap optimization: filenames x_y
-
-+use setWorld action
-+do not load world at start
-+unload tiles on world change
-
-
-
-
-
-
 
 
 +debugger: log entities
@@ -40,7 +53,7 @@ tilemap optimization: filenames x_y
 
 
 			
-error on deleting sheep: c:\Gamedev\Love\LoFiFreestyleGame\_task\sheep_del\stack.txt 
+
 
 	seeds can grow
 	drop seeds
@@ -89,6 +102,10 @@ save flux state
 globals export
 	put to entity
 isMoving flag
+
+
+	stop any action before delete
+error on deleting moving sheep: (low prior)
 
 
 better sorting (riding on pantera)
@@ -916,3 +933,21 @@ current task info:
 	+implement set_world_ok
 	+portal entity-later, use f12-f4 now
 +multi world p2
+
+			+introduce this mode as world property (bgSprite)
+		+single sprite mode instead of tiles? try it! (yes, 60 fps again!)
+			+limit cam boundaries
+		+small size: 32*32 tile (1024*1024px)
+	+create dev level
++multi world p3
+
+
+
++variable world size
+
+	tool mode (cmd arg) to transform sequental tiles to x_y format
+tilemap optimization: filenames x_y - not actual, using whole sprite now
+
++use setWorld action
++do not load world at start
++unload tiles on world change

@@ -2,8 +2,6 @@
 
 local _={}
 
-local _worlds={}
-
 _.name="Universe"
 
 _.new=function()
@@ -11,6 +9,7 @@ _.new=function()
 	entity.editorVisible=false
 	entity.isDrawable=false
 	entity.isInWorld=false
+	entity.worlds={}
 
 	entity.entity="Universe"
 	
@@ -19,34 +18,35 @@ _.new=function()
 end
 
 -- returns world entity
+-- name is internal short name
 _.newWorld=function(name)
+	assert(name)
+	local universe=CurrentUniverse
 	
-	local existing=_worlds[name]
+	local existing=universe.worlds[name]
 	if existing~=nil then
 		log("error:world already exists")
 		return existing
 	end
 	
 	local new=World.new()
-	_worlds[name]=new
+	new.worldName=name
+	universe.worlds[name]=new
 	
 	return new
 end
 
+_.getWorld=function(name)
+	return CurrentUniverse.worlds[name]
+end
+
+
 _.save=function()
-	-- wip
+	local universe=CurrentUniverse
+	local str=serialize(universe)
+	love.filesystem.write(Const.universeSaveFile, str)
 	
-	-- prev version: Wo_rld.entities=Entity.getSaving()
-	-- new we should save each world
-	--[[ wip: reimplement
-	
-	local str=serialize(W_orld)
-	love.filesystem.write(Const.worldSaveFile, str)
-	
-	
-	
-	]]--
-	
+	log("universe saved")
 end
 
 _.load=function()
