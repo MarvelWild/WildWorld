@@ -4,17 +4,20 @@ local _=function(event)
 	-- todo: reload world
 	
 	--[[ what should be deleted?
-	all entities where entity.isInWorld
+	all inWorld entities
 	
 	]]--
 	
-	local worldEntities=Entity.getWorld()
-	
-	for k,entity in pairs(worldEntities) do
---		log("del:".._ets(entity))
-		E.deleteByEntity(entity)
+	-- clear prev world
+	if CurrentWorld~=nil then
+		local worldEntities=Entity.getWorld()
+		
+		for k,entity in pairs(worldEntities) do
+	--		log("del:".._ets(entity))
+			E.deleteByEntity(entity)
+		end
 	end
-	
+		
 --	log("world entities deleted")
 
 	World.setCurrent(event.world)

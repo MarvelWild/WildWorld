@@ -128,14 +128,14 @@ local saveGame=function()
 end
 
 local loadGame=function()
-	log("loadGame")
-	Id.load()
-	Universe.load()
+	log("loadGame (wip)")
 	
-	-- wip: false if no save
 	return false
 	
-	-- return true
+--	Id.load()
+--	local isLoaded=Universe.load()
+	
+--	return isLoaded
 end
 
 local newGame=function()
@@ -148,6 +148,9 @@ local newGame=function()
 	end
 		
 	CurrentPlayer=Player.new()
+	
+	-- wip: receive start world id from server 
+	CurrentPlayer.worldId=W
 	Entity.setActive(CurrentPlayer,true)
 	Player.giveStarterPack(CurrentPlayer)
 	ClientAction.setWorld("main")
@@ -168,13 +171,10 @@ end
 
 local startClient=function()
 	log("starting client")
-	-- todo: load player only. 
-	if not loadGame() then newGame() end
+	
 	love.window.setTitle(love.window.getTitle().." | client | "..Session.login)
 	ClientEntity=Client.new()
 	Client.connect(ClientEntity)
-	
-	-- newGame()
 end
 
 local startServer=function()
@@ -285,8 +285,14 @@ love.load=function()
 
 	if Session.isClient then
 		startClient() 
-	elseif isNewGame or not loadGame() then 
-		newGame()
+	end
+	
+	if Session.isServer then
+		if isNewGame then 
+			newGame()
+		elseif not loadGame() then
+			newGame()
+		end
 	end
 	
 	startUi()

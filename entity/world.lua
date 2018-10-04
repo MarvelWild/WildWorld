@@ -4,44 +4,43 @@ local _={}
 _.name="World"
 
 _.new=function()
-	local entity=BaseEntity.new()
-	entity.editorVisible=false
-	entity.isDrawable=false
-	entity.isInWorld=false
+	local newWorld=BaseEntity.new()
+	newWorld.editorVisible=false
+	newWorld.isDrawable=false
+	newWorld.worldId=nil
 	
 	-- use setSize
 	
-	-- wip: rename from w,h
-	entity.wTiles=128
-	entity.hTiles=128
+	newWorld.wTiles=128
+	newWorld.hTiles=128
 	
-	entity.wPx=4096
-	entity.hPx=4096
+	newWorld.wPx=4096
+	newWorld.hPx=4096
 
-	entity.entity="World"
+	newWorld.entity="World"
 	
 	-- user name
-	entity.name="New world"
+	newWorld.name="New world"
 	
 	-- internal name (portal target)
-	entity.worldName="main"
+	newWorld.worldName="main"
 	
 	-- should have tiles under res\img\level\_worldName_
-	entity.tileMapName=nil
+	newWorld.tileMapName=nil
 	
 	
 	-- res\img\level\%.png, alternative to tiles mode
-	entity.bgSprite=nil
+	newWorld.bgSprite=nil
 	
-	BaseEntity.init(entity)
-	return entity
+	newWorld.entities={}
+	
+	BaseEntity.init(newWorld)
+	return newWorld
 end
 
 _.setCurrent=function(world)
 	CurrentWorld=world
 	Tile.setLevel(world.worldName)
-	
-	-- wip: camera boundaries
 	
 	Cam:setWorld(0,0,world.wPx,world.hPx)
 end

@@ -8,7 +8,7 @@ _.new=function(options)
 	result.y=0
 	Entity.setSprite(result,"cauldron")
 	result.isDrawable=true
-	result.isInWorld=false
+	result.worldId=nil
 	--result.aiEnabled=true
 	result.canPickup=true
 	result.originX=8
@@ -21,7 +21,7 @@ end
 
 _.draw=function(entity)
 	--todo: remove from drawables on removing from world
-	if not entity.isInWorld then return end
+	if entity.worldId==nil then return end
 	
 	local sprite=Img[entity.spriteName]
 	LG.draw(sprite,entity.x,entity.y)

@@ -1,4 +1,85 @@
+no world loaded start (no player too)
 
+
+
+
+-- wip: do this after connect (need starting world from server)
+	if not loadGame() then newGame() end
+
+
+		
+		
+		
+		
+			-- wip: receive start world id from server (before newGame)
+		add player to world
+	property of player
+save current world?		
+		
+		
+	
+		>implement Universe.load
+	now it load empty world
+>restore load		
+		
+		
+		
+		
+	+test save again
+		+trace this
+	+on Entity.placeInWorld
+		where it should be added to world entities?
+	save: entities={} still
++restore save
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	place player into current world
+
+	isInWorld > worldId
+	>should place in world entity
+Entity.placeInWorld(grass)
+Entity.transferToServer({grass})
+
+
+	add world to param when needed
++refactor Entity.getWorld
+
+		
+		adding object
 	>world should contain its objects,
 	not it only saves self
 		+Universe.save
@@ -6,6 +87,8 @@
 restore save/load
 
 
+
+world travel on mount (crash now)
 
 
 space dimension reachable by space dragon

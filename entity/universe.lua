@@ -8,7 +8,7 @@ _.new=function()
 	local entity=BaseEntity.new()
 	entity.editorVisible=false
 	entity.isDrawable=false
-	entity.isInWorld=false
+	entity.worldId=nil
 	entity.worlds={}
 
 	entity.entity="Universe"
@@ -40,7 +40,7 @@ _.getWorld=function(name)
 	return CurrentUniverse.worlds[name]
 end
 
-
+ 
 _.save=function()
 	local universe=CurrentUniverse
 	local str=serialize(universe)
@@ -50,27 +50,40 @@ _.save=function()
 end
 
 _.load=function()
-	-- wip
-	--[[
-		local info=love.filesystem.getInfo(Const.worldSaveFile)
-	if info==nil then return false end
-	local packed=love.filesystem.read(Const.worldSaveFile)
-	W_orld=deserialize(packed)
-	assert(W_orld)
-	
-	if Session.isClient then
-		local newEntities={}
-		for k,entity in pairs(W_orld.entities) do
-			if entity.entity=="Player" or entity.entity=="Seed" then
-				table.insert(newEntities,entity)
-			end
-		end
+	if Session.isServer then
+		local saveFile=Const.universeSaveFile
+		local fs=love.filesystem
 		
-		W_orld.entities=newEntities
+		local info=fs.getInfo(saveFile)
+		
+		if info==nil then return false end
+		
+		local packed=fs.read(saveFile)
+		CurrentUniverse=deserialize(packed)
+		assert(CurrentUniverse)
 	end
 	
-	Entity.registerWorld()
-	]]--
+--	-- ?? some old code
+--	if Session.isClient then
+--		local newEntities={}
+--		for k,entity in pairs(W_orld.entities) do
+--			if entity.entity=="Player" or entity.entity=="Seed" then
+--				table.insert(newEntities,entity)
+--			end
+--		end
+		
+--		W_orld.entities=newEntities
+--	end
+	
+	if Session.isServer then
+		-- server load worlds by demand
+	else
+		-- wip 
+		local currWorld=nil
+		Entity.registerWorld(currWorld)
+	end
+	
+	return true
 end
 
 

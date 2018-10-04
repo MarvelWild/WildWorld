@@ -35,13 +35,28 @@ end
 
 
 -- except player
-_.getWorld=function(login)
+_.getWorld=function(login, world)
 	if login==nil then login=CurrentPlayer.login end
+	
+	if world==nil then 
+		world=CurrentWorld
+	end
+
+	
+	if world==nil then
+	
+		local a=1
+	end
+	
+	
+	assert(world)
+	
+	local worldId=world.id
 	
 	local result={}
 	for k,entity in pairs(_all) do
 		local dbgEntityInfo=Entity.toString(entity)
-		if entity.isInWorld then
+		if entity.worldId==worldId then
 			if entity.entity=="Player" and entity.login==login then
 				-- client responsible for its player, we dont send it
 			else
@@ -86,15 +101,14 @@ _.registerWorld=function(world)
 	-- register(world.player)
 	
 	-- 1 liner/ shorter? no, could be slower
-	for k,entity in pairs(CurrentWorld.entities) do
+	for k,entity in pairs(world.entities) do
 		register(entity)
 	end
 end
 
 local addToCollision=function(entity)
 --	log("addToCollision:"..Entity.toString(entity))
-	-- local isInWorldDbg=entity.isInWorld
-	if entity.w>0 and entity.h>0 and entity.isInWorld then
+	if entity.w>0 and entity.h>0 and entity.worldId~=nil then
 		Collision.add(entity)
 	else
 --		log("not square entity:"..entity.entity)
@@ -163,7 +177,7 @@ local activate=function(entity)
 	
 	entity.isActive=true
 	
-	if entity.isInWorld then
+	if entity.worldId~=nil then
 		addToCollision(entity)
 	end
 end
@@ -241,7 +255,7 @@ local deactivate=function(entity)
 		_keyListeners[entity]=nil
 	end
 
-	if entity.isInWorld then 
+	if entity.worldId~=nil then 
 		Entity.removeFromWorld(entity)
 	end
 	
@@ -633,7 +647,7 @@ _.toString=function(entity)
 	local result=tostring(entity.entity).." id:"..tostring(entity.id)..
 		" rm:"..tostring(entity.isRemote)..
 		" ac:"..tostring(entity.isActive)..
-		" iw:"..tostring(entity.isInWorld)..		
+		" wid:"..tostring(entity.worldId)..		
 		" xywh:"..xywh(entity).." l:"..tostring(entity.login)
 	
 	if entity.isTransferring then
@@ -649,7 +663,7 @@ end
 _.onMoved=function(movedEntity)
 --	log("Entity onMoved:"..Entity.toString(entity))
 	
-	if movedEntity.isInWorld then
+	if movedEntity.worldId~=nil then
 		Collision.moved(movedEntity)
 	end
 	
@@ -726,24 +740,31 @@ _.getCenter=function(entity)
 end
 
 -- also activates it
-_.placeInWorld=function(entity)
+_.placeInWorld=function(entity, world)
 	dbgCtxIn("Entity.placeInWorld")
-	if entity.isInWorld then
+	
+	if world==nil then
+		world=CurrentWorld
+	end
+	
+	assert(world)
+	
+	if entity.worldId~=nil then
 		log("error: entity already in world:"..Entity.toString(entity))
 	end
 	
+	entity.worldId=world.id
+	table.insert(world.entities, entity)
 	
-	entity.isInWorld=true
-		-- was bug addToCollision in setActive->activate. непонятно уже.
-		-- addToCollision(entity)
+	-- here it added to collision
 	_.setActive(entity,true)
 	dbgCtxOut()
 end
 
 -- remove from collision system
 _.removeFromWorld=function(entity)
-	if entity.isInWorld then
-		entity.isInWorld=false
+	if entity.worldId~=nil then
+		entity.worldId=nil
 		removeFromCollision(entity)
 	else
 		-- todo:uncomment for optimizing

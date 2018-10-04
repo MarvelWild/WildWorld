@@ -14,6 +14,7 @@ end --new
 
 _.drawScaledUi=function()
 	local player=CurrentPlayer
+	if player==nil then return end
 	
 	
 	local hp=string.format("%0d",player.hp)

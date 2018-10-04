@@ -8,7 +8,7 @@ _.new=function(options)
 	result.y=0
 	Entity.setSprite(result,"bucket_empty")
 	result.isDrawable=true
-	result.isInWorld=false
+	result.worldId=nil
 	--result.aiEnabled=true
 	result.canPickup=true
 	result.originX=8
@@ -20,7 +20,7 @@ _.new=function(options)
 end
 
 _.draw=function(entity)
-	if not entity.isInWorld then return end
+	if entity.worldId==nil then return end
 	
 	local sprite=Img[entity.spriteName]
 	LG.draw(sprite,entity.x,entity.y)

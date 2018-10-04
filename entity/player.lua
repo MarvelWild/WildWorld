@@ -14,7 +14,7 @@ _.new=function()
 	player.xScale=1 -- todo: implement
 	player.editorVisible=false
 	player.isDrawable=true
-	player.isInWorld=true
+	player.worldId=nil
 	player.riderX=7
 	player.riderY=11
 	
@@ -150,7 +150,7 @@ end
 
 _.canPickup=function(player,entity)
 	-- todo: available space, other checks
-	return entity.isInWorld==true
+	return entity.worldId~=nil
 end
 
 

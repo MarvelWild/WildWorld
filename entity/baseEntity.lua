@@ -36,7 +36,7 @@ _.new=function(options)
 	
 	-- такие в будущем будут неинтерактивны, например подняли/положили предмет и ждём подтверждения от сервера
 	result.isTransferring=nil
-	result.isInWorld=false
+	result.worldId=nil
 	result.isFlying=false
 	result.canPickup=false
 	result.isMountable=nil
@@ -57,6 +57,7 @@ _.new=function(options)
 	return result
 end
 
+-- give id, register
 _.init=function(entity,options)
 	local isProto=false
 	if options then

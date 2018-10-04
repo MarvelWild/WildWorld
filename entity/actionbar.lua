@@ -13,6 +13,7 @@ end --new
 
 _.drawUi=function(bar)
 	local player=CurrentPlayer
+	if player==nil then return end
 	
 	LG.draw(Img.ui_low,0,0)
 	
