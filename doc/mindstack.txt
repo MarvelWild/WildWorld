@@ -1,36 +1,16 @@
-no world loaded start (no player too)
-
-
-
-
--- wip: do this after connect (need starting world from server)
-	if not loadGame() then newGame() end
-
-
-		
-		
-		
-		
-			-- wip: receive start world id from server (before newGame)
-		add player to world
-	property of player
-save current world?		
-		
-		
+		point:
+	load world from player save
+	+save player
+no world loaded	
 	
 		>implement Universe.load
 	now it load empty world
 >restore load		
 		
 		
+		maybe only modified?
+save only specified props, not all?		
 		
-		
-	+test save again
-		+trace this
-	+on Entity.placeInWorld
-		where it should be added to world entities?
-	save: entities={} still
-+restore save
 	
 	
 	
@@ -1034,3 +1014,9 @@ tilemap optimization: filenames x_y - not actual, using whole sprite now
 +use setWorld action
 +do not load world at start
 +unload tiles on world change
+	+test save again
+		+trace this
+	+on Entity.placeInWorld
+		where it should be added to world entities?
+	save: entities={} still
++restore save

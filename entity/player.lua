@@ -154,7 +154,37 @@ _.canPickup=function(player,entity)
 end
 
 
+-- each player saves self (like in diablo 2)
+_.save=function()
+	local player=CurrentPlayer
+	local str=serialize(player)
+	love.filesystem.write(Const.playerSaveFile, str)
+	
+	log("player saved")
+end
 
+
+
+
+
+_.load=function()
+	local saveFile=Const.playerSaveFile
+	local fs=love.filesystem
+	
+	local info=fs.getInfo(saveFile)
+	
+	if info==nil then return false end
+	
+	local packed=fs.read(saveFile)
+	CurrentPlayer=deserialize(packed)
+	Entity.register(CurrentPlayer)
+	
+	
+	-- wip: server should know about player before setting world
+	-- now it works in single player mode (we are server)
+	ClientAction.setWorld(CurrentPlayer.worldName)
+	assert(CurrentPlayer)
+end
 
 
 return _

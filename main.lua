@@ -125,17 +125,19 @@ local _profiler=nil
 local saveGame=function()
 	Id.save()
 	Universe.save()
+	Player.save()
 end
 
 local loadGame=function()
 	log("loadGame (wip)")
 	
-	return false
+	Id.load()
+	Player.load()
+	local isLoaded=Universe.load()
 	
---	Id.load()
---	local isLoaded=Universe.load()
+	-- wip set world from player
 	
---	return isLoaded
+	return isLoaded
 end
 
 local newGame=function()

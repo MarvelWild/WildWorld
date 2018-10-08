@@ -63,7 +63,8 @@ _.load=function()
 		assert(CurrentUniverse)
 	end
 	
---	-- ?? some old code
+	-- d
+--	-- ?? some old code, need commenting
 --	if Session.isClient then
 --		local newEntities={}
 --		for k,entity in pairs(W_orld.entities) do
