@@ -39,8 +39,12 @@ _.new=function()
 end
 
 _.setCurrent=function(world)
+	assert(world)
 	CurrentWorld=world
-	Tile.setLevel(world.worldName)
+	
+	
+	-- tiles unused now
+	-- Tile.setLevel(world.worldName)
 	
 	Cam:setWorld(0,0,world.wPx,world.hPx)
 	

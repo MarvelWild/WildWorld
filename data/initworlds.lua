@@ -9,6 +9,8 @@ local initWorlds=function(universe)
 	--main.tileMapName="main"
 	main.bgSprite="main"
 	-- main.worldName="main" -- set from new
+	
+	-- todo: size from sprite
 	World.setSize(main,4096,4096)
 
 	local dev=Universe.newWorld("dev")
@@ -16,14 +18,14 @@ local initWorlds=function(universe)
 	dev.bgSprite="dev"
 	-- dev.worldName="dev"
 	World.setSize(dev,1024,1024)
-
-	-- todo: add sky level
-	--local sky=World.new()
-	--sky.name="Sky"
-	--sky.tileMapName="sky"
-	--_.sky=sky
-
-	log("world initialized")
+	
+	
+	local clouds=Universe.newWorld("clouds")
+	clouds.name="Clouds"
+	clouds.bgSprite="clouds"
+	World.setSize(clouds,4096,4096)
+	
+	log("worlds initialized")
 end
 
 return initWorlds

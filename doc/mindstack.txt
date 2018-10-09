@@ -1,6 +1,8 @@
+
+	
+	>clouds world
 	+tiger
 	+female lion
-	clouds world
 	+jiraffe
 	+elephant
 add new content from Mira		
@@ -32,9 +34,9 @@ ai should be a module, not single function
 
 
 
+ingame console
 
-
-
+demo mode (player controlled by ai)
 
 
 

@@ -135,7 +135,9 @@ local loadGame=function()
 	Player.load()
 	local isLoaded=Universe.load()
 	
-	ClientAction.setWorld(CurrentPlayer.worldName)
+	if isLoaded then
+		ClientAction.setWorld(CurrentPlayer.worldName)
+	end
 	
 	return isLoaded
 end
