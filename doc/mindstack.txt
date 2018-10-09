@@ -1,73 +1,17 @@
-		point:
-	load world from player save
-	+save player
-no world loaded	
-	
-		>implement Universe.load
-	now it load empty world
->restore load		
++jiraffe
++elephant
 		
 		
-		maybe only modified?
-save only specified props, not all?		
 		
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	place player into current world
-
-	isInWorld > worldId
-	>should place in world entity
-Entity.placeInWorld(grass)
-Entity.transferToServer({grass})
 
 
-	add world to param when needed
-+refactor Entity.getWorld
 
 		
-		adding object
-	>world should contain its objects,
-	not it only saves self
-		+Universe.save
-	>saving (multi world-reimplement)
-restore save/load
 
 
 
+
+	mount should be transferred with player
 world travel on mount (crash now)
 
 
@@ -82,6 +26,7 @@ commulicate with
 
 
 
+ai should be a module, not single function
 
 
 
@@ -220,6 +165,8 @@ show cusror to others key (hold/toggle)
 colorize entity (see crawl)
 
 toolbar mouse interaction
+		maybe only modified?
+save only specified props, not all?		
 переход в другой мир
 +починить ошибки
 также видеть курсор других игроков
@@ -1020,3 +967,22 @@ tilemap optimization: filenames x_y - not actual, using whole sprite now
 		where it should be added to world entities?
 	save: entities={} still
 +restore save
+	+load world from player save
+	+save player
++no world loaded	
+	
+		+implement Universe.load
+	+now it load empty world
++restore load	p1
+
+
+	+register loaded entities
++restore load	p2
+
+
+		+adding object
+	+world should contain its objects,
+	+not it only saves self
+		+Universe.save
+	+saving (multi world-reimplement)
++restore save/load

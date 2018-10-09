@@ -178,11 +178,8 @@ _.load=function()
 	local packed=fs.read(saveFile)
 	CurrentPlayer=deserialize(packed)
 	Entity.register(CurrentPlayer)
+
 	
-	
-	-- wip: server should know about player before setting world
-	-- now it works in single player mode (we are server)
-	ClientAction.setWorld(CurrentPlayer.worldName)
 	assert(CurrentPlayer)
 end
 

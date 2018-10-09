@@ -1,3 +1,5 @@
+local maxDistance=100
+
 local updateAi=function(pantera)
 	local r=Lume.random() 
 	if r>0.1 then 
@@ -6,8 +8,9 @@ local updateAi=function(pantera)
 	end -- 50%?
 	
 --	log("pantera update ai")
-	local x=pantera.x+Lume.random(-200,200)
-	local y=pantera.y+Lume.random(-200,200)
+
+	local x=pantera.x+Lume.random(-maxDistance,maxDistance)
+	local y=pantera.y+Lume.random(-maxDistance,maxDistance)
 	
 	local world=CurrentWorld
 	

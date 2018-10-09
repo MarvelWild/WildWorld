@@ -135,7 +135,7 @@ local loadGame=function()
 	Player.load()
 	local isLoaded=Universe.load()
 	
-	-- wip set world from player
+	ClientAction.setWorld(CurrentPlayer.worldName)
 	
 	return isLoaded
 end
@@ -247,6 +247,8 @@ love.load=function()
 	SheepBlack=require "entity/world/sheep_black"
 	HorseSmall=require "entity/world/horse_small"
 	Camel=require "entity/world/camel"
+	Elephant=require "entity/world/elephant"
+	Jiraffe=require "entity/world/jiraffe"
 	Zombie=require "entity/world/zombie"
 	Alien=require "entity/world/alien"
 	BirchSapling=require "entity/world/birch_sapling"

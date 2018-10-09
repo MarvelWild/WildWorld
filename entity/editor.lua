@@ -5,44 +5,14 @@ local _={}
 local getEditorItems=function()
 	local result={}
 	
-	
-	
 	-- todo: autoload all editor-allowed entities
-	local editorEntities={Pantera,Grass,Sheep,Dragon,Pegasus,Zombie,SheepBlack,HorseSmall,Camel}
+	local editorEntities={Pantera,Grass,Sheep,Dragon,Pegasus,Zombie,SheepBlack,HorseSmall,Camel,Elephant,Jiraffe}
 	
 	for k,entity in pairs(editorEntities) do
 		local proto=entity.new({isProto=true})
 		table.insert(result,proto)	
 	end
-	
-	
-	
---	local pantera=Pantera.new({isProto=true})
---	table.insert(result,pantera)
-	
---	local grass=Grass.new({isProto=true})
---	table.insert(result,grass)
-	
---	local item=Sheep.new({isProto=true})
---	table.insert(result,item)
-	
---	item=Dragon.new({isProto=true})
---	table.insert(result,item)
-	
---	item=Pegasus.new({isProto=true})
---	table.insert(result,item)
-	
---	item=Zombie.new({isProto=true})
---	table.insert(result,item)
-	
---	item=SheepBlack.new({isProto=true})
---	table.insert(result,item)
-	
---	item=HorseSmall.new({isProto=true})
---	table.insert(result,item)
-	
---	item=Camel.new({isProto=true})
---	table.insert(result,item)
+
 	
 	return result
 end

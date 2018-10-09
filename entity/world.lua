@@ -43,6 +43,8 @@ _.setCurrent=function(world)
 	Tile.setLevel(world.worldName)
 	
 	Cam:setWorld(0,0,world.wPx,world.hPx)
+	
+	Entity.registerWorld(CurrentWorld)
 end
 
 -- in pixels
