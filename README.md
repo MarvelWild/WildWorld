@@ -1,4 +1,4 @@
-# LoFiFreestyleGame
+# Wild World
 Freestyle/multiplayer/sandbox game written with [LÖVE ](https://love2d.org/)
 
 Influenced by Sketch Tales, World of Warcraft, Minecraft, Don't Starve, Realm of the Mad God, Atari 2600 games.

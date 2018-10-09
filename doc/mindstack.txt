@@ -1,4 +1,4 @@
-
+делать больших лошадок
 
 chain:
 	load->main.startClient->Client.connect->login->afterLogin->CurrentPlayer is nil
