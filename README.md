@@ -103,6 +103,9 @@ upcoming:
 
 <details>
  <summary>Donate</summary>
+
+Donations goal: gaming pc for Mira (0/500$)
+
 https://www.patreon.com/marvelme
 
 http://yasobe.ru/na/make_me_happy
