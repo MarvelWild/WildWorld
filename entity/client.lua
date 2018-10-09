@@ -109,6 +109,7 @@ local afterLogin=function(response)
 --	_.isLoggedIn=true
 	log("after login")
 	
+	assert(CurrentPlayer)
 	local data={
 		cmd="join",
 		player=CurrentPlayer

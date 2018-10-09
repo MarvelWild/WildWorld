@@ -14,7 +14,11 @@ _.new=function()
 	player.xScale=1 -- todo: implement
 	player.editorVisible=false
 	player.isDrawable=true
+	
+	-- todo: comment
 	player.worldId=nil
+	player.worldName="world_start"
+	
 	player.riderX=7
 	player.riderY=11
 	
@@ -45,7 +49,7 @@ _.new=function()
 	player.favorites={}
 	player.abilities={}
 	player.activeFavorite=nil
-	player.worldName="world_start"
+	
 	
 	BaseEntity.init(player)
 	return player
@@ -182,6 +186,16 @@ _.load=function()
 	
 	assert(CurrentPlayer)
 end
+
+
+_.setWorld=function(world)
+	local player=CurrentPlayer
+	
+	player.worldId=world.id
+	
+	Entity.updateCollision(player)
+end
+
 
 
 return _

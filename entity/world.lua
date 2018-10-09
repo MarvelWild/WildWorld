@@ -49,6 +49,8 @@ _.setCurrent=function(world)
 	Cam:setWorld(0,0,world.wPx,world.hPx)
 	
 	Entity.registerWorld(CurrentWorld)
+	
+	Player.setWorld(world)
 end
 
 -- in pixels

@@ -1,11 +1,40 @@
 
+		
+		
+		+server crash on client join
+	>tests
+multi world multiplayer
+
+
+
+
+
+
+
+
+unload later - let simulation run for now
+	load world if someone enters
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	
-	>clouds world
+	+clouds world
 	+tiger
 	+female lion
 	+jiraffe
 	+elephant
-add new content from Mira		
++add new content from Mira		
 		
 
 
@@ -990,3 +1019,4 @@ tilemap optimization: filenames x_y - not actual, using whole sprite now
 		+Universe.save
 	+saving (multi world-reimplement)
 +restore save/load
++entity has no collision:Player

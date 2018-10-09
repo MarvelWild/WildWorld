@@ -177,10 +177,18 @@ local activate=function(entity)
 	
 	entity.isActive=true
 	
+	_.updateCollision(entity)
+	
+end
+
+
+_.updateCollision=function(entity)
 	if entity.worldId~=nil then
 		addToCollision(entity)
 	end
 end
+
+
 
 local removeDrawable=function(entity,container)
 	--local countBefore

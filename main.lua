@@ -129,7 +129,7 @@ local saveGame=function()
 end
 
 local loadGame=function()
-	log("loadGame (wip)")
+	log("loadGame")
 	
 	Id.load()
 	Player.load()
@@ -153,8 +153,7 @@ local newGame=function()
 		
 	CurrentPlayer=Player.new()
 	
-	-- wip: receive start world id from server 
-	CurrentPlayer.worldId=W
+
 	Entity.setActive(CurrentPlayer,true)
 	Player.giveStarterPack(CurrentPlayer)
 	ClientAction.setWorld("main")
