@@ -242,6 +242,7 @@ love.load=function()
 	Grass=require "entity/world/grass"
 	Creature=require "entity/world/creature"
 	Pantera=require "entity/world/pantera"
+	Zebra=require "entity/world/zebra"
 	Dragon=require "entity/world/dragon"
 	Pegasus=require "entity/world/pegasus"
 	Sheep=require "entity/world/sheep"
@@ -290,16 +291,19 @@ love.load=function()
 	
 	local isNewGame=Util.hasArg("new")
 
+
+	
+	--if Session.isServer then
+	if isNewGame then 
+		newGame()
+	elseif not loadGame() then
+		newGame()
+	end
+	--end
+	
+	-- load first, so we have a player
 	if Session.isClient then
 		startClient() 
-	end
-	
-	if Session.isServer then
-		if isNewGame then 
-			newGame()
-		elseif not loadGame() then
-			newGame()
-		end
 	end
 	
 	startUi()

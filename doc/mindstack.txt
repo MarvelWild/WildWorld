@@ -1,4 +1,37 @@
 
+
+chain:
+	load->main.startClient->Client.connect->login->afterLogin->CurrentPlayer is nil
+	
+	
+Where CurrentPlayer is set?
+	load->main.newGame
+
+	>test
+Client crash on join
+0 connect ok
+0 [net] send cmd:login data:{ requestId=1, cmd="login", login="c1" }
+0 registering:Actionbar id:nil rm:false ac:false wid:nil xywh:00,00,00,00 l:c1
+0 Entity.setActive:Actionbar id:nil rm:false ac:false wid:nil xywh:00,00,00,00 l:c1:true
+0 registering:PlayerUi id:nil rm:false ac:false wid:nil xywh:00,00,00,00 l:c1
+0 Entity.setActive:PlayerUi id:nil rm:false ac:false wid:nil xywh:00,00,00,00 l:c1:true
+1 [net] recv:{ requestId=1, cmd="generic", message="yo! login ok" }#^#
+1 after login
+Error: entity/client.lua:112: assertion failed!
+stack traceback:
+        [string "boot.lua"]:637: in function <[string "boot.lua"]:633>
+        [C]: in function 'assert'
+        entity/client.lua:112: in function 'singleHandler'
+        entity/client.lua:39: in function 'recv'
+        lib/grease/grease/core.lua:122: in function 'update'
+        entity/client.lua:170: in function 'updateFunc'
+        core/entity.lua:525: in function 'update'
+        main.lua:417: in function 'update'
+        [string "boot.lua"]:509: in function <[string "boot.lua"]:493>
+        [C]: in function 'xpcall'
+
+
+
 		
 		
 		+server crash on client join

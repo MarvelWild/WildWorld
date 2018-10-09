@@ -6,7 +6,7 @@ local getEditorItems=function()
 	local result={}
 	
 	-- todo: autoload all editor-allowed entities
-	local editorEntities={Pantera,Grass,Sheep,Dragon,Pegasus,Zombie,SheepBlack,HorseSmall,Camel,Elephant,Jiraffe,LionFemale,Tiger}
+	local editorEntities={Pantera,Grass,Sheep,Dragon,Pegasus,Zombie,SheepBlack,HorseSmall,Camel,Elephant,Jiraffe,LionFemale,Tiger,Zebra}
 	
 	for k,entity in pairs(editorEntities) do
 		local proto=entity.new({isProto=true})
