@@ -1,4 +1,4 @@
-делать больших лошадок
+big horses
 
 chain:
 	load->main.startClient->Client.connect->login->afterLogin->CurrentPlayer is nil
@@ -41,7 +41,7 @@ multi world multiplayer
 
 
 
-
+record player actions to be replayable
 
 
 
