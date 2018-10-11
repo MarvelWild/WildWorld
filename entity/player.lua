@@ -17,7 +17,7 @@ _.new=function()
 	
 	-- todo: comment
 	player.worldId=nil
-	player.worldName="world_start"
+	player.worldName="main"
 	
 	player.riderX=7
 	player.riderY=11
@@ -52,6 +52,11 @@ _.new=function()
 	
 	
 	BaseEntity.init(player)
+	
+	if CurrentWorld~=nil then
+		_.setWorld(CurrentWorld)
+	end
+	
 	return player
 end
 
@@ -185,6 +190,8 @@ _.load=function()
 
 	
 	assert(CurrentPlayer)
+	
+	return true
 end
 
 

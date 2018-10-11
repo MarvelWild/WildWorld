@@ -10,6 +10,13 @@ local _=function(event)
 	
 	-- actor is player only for now
 	local actor=Entity.findByRef(event.actorRef)
+	if actor==nil then
+		log("error: actor not found:"..pack(event.actorRef))
+		return
+	end
+	
+	
+	
 	actor.worldName=event.worldName
 	
 	-- todo: save location  in prev world?

@@ -183,8 +183,12 @@ end
 
 
 _.updateCollision=function(entity)
-	if entity.worldId~=nil then
-		addToCollision(entity)
+	if entity.worldId~=nil  then
+		if not Collision.isRegistered(entity) then
+			addToCollision(entity)
+		else
+			-- todo: catch double additions, resolve by changing logic
+		end
 	end
 end
 

@@ -61,6 +61,9 @@ _.load=function()
 		local packed=fs.read(saveFile)
 		CurrentUniverse=deserialize(packed)
 		assert(CurrentUniverse)
+	else
+		-- client wont load universe from file
+		return false
 	end
 	
 	return true

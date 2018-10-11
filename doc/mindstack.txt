@@ -1,4 +1,130 @@
-big horses
+
+		
+		
+		
+			Client.login->Client.afterLogin
+		>trace client
+	player register points:
+	
+	player should be registered on server before joining world (ClientAction.setWorld)
+happens on server on client join	
+	
+Error: event/set_world.lua:13: attempt to index local 'actor' (a nil value)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	>trace logoff on server
+server draw client that left
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+things i want this day:
+	more worlds
+	portals
+	flowers
+	mores trees
+	gardener ai (plant vegetations)
+	detecting water
+	swimming
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 chain:
 	load->main.startClient->Client.connect->login->afterLogin->CurrentPlayer is nil
@@ -6,6 +132,8 @@ chain:
 	
 Where CurrentPlayer is set?
 	load->main.newGame
+	
+	
 
 	>test
 Client crash on join
@@ -38,10 +166,12 @@ stack traceback:
 	>tests
 multi world multiplayer
 
-
+error on loading
 
 
 record player actions to be replayable
+
+big horses
 
 
 
@@ -1053,3 +1183,6 @@ tilemap optimization: filenames x_y - not actual, using whole sprite now
 	+saving (multi world-reimplement)
 +restore save/load
 +entity has no collision:Player
+
+
++server error: double player registering ()

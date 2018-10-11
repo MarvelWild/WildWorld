@@ -92,7 +92,7 @@ end
 
 if Session.isClient then
 	setClientLogin()
-	love.filesystem.setIdentity("ULR_Client_"..Session.login)
+	love.filesystem.setIdentity("WiW_Client_"..Session.login)
 	
 else
 	-- server-only init
@@ -132,13 +132,18 @@ local loadGame=function()
 	log("loadGame")
 	
 	Id.load()
-	Player.load()
-	local isLoaded=Universe.load()
 	
-	if isLoaded then
-		ClientAction.setWorld(CurrentPlayer.worldName)
+	
+	local isLoaded=Player.load()
+	if Session.isServer then
+		isLoaded=Universe.load()
+	
+		if isLoaded then
+			-- client does it later, after player registered
+			ClientAction.setWorld(CurrentPlayer.worldName)
+		end
 	end
-	
+
 	return isLoaded
 end
 
@@ -156,6 +161,8 @@ local newGame=function()
 
 	Entity.setActive(CurrentPlayer,true)
 	Player.giveStarterPack(CurrentPlayer)
+	
+	-- wip: server should know about player before this
 	ClientAction.setWorld("main")
 end
 
@@ -651,14 +658,44 @@ end
 
 
 
+local logoff=function()
+	log("logoff")
+	-- wip notify server
+	
+	
+end
+
+local afterLogoff=function()
+	log("after logoff")
+	-- wip quit
+	
+	local event=Event.new()
+	event.code="logoff"
+	event.target="server" 
+end
 
 
-
-love.quit=function()
+local doQuit=function()
 	saveGame()
 	
 	log("*** Quit ***")
 	Debug.writeLogs()
+end
+
+
+love.quit=function()
+	if Session.isClient then
+		logoff()
+		
+		-- Abort quitting. If true, do not close the game.
+		return true
+	end
+	
+	doQuit()
+	
+	
+	
+	
 	return false
 end
 

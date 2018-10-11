@@ -160,10 +160,13 @@ _.setWorld=function(worldName)
 	
 	log("requesting:setWorld:"..worldName)
 	
+	local player=CurrentPlayer
+	assert(player)
+	
 	local event=Event.new()
 	event.code="set_world"
 	event.worldName=worldName
-	event.actorRef=Entity.getReference(CurrentPlayer)
+	event.actorRef=Entity.getReference(player)
 	event.target="server"
 end
 

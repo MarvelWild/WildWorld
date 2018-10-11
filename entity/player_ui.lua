@@ -18,7 +18,9 @@ _.drawScaledUi=function()
 	
 	
 	local hp=string.format("%0d",player.hp)
-	LG.print("hp:"..hp, 5,84)
+	
+	-- todo: display when it makes sense
+	-- LG.print("hp:"..hp, 5,84)
 	
 end
 

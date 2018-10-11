@@ -35,7 +35,7 @@ _.add=function(entity)
 --	_log(debug.traceback()) -- search key: stack traceback:
 	
 	
-	if _shapeByEntity[entity] then
+	if _.isRegistered(entity) then
 		_log("error: entity already registered in collision system:"..Inspect(entity))
 		return
 	end
@@ -46,6 +46,16 @@ _.add=function(entity)
 	
 	--_log("Collidable entity registered: "..Entity.toString(entity))
 end
+
+_.isRegistered=function(entity)
+	if _shapeByEntity[entity] then
+		return true
+	end
+	
+	return false
+end
+
+
 
 _.remove=function(entity)
 	_log("collision.remove:"..Entity.toString(entity))
