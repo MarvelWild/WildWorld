@@ -111,6 +111,8 @@ upcoming:
 
 Donations goal: gaming pc for Mira (0/500$)
 
+https://liberapay.com/MarvelWild/
+
 https://www.patreon.com/marvelme
 
 http://yasobe.ru/na/make_me_happy

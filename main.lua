@@ -148,7 +148,7 @@ local loadGame=function()
 end
 
 local newGame=function()
-	
+	log("new game")
 	-- client doesnt need entire universe
 	if Session.isServer then
 		CurrentUniverse=Universe.new()
@@ -162,8 +162,9 @@ local newGame=function()
 	Entity.setActive(CurrentPlayer,true)
 	Player.giveStarterPack(CurrentPlayer)
 	
-	-- wip: server should know about player before this
-	ClientAction.setWorld("main")
+	if Session.isServer then
+		ClientAction.setWorld(CurrentPlayer.worldName)
+	end
 end
 
 
@@ -657,14 +658,6 @@ love.resize=function(width, height)
 end
 
 
-
-local logoff=function()
-	log("logoff")
-	-- wip notify server
-	
-	
-end
-
 local afterLogoff=function()
 	log("after logoff")
 	-- wip quit
@@ -673,6 +666,17 @@ local afterLogoff=function()
 	event.code="logoff"
 	event.target="server" 
 end
+
+local logoff=function()
+	log("logoff")
+	-- wip notify server
+	
+	-- quit if no server
+	
+	
+	afterLogoff()
+end
+
 
 
 local doQuit=function()

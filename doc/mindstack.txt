@@ -1,17 +1,9 @@
 
-		
-		
-		
-			Client.login->Client.afterLogin
-		>trace client
-	player register points:
-	
-	player should be registered on server before joining world (ClientAction.setWorld)
-happens on server on client join	
-	
-Error: event/set_world.lua:13: attempt to index local 'actor' (a nil value)
 
 
+
+
+when client2 joins, server player disappears on c1, and becomes c2, followed by errors
 
 
 

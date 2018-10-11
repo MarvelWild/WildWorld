@@ -98,6 +98,8 @@ local afterJoin=function(response)
 		entity.aiEnabled=false
 		Entity.register(entity)
 	end
+	
+	ClientAction.setWorld(CurrentPlayer.worldName)
 end
 
 
