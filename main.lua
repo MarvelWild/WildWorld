@@ -250,6 +250,7 @@ love.load=function()
 	Player=require "entity/player"
 	Seed=require "entity/world/seed"
 	Grass=require "entity/world/grass"
+	Flower=require "entity/world/flower"
 	Creature=require "entity/world/creature"
 	Pantera=require "entity/world/pantera"
 	Zebra=require "entity/world/zebra"

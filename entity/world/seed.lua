@@ -19,13 +19,22 @@ _.use=function(seed,x,y)
 	
 	log("Seed plant at:"..xy(x,y))
 	
-	local grass=Grass.new()
-	grass.x=x
-	grass.y=y
+	local rnd=love.math.random()
+	
+	local placeable
+	if rnd<0.5 then
+		placeable=Grass.new()
+	else
+		placeable=Flower.new()
+	end
+	
+	
+	placeable.x=x
+	placeable.y=y
 	
 	-- Entity.setActive(grass,true) placeInWorld does it
-	Entity.placeInWorld(grass)
-	Entity.transferToServer({grass})
+	Entity.placeInWorld(placeable)
+	Entity.transferToServer({placeable})
 end
 
 
