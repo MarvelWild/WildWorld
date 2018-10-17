@@ -289,7 +289,13 @@ _.isRegistered=function(entity)
 end
 
 _.register=function(entity)
-	log("registering:"..Entity.toString(entity))
+	local entityString=Entity.toString(entity)
+	log("registering:"..entityString)
+	
+	
+	if string.find(entityString, "Boombox") then
+		log("wip:Debug double add")
+	end
 	-- service entity created at runtime, and do not need to be serialized
 	local isService=isService(entity)
 	local isActive=not (entity.isActive==false) -- true or nil
@@ -421,7 +427,7 @@ _.draw=function()
 	end
 	
 	local activeEntity=Session.selectedEntity
-	if activeEntity~=nil then
+	if activeEntity~=nil and activeEntity.worldId~=nil then
 		LG.rectangle('line',activeEntity.x-1,activeEntity.y-1,activeEntity.w+2,activeEntity.h+2)
 	end
 end

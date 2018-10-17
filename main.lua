@@ -663,12 +663,7 @@ love.resize=function(width, height)
 end
 
 
-local afterLogoff=function()
-	log("after logoff")
-	-- wip quit
-	
 
-end
 
 local doQuit=function()
 	saveGame()
@@ -677,6 +672,13 @@ local doQuit=function()
 	Debug.writeLogs()
 	
 	love.event.quit()
+end
+
+local afterLogoff=function()
+	log("after logoff")
+	doQuit()
+	
+
 end
 
 
@@ -691,13 +693,14 @@ local _isLogoff=false
 local logoff=function()
 	log("logoff")
 	_isLogoff=true
-	-- wip notify server
-	
+
 	startQuitTimer()
 	
 	local event=Event.new()
 	event.code="logoff"
 	event.target="server" 
+	
+	-- wip react to event
 	
 	--afterLogoff() -- wip
 end

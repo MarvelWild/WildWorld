@@ -1,4 +1,44 @@
 	
+error on load
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+pickup lag
+	
+	+откуда она рисуется? Entity.draw
++когда подняли бумбокс - коллизия продолжила рисоваться
+	
+	
+	carry in hands
+	boombox error: double add on load
 >ingame music player (as object)
 	
 	+test
