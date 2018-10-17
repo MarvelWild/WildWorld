@@ -1,5 +1,8 @@
+	
+>ingame music player (as object)
+	
 	+test
-	+fires instantly bug - do not call fn, pass it :)
+	+fires instantly bug - do not call +fn, pass it :)
 +connect timer lib
 
 

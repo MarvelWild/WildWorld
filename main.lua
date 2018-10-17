@@ -268,6 +268,7 @@ love.load=function()
 	Alien=require "entity/world/alien"
 	BirchSapling=require "entity/world/birch_sapling"
 	Cauldron=require "entity/world/cauldron"
+	Boombox=require "entity/world/boombox"
 	Bucket=require "entity/world/bucket"
 	BirchTree=require "entity/world/birch_tree"
 	FirTree=require "entity/world/fir_tree"

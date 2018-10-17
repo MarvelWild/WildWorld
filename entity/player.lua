@@ -103,6 +103,9 @@ _.giveStarterPack=function(player)
 	
 	local slot4=Bucket.new()
 	_.setFavorite(player,slot4,4)
+	
+	local slot5=Boombox.new()
+	_.setFavorite(player,slot5,5)
 end
 
 
