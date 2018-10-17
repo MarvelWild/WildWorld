@@ -15,6 +15,8 @@ Tween=require "lib/tween/tween"
 
 --tweening
 Flux=require "lib/flux/flux"
+TimerLib=require "lib/timer/Timer"
+Timer=TimerLib()
 Debug = require "lib/debug"
 Inspect=require "lib/inspect/inspect"
 Debug.useFile=true
@@ -425,6 +427,7 @@ end
 love.update=function(dt)
 	Session.frame=Session.frame+1
 	Flux.update(dt)
+	Timer:update(dt)
 	
 	Entity.update(dt)
 	Event.update(dt)
@@ -662,33 +665,44 @@ local afterLogoff=function()
 	log("after logoff")
 	-- wip quit
 	
-	local event=Event.new()
-	event.code="logoff"
-	event.target="server" 
+
 end
-
-local logoff=function()
-	log("logoff")
-	-- wip notify server
-	
-	-- quit if no server
-	
-	
-	afterLogoff()
-end
-
-
 
 local doQuit=function()
 	saveGame()
 	
 	log("*** Quit ***")
 	Debug.writeLogs()
+	
+	love.event.quit()
+end
+
+
+local startQuitTimer=function()
+	log("startQuitTimer")
+	Timer:after(2, doQuit)
+end
+
+
+local _isLogoff=false
+
+local logoff=function()
+	log("logoff")
+	_isLogoff=true
+	-- wip notify server
+	
+	startQuitTimer()
+	
+	local event=Event.new()
+	event.code="logoff"
+	event.target="server" 
+	
+	--afterLogoff() -- wip
 end
 
 
 love.quit=function()
-	if Session.isClient then
+	if not _isLogoff and Session.isClient then
 		logoff()
 		
 		-- Abort quitting. If true, do not close the game.
