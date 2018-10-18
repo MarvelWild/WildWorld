@@ -1,4 +1,7 @@
 
+		remove from world on pickup?
+		transfer from server on pickup?
+	ловить момент появления дубля в Entity _all
 	>две попали в сейв, трассировать сейв и до
 error on load
 

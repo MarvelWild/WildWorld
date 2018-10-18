@@ -1,4 +1,6 @@
 -- global Entity,E
+
+
 local _={}
 
 -- all registered, except services
@@ -302,10 +304,6 @@ _.register=function(entity)
 	local entityString=Entity.toString(entity)
 	log("registering:"..entityString)
 	
-	
-	if string.find(entityString, "Boombox") then
-		log("wip:Debug double add")
-	end
 	-- service entity created at runtime, and do not need to be serialized
 	local isService=isService(entity)
 	local isActive=not (entity.isActive==false) -- true or nil
@@ -318,6 +316,11 @@ _.register=function(entity)
 			end
 			
 			
+		end
+		
+		
+		if string.find(entityString,"Bucket") then
+			local a=1
 		end
 		
 		
@@ -346,7 +349,9 @@ end
 _.deleteByEntity=function(entity)
 	assert(entity)
 	
-	if entity.isActive then deactivate(entity) end
+	if entity.isActive then 
+		deactivate(entity) 
+	end
 	
 	local isRemoved=table_removeByVal(_all,entity)
 	assert(isRemoved)
@@ -782,7 +787,16 @@ _.placeInWorld=function(entity, world)
 	end
 	
 	entity.worldId=world.id
+	
+	if Lume.find(world.entities, entity) then
+		log("error: world already contains that entity:".._ets(entity))
+		
+	end
+	
+	
 	table.insert(world.entities, entity)
+	
+	
 	
 	-- here it added to collision
 	_.setActive(entity,true)
@@ -791,7 +805,12 @@ end
 
 -- remove from collision system
 _.removeFromWorld=function(entity)
-	if entity.worldId~=nil then
+	local worldId=entity.worldId
+	if worldId~=nil then
+		local world=World.getById(worldId)
+		local isRemoved=Util.table_removeByVal(world.entities, entity)
+		assert(isRemoved)
+		
 		entity.worldId=nil
 		removeFromCollision(entity)
 	else
@@ -810,6 +829,11 @@ _.changeLogin=function(entity,login)
 	
 	
 	assert(not entity.isActive)
+	if entity.login==login then
+		return
+	end
+	
+	
 	entity.login=login
 	entity.isRemote=login==Session.login
 	local oldId=entity.id

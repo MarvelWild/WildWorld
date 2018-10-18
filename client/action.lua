@@ -5,6 +5,7 @@ local _={}
 
 ]]--
 
+-- response: pickup_ok
 _.pickup=function(entity)
 	log("picking up (create event):"..Entity.toString(entity))
 	

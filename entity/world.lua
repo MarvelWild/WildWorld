@@ -66,4 +66,15 @@ end
 
 
 
+
+_.getById=function(worldId)
+	for name,world in pairs(CurrentUniverse.worlds) do
+		if world.id==worldId then
+			return world
+		end
+	end
+	
+	return nil
+end
+
 return _
