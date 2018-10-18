@@ -1,4 +1,5 @@
-	
+
+	>две попали в сейв, трассировать сейв и до
 error on load
 
 
@@ -36,6 +37,7 @@ pickup lag
 	+откуда она рисуется? Entity.draw
 +когда подняли бумбокс - коллизия продолжила рисоваться
 	
+vector entities too	
 	
 	carry in hands
 	boombox error: double add on load

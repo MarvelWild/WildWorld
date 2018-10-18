@@ -700,9 +700,7 @@ local logoff=function()
 	event.code="logoff"
 	event.target="server" 
 	
-	-- wip react to event
-	
-	--afterLogoff() -- wip
+	-- todo react to event
 end
 
 

@@ -20,6 +20,8 @@ local _=function(event)
 		
 --	log("world entities deleted")
 
+	local www=Inspect(event.world)
+
 	World.setCurrent(event.world)
 end
 

@@ -101,9 +101,19 @@ _.registerWorld=function(world)
 	-- register(world.player)
 	
 	-- 1 liner/ shorter? no, could be slower
+	log("registerWorld start")
+	
 	for k,entity in pairs(world.entities) do
+		log("preregister:"+_ets(entity))
+	end
+	
+	for k,entity in pairs(world.entities) do
+		log("register:"+_ets(entity))
+		
 		register(entity)
 	end
+	
+	log("registerWorld end")
 end
 
 local addToCollision=function(entity)
