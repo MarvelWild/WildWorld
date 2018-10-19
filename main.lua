@@ -562,6 +562,11 @@ local pickup=function()
 	end
 end
 
+local startMountInteraction=function()
+	log("wip mount interaction")
+end
+
+
 
 
 love.keypressed=function(key,unicode)
@@ -649,6 +654,10 @@ love.keypressed=function(key,unicode)
 		if Session.scale>=2 then
 			Session.scale=Session.scale-1		
 			_cam:setScale(Session.scale)
+		end
+	elseif key=="m" then
+		if CurrentPlayer~=nil and CurrentPlayer.mountedOn~=nil then
+			startMountInteraction()
 		end
 	end
 	

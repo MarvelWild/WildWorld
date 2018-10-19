@@ -314,15 +314,7 @@ _.register=function(entity)
 			if alreadyRegistered then
 				log("error: attempt to register entity twice:"..Entity.toString(entity))
 			end
-			
-			
 		end
-		
-		
-		if string.find(entityString,"Bucket") then
-			local a=1
-		end
-		
 		
 		table.insert(_all,entity)
 	end
@@ -457,7 +449,7 @@ end
 
 -- 1x size ui
 _.drawScaledUi=function()
-	local test=Util.dump(_scaleduidrawable)
+	-- local test=Util.dump(_scaleduidrawable)
 	for entity,code in pairs(_scaleduidrawable) do
 		code(entity)
 	end

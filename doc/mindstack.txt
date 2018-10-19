@@ -1,9 +1,6 @@
-
-		remove from world on pickup?
-		transfer from server on pickup?
-	ловить момент появления дубля в Entity _all
-	>две попали в сейв, трассировать сейв и до
-error on load
+	mount ui
+	key to start interaction - m(ount) - while mounted
+tell pegasus to fly to the sky
 
 
 
@@ -33,18 +30,13 @@ error on load
 
 
 
+when client2 joins, server player disappears on c1, and becomes c2, followed by errors
 
 
-pickup lag
-	
-	+откуда она рисуется? Entity.draw
-+когда подняли бумбокс - коллизия продолжила рисоваться
-	
-vector entities too	
 	
 	carry in hands
-	boombox error: double add on load
->ingame music player (as object)
+	+boombox error: double add on load
+ingame music player (as object)
 	
 	+test
 	+fires instantly bug - do not call +fn, pass it :)
@@ -55,7 +47,6 @@ vector entities too
 
 
 
-when client2 joins, server player disappears on c1, and becomes c2, followed by errors
 
 
 
@@ -70,6 +61,7 @@ when client2 joins, server player disappears on c1, and becomes c2, followed by 
 
 
 
+vector entities experiment
 
 
 
@@ -1230,3 +1222,15 @@ tilemap optimization: filenames x_y - not actual, using whole sprite now
 
 
 +server error: double player registering ()
+
+
+		+remove from world on pickup?
+		+transfer from server on pickup?
+	+ловить момент появления дубля в Entity _all
+	+две попали в сейв, трассировать сейв и до
++error on load
+
++pickup lag - resolved by fixing others
+	
+	+откуда она рисуется? Entity.draw
++когда подняли бумбокс - коллизия продолжила рисоваться
