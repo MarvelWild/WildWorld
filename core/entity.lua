@@ -516,6 +516,8 @@ _.setDrawable=function(entity, isDrawable)
 	
 end
 
+
+-- sets size by sprite
 _.setSprite=function(entity,spriteName)
 	entity.spriteName=spriteName
 	

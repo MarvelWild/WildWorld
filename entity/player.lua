@@ -206,6 +206,17 @@ _.setWorld=function(world)
 	Entity.updateCollision(player)
 end
 
+_.startDance=function()
+	local danceFrames=
+	{
+		Img.get("player1_dance1"),
+		Img.get("player1_dance2"),
+		Img.get("player1_dance3"),
+		Img.get("player1_dance4"),
+	}
+	
+	Anim.start(CurrentPlayer, danceFrames)
+end
 
 
 return _

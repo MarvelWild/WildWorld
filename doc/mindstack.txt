@@ -1,3 +1,8 @@
+
+		by key d
+	player dance 
+animations		
+		
 		
 	move mount too (crash now)
 	mount ui-later
@@ -13,6 +18,9 @@ singleplayer branch for prototyping/faster stuff?
 
 
 
+	backpack
+	chest
+containers
 
 
 

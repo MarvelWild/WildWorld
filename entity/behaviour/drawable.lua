@@ -13,8 +13,14 @@ local _drawFlipped=function(drawable,x,y)
 end
 
 
+_.drawAnimable=function(entity)
+	-- wip
+end
+
 
 _.draw=function(entity)
+	local spriteName=entity.spriteName
+	if spriteName==nil then return end
 	local sprite=Img[entity.spriteName]
 	_draw(sprite,entity.x,entity.y)
 	-- _drawFlipped(sprite,entity.x,entity.y)

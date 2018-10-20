@@ -12,6 +12,7 @@ TSerial=require "lib/TSerial"
 Serpent=require "lib/serpent/src/serpent"
 Lume=require "lib/lume/lume"
 Tween=require "lib/tween/tween"
+Walt=require "lib/walt/animator"
 
 --tweening
 Flux=require "lib/flux/flux"
@@ -70,6 +71,8 @@ Cam = Gamera.new(0,0,128,128)
 local _cam=Cam
 
 Session=require "core/session"
+
+Anim=require "tech/anim"
 
 
 Session.isClient=Util.hasArg("c")
@@ -386,6 +389,7 @@ local doDraw=function(l,t,w,h)
 	
 	Entity.draw()
 	Collision.draw()
+	Anim.draw()
 end
 
 
@@ -395,6 +399,7 @@ love.draw=function()
 
 --	love.graphics.scale(1,0.5)
 	_cam:draw(doDraw)
+	
 	
 	-- cam has internal scale
 	
@@ -429,6 +434,7 @@ end
 love.update=function(dt)
 	Session.frame=Session.frame+1
 	Flux.update(dt)
+	Anim.update(dt)
 	Timer:update(dt)
 	
 	Entity.update(dt)
@@ -669,6 +675,8 @@ love.keypressed=function(key,unicode)
 		if CurrentPlayer~=nil and CurrentPlayer.mountedOn~=nil then
 			startMountInteraction()
 		end
+	elseif key=="d" then
+		Player.startDance()
 	end
 	
 end
