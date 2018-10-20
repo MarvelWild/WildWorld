@@ -1,9 +1,12 @@
-	mount ui
-	key to start interaction - m(ount) - while mounted
+		
+	move mount too (crash now)
+	mount ui-later
+	+key to start interaction - m(ount) - while mounted
 tell pegasus to fly to the sky
 
 
 
+singleplayer branch for prototyping/faster stuff?
 
 
 
@@ -15,8 +18,7 @@ tell pegasus to fly to the sky
 
 
 
-
-
+try tdd
 
 
 

@@ -40,6 +40,8 @@ end
 _.getWorld=function(login, world)
 	if login==nil then login=CurrentPlayer.login end
 	
+	-- todo: try world.entities
+	
 	if world==nil then 
 		world=CurrentWorld
 	end
@@ -383,6 +385,8 @@ end
 
 
 
+
+_.getByRef=_.findByRef
 
 local compareByY=function(info1,info2)
 	local entity1=info1.entity
@@ -934,6 +938,12 @@ _.getLocals=function(entity)
 	return result
 end
 
+
+_.refEquals=function(ref1,ref2)
+	return ref1.id==ref2.id and
+		ref1.login==ref2.login and
+		ref1.entity==ref2.entity
+end
 
 
 return _

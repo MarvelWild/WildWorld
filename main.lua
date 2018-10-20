@@ -564,6 +564,16 @@ end
 
 local startMountInteraction=function()
 	log("wip mount interaction")
+	if CurrentPlayer.mountedOn.entity=="Pegasus" then
+		if CurrentPlayer.worldName=="main" then
+			-- wip
+			ClientAction.setWorld("clouds")			
+		elseif CurrentPlayer.worldName=="clouds" then
+			-- goto main wip
+			ClientAction.setWorld("main")			
+		end
+	end
+	
 end
 
 

@@ -22,10 +22,13 @@ local _=function(event)
 	-- todo: save location  in prev world?
 	-- todo: coords in next world
 	
+	
 	local okEvent=Event.new()
 	okEvent.code="set_world_ok"
 	
 	okEvent.world=Universe.getWorld(event.worldName)
+	
+	okEvent.actorRef=event.actorRef
 	
 	if okEvent.world==nil then
 		log("error: no world:"..event.worldName)

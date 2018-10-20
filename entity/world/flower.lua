@@ -8,7 +8,7 @@ _.new=function(options)
 		isProto = options.isProto or false
 	end
 	
-	local spriteName=Lume.randomchoice({"flower_yellow", "flower_yellow_2","flower_red"})	
+	local spriteName=Lume.randomchoice({"flower_yellow", "flower_yellow_2","flower_red","blueberry","strawberry"})	
 	Entity.setSprite(result,spriteName)
 	result.entity="Flower"
 	result.x=0
