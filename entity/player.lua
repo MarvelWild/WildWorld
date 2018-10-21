@@ -11,6 +11,10 @@ _.new=function()
 	player.y=0
 	player.hp=10
 	player.maxHp=10
+	
+	player.energy=10
+	player.maxEnergy=10
+	
 	player.xScale=1 -- todo: implement
 	player.editorVisible=false
 	player.isDrawable=true
@@ -53,6 +57,7 @@ _.new=function()
 	
 	BaseEntity.init(player)
 	
+	-- todo: refactor
 	if CurrentWorld~=nil then
 		_.setWorld(CurrentWorld)
 	end
@@ -83,6 +88,14 @@ _.draw=DrawableBehaviour.draw
 ----	end
 --end
 
+
+
+
+_.slowUpdate=function(player)
+	log("player slow update")
+	
+	EnergyBehaviour.changeEnergy(player, -0.01)
+end
 
 _.giveStarterPack=function(player)
 	log("giveStarterPack")

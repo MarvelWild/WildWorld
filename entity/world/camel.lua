@@ -1,7 +1,7 @@
 local _={}
 
 _.new=function(options)
-	local result=BaseEntity.new(options)
+	local result=BaseAnimal.new(options)
 	
 	result.entity="Camel"
 	result.x=0
@@ -26,6 +26,7 @@ _.new=function(options)
 	return result
 end
 
+_.slowUpdate=BaseAnimal.slowUpdate
 _.draw=DrawableBehaviour.draw
 
 _.updateAi=require("misc/ai/sheep_ai")

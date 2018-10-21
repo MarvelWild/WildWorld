@@ -18,9 +18,11 @@ _.drawScaledUi=function()
 	
 	
 	local hp=string.format("%0d",player.hp)
+	local energy=string.format("%.2f",player.energy)
 	
 	-- todo: display when it makes sense
-	-- LG.print("hp:"..hp, 5,84)
+	LG.print("hp:"..hp, 5,84)
+	LG.print("e:"..energy, 5,104)
 	
 end
 

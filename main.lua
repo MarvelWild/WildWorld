@@ -245,10 +245,13 @@ love.load=function()
 	
 	GrowableBehaviour=require "entity/behaviour/growable"
 	DrawableBehaviour=require "entity/behaviour/drawable"
+	EnergyBehaviour=require "entity/behaviour/energy"
 	MountableBehaviour=require "entity/behaviour/mountable"	
 	DamageableBehaviour=require "entity/behaviour/damageable"	
 	Standing=require "entity/behaviour/standing"	
 	Taggable=require "entity/behaviour/taggable"	
+	
+	BaseAnimal=require "entity/baseAnimal"
 	
 	Player=require "entity/player"
 	Seed=require "entity/world/seed"

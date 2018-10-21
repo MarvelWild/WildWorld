@@ -1,6 +1,29 @@
 
-		by key d
-	player dance 
+
+		+decrease over time
+		+show
+	+player.energy, maxEnergy
+	+hunger level
+		+camel
+		+decreasing
+	+animal hunger level
+animal eat grass
+	collect
+			
+		research grass
+	research
+	build
+action tree
+
+day/night
+
+
+try luafun
+
+	walk	
+	stop anim
+		+by key d
+	+player dance 
 animations		
 		
 		
@@ -318,7 +341,7 @@ removeFromWorld put into deactivate, test this
 	detect water by point
 water
 
-	day/night
+	
 	some random events
 	idle animation
 	ai for afk player
