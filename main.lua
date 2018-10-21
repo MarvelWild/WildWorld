@@ -238,7 +238,7 @@ love.load=function()
 		
 	preloadImages()
 	
-	-- todo: autoload
+	-- wip: autoload
 	
 	World=require "entity/world"
 	Universe=require "entity/universe"
@@ -274,6 +274,7 @@ love.load=function()
 	Boombox=require "entity/world/boombox"
 	Bucket=require "entity/world/bucket"
 	BirchTree=require "entity/world/birch_tree"
+	OrangeeTree=require "entity/world/orangee_tree"
 	FirTree=require "entity/world/fir_tree"
 	AppleTree=require "entity/world/apple_tree"
 	

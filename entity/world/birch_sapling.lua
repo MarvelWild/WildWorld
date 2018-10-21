@@ -22,14 +22,19 @@ _.use=function(seed,x,y)
 	
 	local spawned
 	local rnd=Lume.random()
-	if rnd>0.7 then
+	if rnd>0.8 then
 		spawned=BirchTree.new()
-	elseif rnd>0.4 then
+	elseif rnd>0.6 then
 		spawned=AppleTree.new()
-	else
+	elseif rnd>0.4 then
 		spawned=FirTree.new()
+	else
+		spawned=OrangeeTree.new()		
 	end
 	
+	if spawned==nil then
+		local a=1
+	end
 	spawned.x=x-spawned.originX
 	spawned.y=y-spawned.originY
 	
