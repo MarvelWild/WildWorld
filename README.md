@@ -84,6 +84,7 @@ upcoming:
 
 [Stream](https://www.twitch.tv/marvelme)
 
+[Blog](https://mw-gd.blogspot.com/)
 
 [official thread](https://love2d.org/forums/viewtopic.php?f=14&t=85403)
 
