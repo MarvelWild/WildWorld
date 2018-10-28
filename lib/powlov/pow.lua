@@ -19,6 +19,10 @@ local initDeps=function(...)
 	-- string lib
 	local allenPath=folderOfThisFile .. "/deps/Allen/allen"
 	_.allen=require(allenPath)
+	
+	-- func style
+	local mosesPath=folderOfThisFile .. "/deps/Moses/moses"
+	_.moses=require(mosesPath)
 end
 
 initDeps(...)

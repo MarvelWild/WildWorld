@@ -1,5 +1,6 @@
 	or restore on load
-	persist animations
+		like instanlty finish all animations, and implement saving later
+	persist animations - seems good? we can do easier
 saving game during animation removes sprite forever
 		autoload entities (time is precious, use less code)
 	open by key "c"
@@ -15,6 +16,7 @@ character screen
 		
 			playMusic function of jukebox
 		from music folder
+		from drag n drop
 	load my mp3s
 game as party music player
 	

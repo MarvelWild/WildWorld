@@ -3,23 +3,29 @@
 
 local _={}
 
+-- walt anims
 local _activeAnimations={}
+
+-- frames
 local _animations={}
 
 _.update=function(dt)
-	for entity,anim in pairs(_activeAnimations) do
+	Moses.each(_activeAnimations,function(anim)
 		anim:update(dt)
-	end
+	end)
 end
 
 _.draw=function()
-	--local drawCount=0
-	for entity,anim in pairs(_activeAnimations) do
+	Moses.each(_activeAnimations,function(anim,entity)
 		anim:draw(entity.x,entity.y)
-		--drawCount=drawCount+1
+	end)
+end
+
+local finishAnimation=function(anim)
+	local animEndHandler=anim.onAnimationEnd
+	if animEndHandler~=nil then 
+		animEndHandler() 
 	end
-	
-	--log("anims:"..drawCount)
 end
 
 
@@ -28,10 +34,7 @@ _.start=function(entity, frames, isLoop)
 	-- cancel prev: it will be overwritten by default
 	local prevAnim=_activeAnimations[entity]
 	if prevAnim~=nil then
-		local animEndHandler=prevAnim.onAnimationEnd
-		if animEndHandler~=nil then 
-			animEndHandler() 
-		end
+		finishAnimation(prevAnim)
 	end
 	
 	local prevSprite=entity.spriteName
@@ -75,5 +78,12 @@ _.get=function(entityName,animName)
 	
 	return entityAnimations[animName]
 end
+
+_.preSave=function()
+	Moses.each(_activeAnimations,function(anim,entity)
+		finishAnimation(anim)
+	end)
+end
+
 
 return _

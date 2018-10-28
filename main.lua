@@ -12,6 +12,7 @@ Allen=Pow.allen
 TSerial=require "lib/TSerial"
 Serpent=require "lib/serpent/src/serpent"
 Lume=Pow.lume
+Moses=Pow.moses
 Tween=require "lib/tween/tween"
 Walt=require "lib/walt/animator"
 
@@ -130,6 +131,8 @@ local _profiler=nil
 
 
 local saveGame=function()
+	Anim.preSave()
+	
 	Id.save()
 	Universe.save()
 	Player.save()
