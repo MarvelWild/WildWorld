@@ -744,7 +744,7 @@ love.keypressed=function(key,unicode)
 	elseif key=="d" then
 		Player.startDance()
 	elseif key==Config.keyCharacterScreen then
-		-- todo: open screen
+		log("CharacterScreen  todo")
 		
 		
 	end

@@ -219,6 +219,7 @@ _.setWorld=function(world)
 	Entity.updateCollision(player)
 end
 
+-- todo: toggle
 _.startDance=function()
 	local danceFrames=
 	{

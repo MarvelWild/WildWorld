@@ -16,7 +16,7 @@ character screen
 game as party music player
 	
 	camel walk
-	player dance end
+	>player dance end
 make some animations
 
 индикация происходящего, например, зума
