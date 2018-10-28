@@ -1,9 +1,10 @@
 local _={}
 
+_.name="Camel"
+
 _.new=function(options)
 	local result=BaseAnimal.new(options)
 	
-	result.entity="Camel"
 	result.x=0
 	result.y=0
 	
@@ -21,7 +22,7 @@ _.new=function(options)
 	result.aiEnabled=true
 	result.isMountable=true
 	
-	BaseEntity.init(result,options)
+	Entity.afterCreated(result,_,options)
 	
 	return result
 end

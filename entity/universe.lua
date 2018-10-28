@@ -4,16 +4,14 @@ local _={}
 
 _.name="Universe"
 
-_.new=function()
+_.new=function(options)
 	local entity=BaseEntity.new()
 	entity.editorVisible=false
 	entity.isDrawable=false
 	entity.worldId=nil
 	entity.worlds={}
 
-	entity.entity="Universe"
-	
-	BaseEntity.init(entity)
+	Entity.afterCreated(entity,_,options)
 	return entity
 end
 

@@ -1,9 +1,10 @@
 local _={}
 
+_.name="Zombie"
+
 _.new=function(options)
 	local result=BaseEntity.new(options)
 	
-	result.entity="Zombie"
 	result.x=0
 	result.y=0
 	
@@ -14,7 +15,7 @@ _.new=function(options)
 	result.isDrawable=true
 	result.aiEnabled=true
 	
-	BaseEntity.init(result,options)
+	Entity.afterCreated(result,_,options)
 	
 	return result
 end

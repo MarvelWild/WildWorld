@@ -1,9 +1,10 @@
 local _={}
 
+_.name="Boombox"
+
 _.new=function(options)
 	local result=BaseEntity.new(options)
 	
-	result.entity="Boombox"
 	result.x=0
 	result.y=0
 	Entity.setSprite(result,"boombox")
@@ -14,7 +15,9 @@ _.new=function(options)
 	result.originX=16
 	result.originY=9
 	
-	BaseEntity.init(result,options)
+	result.currentTrack=nil
+	
+	Entity.afterCreated(result,_,options)
 	
 	return result
 end
@@ -40,6 +43,18 @@ _.use=function(boombox,x,y)
 
 	dbgCtxOut()
 end
+
+
+_.play=function(boombox)
+	-- todo networking
+	
+	-- todo play locally
+	
+	
+	
+end
+
+	
 
 
 

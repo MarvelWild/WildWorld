@@ -1,6 +1,8 @@
 -- global Standing
 local _={}
 
+_.name="Standing"
+
 -- from,to:entity
 -- returns -10 to 10
 _.get=function(from, to)

@@ -2,9 +2,13 @@
 
 local _={}
 
-_.new=function()
-	local r=BaseEntity.new()
-	r.entity="Profiler"
+_.name="Profiler"
+
+_.new=function(options)
+	if options==nil then options={} end
+	
+	options.isService=true
+	local r=BaseEntity.new(options)
 	r.isDrawable=false
 	r.isUiDrawable=false --4x
 	r.isScaledUiDrawable=true -- 1x
@@ -13,7 +17,7 @@ _.new=function()
 	r.engine=require('lib/profile/profile') 
 	r.report="no report yet"
 	
-	Entity.register(r)
+	Entity.afterCreated(r,_,options)
 	
 	return r	
 end

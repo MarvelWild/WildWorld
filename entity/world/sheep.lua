@@ -1,16 +1,17 @@
 local _={}
 
+_.name="Sheep"
+
 _.new=function(options)
 	local result=BaseEntity.new(options)
 	
-	result.entity="Sheep"
 	result.x=0
 	result.y=0
 	Entity.setSprite(result,"sheep2")
 	result.isDrawable=true
 	result.aiEnabled=true
 	
-	BaseEntity.init(result,options)
+	Entity.afterCreated(result,_,options)
 	
 	return result
 end

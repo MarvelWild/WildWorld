@@ -1,3 +1,36 @@
+		autoload entities (time is precious, use less code)
+	open by key "c"
+character screen	
+
+	
+	
+	
+	youtube-dl compatible link
+	volume solution
+	voting system for music
+	add collections
+		
+			playMusic function of jukebox
+		from music folder
+	load my mp3s
+game as party music player
+	
+	camel walk
+	player dance end
+make some animations
+
+индикация происходящего, например, зума
+
+
+	grape story
+mods - later
+	
+	pipe
+	piper
+	cow
+	bandidtes
+	grapes pair
+funky characters
 
 
 		+decrease over time

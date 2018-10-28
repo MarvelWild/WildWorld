@@ -1,5 +1,7 @@
 local _={}
 
+_.name="Debugger"
+
 local _entityCount=0
 local _print=love.graphics.print
 local _printf=love.graphics.printf
@@ -32,15 +34,18 @@ _.update=function()
 	_drawCount=0
 end
 
-_.new=function()
+_.new=function(options)
+	if options==nil then options={} end
+	
+	options.isService=true
+	
 	local r=BaseEntity.new()
-	r.entity="Debugger"
 	r.isActive=false
 	r.isUiDrawable=false --4x
 	r.isScaledUiDrawable=true -- 1x
 	r.isDrawable=true
 	
-	Entity.register(r)
+	Entity.afterCreated(r,_,options)
 	
 	return r
 end

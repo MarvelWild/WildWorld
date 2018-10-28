@@ -1,18 +1,27 @@
 local _={}
 
-_.name="Dragon"
+_.name="Grape"
 
 _.new=function(options)
 	local result=BaseEntity.new(options)
 	
 	result.x=0
 	result.y=0
-	Entity.setSprite(result,"dragon")
+	
+	result.mountX=12
+	result.mountY=5	
+	
+	result.originX=15
+	result.originY=7	
+	
+	result.footX=15
+	result.footY=11
+	
+	
+	Entity.setSprite(result,"grape_a")
 	result.isDrawable=true
 	result.aiEnabled=Session.isServer
-	result.isMountable=true
-	result.mountX=11
-	result.mountY=16
+	result.isMountable=false	
 	
 	Entity.afterCreated(result,_,options)
 	
@@ -21,15 +30,9 @@ end
 
 _.draw=DrawableBehaviour.draw
 
---_.update=function(pantera,dt)
---	log("pantera update ")
--- yes, it working
---end
+local _ai=require("misc/ai/pantera_ai")
 
-
--- managed by Entity
-_.updateAi=function(entity)
-end
+_.updateAi=_ai
 
 
 return _

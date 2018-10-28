@@ -1,9 +1,10 @@
 local _={}
 
+_.name="Pegasus"
+
 _.new=function(options)
 	local result=BaseEntity.new(options)
 	
-	result.entity="Pegasus"
 	result.x=0
 	result.y=0
 	
@@ -21,7 +22,7 @@ _.new=function(options)
 	result.aiEnabled=Session.isServer
 	result.isMountable=true
 	
-	BaseEntity.init(result,options)
+	Entity.afterCreated(result,_,options)
 	
 	return result
 end

@@ -1,9 +1,10 @@
 local _={}
 
+_.name="Bucket"
+
 _.new=function(options)
 	local result=BaseEntity.new(options)
 	
-	result.entity="Bucket"
 	result.x=0
 	result.y=0
 	Entity.setSprite(result,"bucket_empty")
@@ -14,7 +15,7 @@ _.new=function(options)
 	result.originX=8
 	result.originY=8
 	
-	BaseEntity.init(result,options)
+	Entity.afterCreated(result,_,options)
 	
 	return result
 end

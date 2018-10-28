@@ -1,5 +1,7 @@
 local _={}
 
+_.name="Grass"
+
 _.new=function(options)
 	local result=BaseEntity.new(options)
 	
@@ -10,12 +12,11 @@ _.new=function(options)
 	
 	local spriteName=Lume.randomchoice({"grass","grass2","grass3"})	
 	Entity.setSprite(result,spriteName)
-	result.entity="Grass"
 	result.x=0
 	result.y=0
 	result.isDrawable=true
 	
-	BaseEntity.init(result,options)
+	Entity.afterCreated(result,_,options)
 	
 	return result
 end

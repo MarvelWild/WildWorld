@@ -2,18 +2,20 @@ local _={}
 
 
 local _prepareEventsForLogin=Event.prepareEventsForLogin
+_.name="Server"
 
-
-_.new=function()
-	local result=BaseEntity.new()
-	result.entity="Server"
-	result.id=nil -- we are service, no serialization
+_.new=function(options)
+	if options==nil then options={} end
+	
+	options.isService=true
+	
+	local result=BaseEntity.new(options)
 	result.isActive=true
 	
 	-- Grease.tcpServer
 	result.tcpServer=nil
 	
-	Entity.register(result)
+	Entity.afterCreated(result,_,options)
 	
 	return result
 end

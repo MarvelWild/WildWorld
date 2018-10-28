@@ -302,6 +302,13 @@ _.isRegistered=function(entity)
 	return result
 end
 
+-- should be called after every new
+_.afterCreated=function(entity,code,options)
+	-- link data to code
+	entity.entity=code.name
+	BaseEntity.init(entity,options)
+end
+
 _.register=function(entity)
 	local entityString=Entity.toString(entity)
 	log("registering:"..entityString)

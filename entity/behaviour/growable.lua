@@ -1,6 +1,8 @@
 -- global GrowableBehaviour
 local _={}
 
+_.name="GrowableBehaviour"
+
 _.setup=function(entity)
 	-- todo: set/check required data
 	

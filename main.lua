@@ -5,12 +5,13 @@ _traceback=debug.traceback
 LG=love.graphics
 LK=love.keyboard
 
+Pow=require "lib/powlov/pow"
 Gamera=require "lib/gamera/gamera"
-Allen=require "lib/Allen/allen"
+Allen=Pow.allen
 
 TSerial=require "lib/TSerial"
 Serpent=require "lib/serpent/src/serpent"
-Lume=require "lib/lume/lume"
+Lume=Pow.lume
 Tween=require "lib/tween/tween"
 Walt=require "lib/walt/animator"
 
@@ -116,7 +117,8 @@ dbgCtxOut=Debug.exitContext
 _ets=Entity.toString
 local _cursorImg=nil
 
-log("*** Start *** "..Util.getTimestamp())
+log("*** Start *** "..Util.getTimestamp().._VERSION)
+Pow.log=log
 
 -- declare globals
 Fonts=nil -- init in load()
@@ -222,6 +224,46 @@ local testHc=function()
 	
 end
 
+
+local loadEntity=function(file)
+	if not Allen.endsWith(file,".lua") then
+		return
+	end
+
+	file=Allen.cutTail(file,4)
+	
+	log("loadEntity:"..file)
+	
+	local entityCode=require(file)
+	if entityCode==nil then
+		log("warn: entity not loaded:"..entityCode)
+		return
+	end
+	
+	local entityName=entityCode.name
+	if entityName==nil then
+		log("error: no entity name:"..file)
+		return
+	end
+	
+	
+	local prev=_G[entityName]
+	if prev~=nil then
+		-- entity already registered (manual load order for deps)
+		return
+	end
+	
+	_G[entityName]=entityCode
+end
+
+local loadEntities=function()
+	Pow.eachFile("entity/behaviour/", loadEntity) 
+	
+	BaseAnimal=require "entity/baseAnimal"
+	
+	Pow.eachFile("entity/", loadEntity) 
+end
+
 love.load=function()
 	Id.init()
 	Fonts={}
@@ -238,59 +280,10 @@ love.load=function()
 		
 	preloadImages()
 	
-	-- wip: autoload
 	
-	World=require "entity/world"
-	Universe=require "entity/universe"
-	
-	GrowableBehaviour=require "entity/behaviour/growable"
-	DrawableBehaviour=require "entity/behaviour/drawable"
-	EnergyBehaviour=require "entity/behaviour/energy"
-	MountableBehaviour=require "entity/behaviour/mountable"	
-	DamageableBehaviour=require "entity/behaviour/damageable"	
-	Standing=require "entity/behaviour/standing"	
-	Taggable=require "entity/behaviour/taggable"	
-	
-	BaseAnimal=require "entity/baseAnimal"
-	
-	Player=require "entity/player"
-	Seed=require "entity/world/seed"
-	Grass=require "entity/world/grass"
-	Flower=require "entity/world/flower"
-	Creature=require "entity/world/creature"
-	Pantera=require "entity/world/pantera"
-	Zebra=require "entity/world/zebra"
-	Dragon=require "entity/world/dragon"
-	Pegasus=require "entity/world/pegasus"
-	Sheep=require "entity/world/sheep"
-	SheepBlack=require "entity/world/sheep_black"
-	HorseSmall=require "entity/world/horse_small"
-	Camel=require "entity/world/camel"
-	Elephant=require "entity/world/elephant"
-	Jiraffe=require "entity/world/jiraffe"
-	LionFemale=require "entity/world/lion_female"
-	Tiger=require "entity/world/tiger"
-	Zombie=require "entity/world/zombie"
-	Alien=require "entity/world/alien"
-	BirchSapling=require "entity/world/birch_sapling"
-	Cauldron=require "entity/world/cauldron"
-	Boombox=require "entity/world/boombox"
-	Bucket=require "entity/world/bucket"
-	BirchTree=require "entity/world/birch_tree"
-	OrangeeTree=require "entity/world/orangee_tree"
-	FirTree=require "entity/world/fir_tree"
-	AppleTree=require "entity/world/apple_tree"
-	
-
-	
-	Server=require "entity/server"
-	Client=require "entity/client"
-	Editor=require "entity/editor"
-	Pointer=require "entity/pointer"
-	
+	loadEntities()
 	Collision=require "core/collision"
 	
-	Profiler=require "entity/profiler"
 	_editor=Editor.new()  ---EntityFactory.debugger()
 	_profiler=Profiler.new()
 
@@ -573,19 +566,88 @@ local pickup=function()
 end
 
 local startMountInteraction=function()
-	log("wip mount interaction")
+	-- todo: better code
+	log("mount interaction")
 	if CurrentPlayer.mountedOn.entity=="Pegasus" then
 		if CurrentPlayer.worldName=="main" then
-			-- wip
 			ClientAction.setWorld("clouds")			
 		elseif CurrentPlayer.worldName=="clouds" then
-			-- goto main wip
 			ClientAction.setWorld("main")			
 		end
 	end
 	
 end
 
+
+love.resize=function(width, height)
+	Session.windowHeight=height
+	Session.windowWidth=width
+
+	
+	_cam:setWindow(0,0,width,height)
+end
+
+
+
+local doQuit=function()
+	saveGame()
+	
+	log("*** Quit ***")
+	Debug.writeLogs()
+	
+	love.event.quit()
+end
+
+local afterLogoff=function()
+	log("after logoff")
+	doQuit()
+	
+
+end
+
+
+local startQuitTimer=function()
+	log("startQuitTimer")
+	Timer:after(2, doQuit)
+end
+
+
+local _isLogoff=false
+
+local logoff=function()
+	log("logoff")
+	_isLogoff=true
+
+	startQuitTimer()
+	
+	local event=Event.new()
+	event.code="logoff"
+	event.target="server" 
+	
+	-- todo react to event
+end
+
+
+love.quit=function()
+	if not _isLogoff and Session.isClient then
+		logoff()
+		
+		-- Abort quitting. If true, do not close the game.
+		return true
+	end
+	
+	doQuit()
+	
+	
+	
+	
+	return false
+end
+
+
+love.mousemoved=function( x, y, dx, dy, istouch )
+	
+end
 
 
 
@@ -681,77 +743,13 @@ love.keypressed=function(key,unicode)
 		end
 	elseif key=="d" then
 		Player.startDance()
-	end
-	
-end
-
-love.resize=function(width, height)
-	Session.windowHeight=height
-	Session.windowWidth=width
-
-	
-	_cam:setWindow(0,0,width,height)
-end
-
-
-
-
-local doQuit=function()
-	saveGame()
-	
-	log("*** Quit ***")
-	Debug.writeLogs()
-	
-	love.event.quit()
-end
-
-local afterLogoff=function()
-	log("after logoff")
-	doQuit()
-	
-
-end
-
-
-local startQuitTimer=function()
-	log("startQuitTimer")
-	Timer:after(2, doQuit)
-end
-
-
-local _isLogoff=false
-
-local logoff=function()
-	log("logoff")
-	_isLogoff=true
-
-	startQuitTimer()
-	
-	local event=Event.new()
-	event.code="logoff"
-	event.target="server" 
-	
-	-- todo react to event
-end
-
-
-love.quit=function()
-	if not _isLogoff and Session.isClient then
-		logoff()
+	elseif key==Config.keyCharacterScreen then
+		-- todo: open screen
 		
-		-- Abort quitting. If true, do not close the game.
-		return true
+		
 	end
 	
-	doQuit()
-	
-	
-	
-	
-	return false
 end
 
 
-love.mousemoved=function( x, y, dx, dy, istouch )
-	
-end
+

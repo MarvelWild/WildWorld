@@ -1,12 +1,12 @@
 local _={}
-
-_.new=function()
-	local result=BaseEntity.new()
-	result.entity="Pointer"
+_.name="Pointer"
+_.new=function(options)
+	local result=BaseEntity.new(options)
+	
 	result.id=nil -- we are service, no serialization
 	result.isActive=true
 	
-	Entity.register(result)
+	Entity.afterCreated(result,_,options)
 	
 	return result
 end

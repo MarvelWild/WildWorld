@@ -1,6 +1,8 @@
 -- global Taggable
 local _={}
 
+_.name="Taggable"
+
 --does not checks if exists
 _.addTag=function(entity,tag)
 --	if entity.tags==nil then

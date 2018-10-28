@@ -2,6 +2,8 @@ local _={}
 
 -- static
 
+_.name="Client"
+
 _.responseHandlers={}
 
 loadScripts("client/handlers/", _.responseHandlers)
@@ -57,10 +59,12 @@ end
 
 -- static end
 
-_.new=function()
+_.new=function(options)
+	if options==nil then options={} end
+	
+	options.isService=true
+	
 	local result=BaseEntity.new()
-	result.entity="Client"
-	result.id=nil -- we are service, no serialization
 	result.isActive=true
 	result.tcpClient=nil
 	

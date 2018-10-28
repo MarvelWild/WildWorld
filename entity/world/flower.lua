@@ -1,5 +1,7 @@
 local _={}
 
+_.name="Flower"
+
 _.new=function(options)
 	local result=BaseEntity.new(options)
 	
@@ -14,12 +16,11 @@ _.new=function(options)
 			"grass_4","grass_5","grass_6","grass_7","flower_camella", "mushroom_1","wheat_2"})
 	
 	Entity.setSprite(result,spriteName)
-	result.entity="Flower"
 	result.x=0
 	result.y=0
 	result.isDrawable=true
 	
-	BaseEntity.init(result,options)
+	Entity.afterCreated(result,_,options)
 	
 	return result
 end

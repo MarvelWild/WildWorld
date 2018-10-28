@@ -1,9 +1,10 @@
 local _={}
 
+_.name="Pantera"
+
 _.new=function(options)
 	local result=BaseEntity.new(options)
 	
-	result.entity="Pantera"
 	result.x=0
 	result.y=0
 	
@@ -19,10 +20,11 @@ _.new=function(options)
 	
 	Entity.setSprite(result,"pantera")
 	result.isDrawable=true
+	-- todo: move to afterCreated
 	result.aiEnabled=Session.isServer
 	result.isMountable=true	
 	
-	BaseEntity.init(result,options)
+	Entity.afterCreated(result,_,options)
 	
 	return result
 end

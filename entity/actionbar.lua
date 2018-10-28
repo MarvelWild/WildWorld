@@ -1,12 +1,17 @@
 local _={}
 
-_.new=function()
-	local r=BaseEntity.new()
-	r.entity="Actionbar"
+_.name="Actionbar"
+
+_.new=function(options)
+	if options==nil then options={} end
+	
+	options.isService=true
+	
+	local r=BaseEntity.new(options)
 	r.isUiDrawable=true
 	r.editorVisible=false
 	
-	Entity.register(r)
+	Entity.afterCreated(r,_,options)
 	
 	return r
 end --new

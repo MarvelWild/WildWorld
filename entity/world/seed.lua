@@ -1,15 +1,14 @@
 local _={}
 
+_.name="Seed"
 _.new=function(options)
 	local result=BaseEntity.new()
 	
 	
 	Entity.setSprite(result,"seeds")
-	result.entity="Seed"
-	result.id=Id.new(result.entity)
 	result.stackCount=42
 	
-	BaseEntity.init(result,options)
+	Entity.afterCreated(result,_,options)
 	return result
 end
 

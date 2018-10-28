@@ -3,8 +3,8 @@ local _={}
 
 _.name="World"
 
-_.new=function()
-	local newWorld=BaseEntity.new()
+_.new=function(options)
+	local newWorld=BaseEntity.new(options)
 	newWorld.editorVisible=false
 	newWorld.isDrawable=false
 	newWorld.worldId=nil
@@ -34,7 +34,7 @@ _.new=function()
 	
 	newWorld.entities={}
 	
-	BaseEntity.init(newWorld)
+	Entity.afterCreated(newWorld,_,options)
 	return newWorld
 end
 

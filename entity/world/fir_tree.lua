@@ -1,12 +1,12 @@
 local _={}
 
+_.name="FirTree"
+
 _.new=function(options)
 	local result=BaseEntity.new()
 	
 	
 	Entity.setSprite(result,"tree_fir_1")
-	result.entity="FirTree"
-	result.id=Id.new(result.entity)
 	result.isDrawable=true
 	result.growPhase=1
 	result.isActive=false
@@ -15,7 +15,7 @@ _.new=function(options)
 	
 	Taggable.addTag(result,"tree")
 		
-	BaseEntity.init(result,options)
+	Entity.afterCreated(result,_,options)
 	return result
 end
 

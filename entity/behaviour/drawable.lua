@@ -1,6 +1,8 @@
 -- global DrawableBehaviour
 local _={}
 
+_.name="DrawableBehaviour"
+
 _.setup=function(entity)
 end
 
@@ -13,9 +15,6 @@ local _drawFlipped=function(drawable,x,y)
 end
 
 
-_.drawAnimable=function(entity)
-	-- wip
-end
 
 
 _.draw=function(entity)

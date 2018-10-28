@@ -26,6 +26,7 @@ local _=function(event)
 	local okEvent=Event.new()
 	okEvent.code="set_world_ok"
 	
+	okEvent.prevWorldName=actor.worldName
 	okEvent.world=Universe.getWorld(event.worldName)
 	
 	okEvent.actorRef=event.actorRef

@@ -1,12 +1,14 @@
 -- открывается по F11
 local _={}
 
+_.name="Editor"
+
 -- indexed table
 local getEditorItems=function()
 	local result={}
 	
 	-- todo: autoload all editor-allowed entities
-	local editorEntities={Pantera,Grass,Sheep,Dragon,Pegasus,Zombie,SheepBlack,HorseSmall,Camel,Elephant,Jiraffe,LionFemale,Tiger,Zebra}
+	local editorEntities={Pantera,Grass,Sheep,Dragon,Pegasus,Zombie,SheepBlack,HorseSmall,Camel,Elephant,Jiraffe,LionFemale,Tiger,Zebra,Grape}
 	
 	for k,entity in pairs(editorEntities) do
 		local proto=entity.new({isProto=true})
@@ -23,10 +25,13 @@ _.setActiveItem=function(editor, entity)
 end
 
 
-_.new=function()
-	local r=BaseEntity.new()
+_.new=function(options)
+	if options==nil then options={} end
+	
+	options.isService=true
+	
+	local r=BaseEntity.new(options)
 	r.items=getEditorItems()
-	r.entity="Editor"
 	r.activeItem=nil
 	r.activeItemCode=nil
 --	r.activeItemPos=nil
@@ -36,7 +41,7 @@ _.new=function()
 	r.isUiDrawable=false --4x
 	r.isScaledUiDrawable=true -- 1x
 	
-	Entity.register(r)
+	Entity.afterCreated(r,_,options)
 	
 	return r
 end

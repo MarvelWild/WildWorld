@@ -2,6 +2,8 @@
 
 local _={}
 
+_.name="EnergyBehaviour"
+
  _.changeEnergy=function(actor, delta)
 	actor.energy=actor.energy+delta
 	

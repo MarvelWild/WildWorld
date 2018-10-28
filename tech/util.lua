@@ -82,6 +82,7 @@ _.loadScripts=function(dir, container)
 	end
 end
 
+
 _.table_delete=function(t,fnIsDeleteItem)
 	local toDelete=nil
 

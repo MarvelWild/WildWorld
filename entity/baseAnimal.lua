@@ -1,5 +1,7 @@
 local _={}
 
+_.name="BaseAnimal"
+
 _.new=function(options)
 	local result=BaseEntity.new(options)
 	

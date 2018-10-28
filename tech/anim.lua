@@ -35,11 +35,8 @@ _.start=function(entity, frames)
 	_anim=Walt.newAnimation(frames, 1)
 	_anim:setLooping(true)
 	_anim:setOnAnimationEnd(onAnimLoop)
-
 	
-	-- wip connect to lib
-	
-	-- wip: swap draw method in drawable
+	-- todo: swap draw method in drawable
 end
 
 return _

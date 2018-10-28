@@ -2,11 +2,11 @@ local _={}
 
 _.name="Player"
 
-_.new=function()
+_.new=function(options)
 	-- try to keep it flat
 	local name="player"
 	
-	local player=BaseEntity.new()
+	local player=BaseEntity.new(options)
 	player.x=0
 	player.y=0
 	player.hp=10
@@ -55,7 +55,7 @@ _.new=function()
 	player.activeFavorite=nil
 	
 	
-	BaseEntity.init(player)
+	Entity.afterCreated(player,_,options)
 	
 	-- todo: refactor
 	if CurrentWorld~=nil then
@@ -92,7 +92,7 @@ _.draw=DrawableBehaviour.draw
 
 
 _.slowUpdate=function(player)
-	log("player slow update")
+--	log("player slow update")
 	
 	EnergyBehaviour.changeEnergy(player, -0.01)
 end

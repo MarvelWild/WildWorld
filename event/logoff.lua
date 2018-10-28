@@ -8,9 +8,9 @@ local _=function(event)
 	
 	-- local player=
 	
-	-- wip: get player
-	-- wip: remove player from world
-	-- wip: send ok
+	-- todo: get player
+	-- todo: remove player from world
+	-- todo: send ok
 
 end
 

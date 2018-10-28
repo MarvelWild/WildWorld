@@ -1,5 +1,7 @@
 local _={}
 
+_.name="BaseEntity"
+
 _.new=function(options)
 	local result={}
 	
@@ -49,7 +51,7 @@ _.new=function(options)
 	result.login=Session.login
 	result.isRemote=false
 	result.spriteName=nil -- use Entity.setSprite
-	-- result.entity="" через это связь данных с утилитным кодом класса
+	-- result.entity="" через это связь данных с утилитным кодом класса. Comes from code.name
 	
 	result.tags={}
 	
@@ -60,12 +62,19 @@ end
 -- give id, register
 _.init=function(entity,options)
 	local isProto=false
+	local isService=false
 	if options then
-		isProto = options.isProto or false
+		isProto = options.isProto or isService
+		isService = options.isService or isService
 	end
+	
+	
 		
 	if not isProto then
-		entity.id=Id.new(entity.entity)
+		if not isService then
+			entity.id=Id.new(entity.entity)
+		end
+		
 		Entity.register(entity)
 	end
 end
