@@ -13,6 +13,14 @@ local _=function(event)
 	end
 	
 	assert(entity~=nil)
+	
+	
+	if hasMoveAnimation then
+		local danceFrames=Anim.get("player_danc")
+		Anim.start(CurrentPlayer, danceFrames)
+	end
+	
+	
 	Entity.smoothMove(entity,event.duration,event.x,event.y)
 	
 --	Flux.to(entity, event.duration, { x = event.x, y = event.y }):ease("quadout")

@@ -220,7 +220,9 @@ _.setWorld=function(world)
 end
 
 -- todo: toggle
-_.startDance=function()
+
+
+local initAnimation=function()
 	local danceFrames=
 	{
 		Img.get("player1_dance1"),
@@ -229,6 +231,23 @@ _.startDance=function()
 		Img.get("player1_dance4"),
 	}
 	
+	Anim.add(_.name, "dance", danceFrames)
+	
+	local walkFrames=
+	{
+		Img.get("player_move1"),
+		Img.get("player_move2"),
+	}
+	
+	Anim.add(_.name, "move", danceFrames)
+end
+initAnimation()
+
+
+_.startDance=function()
+	-- todo: networking
+	
+	local danceFrames=Anim.get(_.name, "dance")
 	Anim.start(CurrentPlayer, danceFrames)
 end
 

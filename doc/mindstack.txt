@@ -1,3 +1,6 @@
+	or restore on load
+	persist animations
+saving game during animation removes sprite forever
 		autoload entities (time is precious, use less code)
 	open by key "c"
 character screen	
