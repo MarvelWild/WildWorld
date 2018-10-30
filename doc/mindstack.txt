@@ -1,8 +1,9 @@
-	or restore on load
-		like instanlty finish all animations, and implement saving later
-	persist animations - seems good? we can do easier
-saving game during animation removes sprite forever
-		autoload entities (time is precious, use less code)
+	
+	we can evolve it later to director and scenes
+			draw over
+			intercept input
+		as overlay
+		+autoload entities (time is precious, use less code)
 	open by key "c"
 character screen	
 
@@ -310,7 +311,10 @@ unload later - let simulation run for now
 
 
 		
-
+	or restore on load
+		+like instanlty finish all animations, and implement saving later
+	persist animations - seems good? we can do easier
++saving game during animation removes sprite forever
 
 
 
