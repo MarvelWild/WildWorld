@@ -64,12 +64,12 @@ _.new=function(options)
 	
 	options.isService=true
 	
-	local result=BaseEntity.new()
+	local result=BaseEntity.new(options)
 	result.isActive=true
 	result.tcpClient=nil
 	
 	
-	Entity.register(result)
+	Entity.afterCreated(result,_,options)
 	
 	return result
 end

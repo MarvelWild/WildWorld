@@ -310,6 +310,7 @@ _.afterCreated=function(entity,code,options)
 end
 
 _.register=function(entity)
+	assert(entity)
 	local entityString=Entity.toString(entity)
 	log("registering:"..entityString)
 	

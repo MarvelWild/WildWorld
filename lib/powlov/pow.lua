@@ -41,12 +41,14 @@ end
 
 
 
+-- example output: eachFile(entity/ui/,function: 0x27f57078)
 _.logCall=function(...)
 	local calling_func = debug.getinfo(2)
 	local message=calling_func.name.."("
 	
 	local isFirst=true
 	
+	-- todo: resolve functions to names?
 	for i=1,select('#',...) do
 		if i>1 then message=message.."," end
 		local currentParam=select(i,...)
@@ -70,7 +72,7 @@ end
 _.eachFile=function(dir,callback)
 	dir=_.normalizeDir(dir)
 	
-	_.logCall(dir,callback)
+	-- _.logCall(dir,callback)
 	
 	local dirItems = _getDirItems(dir)
 	for k,dirItem in ipairs(dirItems) do
