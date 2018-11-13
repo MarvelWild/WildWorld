@@ -87,6 +87,8 @@ _.send=function(data, onResponse)
 	end
 	
 	local packed=TSerial.pack(data)
+	
+	-- local readablePacked=serialize(data)
 	log("send cmd:"..data.cmd.." data:"..packed, "net")
 	
 	local tcpClient=ClientEntity.tcpClient

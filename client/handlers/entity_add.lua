@@ -12,7 +12,6 @@ local _=function(data,clientId)
 	if isOurs then
 		-- unregister old
 		
-		-- todo: looks unfinished
 		for k,entity in pairs(entities) do
 			log("entities_transferred deleting prev:"..Entity.toString(entity).." prevId:"..entity.prevId)
 			Entity.delete(entity.entity,entity.prevId)
@@ -29,9 +28,6 @@ local _=function(data,clientId)
 	
 	-- register new
 	for k,entity in pairs(entities) do
-		
-		-- why here?
-		-- entity.isRemote=true -- можно отказаться и проверять логин
 		entity.aiEnabled=false -- ai is server-only
 		Entity.register(entity)
 	end

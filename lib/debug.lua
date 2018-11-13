@@ -95,7 +95,13 @@ debug.log=function(message,channelName)
 	end
 	
 	if debug.useConsole then
-		local consoleMessage=Util.oneLine(preparedMessage)
+		local consoleMessage
+		if not Config.isFullLog then
+			consoleMessage=Util.oneLine(preparedMessage)
+		else
+			consoleMessage=preparedMessage
+		end
+
 		print(consoleMessage)
 	end
 end

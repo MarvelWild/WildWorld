@@ -18,7 +18,7 @@ _.new=function()
 	-- client do not send remote event to server, and should mark received as remote
 	event.isRemote=nil
 	
-	--[[ todo refactor: -isRemote +target
+	--[[
 		all			
 		self		
 		server	

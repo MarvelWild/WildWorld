@@ -1,4 +1,68 @@
+
+						точка добавления в _all - register - хит на входе p1?
+					регистация p1?
+				Entity._all 
+			трассировка, чтение
+		join_response не выдал p1
+		+collect logs
+	c2 cant see c1
 3 player multiplayer test
+
+
+
+
+chicken and egg
+	nah, make this
+	bytepath
+easier genre as start (networking - ai - ai state)
+	
+	
+	kiss save state to entity
+	add ai to ai list on entity register
+	ai is independent system that send commands
+alternate:
+	server authority?
+rewrite all
+
+
+implement misc/ai/baseAnimal
+upgrade all ai to v2
+
+	+nvm, entity already is data
++try ddd
+
+главное
+	животное если голодно
+		включает аи стейт кушать
+		ищет еду
+		подходит
+		ест
+	иначе
+
+
+
+
+
+дальше			
+			triggers
+			cyclic patterns
+		ai intention stack system
+	search for food intention grows
+hunger-based behaviour
+
+
+	+camel (since it BaseAnimal already)
++ai hunger level
+
+
+more worlds
+
+world portals
+
+
++format log("send cmd: - не помогло, консоль убирает переводы строк?
+
+
 	
 	
 	
@@ -29,7 +93,8 @@ game as party music player
 	>player dance end
 make some animations
 
-индикация происходящего, например, зума
+	
++индикация происходящего, например, зума - не надо, отвлекает от главного
 
 
 	grape story
@@ -85,13 +150,16 @@ singleplayer branch for prototyping/faster stuff?
 
 
 	backpack
-	chest
-containers
+		close ui
+			block other game input
+		open ui
+	chest+
+containers+
 
 
 
 
-
+	example:
 try tdd
 
 
@@ -162,7 +230,7 @@ vector entities experiment
 
 
 	
-	>trace logoff on server
+	trace logoff on server
 server draw client that left
 
 
@@ -189,8 +257,8 @@ server draw client that left
 things i want this day:
 	more worlds
 	portals
-	flowers
-	mores trees
+	+flowers
+	+mores trees
 	gardener ai (plant vegetations)
 	detecting water
 	swimming
@@ -1243,7 +1311,10 @@ current task info:
 
 
 
-		+load next
+
+	tool mode (cmd arg) to transform sequental tiles to x_y format
+tilemap optimization: filenames x_y - not actual, using whole sprite now
++load next
 			+tilemap
 			+creatures
 			+trees
@@ -1266,9 +1337,6 @@ current task info:
 
 +variable world size
 
-	tool mode (cmd arg) to transform sequental tiles to x_y format
-tilemap optimization: filenames x_y - not actual, using whole sprite now
-
 +use setWorld action
 +do not load world at start
 +unload tiles on world change
@@ -1277,39 +1345,5 @@ tilemap optimization: filenames x_y - not actual, using whole sprite now
 	+on Entity.placeInWorld
 		where it should be added to world entities?
 	save: entities={} still
-+restore save
-	+load world from player save
-	+save player
-+no world loaded	
-	
-		+implement Universe.load
-	+now it load empty world
-+restore load	p1
 
 
-	+register loaded entities
-+restore load	p2
-
-
-		+adding object
-	+world should contain its objects,
-	+not it only saves self
-		+Universe.save
-	+saving (multi world-reimplement)
-+restore save/load
-+entity has no collision:Player
-
-
-+server error: double player registering ()
-
-
-		+remove from world on pickup?
-		+transfer from server on pickup?
-	+ловить момент появления дубля в Entity _all
-	+две попали в сейв, трассировать сейв и до
-+error on load
-
-+pickup lag - resolved by fixing others
-	
-	+откуда она рисуется? Entity.draw
-+когда подняли бумбокс - коллизия продолжила рисоваться

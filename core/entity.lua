@@ -42,6 +42,7 @@ _.getWorld=function(login, world)
 	
 	-- todo: try world.entities
 	
+	-- todo: get world of login, not server current world
 	if world==nil then 
 		world=CurrentWorld
 	end
@@ -66,7 +67,8 @@ _.getWorld=function(login, world)
 			else
 				table.insert(result,entity)
 			end
-			
+		else
+			log("worldless entity:"..dbgEntityInfo)
 		end
 	end
 	
@@ -820,7 +822,7 @@ _.removeFromWorld=function(entity)
 		entity.worldId=nil
 		removeFromCollision(entity)
 	else
-		-- todo:uncomment for optimizing
+		-- uncomment for optimizing
 		--log("warn: removeFromWorld: entity not in world")
 	end
 end
