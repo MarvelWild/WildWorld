@@ -36,20 +36,28 @@ end
 
 
 
+
+
+
 -- except player
+-- if world not provided, then resolve by login
 _.getWorld=function(login, world)
 	if login==nil then login=CurrentPlayer.login end
 	
 	-- todo: try world.entities
 	
-	-- todo: get world of login, not server current world
+	
+	
 	if world==nil then 
+		local player=Player.getByLogin(login)
+		local worldName=player.worldName
+		-- wip
 		world=CurrentWorld
 	end
 
 	
 	if world==nil then
-	
+		-- todo: get world of login, not server current world
 		local a=1
 	end
 	
@@ -61,6 +69,8 @@ _.getWorld=function(login, world)
 	local result={}
 	for k,entity in pairs(_all) do
 		local dbgEntityInfo=Entity.toString(entity)
+		log("getWorld processing:"..dbgEntityInfo)
+		
 		if entity.worldId==worldId then
 			if entity.entity=="Player" and entity.login==login then
 				-- client responsible for its player, we dont send it
@@ -957,6 +967,21 @@ _.refEquals=function(ref1,ref2)
 		ref1.entity==ref2.entity
 end
 
+
+
+
+-- by entity name
+_.getByName=function(entityType)
+	local all=_.getAll()
+	local result={}
+	for k,entity in ipairs(all) do
+		if entity.entity==entityType then
+			table.insert(result,entity)
+		end
+	end
+	
+	return result
+end
 
 return _
 

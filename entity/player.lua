@@ -252,4 +252,17 @@ _.startDance=function()
 end
 
 
+
+_.getByLogin=function(login)
+	local allPlayers=Entity.getByName(_.name)
+	for k,player in ipairs(allPlayers) do
+		if player.login==login then
+			return player
+		end
+	end
+	
+	return nil
+end
+
+
 return _

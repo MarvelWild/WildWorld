@@ -1,13 +1,32 @@
+	Error: entity/world.lua:71: attempt to index global 'CurrentUniverse' (a nil value)
+	stack traceback:
+					[string "boot.lua"]:637: in function '__index'
+					entity/world.lua:71: in function 'getById'
+					core/entity.lua:828: in function 'removeFromWorld'
+					core/entity.lua:297: in function 'deactivate'
+					core/entity.lua:367: in function 'delete'
+					client/handlers/entities_transferred.lua:18: in function 'handler'
+					entity/client.lua:49: in function 'recv'
+					lib/grease/grease/core.lua:122: in function 'update'
+					entity/client.lua:178: in function 'updateFunc'
+					core/entity.lua:568: in function 'update'
+					main.lua:440: in function 'update'
+					[string "boot.lua"]:509: in function <[string "boot.lua"]:493>
+					[C]: in function 'xpcall'	
+c1 placing boombox-crash
 
-						точка добавления в _all - register - хит на входе p1?
-					регистация p1?
+				
+						+точка добавления в _all - register - хит на входе p1?
+					+регистация p1? - регистритуется
 				Entity._all 
 			трассировка, чтение
-		join_response не выдал p1
+		join_response->Entity.getWorld не выдал p1
 		+collect logs
 	c2 cant see c1
 3 player multiplayer test
 
+
++make pointer service entity
 
 
 
