@@ -1,19 +1,87 @@
-	Error: entity/world.lua:71: attempt to index global 'CurrentUniverse' (a nil value)
-	stack traceback:
-					[string "boot.lua"]:637: in function '__index'
-					entity/world.lua:71: in function 'getById'
-					core/entity.lua:828: in function 'removeFromWorld'
-					core/entity.lua:297: in function 'deactivate'
-					core/entity.lua:367: in function 'delete'
-					client/handlers/entities_transferred.lua:18: in function 'handler'
-					entity/client.lua:49: in function 'recv'
-					lib/grease/grease/core.lua:122: in function 'update'
-					entity/client.lua:178: in function 'updateFunc'
-					core/entity.lua:568: in function 'update'
-					main.lua:440: in function 'update'
-					[string "boot.lua"]:509: in function <[string "boot.lua"]:493>
-					[C]: in function 'xpcall'	
-c1 placing boombox-crash
+
+				
+usePlaceable неполное				
+				
+				
+								+activate - не помещает в мир
+							+register - не помещает в мир
+						entities_transferred
+					transferToServer - ожидается что после этого в мирах появилась сущность
+					+placeInWorld
+				usePlaceable
+			почитаем плейс 
+		но добавляет ли он туда?
+	клиент упал на попытке удалить из мира
+
+получение сущностей из мира на клиенте - получаем all
+
+626     deleting entity:1 n:Boombox l:defaultLogin
+626     deactivating:Boombox id:1 rm:true ac:true wid:1 xywh:77,90,32,17 l:defaultLogin
+626     drawables before remove:4
+626     drawables after remove:3
+Error: core/entity.lua:830: assertion failed!
+stack traceback:
+        [string "boot.lua"]:637: in function <[string "boot.lua"]:633>
+        [C]: in function 'assert'
+        core/entity.lua:830: in function 'removeFromWorld'
+        core/entity.lua:297: in function 'deactivate'
+        core/entity.lua:367: in function 'delete'
+        event/pickup_ok.lua:11: in function 'handler'
+        core/event.lua:69: in function 'doProcessEvent'
+        core/event.lua:86: in function 'processEvent'
+        core/event.lua:209: in function 'update'
+        main.lua:441: in function 'update'
+        [string "boot.lua"]:509: in function <[string "boot.lua"]:493>
+        [C]: in function 'xpcall'
+server pickup own boombox-c1 crash
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+server/client split
+
+
+
+
+
+
+
+
+
+
+
+
+
+
++c1 placing boombox-crash
 
 				
 						+точка добавления в _all - register - хит на входе p1?

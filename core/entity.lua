@@ -860,6 +860,10 @@ _.changeLogin=function(entity,login)
 	log("changeLoginAndId:"..Entity.toString(entity).." new:"..login.." old id:"..oldId)
 end
 
+
+-- wip: server-client
+
+
 -- 1-time use item
 _.usePlaceable=function(entity,x,y,isFromEditor)
 	dbgCtxIn("Entity.usePlaceable")
@@ -874,7 +878,9 @@ _.usePlaceable=function(entity,x,y,isFromEditor)
 		Player.removeItem(entity)
 	end
 	
+	-- current client only
 	Entity.placeInWorld(entity)
+	
 	Entity.transferToServer({entity})
 	dbgCtxOut()
 end

@@ -67,12 +67,22 @@ end
 
 
 
+-- server only
 _.getById=function(worldId)
-	for name,world in pairs(CurrentUniverse.worlds) do
-		if world.id==worldId then
-			return world
+	if Session.isServer then
+		for name,world in pairs(CurrentUniverse.worlds) do
+			if world.id==worldId then
+				return world
+			end
+		end
+	else
+		if worldId~=CurrentWorld.id then
+			log("error: accessing other world on client")
+		else
+			return CurrentWorld
 		end
 	end
+	
 	
 	return nil
 end
