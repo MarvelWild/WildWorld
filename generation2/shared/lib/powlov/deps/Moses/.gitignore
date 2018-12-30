@@ -1,0 +1,10 @@
+*.bat
+tsc*
+ldoc*
+LuaMinify*
+*.ld
+luacov*
+*.exe
+*.dll
+test*
+bust*

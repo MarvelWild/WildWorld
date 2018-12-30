@@ -29,7 +29,7 @@ _.slowUpdate=function(animal)
 	log("animal slow update")
 	
 	-- todo: networking - process on server, send update command
-	EnergyBehaviour.changeiEnergy(animal, getEnergyDrainSpeed())
+	EnergyBehaviour.changeEnergy(animal, getEnergyDrainSpeed())
 	
 	-- log("BaseAnimal.energy changed to:"..animal.energy)
 end

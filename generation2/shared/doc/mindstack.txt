@@ -1,0 +1,71 @@
+быть тут. всегда.
+	
+	но у него есть таргет, что круто
+event по сути та же команда, но отправляемая в конце хода - есть время обработать их
+
+
+
+
+	
+				+think those handlers generic way - later
+			+it wont. implement single response handler on client
+		+test afterLogin hit
+	+on successfull login send request
+	
+	
+	
+	
+					respond login_ok with login
+				должно заполниться после 
+				event.login=_netState.login не заполнено
+				событие без логина
+			shouldSendEventFromClient:1 t:server c:create_player targetLogin:nil result:false - it  should
+			делаем на клиенте, результат: сервер принял событие
+			пусть сервер и клиент это делают
+		что должно отправить событие? хранятся в pow.net.event
+	send it to server
+		+create_player
+	+create event for server
+>client joins world
+
+
+	+test receive
++client ack of login success	
++server responds to login command with 
++client connects
+
+
+
+multipart entity (s+c+sha)
+
++Server start listening
+
+	+pick net lib
+		grease - picked
+			pro
+				known
+			con
+				too lowlevel, need boilerplate code/midware
+					but could be good experience, no extra/unused code
+					and better understanding
+			
+		noobhub - rejected
+			pro
+				noivelty
+				can save time
+			con
+				js, not lua!
+				
+				
+plugin architecture
+	api
+		game itself as api? seems fine
+		or short set of methods?
+
+
+
+Concept
+	private
+	protected
+	mystery
+	rethink everything, totally new iteration
