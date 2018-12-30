@@ -5,12 +5,15 @@ Freestyle/multiplayer/sandbox/experimental game written with [LÖVE ](https://lo
 Influenced by Sketch Tales, World of Warcraft, Minecraft, Don't Starve, Realm of the Mad God, Atari 2600 games.
 
 Current state: early development, not playable
+
 I decided to rewrite from scratch for better code and easier development.
 
 
 <details>
  <summary>Installation</summary>
+
 windows: edit tools\init.cmd, put your game_path, run once
+
 linux: make symlink of shared dir manually (see tools\init.cmd)
 
 </details>
@@ -79,11 +82,17 @@ Thanks for support!
 
 <details>
  <summary>Thanks</summary>
+
 Paul Kulchenko and ZeroBrane crew for best IDE
+
 Anders Ruud and LÖVE crew. You made making games so pleasant!
+
 Igor Vselensky. Life is much better with you!
+
 Mira Pakhomava for fresh ideas, art, cheering me up, and many other things
+
 Alexey Sytyanov for opening more dimensions in gaming.
+
 All the gamers in the Universe!
 
 
