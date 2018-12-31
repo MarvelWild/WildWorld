@@ -13,80 +13,82 @@ local _id
 local _netState
 local _serialize
 local _deserialize
+
+-- _.send=function(data,clientId,requestId)
 local _send
 
 
-local shouldSendEventFromClient=function(event,targetLogin)
+--local shouldSendEventFromClient=function(event,targetLogin)
 	
-	local target=event.target
-	local eventLogin=event.login
-	local ourLogin=_netState.login
+--	local target=event.target
+--	local eventLogin=event.login
+--	local ourLogin=_netState.login
 	
-	-- на клиенте события можно отправлять только серверу
-	local result=true
+--	-- на клиенте события можно отправлять только серверу
+--	local result=true
 	
-	-- source==taget
-	if eventLogin==targetLogin then -- себе в любом случае не нужно слать, у нас оно уже есть
-		result=false
-	elseif eventLogin~=ourLogin then -- чужие не реброадкастим
-		result=false
-	elseif target=="self" then 
-		result=false 
-	elseif target=="server" then 
-		result=true 
-	elseif target=="others" then 
-		result=true 
-	elseif target=="all" then 
-		result=true
-	elseif target=="login" then -- подразумеваем что используется только другой логин (пока что)
-		result=true
-	else
-		log("error:unk event:".._.toString(event))
-	end
+--	-- source==taget
+--	if eventLogin==targetLogin then -- себе в любом случае не нужно слать, у нас оно уже есть
+--		result=false
+--	elseif eventLogin~=ourLogin then -- чужие не реброадкастим
+--		result=false
+--	elseif target=="self" then 
+--		result=false 
+--	elseif target=="server" then 
+--		result=true 
+--	elseif target=="others" then 
+--		result=true 
+--	elseif target=="all" then 
+--		result=true
+--	elseif target=="login" then -- подразумеваем что используется только другой логин (пока что)
+--		result=true
+--	else
+--		log("error:unk event:".._.toString(event))
+--	end
 	
-	log("shouldSendEventFromClient:".._.toString(event).." targetLogin:"..tostring(targetLogin).." result:"..tostring(result))
+--	log("shouldSendEventFromClient:".._.toString(event).." targetLogin:"..tostring(targetLogin).." result:"..tostring(result))
 
-	return result
-end
+--	return result
+--end
 
 
--- login is recipient login, nil means broadcast (for server)
-local shouldSendEventFromServer=function(event,targetLogin)
-	local target=event.target
+---- login is recipient login, nil means broadcast (for server)
+--local shouldSendEventFromServer=function(event,targetLogin)
+--	local target=event.target
 	
-	local result=true
-	local ourLogin=_netState.login
-	local sourceLogin=event.login
+--	local result=true
+--	local ourLogin=_netState.login
+--	local sourceLogin=event.login
 	
-	-- source==taget
-	if sourceLogin==targetLogin then -- не нужно возвращать отправителю
-		result=false
-	elseif targetLogin==ourLogin then -- не нужно слать себе
-		result=false 
-	elseif target=="others" then 
-		-- result=true
-	elseif target=="server" then 
-		-- эти только принимаем
-		result=false 
-	elseif target=="self" then 
-		result=false 
-	elseif target=="login" then
-		if event.targetLogin~=targetLogin then
-			result=false
-		-- else result=true
-		end
-	elseif target=="all" then 
-		-- result=true
-	else
-		log("error:unk event:".._.toString(event))
-	end
+--	-- source==taget
+--	if sourceLogin==targetLogin then -- не нужно возвращать отправителю
+--		result=false
+--	elseif targetLogin==ourLogin then -- не нужно слать себе
+--		result=false 
+--	elseif target=="others" then 
+--		-- result=true
+--	elseif target=="server" then 
+--		-- эти только принимаем
+--		result=false 
+--	elseif target=="self" then 
+--		result=false 
+--	elseif target=="login" then
+--		if event.targetLogin~=targetLogin then
+--			result=false
+--		-- else result=true
+--		end
+--	elseif target=="all" then 
+--		-- result=true
+--	else
+--		log("error:unk event:".._.toString(event))
+--	end
 	
-	log("shouldSendEventFromServer:".._.toString(event).." to login:"..tostring(targetLogin).." result:"..tostring(result))
+--	log("shouldSendEventFromServer:".._.toString(event).." to login:"..tostring(targetLogin).." result:"..tostring(result))
 
-	return result	
-end
+--	return result	
+--end
 
-local shouldSendEvent
+--local _shouldSendEvent
 local _sendCommand
 
 
@@ -157,6 +159,7 @@ end
 
 
 
+
 -- move processing logic outside? no, connect handlers to this module
 local doProcessEvent=function(event)
 	local eventCode=event.code
@@ -203,23 +206,21 @@ end
 
 
 
-
-
-
-
-local prepareEventsForLogin=function(login,events)
-	local result={}
+-- wip: let server/client do this
+-- todo: doc
+--local prepareEventsForLogin=function(login,events)
+--	local result={}
 	
-	for k,event in pairs(events) do
-		if shouldSendEvent(event,login) then
-			table.insert(result,event)
-		end
-	end
+--	for k,event in pairs(events) do
+--		if _shouldSendEvent(event,login) then
+--			table.insert(result,event)
+--		end
+--	end
 	
-	return result
-end
+--	return result
+--end
 
-_.prepareEventsForLogin=prepareEventsForLogin
+--_.prepareEventsForLogin=prepareEventsForLogin
 
 local cleanEvents=function()
 	if #_unprocessed>0 then
@@ -229,26 +230,27 @@ end
 
 -- идея: подключать сюда функцию сенда.
 
-local clientUpdate=function()
-	-- move to client? no, ok to be here, just need send function
-	local eventsToSend={}
-	for k,event in pairs(_unprocessed) do
-		processEvent(event)
-		if shouldSendEvent(event) then
-			table.insert(eventsToSend,event)
-		end
-	end
+-- wip: move to client
+--local clientUpdate=function()
+--	-- move to client? no, ok to be here, just need send function
+--	local eventsToSend={}
+--	for k,event in pairs(_unprocessed) do
+--		processEvent(event)
+--		if _shouldSendEvent(event) then
+--			table.insert(eventsToSend,event)
+--		end
+--	end
 	
-	if next(eventsToSend)~=nil then
-		sendToServer(eventsToSend)
-	end
+--	if next(eventsToSend)~=nil then
+--		sendToServer(eventsToSend)
+--	end
 	
-	cleanEvents()
+--	cleanEvents()
 
-end
+--end
 
-local serverUpdate=function()
-	-- wip move to server
+--local serverUpdate=function()
+	-- wip 
 --	if next(_unprocessed)~=nil then
 --		-- server filters events for each client, so unprocessed here
 --		for k,event in pairs(_unprocessed) do
@@ -260,7 +262,7 @@ local serverUpdate=function()
 --	end
 	
 --	cleanEvents()
-end
+--end
 
 	
 
@@ -278,19 +280,7 @@ _.init=function(pow)
 	_netState=pow.net.state
 	_serialize=pow.serialize
 	_deserialize=pow.deserialize
-	
-	if _netState.isServer then
-		shouldSendEvent=shouldSendEventFromServer
-		_.update=serverUpdate
-		-- wip
-		_send=
-		
-	else
-		shouldSendEvent=shouldSendEventFromClient
-		_.update=clientUpdate
-		-- wip
-		_send=
-	end
 end
+
 
 return _

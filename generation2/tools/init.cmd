@@ -1,6 +1,6 @@
 # config
 # todo: universal way
-set game_path=c:\WildWorld2\
+set game_path=c:\Gamedev\Love\LoFiFreestyleGame\generation2\
 
 
 

@@ -26,7 +26,6 @@ local _singleResponseHandlers={}
 local _receiver
 
 local _receiverInst
-local _eventUpdate
 
 _.init=function(pow)
 	_log=pow.log
@@ -35,7 +34,6 @@ _.init=function(pow)
 	_receiver=pow.receiver
 	_receiverInst=_receiver.new()
 	_unpack=pow.tserial.unpack
-	_eventUpdate=pow.net.event.update
 end
 
 -- state
@@ -108,11 +106,15 @@ _.connect=function(host, port)
 end
 
 
+local sendEvents=function()
+	-- wip
+end
+
 
 _.update=function(dt)
 	if _tcpClient==nil then return end
 	
-	_eventUpdate(dt)
+	sendEvents()
 --	log('client upd')
 	_tcpClient:update(dt)
 end
