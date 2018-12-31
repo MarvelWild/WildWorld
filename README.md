@@ -97,7 +97,14 @@ upcoming:
 
 
 
+<details>
+ <summary>Devs</summary>
 
+![MW](https://3.bp.blogspot.com/-jvcR7_BRL0w/WysGQtDGPEI/AAAAAAAADGw/EHZGGIlMAHAkRQSR2Wf9tAbYi24ReQhuwCLcBGAs/s1600/GameDeveloper.jpg)
+
+![Mira](https://4.bp.blogspot.com/-cbtJkSR1e_A/WysGoowD_DI/AAAAAAAADG4/BE15b_Y_TDUvTTe5sRMqDq6vUPrmyQAeACLcBGAs/s1600/GameDesigner2.jpg)
+
+</details>
 
 
 <details>

@@ -24,8 +24,8 @@ local _netMsgSeparator=_shared.netMsgSeparator
 local _singleResponseHandlers={}
 
 local _receiver
-
 local _receiverInst
+local _event
 
 _.init=function(pow)
 	_log=pow.log
@@ -34,6 +34,7 @@ _.init=function(pow)
 	_receiver=pow.receiver
 	_receiverInst=_receiver.new()
 	_unpack=pow.tserial.unpack
+	_event=pow.net.event
 end
 
 -- state
@@ -108,6 +109,7 @@ end
 
 local sendEvents=function()
 	-- wip
+	local allEvents=111
 end
 
 
