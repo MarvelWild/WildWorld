@@ -153,7 +153,6 @@ end
 
 local sendEvents=function()
 	local toSend
-	log("sendEvents")
 	
 	for k,event in ipairs(_unprocessedEvents) do
 		if shouldSendEventFromClient(event) then

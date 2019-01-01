@@ -179,12 +179,16 @@ _.listen=function(port)
 end
 
 
+
+-- todo: сервер отвечает за отправку и приём, но не за обработку
 -- проверить нужно ли что-то с ним делать на сервере, и 
 local processEvent=function()
 	-- wip
 end
 
 
+
+-- отправить события
 local processEvents=function()
 	if next(_unprocessedEvents)==nil then return end
 	-- server filters events for each client, so unprocessed here
@@ -213,6 +217,8 @@ end
 
 
 
+
+-- handler sig:  handler(response, clientId, requestId)
 _.addHandler=function(cmd,handler)
 	local existingCommand=_responseHandlers[cmd]
 	if existingCommand~=nil then
@@ -224,6 +230,17 @@ _.addHandler=function(cmd,handler)
 	
 end
 
+
+-- receive
+local handleEvents=function(response, clientId, requestId)
+	local events=response.events
+	for k,event in pairs(events) do
+		_event.register(event)
+	end
+end
+
+
+_.addHandler("events", handleEvents)
 
 
 

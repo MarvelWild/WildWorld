@@ -14,8 +14,7 @@ local afterLogin=function(response)
 	-- todo: move to pow
 	Pow.net.state.login=response.login
 	
-	local event=_event.new()
-	event.code="create_player"
+	local event=_event.new("create_player")
 	event.player_name="mw"
 	event.target="server"
 	

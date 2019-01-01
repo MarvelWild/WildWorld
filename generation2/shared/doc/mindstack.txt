@@ -1,3 +1,25 @@
+server:
+
+108179  error:event unprocessed:{
+target="server",
+code="create_player",
+id=12,
+entity="Event",
+player_name="mw",
+login="c1"
+}
+stack traceback:
+        shared/lib/powlov/deps/debug.lua:50: in function 'log'
+        shared/lib/powlov/module/net/event.lua:141: in function 'doProcessEvent'
+        shared/lib/powlov/module/net/event.lua:154: in function 'processEvent'
+        shared/lib/powlov/module/net/event.lua:161: in function 'update'
+        shared/lib/powlov/pow.lua:214: in function 'update'
+        main.lua:22: in function 'update'
+        [string "boot.lua"]:509: in function <[string "boot.lua"]:493>
+        [C]: in function 'xpcall'
+        [string "boot.lua"]:657: in function <[string "boot.lua"]:630>
+
++client: event without code
 
 
 
@@ -11,18 +33,23 @@
 	
 	
 	
-					respond login_ok with login
-				должно заполниться после 
-				event.login=_netState.login не заполнено
-				событие без логина
-			shouldSendEventFromClient:1 t:server c:create_player targetLogin:nil result:false - it  should
-			делаем на клиенте, результат: сервер принял событие
-			пусть сервер и клиент это делают
-		что должно отправить событие? хранятся в pow.net.event
-	>send create event  to server
+	
+	
+
+	server reacts to create_player
+client joins world p2
+
+					+respond login_ok with login
+				+должно заполниться после 
+				+event.login=_netState.login не заполнено
+				+событие без логина
+			+shouldSendEventFromClient:1 t:server c:create_player targetLogin:nil result:false - it  should
+			+пусть сервер и клиент это делают
+		+что должно отправить событие? хранятся в pow.net.event
+	+send create event  to server
 		+create_player
 	+create event for server
-client joins world
++client joins world p1
 
 
 	+test receive

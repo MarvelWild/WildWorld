@@ -50,21 +50,25 @@ local _deserialize
 --	return result	
 --end
 
---local _shouldSendEvent
-local _sendCommand
 
 
 
 
 
+_.toString=function(event)
+	local result=event.id.." t:"..event.target..' c:'..event.code
+	
+	return result
+end
 
 
 -- remote/detached
 _.register=function(event)
+	log("register event:".._.toString(event))
 	table.insert(_unprocessed,event)
 end
 
-_.new=function()
+_.new=function(code)
 	-- BaseEntity.new() event is not a entity
 	--log("Event.new:".._traceback())
 	local event={}
@@ -88,7 +92,7 @@ _.new=function()
 	event.targetLogin=nil
 	
 	-- по коду определяем обработчик
-	event.code=nil
+	event.code=code
 	
 	_.register(event)
 	
@@ -238,11 +242,6 @@ end
 
 	
 
-_.toString=function(event)
-	local result=event.id.." t:"..event.target..' c:'..event.code
-	
-	return result
-end
 
 
 
