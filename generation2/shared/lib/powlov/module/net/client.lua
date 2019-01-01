@@ -27,6 +27,9 @@ local _receiver
 local _receiverInst
 local _event
 
+local _unprocessedEvents
+local _netState
+
 _.init=function(pow)
 	_log=pow.log
 	_grease=pow.grease
@@ -35,6 +38,8 @@ _.init=function(pow)
 	_receiverInst=_receiver.new()
 	_unpack=pow.tserial.unpack
 	_event=pow.net.event
+	_netState=pow.net.state
+	_unprocessedEvents=_event.unprocessed
 end
 
 -- state
@@ -106,19 +111,72 @@ _.connect=function(host, port)
 	return result, msg
 end
 
+local shouldSendEventFromClient=function(event)
+	local target=event.target
+	local eventLogin=event.login
+	local ourLogin=_netState.login
+	
+	-- на клиенте события можно отправлять только серверу
+	local result=true
+	
+	if eventLogin~=ourLogin then -- чужие не реброадкастим
+		result=false
+	elseif target=="self" then 
+		result=false 
+	elseif target=="server" then 
+		result=true 
+	elseif target=="others" then 
+		result=true 
+	elseif target=="all" then 
+		result=true
+	elseif target=="login" then -- подразумеваем что используется только другой логин (пока что)
+		result=true
+	else
+		log("error:unk event:".._.toString(event))
+	end
+	
+	log("shouldSendEventFromClient:".._event.toString(event).." result:"..tostring(result))
+
+	return result
+end
+
+local sendEventsToServer=function(events)
+	local command=
+	{
+		cmd="events",
+		events=events
+	}
+	
+	_.send(command)
+end
+
 
 local sendEvents=function()
-	-- wip
-	local allEvents=111
+	local toSend
+	log("sendEvents")
+	
+	for k,event in ipairs(_unprocessedEvents) do
+		if shouldSendEventFromClient(event) then
+			if toSend==nil then toSend={} end
+			
+			table.insert(toSend,event)
+		end
+	end
+	
+	if toSend~=nil then
+		sendEventsToServer(toSend) 
+	end
 end
 
 
 _.update=function(dt)
 	if _tcpClient==nil then return end
 	
-	sendEvents()
 --	log('client upd')
 	_tcpClient:update(dt)
+	
+	-- todo: event queue instead of clear all
+	sendEvents()
 end
 
 return _

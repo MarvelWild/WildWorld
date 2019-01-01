@@ -18,6 +18,8 @@ local afterLogin=function(response)
 	event.code="create_player"
 	event.player_name="mw"
 	event.target="server"
+	
+	log("created event create_player")
 end
 
 

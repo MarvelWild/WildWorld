@@ -192,6 +192,7 @@ local processEvents=function()
 		processEvent(event)
 	end
 	
+	-- wip
 	-- shouldSendEvent проверяется внутри
 	Server.sendEventsToClients(_unprocessed)
 

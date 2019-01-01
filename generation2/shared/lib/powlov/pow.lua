@@ -87,7 +87,7 @@ _.log=_.debug.log
 _.internalLog=_.log
 _.debug.pow=_
 
-
+local _event
 
 -- extra sublibs+staging
 _.string={}
@@ -189,6 +189,8 @@ initModule(_.receiver)
 _.net=require(folderOfThisFile.."/module/net/net")
 initModule(_.net)
 
+_event=_.net.event
+
 _.server=_.net.server
 _.client=_.net.client
 
@@ -207,6 +209,11 @@ end
 _.update=function(dt)
 	_frame=_frame+1
 	_entity.update(dt)
+	
+	-- todo: think networkless games too
+	_event.update()
+	
+	_event.cleanEvents()
 end
 
 

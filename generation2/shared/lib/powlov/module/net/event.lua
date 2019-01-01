@@ -14,44 +14,6 @@ local _netState
 local _serialize
 local _deserialize
 
--- _.send=function(data,clientId,requestId)
-local _send
-
-
---local shouldSendEventFromClient=function(event,targetLogin)
-	
---	local target=event.target
---	local eventLogin=event.login
---	local ourLogin=_netState.login
-	
---	-- на клиенте события можно отправлять только серверу
---	local result=true
-	
---	-- source==taget
---	if eventLogin==targetLogin then -- себе в любом случае не нужно слать, у нас оно уже есть
---		result=false
---	elseif eventLogin~=ourLogin then -- чужие не реброадкастим
---		result=false
---	elseif target=="self" then 
---		result=false 
---	elseif target=="server" then 
---		result=true 
---	elseif target=="others" then 
---		result=true 
---	elseif target=="all" then 
---		result=true
---	elseif target=="login" then -- подразумеваем что используется только другой логин (пока что)
---		result=true
---	else
---		log("error:unk event:".._.toString(event))
---	end
-	
---	log("shouldSendEventFromClient:".._.toString(event).." targetLogin:"..tostring(targetLogin).." result:"..tostring(result))
-
---	return result
---end
-
-
 ---- login is recipient login, nil means broadcast (for server)
 --local shouldSendEventFromServer=function(event,targetLogin)
 --	local target=event.target
@@ -92,7 +54,8 @@ local _send
 local _sendCommand
 
 
-_.update=nil
+
+
 
 
 
@@ -187,6 +150,14 @@ local processEvent=function(event)
 	doProcessEvent(event)
 end
 
+
+
+_.update=function()
+	for k,event in pairs(_unprocessed) do
+		processEvent(event)
+	end
+end
+
 -- without queue, without checks
 _.doProcessEvent=function(event)
 	log("doProcessEvent:".._.toString(event))
@@ -194,14 +165,10 @@ _.doProcessEvent=function(event)
 end
 
 
-local sendToServer=function(events)
-	local command=
-	{
-		cmd="events",
-		events=events
-	}
-	_send(command)
-end
+
+
+
+
 
 
 
@@ -222,10 +189,15 @@ end
 
 --_.prepareEventsForLogin=prepareEventsForLogin
 
-local cleanEvents=function()
-	if #_unprocessed>0 then
-		_unprocessed={}
-	end
+_.cleanEvents=function()
+	--todo: test all events processed
+	
+	table.clear(_unprocessed)
+	
+	-- referenced fron otheer places, cannot make new
+--	if #_unprocessed>0 then
+--		_unprocessed={}
+--	end
 end
 
 -- идея: подключать сюда функцию сенда.

@@ -19,3 +19,9 @@ function string.split(str, div)
     end
     return result
 end
+
+
+table.clear=function(t)
+	local count = #t
+	for i=0, count do t[i]=nil end
+end
