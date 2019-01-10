@@ -4,9 +4,11 @@ local isDebug=arg[#arg] == "-debug"
 if isDebug then require("mobdebug").start() end
 
 require("shared.libs")
+Id=Pow.id
 
-
-ServerService=require("entity.service.server")
+BaseEntity=require("shared.entity.base_entity")
+Db=require("db.db")
+ServerService=require("entity.service.server_service")
 ConfigService=require("shared.entity.service.config")
 
 love.load=function()

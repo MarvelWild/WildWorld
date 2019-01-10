@@ -6,6 +6,7 @@ local _unprocessed={}
 
 _.unprocessed=_unprocessed
 
+
 local _eventHandlers={}
 
 local _pow
@@ -253,5 +254,10 @@ _.init=function(pow)
 	_deserialize=pow.deserialize
 end
 
+-- handler sig: handler(event)
+_.addHandler=function(cmd, handler)
+--	local oldHandler=_eventHandlers[cmd]
+	_eventHandlers[cmd]=handler
+end
 
 return _
