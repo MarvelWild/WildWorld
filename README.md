@@ -117,11 +117,10 @@ upcoming:
 <details>
  <summary>Donate</summary>
 
-https://liberapay.com/MarvelWild/
+https://yasobe.ru/na/gamedev_way
 
 https://www.patreon.com/marvelme
 
-http://yasobe.ru/na/make_me_happy
 
 btc: 3MV443JyoGvd1WX1UhwLSKfS1VmTQg4QBr
 
