@@ -24,6 +24,7 @@ end
 
 
 _.new=function(name)
+	assert(name)
 	local prevId=_lastIdByName[name]
 	if prevId==nil then prevId=0 end
 	local result=prevId+1

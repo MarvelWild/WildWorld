@@ -1,6 +1,8 @@
 -- game specific server code
 
-local _=BaseEntity.new()
+
+local _entityName='ServerService'
+local _=BaseEntity.new(_entityName)
 
 _.isService=true
 
