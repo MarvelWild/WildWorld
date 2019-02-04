@@ -16,7 +16,7 @@ local createPlayer=function(event)
 	local login=event.login
 	
 	-- где персистим игроков?
-	-- wip
+	-- wip db
 	
 end
 
