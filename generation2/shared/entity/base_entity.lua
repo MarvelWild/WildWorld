@@ -1,3 +1,5 @@
+-- global BaseEntity
+
 local _={}
 
 _.new=function(entity)
