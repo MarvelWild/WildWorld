@@ -3,7 +3,10 @@
 local _={}
 
 local _unprocessed={}
+local _nextFrameEvents={}
+local _isUpdatedThisFrame=false
 
+-- todo: events can reside in _nextFrameEvents, so this does not represent all events
 _.unprocessed=_unprocessed
 
 
@@ -15,45 +18,6 @@ local _netState
 local _serialize
 local _deserialize
 
----- login is recipient login, nil means broadcast (for server)
---local shouldSendEventFromServer=function(event,targetLogin)
---	local target=event.target
-	
---	local result=true
---	local ourLogin=_netState.login
---	local sourceLogin=event.login
-	
---	-- source==taget
---	if sourceLogin==targetLogin then -- не нужно возвращать отправителю
---		result=false
---	elseif targetLogin==ourLogin then -- не нужно слать себе
---		result=false 
---	elseif target=="others" then 
---		-- result=true
---	elseif target=="server" then 
---		-- эти только принимаем
---		result=false 
---	elseif target=="self" then 
---		result=false 
---	elseif target=="login" then
---		if event.targetLogin~=targetLogin then
---			result=false
---		-- else result=true
---		end
---	elseif target=="all" then 
---		-- result=true
---	else
---		log("error:unk event:".._.toString(event))
---	end
-	
---	log("shouldSendEventFromServer:".._.toString(event).." to login:"..tostring(targetLogin).." result:"..tostring(result))
-
---	return result	
---end
-
-
-
-
 
 
 _.toString=function(event)
@@ -63,10 +27,18 @@ _.toString=function(event)
 end
 
 
+-- now they deleted in 
+
 -- remote/detached
 _.register=function(event)
 	log("register event:".._.toString(event))
-	table.insert(_unprocessed,event)
+	
+	if _isUpdatedThisFrame then
+		table.insert(_nextFrameEvents,event)
+	else
+		table.insert(_unprocessed,event)
+	end
+
 end
 
 _.new=function(code)
@@ -107,19 +79,23 @@ local shouldSkipEvent=function(event)
 	local target=event.target
 	assert(target)
 	
-	local login=_netState.login
+	local ourLogin=_netState.login
 	if target=="server" then
 		if _netState.isClient then
 			return true 
 		end
 	elseif target=="self" then
-		if event.login~=login then
+		if event.login~=ourLogin then
 			return true 
 		end
 	elseif target=="others" then
-		if event.login==login then
+		if event.login==ourLogin then
 			return true 
-		end		
+		end
+	elseif target=="login" then
+		if event.targetLogin~= ourLogin then
+			return true
+		end
 	end
 	
 	return false
@@ -157,10 +133,33 @@ end
 
 
 
+
+
+_.earlyUpdate=function()
+	_isUpdatedThisFrame=false
+	
+	if next(_nextFrameEvents)~=nil then
+		for k,event in pairs(_nextFrameEvents) do
+			table.insert(_unprocessed,event)
+		end
+		
+		table.clear(_nextFrameEvents)
+	end
+end
+
+
+-- called from pow.update
 _.update=function()
+	if (next(_unprocessed)~=nil) then
+		log('processing events')
+	end
+	
+	
 	for k,event in pairs(_unprocessed) do
 		processEvent(event)
 	end
+	
+	_isUpdatedThisFrame=true
 end
 
 -- without queue, without checks
@@ -196,6 +195,12 @@ end
 
 _.cleanEvents=function()
 	--todo: test all events processed
+	
+	-- todo: remove debug code
+	if (next(_unprocessed)~=nil) then
+		log('cleaning events')
+	end
+	
 	
 	table.clear(_unprocessed)
 	

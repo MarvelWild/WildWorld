@@ -22,6 +22,8 @@ local _shared=require(folderOfThisFile.."/shared")
 
 local _netMsgSeparator=_shared.netMsgSeparator
 local _singleResponseHandlers={}
+-- wip: implement
+local _responseHandlers={}
 
 local _receiver
 local _receiverInst
@@ -58,13 +60,16 @@ local recv=function(data) -- search alias: receive
 		local response=_unpack(message)
 		local requestId=response.requestId
 		
-		-- wip generic handler
+		
 		
 		local singleHandler=_singleResponseHandlers[requestId]
 		if singleHandler~=nil then
 			singleHandler(response)
 			_singleResponseHandlers[requestId]=nil
 			isProcessed=true
+		else
+			-- wip generic handler
+			-- local handler=_responseHandlers[]
 		end
 		
 		if not isProcessed then
@@ -73,6 +78,11 @@ local recv=function(data) -- search alias: receive
 	end
 end
 
+_.addHandler=function(cmd, handler)
+	assert(_responseHandlers[cmd]==nil)
+	
+	_responseHandlers[cmd]=handler
+end
 
 -- единственная точка через которую клиент отправляет сообщения
 -- onResponse=function(response)

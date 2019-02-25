@@ -7,6 +7,12 @@ local _client=Pow.client
 
 local _event=Pow.net.event
 
+local afterPlayerCreated=function(response)
+	-- wip
+	log('afterPlayerCreated')
+	local a=1
+end
+
 
 local afterLogin=function(response)
 	log('after login:'..Pow.pack(response))
@@ -17,6 +23,12 @@ local afterLogin=function(response)
 	local event=_event.new("create_player")
 	event.player_name="mw"
 	event.target="server"
+	
+	-- wip: add create_player_response handler
+	-- где слушаем? pow client wip generic handler
+	
+	-- wip
+	_client.addHandler("create_player_response", afterPlayerCreated)
 	
 	log("created event create_player")
 end

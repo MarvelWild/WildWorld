@@ -21,6 +21,7 @@ function string.split(str, div)
 end
 
 
+-- numbered only
 table.clear=function(t)
 	local count = #t
 	for i=0, count do t[i]=nil end

@@ -11,7 +11,10 @@ Db=require("shared.lib.db.db")
 ServerService=require("entity.service.server_service")
 ConfigService=require("shared.entity.service.config")
 
+Player=require("entity.player")
+
 love.load=function()
+	
 	local netState=Pow.net.state
 	netState.isServer=true
 	netState.isClient=false

@@ -39,6 +39,8 @@ local _split=string.split
 
 local _shared=require(folderOfThisFile.."/shared")
 
+local _netState
+
 
 local _registerClient=function(clientId,login)
 	_loginByClient[clientId]=login
@@ -68,6 +70,7 @@ _.init=function(pow)
 	
 	_receiver=pow.receiver
 	_event=pow.net.event
+	_netState=pow.net.state
 	_unprocessedEvents=_event.unprocessed
 end
 
@@ -180,39 +183,88 @@ end
 
 
 
--- todo: сервер отвечает за отправку и приём, но не за обработку
--- проверить нужно ли что-то с ним делать на сервере, и 
-local processEvent=function()
-	-- wip
-end
 
 
 
--- отправить события
-local processEvents=function()
-	if next(_unprocessedEvents)==nil then return end
-	-- server filters events for each client, so unprocessed here
-	for k,event in pairs(_unprocessedEvents) do
-		processEvent(event)
-	end
-	
-	-- wip
-	-- shouldSendEvent проверяется внутри
-	Server.sendEventsToClients(_unprocessed)
 
-
-	_event.cleanEvents()
-end
 
 
 _.update=function(dt)
+end
+
+---- login is recipient login, nil means broadcast (for server)
+local shouldSendEvent=function(event,targetLogin)
+	local target=event.target
+	
+	local result=true
+	local ourLogin=_netState.login
+	local sourceLogin=event.login
+	
+	-- source==taget
+	if sourceLogin==targetLogin then -- не нужно возвращать отправителю
+		result=false
+	elseif targetLogin==ourLogin then -- не нужно слать себе
+		result=false 
+	elseif target=="others" then 
+		 result=true
+	elseif target=="server" then 
+		-- эти только принимаем
+		result=false 
+	elseif target=="self" then 
+		result=false 
+	elseif target=="login" then
+		if event.targetLogin~=targetLogin then
+			result=false
+		else 
+			result=true
+		end
+	elseif target=="all" then 
+		result=true
+	else
+		log("error:unk event:".._event.toString(event))
+	end
+	
+	log("shouldSendEvent from server:".._event.toString(event).." to login:"..tostring(targetLogin).." result:"..tostring(result))
+
+	return result	
+end
+
+local prepareEventsForLogin=function(login,events)
+	local result={}
+	
+	for k,event in pairs(events) do
+		if shouldSendEvent(event,login) then
+			table.insert(result,event)
+		end
+	end
+	
+	return result
+end
+
+
+local sendEvents=function()
+	if (next(_unprocessedEvents)==nil) then return end
+	
+	for login,client in pairs(_clientByLogin) do
+		local preparedEvents=prepareEventsForLogin(login,_unprocessedEvents)
+		local a=1
+		
+		-- wip send preparedEvents
+
+	end
+end
+
+
+-- should be called after pow.update (it handles events)
+_.lateUpdate=function(dt)
 	if _tcpServer==nil then return end
 	
-	processEvents()
-	
+
+	sendEvents()
 	-- log('server upd')
 	_tcpServer:update(dt)
 end
+
 
 
 

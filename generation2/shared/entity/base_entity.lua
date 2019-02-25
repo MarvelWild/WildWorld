@@ -2,11 +2,13 @@
 
 local _={}
 
-_.new=function(entity)
+_.new=function(entity,isService)
 	assert(entity)
 	local result={}
 	
-	result.id=Id.new(entity)
+	if not isService then
+		result.id=Id.new(entity)
+	end
 	result.entity=entity
 	
 	

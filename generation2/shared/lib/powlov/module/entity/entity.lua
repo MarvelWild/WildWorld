@@ -6,6 +6,7 @@ local _={}
 -- _.update=
 local _drawable={}
 local _updatable={}
+local _lateUpdatable={}
 
 --добавить сущность в менеджер
 _.add=function(entity)
@@ -24,12 +25,18 @@ _.add=function(entity)
 		_updatable[entity]=update
 	end
 	
+	local lateUpdate=entityCode.lateUpdate
+	if lateUpdate~=nil then
+		_lateUpdatable[entity]=lateUpdate
+	end
+	
 	
 end
 
 _.remove=function(entity)
 	_drawable[entity]=nil
 	_updatable[entity]=nil
+	_lateUpdatable[entity]=nil
 end
 
 _.draw=function()
@@ -45,8 +52,11 @@ _.update=function(dt)
 end
 
 
-
-
+_.lateUpdate=function(dt)
+	for entity,updateProc in pairs(_lateUpdatable) do
+		updateProc(dt)
+	end	
+end
 
 
 return _

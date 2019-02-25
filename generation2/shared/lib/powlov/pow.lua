@@ -208,10 +208,15 @@ end
 -- NOTE: conect this to update
 _.update=function(dt)
 	_frame=_frame+1
+	_event.earlyUpdate(dt)
+	
 	_entity.update(dt)
 	
 	-- todo: think networkless games too
 	_event.update()
+	
+	
+	_entity.lateUpdate(dt)
 	
 	_event.cleanEvents()
 end
