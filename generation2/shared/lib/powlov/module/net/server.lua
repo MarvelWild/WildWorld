@@ -247,9 +247,22 @@ local sendEvents=function()
 	
 	for login,client in pairs(_clientByLogin) do
 		local preparedEvents=prepareEventsForLogin(login,_unprocessedEvents)
-		local a=1
-		
-		-- wip send preparedEvents
+	
+		if next(preparedEvents)~=nil then
+			local command=
+			{
+				cmd="events_client",
+				events=preparedEvents
+			}
+			
+			for k,event in pairs(preparedEvents) do
+				log("sending event:".._event.toString(event))
+			end
+			
+			_.send(command,client)
+		else
+			log("no events for:"..login)
+		end
 
 	end
 end
