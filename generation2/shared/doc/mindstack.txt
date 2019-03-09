@@ -1,4 +1,31 @@
+enforce strict
 client respond to create_player
+	вызов create_player_response
+		\client\shared\lib\powlov\module\net\client.lua
+			тут обрабатываеть wip single handler
+			wip handleEvents
+		сейчас 
+error:net msg not processed:{
+cmd="events_client",
+events={
+        [1]={
+                player={
+                        entity="player",
+                        name="mw",
+                        id=4
+                },
+                target="login",
+                code="create_player_response",
+                id=4,
+                entity="Event",
+                targetLogin="c1"
+        }
+}
+}#^#		
+
+
+
+
 
 
 server sends create_player_response to client:

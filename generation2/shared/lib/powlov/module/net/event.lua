@@ -10,6 +10,8 @@ local _isUpdatedThisFrame=false
 _.unprocessed=_unprocessed
 
 
+-- key=cmd
+-- val=handler
 local _eventHandlers={}
 
 local _pow
@@ -41,6 +43,7 @@ _.register=function(event)
 
 end
 
+-- code=eventCode
 _.new=function(code)
 	-- BaseEntity.new() event is not a entity
 	--log("Event.new:".._traceback())
@@ -260,9 +263,10 @@ _.init=function(pow)
 end
 
 -- handler sig: handler(event)
-_.addHandler=function(cmd, handler)
---	local oldHandler=_eventHandlers[cmd]
-	_eventHandlers[cmd]=handler
+_.addHandler=function(eventCode, handler)
+	local oldHandler=_eventHandlers[eventCode]
+	assert(oldHandler==nil)
+	_eventHandlers[eventCode]=handler
 end
 
 return _

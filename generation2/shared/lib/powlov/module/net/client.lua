@@ -32,6 +32,22 @@ local _event
 local _unprocessedEvents
 local _netState
 
+-- responds infinitely
+_.addHandler=function(cmd, handler)
+	assert(_responseHandlers[cmd]==nil)
+	
+	_responseHandlers[cmd]=handler
+end
+
+
+local handleEvents=function(response)
+	local events=response.events
+	for k,event in pairs(events) do
+		_event.register(event)
+	end	
+end
+
+
 _.init=function(pow)
 	_log=pow.log
 	_grease=pow.grease
@@ -42,6 +58,7 @@ _.init=function(pow)
 	_event=pow.net.event
 	_netState=pow.net.state
 	_unprocessedEvents=_event.unprocessed
+	_.addHandler('events_client', handleEvents)
 end
 
 -- state
@@ -69,7 +86,11 @@ local recv=function(data) -- search alias: receive
 			isProcessed=true
 		else
 			-- wip generic handler
-			-- local handler=_responseHandlers[]
+			local cmd=response.cmd
+			assert(cmd)
+			local handler=_responseHandlers[cmd]
+			handler(response)
+			isProcessed=true
 		end
 		
 		if not isProcessed then
@@ -78,11 +99,6 @@ local recv=function(data) -- search alias: receive
 	end
 end
 
-_.addHandler=function(cmd, handler)
-	assert(_responseHandlers[cmd]==nil)
-	
-	_responseHandlers[cmd]=handler
-end
 
 -- единственная точка через которую клиент отправляет сообщения
 -- onResponse=function(response)
