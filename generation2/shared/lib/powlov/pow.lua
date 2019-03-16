@@ -208,6 +208,8 @@ end
 -- NOTE: conect this to update
 _.update=function(dt)
 	_frame=_frame+1
+	
+	-- here unprocessed events from prev frame went to this one
 	_event.earlyUpdate(dt)
 	
 	_entity.update(dt)
@@ -216,6 +218,7 @@ _.update=function(dt)
 	_event.update()
 	
 	
+	-- here ... todo
 	_entity.lateUpdate(dt)
 	
 	_event.cleanEvents()

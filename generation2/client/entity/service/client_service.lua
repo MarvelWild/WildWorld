@@ -8,10 +8,40 @@ local _client=Pow.client
 local _event=Pow.net.event
 
 local afterPlayerCreated=function(response)
-	-- wip
+	-- wip : start as player
+	
+		--[[
+		response example: 
+		{
+			code = "create_player_response", 
+			entity = "Event",
+			id = 9,
+			player = {
+				entity = "player",
+				id = 9, name = "mw"
+			} 
+		, target = "login",
+		targetLogin = "c1"
+		}
+		]]--
+	
 	log('afterPlayerCreated')
-	local a=1
+	
+	local event=_event.new("game_start")
+	
+	local player=response.player
+	event.playerId=player.id
+	event.target="server"
+	
+	-- response is generic : onStateReceived
 end
+
+
+local onStateReceived=function(response)
+	log('onStateReceived')
+	-- wip: apply to game world
+end
+
 
 
 local afterLogin=function(response)
@@ -21,6 +51,7 @@ local afterLogin=function(response)
 	Pow.net.state.login=response.login
 	
 	_event.addHandler("create_player_response", afterPlayerCreated)
+	_event.addHandler("state", onStateReceived)
 	
 	-- wip: remove handler on completion
 	-- generic way?

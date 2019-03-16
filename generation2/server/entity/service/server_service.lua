@@ -20,22 +20,28 @@ local createPlayer=function(event)
 	player.name=playerName
 	Db.add(player)
 	
-	local event=_event.new("create_player_response")
-	event.player=player
+	local responseEvent=_event.new("create_player_response")
+	responseEvent.player=player
 	
-	event.target="login"
-	event.targetLogin=login
+	responseEvent.target="login"
+	responseEvent.targetLogin=login
 	
 	log('new event: create_player_response')
-	
-	-- wip: react to this on client
-	-- задача: слушать такое не всегда,
+	-- todo: слушать такое не всегда,
 end
 
 
 
+-- client picked player, and wants to start game. send him game state
+local gameStart=function(event)
+	-- wip: implement
+	log("game_start:"..Pow.pack(event))
+end
+
 _.start=function()
 	_event.addHandler("create_player", createPlayer)
+	_event.addHandler("game_start", gameStart)
+	
 	
 	_server.listen(ConfigService.port)
 	

@@ -32,6 +32,8 @@ local _event
 local _unprocessedEvents
 local _netState
 
+local _eventsToSend={}
+
 -- responds infinitely
 _.addHandler=function(cmd, handler)
 	assert(_responseHandlers[cmd]==nil)
@@ -48,18 +50,7 @@ local handleEvents=function(response)
 end
 
 
-_.init=function(pow)
-	_log=pow.log
-	_grease=pow.grease
-	_tserial=pow.tserial
-	_receiver=pow.receiver
-	_receiverInst=_receiver.new()
-	_unpack=pow.tserial.unpack
-	_event=pow.net.event
-	_netState=pow.net.state
-	_unprocessedEvents=_event.unprocessed
-	_.addHandler('events_client', handleEvents)
-end
+
 
 -- state
 _.requestId=1
@@ -178,6 +169,17 @@ end
 
 
 local sendEvents=function()
+	-- log("sendEvents")
+	
+	-- wip: v2 : use _eventsToSend, then clean it
+	if _eventsToSend
+	
+	if (next(_eventsToSend)~=nil) then
+		table.clear(_eventsToSend)
+	end
+	
+	
+	--[[ v1 old code
 	local toSend
 	
 	for k,event in ipairs(_unprocessedEvents) do
@@ -189,8 +191,10 @@ local sendEvents=function()
 	end
 	
 	if toSend~=nil then
+		log("sending events to server")
 		sendEventsToServer(toSend) 
 	end
+	]]--
 end
 
 
@@ -201,7 +205,33 @@ _.update=function(dt)
 	_tcpClient:update(dt)
 	
 	-- todo: event queue instead of clear all
+	
+	-- wip: это должно стать частью process
 	sendEvents()
+end
+
+local onEventProcessing=function(event)
+	if shouldSendEventFromClient(event) then
+		table.insert(_eventsToSend, event)
+		log("event queued to send:"..Pow.pack(event))
+	end
+end
+
+
+_.init=function(pow)
+	_log=pow.log
+	_grease=pow.grease
+	_tserial=pow.tserial
+	_receiver=pow.receiver
+	_receiverInst=_receiver.new()
+	_unpack=pow.tserial.unpack
+	_event=pow.net.event
+	_netState=pow.net.state
+	_unprocessedEvents=_event.unprocessed
+	_.addHandler('events_client', handleEvents)
+	
+	assert(_event.onEventProcessing==nil)
+	_event.onEventProcessing=onEventProcessing
 end
 
 return _

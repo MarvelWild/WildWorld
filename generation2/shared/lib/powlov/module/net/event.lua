@@ -21,6 +21,7 @@ local _serialize
 local _deserialize
 
 
+_.onEventProcessing=nil -- func(event)
 
 _.toString=function(event)
 	local result=event.id.." t:"..event.target..' c:'..event.code
@@ -108,7 +109,9 @@ end
 
 
 -- move processing logic outside? no, connect handlers to this module
+-- without queue, without checks
 local doProcessEvent=function(event)
+	log("doProcessEvent:".._.toString(event))
 	local eventCode=event.code
 	
 	local handler=_eventHandlers[eventCode]
@@ -126,6 +129,12 @@ end
 
 
 local processEvent=function(event)
+	-- todo opt
+	if (_.onEventProcessing~=nil) then
+		_.onEventProcessing(event)
+	end
+
+	
 	if shouldSkipEvent(event) then 
 		log("skip event:".._.toString(event))
 		return
@@ -165,11 +174,6 @@ _.update=function()
 	_isUpdatedThisFrame=true
 end
 
--- without queue, without checks
-_.doProcessEvent=function(event)
-	log("doProcessEvent:".._.toString(event))
-	doProcessEvent(event)
-end
 
 
 
@@ -202,6 +206,7 @@ _.cleanEvents=function()
 	-- todo: remove debug code
 	if (next(_unprocessed)~=nil) then
 		log('cleaning events')
+		log(Pow.pack(_unprocessed))
 	end
 	
 	

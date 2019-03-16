@@ -1,4 +1,9 @@
-enforce strict
+session 2019-03-15
+	events: use queue
+	
+	
+
+
 client respond to create_player
 	вызов create_player_response
 		\client\shared\lib\powlov\module\net\client.lua
@@ -143,6 +148,8 @@ multipart entity (s+c+sha)
 				can save time
 			con
 				js, not lua!
+				
+enforce strict later
 				
 				
 plugin architecture
