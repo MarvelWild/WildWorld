@@ -1,0 +1,7 @@
+
+
+
+
+full_state
+	sent from server to client
+	example:

@@ -21,7 +21,10 @@ _.add=function(entity)
 	local entityName=entity.entity
 	
 	local entityContainer=_.getEntityContainer(entityName)
-	table.insert(entityContainer, entity)
+	-- table.insert(entityContainer, entity)
+	local entityId=entity.id
+	assert(entityContainer[entityId]==nil)
+	entityContainer[entityId]=entity
 end
 
 

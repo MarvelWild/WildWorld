@@ -33,6 +33,8 @@ local afterPlayerCreated=function(response)
 	event.playerId=player.id
 	event.target="server"
 	
+	_event.process(event)
+	
 	-- response is generic : onStateReceived
 end
 

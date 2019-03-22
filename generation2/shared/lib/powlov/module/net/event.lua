@@ -57,7 +57,7 @@ _.new=function(code)
 		self		
 		server	
 		others	except self
-		login		specified login (private chat)
+		login		specified login (private chat). field:targetLogin
 	]]--
 	event.target="all"
 	event.targetLogin=nil

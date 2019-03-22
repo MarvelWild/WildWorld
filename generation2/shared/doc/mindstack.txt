@@ -1,7 +1,49 @@
-упрощение до мгновенной обработки событий
-теперь каждое событие нужно вызывать process
-	+create_player_response send from server
-	afterPlayerCreated react on client
++упрощение до мгновенной обработки событий
++теперь каждое событие нужно вызывать process
++create_player_response send from server
++afterPlayerCreated react on client
+server response to game_start
+	send game state
+		make first level 'start'
+			bg prop
+			objects list
+	+send player state
+	
+process full_state event on client	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 session 2019-03-15
 	events: use queue
