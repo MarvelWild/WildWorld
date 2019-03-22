@@ -1,14 +1,12 @@
 -- connected to pow.net.event
+--[[ responsible for receiving, processing events
+
+]]--
 
 local _={}
 
-local _unprocessed={}
-local _nextFrameEvents={}
-local _isUpdatedThisFrame=false
 
--- todo: events can reside in _nextFrameEvents, so this does not represent all events
-_.unprocessed=_unprocessed
-
+-- init after Pow
 
 -- key=cmd
 -- val=handler
@@ -21,7 +19,14 @@ local _serialize
 local _deserialize
 
 
-_.onEventProcessing=nil -- func(event)
+-- for networking hook
+local _externalProcessor=nil -- func(event)
+
+_.setProcessor=function(processor)
+	assert(_externalProcessor==nil, "multi hander not supported")
+	_externalProcessor=processor
+end
+
 
 _.toString=function(event)
 	local result=event.id.." t:"..event.target..' c:'..event.code
@@ -30,19 +35,8 @@ _.toString=function(event)
 end
 
 
--- now they deleted in 
 
--- remote/detached
-_.register=function(event)
-	log("register event:".._.toString(event))
-	
-	if _isUpdatedThisFrame then
-		table.insert(_nextFrameEvents,event)
-	else
-		table.insert(_unprocessed,event)
-	end
 
-end
 
 -- code=eventCode
 _.new=function(code)
@@ -71,7 +65,8 @@ _.new=function(code)
 	-- по коду определяем обработчик
 	event.code=code
 	
-	_.register(event)
+	-- deprecated. use event.process(event)
+	--_.register(event)
 	
 	return event
 end
@@ -126,12 +121,9 @@ local doProcessEvent=function(event)
 end
 
 
-
-
 local processEvent=function(event)
-	-- todo opt
-	if (_.onEventProcessing~=nil) then
-		_.onEventProcessing(event)
+	if (_externalProcessor~=nil) then
+		_externalProcessor(event)
 	end
 
 	
@@ -145,117 +137,19 @@ end
 
 
 
-
-
 _.earlyUpdate=function()
-	_isUpdatedThisFrame=false
 	
-	if next(_nextFrameEvents)~=nil then
-		for k,event in pairs(_nextFrameEvents) do
-			table.insert(_unprocessed,event)
-		end
-		
-		table.clear(_nextFrameEvents)
-	end
 end
+
+_.process=function(event)
+	processEvent(event)
+end
+
 
 
 -- called from pow.update
-_.update=function()
-	if (next(_unprocessed)~=nil) then
-		log('processing events')
-	end
-	
-	
-	for k,event in pairs(_unprocessed) do
-		processEvent(event)
-	end
-	
-	_isUpdatedThisFrame=true
-end
-
-
-
-
-
-
-
-
-
-
-
--- wip: let server/client do this
--- todo: doc
---local prepareEventsForLogin=function(login,events)
---	local result={}
-	
---	for k,event in pairs(events) do
---		if _shouldSendEvent(event,login) then
---			table.insert(result,event)
---		end
---	end
-	
---	return result
+--_.update=function()
 --end
-
---_.prepareEventsForLogin=prepareEventsForLogin
-
-_.cleanEvents=function()
-	--todo: test all events processed
-	
-	-- todo: remove debug code
-	if (next(_unprocessed)~=nil) then
-		log('cleaning events')
-		log(Pow.pack(_unprocessed))
-	end
-	
-	
-	table.clear(_unprocessed)
-	
-	-- referenced fron otheer places, cannot make new
---	if #_unprocessed>0 then
---		_unprocessed={}
---	end
-end
-
--- идея: подключать сюда функцию сенда.
-
--- wip: move to client
---local clientUpdate=function()
---	-- move to client? no, ok to be here, just need send function
---	local eventsToSend={}
---	for k,event in pairs(_unprocessed) do
---		processEvent(event)
---		if _shouldSendEvent(event) then
---			table.insert(eventsToSend,event)
---		end
---	end
-	
---	if next(eventsToSend)~=nil then
---		sendToServer(eventsToSend)
---	end
-	
---	cleanEvents()
-
---end
-
---local serverUpdate=function()
-	-- wip 
---	if next(_unprocessed)~=nil then
---		-- server filters events for each client, so unprocessed here
---		for k,event in pairs(_unprocessed) do
---			processEvent(event)
---		end
-		
---		-- shouldSendEvent проверяется внутри
---		Server.sendEventsToClients(_unprocessed)
---	end
-	
---	cleanEvents()
---end
-
-	
-
 
 
 

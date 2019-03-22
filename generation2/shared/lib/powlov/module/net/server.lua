@@ -23,7 +23,6 @@ local _pack
 
 local _receiver=nil
 local _event=nil
-local _unprocessedEvents=nil
 
 local _singleResponseHandlers={}
 local _loginByClient={}
@@ -40,6 +39,8 @@ local _split=string.split
 local _shared=require(folderOfThisFile.."/shared")
 
 local _netState
+
+
 
 
 local _registerClient=function(clientId,login)
@@ -59,20 +60,7 @@ end
 
 
 
-_.init=function(pow)
-	_log=pow.log
-	_grease=pow.grease
-	_endsWith=pow.allen.endsWith
-	_msgSeparator=_shared.netMsgSeparator
-	_unpack=pow.tserial.unpack
-	_pack=pow.tserial.pack
-	_.addHandler("login", _login)
-	
-	_receiver=pow.receiver
-	_event=pow.net.event
-	_netState=pow.net.state
-	_unprocessedEvents=_event.unprocessed
-end
+
 
 
 local connect=function()
@@ -229,51 +217,53 @@ local shouldSendEvent=function(event,targetLogin)
 	return result	
 end
 
-local prepareEventsForLogin=function(login,events)
-	local result={}
+-- deprecated
+--local prepareEventsForLogin=function(login,events)
+--	local result={}
 	
-	for k,event in pairs(events) do
-		if shouldSendEvent(event,login) then
-			table.insert(result,event)
-		end
-	end
+--	for k,event in pairs(events) do
+--		if shouldSendEvent(event,login) then
+--			table.insert(result,event)
+--		end
+--	end
 	
-	return result
-end
+--	return result
+--end
 
 
-local sendEvents=function()
-	if (next(_unprocessedEvents)==nil) then return end
-	
+local sendEvent=function(event)
 	for login,client in pairs(_clientByLogin) do
-		local preparedEvents=prepareEventsForLogin(login,_unprocessedEvents)
-	
-		if next(preparedEvents)~=nil then
+		-- local preparedEvents=prepareEventsForLogin(login,_unprocessedEvents)
+		
+		if shouldSendEvent(event,login) then
 			local command=
 			{
-				cmd="events_client",
-				events=preparedEvents
+				cmd="event",
+				event=event
 			}
 			
-			for k,event in pairs(preparedEvents) do
-				log("sending event:".._event.toString(event))
-			end
+			log("sending event:".._event.toString(event))
 			
 			_.send(command,client)
 		else
-			log("no events for:"..login)
+			log("not sending event:".._event.toString(event))
 		end
-
 	end
 end
 
 
 -- should be called after pow.update (it handles events)
+
+
+local onEventProcessing=function(event)
+	sendEvent(event)
+end
+
 _.lateUpdate=function(dt)
 	if _tcpServer==nil then return end
 	
 
-	sendEvents()
+	-- sendEvents()
 	-- log('server upd')
 	_tcpServer:update(dt)
 end
@@ -297,16 +287,29 @@ end
 
 
 -- receive
-local handleEvents=function(response, clientId, requestId)
-	local events=response.events
-	for k,event in pairs(events) do
-		_event.register(event)
-	end
+local handleEvent=function(response, clientId, requestId)
+	local event=response.event
+	assert(event)
+	_event.process(event)
 end
 
 
-_.addHandler("events", handleEvents)
+_.addHandler("event", handleEvent)
 
+_.init=function(pow)
+	_log=pow.log
+	_grease=pow.grease
+	_endsWith=pow.allen.endsWith
+	_msgSeparator=_shared.netMsgSeparator
+	_unpack=pow.tserial.unpack
+	_pack=pow.tserial.pack
+	_.addHandler("login", _login)
+	
+	_receiver=pow.receiver
+	_event=pow.net.event
+	_netState=pow.net.state
 
+	_event.setProcessor(onEventProcessing)
+end
 
 return _

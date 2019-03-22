@@ -1,5 +1,14 @@
+упрощение до мгновенной обработки событий
+теперь каждое событие нужно вызывать process
+	+create_player_response send from server
+	afterPlayerCreated react on client
+
 session 2019-03-15
 	events: use queue
+		use deque as internal storage
+		+pow: attach queue lib
+			Pow.deque
+				C:\Gamedev\Love\LoFiFreestyleGame\generation2\client\shared\lib\powlov\deps\cw-lua\deque\deque.lua
 	
 	
 

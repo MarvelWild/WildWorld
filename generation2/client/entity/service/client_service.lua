@@ -53,6 +53,7 @@ local afterLogin=function(response)
 	_event.addHandler("create_player_response", afterPlayerCreated)
 	_event.addHandler("state", onStateReceived)
 	
+	log("added handler of create_player_response")
 	-- wip: remove handler on completion
 	-- generic way?
 	
@@ -60,10 +61,7 @@ local afterLogin=function(response)
 	local event=_event.new("create_player")
 	event.player_name="mw"
 	event.target="server"
-	
-	
-	
-	log("added handler of create_player_response")
+	_event.process(event)
 end
 
 

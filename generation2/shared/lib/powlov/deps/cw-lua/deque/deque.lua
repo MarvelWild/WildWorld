@@ -127,6 +127,8 @@ local methods = {
   length = length,
   is_empty = is_empty,
   contents = contents,
+	push = push_left,
+	pop = pop_right,
 }
 
 local new = function()

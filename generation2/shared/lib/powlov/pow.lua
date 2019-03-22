@@ -2,6 +2,7 @@
 -- framework extraction from "Wild World"
 local _={}
 
+_.options={}
 local _frame=0
 
 	-- lib/powlov/pow
@@ -32,6 +33,10 @@ end
 
 
 local initDeps=function(...)
+	
+	local dequePath=folderOfThisFile .. "/deps/cw-lua/deque/deque"
+	_.deque=require(dequePath)
+	
 	-- multitool
 	local lumePath=folderOfThisFile .. "/deps/lume/lume"
 	_.lume=require(lumePath)
@@ -186,13 +191,7 @@ initModule(_.id)
 _.receiver=require(folderOfThisFile.."/module/net/receiver")
 initModule(_.receiver)
 
-_.net=require(folderOfThisFile.."/module/net/net")
-initModule(_.net)
 
-_event=_.net.event
-
-_.server=_.net.server
-_.client=_.net.client
 
 _.entity=require(folderOfThisFile.."/module/entity/entity")
 initModule(_.entity)
@@ -214,19 +213,29 @@ _.update=function(dt)
 	
 	_entity.update(dt)
 	
-	-- todo: think networkless games too
-	_event.update()
-	
+
 	
 	-- here ... todo
 	_entity.lateUpdate(dt)
-	
-	_event.cleanEvents()
 end
 
 
 -- todo: turn off for release
 local tests=require(folderOfThisFile.."/tests")
 tests.run(_)
+
+_.setup=function(options)
+	_.options=options
+	_.net=require(folderOfThisFile.."/module/net/net")
+	initModule(_.net)
+	
+	_event=_.net.event
+
+	_.server=_.net.server
+	_.client=_.net.client
+
+	
+end
+
 
 return _

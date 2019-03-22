@@ -4,6 +4,12 @@ local isDebug=arg[#arg] == "-debug"
 if isDebug then require("mobdebug").start() end
 
 require("shared.libs")
+Pow.setup(
+	{
+		--"server",
+		"client"
+	}
+)
 
 ConfigService=require("shared.entity.service.config")
 ClientService=require("entity.service.client_service")

@@ -26,8 +26,10 @@ local createPlayer=function(event)
 	responseEvent.target="login"
 	responseEvent.targetLogin=login
 	
+	_event.process(responseEvent)
+	
 	log('new event: create_player_response')
-	-- todo: слушать такое не всегда,
+	
 end
 
 

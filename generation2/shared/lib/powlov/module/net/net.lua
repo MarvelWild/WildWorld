@@ -17,17 +17,18 @@ _.init=function(pow)
 	initModule(event)
 	_.event=event
 	
-	local server=require(folderOfThisFile.."/server")
-	initModule(server)
-	_.server=server
 	
-	local client=require(folderOfThisFile.."/client")
-	initModule(client)
-	_.client=client
+	if (_pow.moses.include(_pow.options,"server")) then
+		local server=require(folderOfThisFile.."/server")
+		initModule(server)
+		_.server=server
+	end
 	
-	
-	
-	
+	if (_pow.moses.include(_pow.options,"client")) then
+		local client=require(folderOfThisFile.."/client")
+		initModule(client)
+		_.client=client
+	end
 end
 
 

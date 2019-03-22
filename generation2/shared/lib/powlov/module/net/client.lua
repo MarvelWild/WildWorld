@@ -29,10 +29,7 @@ local _receiver
 local _receiverInst
 local _event
 
-local _unprocessedEvents
 local _netState
-
-local _eventsToSend={}
 
 -- responds infinitely
 _.addHandler=function(cmd, handler)
@@ -42,11 +39,9 @@ _.addHandler=function(cmd, handler)
 end
 
 
-local handleEvents=function(response)
-	local events=response.events
-	for k,event in pairs(events) do
-		_event.register(event)
-	end	
+local handleEvent=function(response)
+	local event=response.event
+	_event.process(event)
 end
 
 
@@ -80,6 +75,7 @@ local recv=function(data) -- search alias: receive
 			local cmd=response.cmd
 			assert(cmd)
 			local handler=_responseHandlers[cmd]
+			assert(handler,"No handler for:"..cmd)
 			handler(response)
 			isProcessed=true
 		end
@@ -157,45 +153,18 @@ local shouldSendEventFromClient=function(event)
 	return result
 end
 
-local sendEventsToServer=function(events)
+local sendEventToServer=function(event)
 	local command=
 	{
-		cmd="events",
-		events=events
+		cmd="event",
+		event=event
 	}
 	
 	_.send(command)
 end
 
 
-local sendEvents=function()
-	-- log("sendEvents")
-	
-	-- wip: v2 : use _eventsToSend, then clean it
-	if _eventsToSend
-	
-	if (next(_eventsToSend)~=nil) then
-		table.clear(_eventsToSend)
-	end
-	
-	
-	--[[ v1 old code
-	local toSend
-	
-	for k,event in ipairs(_unprocessedEvents) do
-		if shouldSendEventFromClient(event) then
-			if toSend==nil then toSend={} end
-			
-			table.insert(toSend,event)
-		end
-	end
-	
-	if toSend~=nil then
-		log("sending events to server")
-		sendEventsToServer(toSend) 
-	end
-	]]--
-end
+
 
 
 _.update=function(dt)
@@ -203,17 +172,13 @@ _.update=function(dt)
 	
 --	log('client upd')
 	_tcpClient:update(dt)
-	
-	-- todo: event queue instead of clear all
-	
-	-- wip: это должно стать частью process
-	sendEvents()
 end
 
+-- add networking logic to event queue
 local onEventProcessing=function(event)
 	if shouldSendEventFromClient(event) then
-		table.insert(_eventsToSend, event)
-		log("event queued to send:"..Pow.pack(event))
+		sendEventToServer(event)
+		log("event sending:"..Pow.pack(event))
 	end
 end
 
@@ -227,11 +192,9 @@ _.init=function(pow)
 	_unpack=pow.tserial.unpack
 	_event=pow.net.event
 	_netState=pow.net.state
-	_unprocessedEvents=_event.unprocessed
-	_.addHandler('events_client', handleEvents)
+	_.addHandler('event', handleEvent)
 	
-	assert(_event.onEventProcessing==nil)
-	_event.onEventProcessing=onEventProcessing
+	_event.setProcessor(onEventProcessing)
 end
 
 return _

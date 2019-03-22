@@ -4,6 +4,12 @@ local isDebug=arg[#arg] == "-debug"
 if isDebug then require("mobdebug").start() end
 
 require("shared.libs")
+Pow.setup(
+	{
+		"server",
+		-- "client"
+	}
+)
 Id=Pow.id
 
 BaseEntity=require("shared.entity.base_entity")
