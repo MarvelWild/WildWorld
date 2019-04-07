@@ -33,15 +33,17 @@ local createPlayer=function(event)
 	
 end
 
+
 local getLevelState=function(levelName)
-	-- wip
+	-- todo state это набор сущностей
+	local state={}
+	state.bg="main.png"
+	return state
 end
 
 
 -- player has been created by createPlayer, present in Db
 local getPlayerState=function(playerId)
-	-- wip
-	
 	local playerContainer=Db.getEntityContainer('player')
 	local player=playerContainer[playerId]
 	assert(player)
@@ -53,11 +55,12 @@ end
 
 
 local getFullState=function(playerId)
-	local levelState=getLevelState()
+	local player=getPlayerState(playerId)
+	local levelState=getLevelState(player.level)
 	local result={}
 	
 	result.level=levelState
-	result.player=getPlayerState(playerId)
+	result.player=player
 	
 	return result
 end

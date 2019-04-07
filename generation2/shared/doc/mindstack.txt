@@ -2,11 +2,11 @@
 +теперь каждое событие нужно вызывать process
 +create_player_response send from server
 +afterPlayerCreated react on client
-server response to game_start
-	send game state
-		make first level 'start'
-			bg prop
-			objects list
++server response to game_start
+	send game state+
+		make first level 'start'+
+			bg prop+
+			objects list later+
 	+send player state
 	
 process full_state event on client	
