@@ -42,6 +42,12 @@ end
 local onStateReceived=function(response)
 	log('onStateReceived')
 	-- wip: apply to game world
+	
+	-- wip bg
+	-- state = {level = {bg = "main.png"} --[[table: 0x0f49dd38]], player = {entity = "player", id = 21, level = "start", name = "mw"} --[[table: 0x0f4510a8]]}
+	local state=response.state
+	GameState.level=state.level
+	GameState.lastState=state
 end
 
 
@@ -53,10 +59,10 @@ local afterLogin=function(response)
 	Pow.net.state.login=response.login
 	
 	_event.addHandler("create_player_response", afterPlayerCreated)
-	_event.addHandler("state", onStateReceived)
+	_event.addHandler("full_state", onStateReceived)
 	
 	log("added handler of create_player_response")
-	-- wip: remove handler on completion
+	-- todo: remove handler on completion
 	-- generic way?
 	
 	

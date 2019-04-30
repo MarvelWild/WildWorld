@@ -10,6 +10,11 @@
 	+send player state
 	
 process full_state event on client	
+	receive+
+	apply level
+		background
+	apply player position
+	
 
 
 

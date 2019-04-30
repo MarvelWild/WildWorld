@@ -37,7 +37,7 @@ end
 local getLevelState=function(levelName)
 	-- todo state это набор сущностей
 	local state={}
-	state.bg="main.png"
+	state.bg="main"
 	return state
 end
 

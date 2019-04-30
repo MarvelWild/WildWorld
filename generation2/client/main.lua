@@ -14,6 +14,7 @@ Pow.setup(
 ConfigService=require("shared.entity.service.config")
 ClientService=require("entity.service.client_service")
 GameService=require("entity.service.game")
+GameState=require("entity.service.game_state")
 
 love.draw=function()
 	Pow.draw()
