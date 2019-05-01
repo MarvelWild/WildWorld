@@ -1,3 +1,7 @@
+client send walk intention to server
+	server respond with walk command to all
+
+
 +упрощение до мгновенной обработки событий
 +теперь каждое событие нужно вызывать process
 +create_player_response send from server
@@ -9,11 +13,11 @@
 			objects list later+
 	+send player state
 	
-process full_state event on client	
++process full_state event on client	
 	receive+
-	apply level
-		background
-	apply player position
+	+apply level
+		+background
+	+apply player position
 	
 
 

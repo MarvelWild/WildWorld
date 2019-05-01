@@ -18,6 +18,9 @@ local createPlayer=function(event)
 	
 	local player=Player.new()
 	player.name=playerName
+	-- todo: start coord
+	player.x=100
+	player.y=20
 	
 	Db.add(player)
 	
@@ -49,6 +52,8 @@ local getPlayerState=function(playerId)
 	assert(player)
 	
 	-- todo: do not return everything server knows about player
+	
+	
 	return player
 end
 

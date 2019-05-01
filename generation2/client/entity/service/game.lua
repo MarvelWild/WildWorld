@@ -20,9 +20,15 @@ local drawBg=function()
 end
 
 _.draw=function()
-	draw(Img.get("player"))
-	
 	drawBg()
+	
+	if GameState.lastState~=nil then
+		local player=GameState.lastState.player
+		if player~=nil then
+			draw(Img.get("player"), player.x, player.y)
+		end
+	end
+	
 end
 
 
