@@ -18,7 +18,7 @@ end
 
 _.add=function(entity)
 	assert(entity)
-	local entityName=entity.entity
+	local entityName=entity.entityName
 	
 	local entityContainer=_.getEntityContainer(entityName)
 	-- table.insert(entityContainer, entity)
@@ -50,6 +50,13 @@ _.load=function()
 end
 
 
+-- reverse: BaseEntity.getReference
+_.getByRef=function(ref)
+	local entityName=ref.entityName
+	local entityId=ref.id
+	local entityContainer=_.getEntityContainer(entityName)
+	return entityContainer[entityId]
+end
 
 
 

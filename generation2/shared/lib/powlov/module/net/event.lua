@@ -44,8 +44,8 @@ _.new=function(code)
 	--log("Event.new:".._traceback())
 	local event={}
 	
-	event.entity="Event"
-	event.id=_id.new(event.entity)
+	event.entityName="Event"
+	event.id=_id.new(event.entityName)
 	event.login=_netState.login
 	
 	-- alias doNotSend

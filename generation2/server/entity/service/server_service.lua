@@ -94,9 +94,29 @@ local gameStart=function(event)
 	
 end
 
+local movePlayer=function(event)
+	local responseEvent=_event.new("move")
+	responseEvent.target="all"
+	responseEvent.x=event.x
+	responseEvent.y=event.y
+	
+	responseEvent.actorRef=event.actorRef
+
+	_event.process(responseEvent)
+end
+
+
+local doMove=function(event)
+	local actor=Db.getByRef(event.actorRef)
+	Movable.move(actor,event.x,event.y)
+end
+
+
 _.start=function()
 	_event.addHandler("create_player", createPlayer)
 	_event.addHandler("game_start", gameStart)
+	_event.addHandler("intent_move", movePlayer)
+	_event.addHandler("move", doMove)
 	
 	
 	_server.listen(ConfigService.port)

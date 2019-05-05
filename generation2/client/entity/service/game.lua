@@ -1,6 +1,7 @@
 -- main entity for game state
+-- global GameService
 
-local _=BaseEntity.new()
+local _=BaseEntity.new('game',true)
 _.isService=true
 
 
@@ -28,8 +29,19 @@ _.draw=function()
 			draw(Img.get("player"), player.x, player.y)
 		end
 	end
+end
+
+-- screen coord
+_.mousepressed=function(x,y,button)
+	log('mouse pressed:'..x..','..y..' b:'..button)
+	
+	if (button==1) then
+		-- wip transform screen to game
+		ClientService.move(x,y)
+	end
 	
 end
+
 
 
 

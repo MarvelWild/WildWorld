@@ -34,6 +34,11 @@ love.update=function()
 	Pow.update()
 end
 
+love.mousepressed=function(x,y,button,istouch)
+	GameService.mousepressed(x,y,button,istouch)
+end
+
+
 
 love.quit=function()
 	Pow.quit()

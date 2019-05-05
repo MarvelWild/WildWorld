@@ -1,5 +1,5 @@
 -- game specific network client
-local _=BaseEntity.new()
+local _=BaseEntity.new("client_service",true)
 
 _.isService=true
 
@@ -50,6 +50,12 @@ local onStateReceived=function(response)
 	GameState.lastState=state
 end
 
+local doMove=function(event)
+	
+	-- local actor=Db.getByRef(event.actorRef)
+	local actor=GameState.findEntity(event.actorRef)
+	Movable.move(actor,event.x,event.y)
+end
 
 
 local afterLogin=function(response)
@@ -60,6 +66,7 @@ local afterLogin=function(response)
 	
 	_event.addHandler("create_player_response", afterPlayerCreated)
 	_event.addHandler("full_state", onStateReceived)
+	_event.addHandler("move", doMove)
 	
 	log("added handler of create_player_response")
 	-- todo: remove handler on completion
@@ -101,6 +108,21 @@ end
 _.update=function(dt)
 	_client:update(dt)
 end
+
+-- send move intention to server
+-- game coordinates
+_.move=function(x,y)
+	-- todo: canMove checks
+	local event=_event.new("intent_move")
+	event.target="server"
+	
+	local player=GameState.getPlayer()
+	event.actorRef=BaseEntity.getReference(player)
+	event.x=x
+	event.y=y
+	_event.process(event)
+end
+
 
 
 return _

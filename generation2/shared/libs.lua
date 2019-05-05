@@ -6,6 +6,9 @@ Entity=Pow.entity
 BaseEntity=Pow.baseEntity
 
 
+Movable=require "shared.entity.movable"
+
 -- shortcuts
 log=Pow.debug.log
 draw=love.graphics.draw
+

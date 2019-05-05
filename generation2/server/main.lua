@@ -12,7 +12,7 @@ Pow.setup(
 )
 Id=Pow.id
 
-BaseEntity=require("shared.entity.base_entity")
+BaseEntity=Pow.baseEntity
 Db=require("shared.lib.db.db")
 ServerService=require("entity.service.server_service")
 ConfigService=require("shared.entity.service.config")
