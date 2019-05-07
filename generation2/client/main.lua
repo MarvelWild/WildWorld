@@ -43,15 +43,12 @@ love.load=function()
 	Cam:setWorld(0,0,4096,4096)
 end
 
-love.update=function()
-	Pow.update()
+love.update=function(dt)
+	Pow.update(dt)
 	local player=GameState.getPlayer()
 	if player~=nil then
 		Cam:setPosition(player.x, player.y)	
-		log("cam set pos:"..player.x..','..player.y)
-		log("cam pos:"..Cam:getPosition())
 	end
-
 end
 
 love.mousepressed=function(x,y,button,istouch)

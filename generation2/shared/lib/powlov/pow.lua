@@ -72,6 +72,8 @@ local initDeps=function(...)
 	
 	-- особая точечная магия
 	_.grease=require(folderOfThisFile .. "/deps/grease/grease.init")
+	
+	_.flux=require(folderOfThisFile .. "/deps/flux/flux")
 end
 
 initDeps(...)
@@ -207,6 +209,8 @@ end
 -- NOTE: conect this to update
 _.update=function(dt)
 	_frame=_frame+1
+	
+	_.flux.update(dt)
 	
 	-- here unprocessed events from prev frame went to this one
 	_event.earlyUpdate(dt)

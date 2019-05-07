@@ -1,6 +1,7 @@
 -- connect all the libs
 Pow=require "shared.lib.powlov.pow"
 Img=require "shared.res.img"
+Flux=Pow.flux
 
 Entity=Pow.entity
 BaseEntity=Pow.baseEntity

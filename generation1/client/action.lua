@@ -155,6 +155,8 @@ _.move=function(actor,x,y)
 	moveEvent.duration=2
 	
 	moveEvent.entityRef=movingEntityRef
+
+	-- then: Entity.smoothMove
 end
 
 _.setWorld=function(worldName)
