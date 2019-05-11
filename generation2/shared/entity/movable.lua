@@ -1,13 +1,8 @@
 local _={}
 
-_.move=function(actor,x,y)
-	-- wip smooth
-	-- actor.x=x
-	-- actor.y=y
-	_.smoothMove(actor,2,x,y)
-end
 
-_.smoothMove=function(actor,durationSec,x,y)
+
+local smoothMove=function(actor,durationSec,x,y)
 --	local entityLocals=Entity.getLocals(entity)
 --	entityLocals.isMoving=true
 	
@@ -35,5 +30,18 @@ _.smoothMove=function(actor,durationSec,x,y)
 --	entityLocals.moveTween=tween
 end
 
+_.move=function(actor,x,y)
+	local finalX
+	local finalY
+	if actor.footX~=nil then
+		finalX=x-actor.footX
+		finalY=y-actor.footY
+	else
+		finalX=x
+		finalY=y
+	end
+	
+	smoothMove(actor,2,finalX,finalY)
+end
 
 return _

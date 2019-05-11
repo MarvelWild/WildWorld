@@ -6,6 +6,9 @@ _.new=function()
 	result.name='Joe'
 	result.level='start'
 	
+	-- todo это свойства спрайта
+	result.footX=7
+	result.footY=15
 	
 	return result
 end
