@@ -4,12 +4,19 @@ _.new=function()
 	local result=BaseEntity.new("player")
 	
 	result.name='Joe'
-	result.level='start'
+	result.levelName='start'
 	
 	-- todo это свойства спрайта
 	result.footX=7
 	result.footY=15
 	
+	return result
+end
+
+_.getById=function(playerId)
+	local magicLevelContainer=Db.getLevelContainer("player")
+	local playerContainer=Db.getEntityContainer(magicLevelContainer, "player")
+	local result = playerContainer[playerId]
 	return result
 end
 

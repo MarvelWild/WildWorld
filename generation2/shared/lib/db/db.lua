@@ -1,26 +1,69 @@
--- global Db
--- stores entities
+--[[
+global Db
+stores entities
+format: 
+local entitiesContainer=_levelContainer[levelName]
+local entityContainer=entitiesContainer[entityName]
+local entity=entityContainer[entityId]
+
+]]--
+
 local _={}
 
-local _container={}
+
+-- level 1 entity names by level name
+local _levelContainers={}
 
 local _saveName="db"
 
-_.getEntityContainer=function(entityName)
-	local entityContainer=_container[entityName]
-	if entityContainer==nil then
-		entityContainer={}
-		_container[entityName]=entityContainer
+
+-- creates empty
+local getEntityContainer=function(levelContainer, entityName)
+	local result = levelContainer[entityName]
+	if result==nil then
+		result={}
+		levelContainer[entityName]=result
 	end
-	return entityContainer
+	return result
 end
 
 
-_.add=function(entity)
+-- key=entityName val={id=entity}
+local getLevelContainer=function(levelName)
+	local result = _levelContainers[levelName]
+	if result==nil then 
+		result={}
+		_levelContainers[levelName]=result
+	end
+	
+	return result
+end
+
+local getLevelName=function(entity)
+	-- это только для игрока, остальные сущности сразу должны помещаться в контейнер, который определяет уровень
+	local result=entity.levelName
+	
+	if result==nil then
+		log("error: cannot determine level for entity:"..serialize(entity))
+	end
+	
+	return result
+end
+
+
+_.add=function(entity, levelName)
 	assert(entity)
+	
+	if levelName==nil then
+		levelName=getLevelName(entity)
+		assert(levelName)
+	end
+	
+	local levelContainer=getLevelContainer(levelName)
+	
 	local entityName=entity.entityName
 	
-	local entityContainer=_.getEntityContainer(entityName)
+	local entityContainer=getEntityContainer(levelContainer,entityName)
 	-- table.insert(entityContainer, entity)
 	local entityId=entity.id
 	assert(entityContainer[entityId]==nil)
@@ -29,6 +72,22 @@ end
 
 
 
+
+local get=function(levelName,entityName, entityId)
+	local levelContainer=getLevelContainer(levelName)
+	local entityContainer=getEntityContainer(levelContainer, entityName)
+	local result = entityContainer[entityId]
+	return result
+end
+
+local getByRef=function(ref, levelName)
+	return get(levelName, ref.entityName, ref.id)
+end
+
+_.get=get
+_.getByRef=getByRef
+_.getLevelContainer=getLevelContainer
+_.getEntityContainer=getEntityContainer
 
 _.save=function()
 	log('db save')
@@ -48,17 +107,5 @@ _.load=function()
 		_container={}
 	end
 end
-
-
--- reverse: BaseEntity.getReference
-_.getByRef=function(ref)
-	local entityName=ref.entityName
-	local entityId=ref.id
-	local entityContainer=_.getEntityContainer(entityName)
-	return entityContainer[entityId]
-end
-
-
-
 
 return _

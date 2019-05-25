@@ -13,3 +13,6 @@ Movable=require "shared.entity.movable"
 log=Pow.debug.log
 draw=love.graphics.draw
 
+serialize=Pow.pack
+deserialize=Pow.unpack
+

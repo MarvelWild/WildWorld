@@ -18,6 +18,7 @@ ServerService=require("entity.service.server_service")
 ConfigService=require("shared.entity.service.config")
 
 Player=require("entity.player")
+Seed=require("entity.world.seed")
 
 love.load=function()
 	

@@ -22,7 +22,8 @@ local _shared=require(folderOfThisFile.."/shared")
 
 local _netMsgSeparator=_shared.netMsgSeparator
 local _singleResponseHandlers={}
--- wip: implement
+
+-- todo: implement
 local _responseHandlers={}
 
 local _receiver
@@ -71,7 +72,7 @@ local recv=function(data) -- search alias: receive
 			_singleResponseHandlers[requestId]=nil
 			isProcessed=true
 		else
-			-- wip generic handler
+			-- todo generic handler
 			local cmd=response.cmd
 			assert(cmd)
 			local handler=_responseHandlers[cmd]
