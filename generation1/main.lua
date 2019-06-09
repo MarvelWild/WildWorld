@@ -428,6 +428,8 @@ love.draw=function()
 	local mx=love.mouse.getX()/scale
 	local my=love.mouse.getY()/scale
 	draw(_cursorImg,mx,my)
+	
+	-- every frame?
 	love.mouse.setVisible(false)
 end
 

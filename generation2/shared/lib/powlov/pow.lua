@@ -74,6 +74,8 @@ local initDeps=function(...)
 	_.grease=require(folderOfThisFile .. "/deps/grease/grease.init")
 	
 	_.flux=require(folderOfThisFile .. "/deps/flux/flux")
+	
+	_.gamera=require("/deps/gamera.gamera")
 end
 
 initDeps(...)
@@ -86,6 +88,9 @@ local _allen=_.allen
 local _getDirItems=love.filesystem.getDirectoryItems
 local _getInfo=love.filesystem.getInfo
 
+
+local _cam=_.gamera.new(0,0,128,128)
+_.cam=_cam
 
 -- function(message,channelName)
 _.log=_.debug.log
@@ -201,8 +206,15 @@ local _entity=_.entity
 
 _.baseEntity=require(folderOfThisFile.."/module/entity/base_entity")
 
-_.draw=function()
+
+local drawGame=function()
 	_.entity.draw()
+end
+
+
+_.draw=function()
+	_cam:draw(drawGame)
+	
 end
 
 
@@ -240,6 +252,10 @@ _.setup=function(options)
 
 	
 end
+
+
+
+
 
 
 return _

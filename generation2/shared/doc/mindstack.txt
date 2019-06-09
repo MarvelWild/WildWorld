@@ -1,3 +1,57 @@
+
+console custom title
+
+move camera to POW
+
+		reference: gen1, ui was fine. ok to paste
+		then it managed by POW
+		it has drawUi function
+		ui component is local entity
+	ui fundamentals
+hotbar ui
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 client send walk intention to server
 	server respond with walk command to all
 

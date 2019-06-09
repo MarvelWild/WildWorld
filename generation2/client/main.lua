@@ -1,7 +1,9 @@
 -- client main
-
 local isDebug=arg[#arg] == "-debug"
 if isDebug then require("mobdebug").start() end
+
+-- custom console title
+os.execute("title Wild World client")
 
 require("shared.libs")
 Pow.setup(
@@ -15,17 +17,10 @@ ConfigService=require("shared.entity.service.config")
 ClientService=require("entity.service.client_service")
 GameService=require("entity.service.game")
 GameState=require("entity.service.game_state")
-Gamera=require("shared.lib.gamera.gamera")
-Cam = Gamera.new(0,0,128,128)
-
-
-local doDraw=function()
-	Pow.draw()
-end
 
 
 love.draw=function()
-	Cam:draw(doDraw)
+	Pow.draw()
 end
 
 love.load=function()
