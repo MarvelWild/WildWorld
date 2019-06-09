@@ -2,8 +2,6 @@
 -- global GameService
 
 local _=BaseEntity.new('game',true)
-_.isService=true
-
 
 _.start=function()
 	log('GameService start')

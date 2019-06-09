@@ -1,12 +1,14 @@
-
-console custom title
-
-move camera to POW
-
+>sleep
+	
+	
+	
+	+make sure drawUi is called
+	+add it to local entities
+	+declare ui entity	
 		reference: gen1, ui was fine. ok to paste
 		then it managed by POW
 		it has drawUi function
-		ui component is local entity
+		ui component is local entity (service in current terms)
 	ui fundamentals
 hotbar ui
 
@@ -56,6 +58,8 @@ client send walk intention to server
 	server respond with walk command to all
 
 
++move camera to POW
++console custom title - bug with new lines
 +упрощение до мгновенной обработки событий
 +теперь каждое событие нужно вызывать process
 +create_player_response send from server
@@ -72,7 +76,7 @@ client send walk intention to server
 	+apply level
 		+background
 	+apply player position
-	
+zerobrane mod: custom bg pattern for files (know when you in lib/framework/game	
 
 
 

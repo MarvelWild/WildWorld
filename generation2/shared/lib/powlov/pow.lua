@@ -209,12 +209,16 @@ _.baseEntity=require(folderOfThisFile.."/module/entity/base_entity")
 
 local drawGame=function()
 	_.entity.draw()
+	
 end
 
 
 _.draw=function()
 	_cam:draw(drawGame)
 	
+	-- ui scale
+	love.graphics.scale(2,2)
+	Entity.drawUi()
 end
 
 
@@ -263,6 +267,10 @@ _.getWorldCoords=function(screenX,screenY)
 	return _cam:toWorld(screenX,screenY)
 end
 
+
+_.resize=function(width, height)
+	_cam:setWindow(0,0,width,height)
+end
 
 
 

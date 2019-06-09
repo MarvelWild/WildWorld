@@ -20,6 +20,12 @@ love.draw=function()
 	Pow.draw()
 end
 
+local initUi=function()
+	local hotbar=require("entity.ui.hotbar")
+	Entity.add(hotbar)
+end
+
+
 love.load=function()
 	local netState=Pow.net.state
 	netState.isServer=false
@@ -32,6 +38,8 @@ love.load=function()
 	GameService.start()
 	
 	Pow.load()
+	
+	initUi()
 end
 
 love.update=function(dt)
@@ -50,7 +58,7 @@ love.mousepressed=function(x,y,button,istouch)
 end
 
 love.resize=function(width, height)
-	Cam:setWindow(0,0,width,height)
+	Pow.resize(width, height)
 end
 
 

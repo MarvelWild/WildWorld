@@ -2,7 +2,7 @@
 
 local _={}
 
-
+-- todo: check is name used
 _.new=function(entityName,isService)
 	assert(entityName)
 	local result={}
@@ -10,6 +10,8 @@ _.new=function(entityName,isService)
 	if not isService then
 		result.id=Id.new(entityName)
 	end
+	
+	result.isService=isService
 	result.entityName=entityName
 	
 	

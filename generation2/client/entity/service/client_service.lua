@@ -1,8 +1,6 @@
 -- game specific network client
 local _=BaseEntity.new("client_service",true)
 
-_.isService=true
-
 local _client=Pow.client
 
 local _event=Pow.net.event
