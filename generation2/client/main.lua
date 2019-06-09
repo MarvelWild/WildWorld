@@ -2,9 +2,6 @@
 local isDebug=arg[#arg] == "-debug"
 if isDebug then require("mobdebug").start() end
 
--- custom console title
-os.execute("title Wild World client")
-
 require("shared.libs")
 Pow.setup(
 	{
@@ -33,22 +30,21 @@ love.load=function()
 	Entity.add(GameService)
 	Entity.add(ClientService)
 	GameService.start()
-	Cam:setScale(4)
-	-- todo
-	Cam:setWorld(0,0,4096,4096)
+	
+	Pow.load()
 end
 
 love.update=function(dt)
 	Pow.update(dt)
 	local player=GameState.getPlayer()
 	if player~=nil then
-		Cam:setPosition(player.x, player.y)	
+		Pow.cam:setPosition(player.x, player.y)	
 	end
 end
 
 love.mousepressed=function(x,y,button,istouch)
 	local gameX,gameY
-	gameX,gameY=Cam:toWorld(x,y)
+	gameX,gameY=Pow.getWorldCoords(x,y)
 	
 	GameService.mousepressed(gameX,gameY,button,istouch)
 end

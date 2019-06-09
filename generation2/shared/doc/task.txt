@@ -1,0 +1,27 @@
+Error: shared/lib/powlov/pow.lua:78: module '/deps/gamera.gamera' not found:
+        no field package.preload['/deps/gamera.gamera']
+        no '/deps/gamera/gamera' in LOVE game directories.
+        no file '/deps/gamera/gamera' in LOVE paths.
+        no file '.\/deps/gamera\gamera.lua'
+        no file 'c:\Program Files\LOVE\lua\/deps/gamera\gamera.lua'
+        no file 'c:\Program Files\LOVE\lua\/deps/gamera\gamera\init.lua'
+        no file '.\/deps/gamera\gamera.dll'
+        no file 'c:\Program Files\LOVE\/deps/gamera\gamera.dll'
+        no file 'c:\Program Files\LOVE\loadall.dll'
+        no file '.\/deps/gamera.dll'
+        no file 'c:\Program Files\LOVE\/deps/gamera.dll'
+        no file 'c:\Program Files\LOVE\loadall.dll'
+stack traceback:
+        [string "boot.lua"]:637: in function <[string "boot.lua"]:633>
+        [C]: in function 'require'
+        shared/lib/powlov/pow.lua:78: in function 'initDeps'
+        shared/lib/powlov/pow.lua:81: in main chunk
+        [C]: in function 'require'
+        shared/libs.lua:2: in main chunk
+        [C]: in function 'require'
+        main.lua:6: in main chunk
+        [C]: in function 'require'
+        [string "boot.lua"]:475: in function <[string "boot.lua"]:311>
+        [C]: in function 'xpcall'
+        [string "boot.lua"]:645: in function <[string "boot.lua"]:639>
+        [C]: in function 'xpcall'

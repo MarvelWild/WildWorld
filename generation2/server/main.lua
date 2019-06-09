@@ -3,9 +3,6 @@
 local isDebug=arg[#arg] == "-debug"
 if isDebug then require("mobdebug").start() end
 
--- custom console title
-os.execute("title Wild World server")
-
 require("shared.libs")
 Pow.setup(
 	{

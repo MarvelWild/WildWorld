@@ -75,7 +75,7 @@ local initDeps=function(...)
 	
 	_.flux=require(folderOfThisFile .. "/deps/flux/flux")
 	
-	_.gamera=require("/deps/gamera.gamera")
+	_.gamera=require(folderOfThisFile .. "/deps/gamera.gamera")
 end
 
 initDeps(...)
@@ -254,6 +254,14 @@ _.setup=function(options)
 end
 
 
+_.load=function()
+	_cam:setScale(4)
+	_cam:setWorld(0,0,4096,4096)
+end
+
+_.getWorldCoords=function(screenX,screenY)
+	return _cam:toWorld(screenX,screenY)
+end
 
 
 
