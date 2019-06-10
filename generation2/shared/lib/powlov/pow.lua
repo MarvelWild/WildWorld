@@ -76,6 +76,9 @@ local initDeps=function(...)
 	_.flux=require(folderOfThisFile .. "/deps/flux/flux")
 	
 	_.gamera=require(folderOfThisFile .. "/deps/gamera.gamera")
+	
+	_.arg=require(folderOfThisFile .. "/deps/arg.arg")
+	_.arg.init(_)
 end
 
 initDeps(...)

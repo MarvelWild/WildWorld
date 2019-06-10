@@ -81,7 +81,7 @@ end
 local login=function()
 	log('login start')
 	-- todo: get this from user
-	local login="c1"
+	local login=Pow.arg.get("login=", "defaultLogin")
 	
 		local data={
 			cmd="login",
