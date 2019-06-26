@@ -47,6 +47,7 @@ local getLevelState=function(levelName)
 	local state={}
 	state.bg="main"
 	state.entities=getLevelEntities(levelName)
+	-- wip players
 	return state
 end
 
@@ -81,8 +82,10 @@ local gameStart=function(event)
 	
 	local login=event.login
 	local playerId=event.playerId
-	-- todo: put this player into world, set active
 	
+	
+	local player=Player.getById(playerId)
+	Db.add(player, player.levelName)
 	
 	local fullState=getFullState(playerId)
 	

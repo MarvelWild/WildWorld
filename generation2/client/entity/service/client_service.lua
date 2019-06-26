@@ -23,7 +23,7 @@ local afterPlayerCreated=function(response)
 		}
 		]]--
 	
-	log('afterPlayerCreated')
+	log('afterPlayerCreated', "verbose")
 	
 	local event=_event.new("game_start")
 	
@@ -38,7 +38,7 @@ end
 
 
 local onStateReceived=function(response)
-	log('onStateReceived')
+	log('onStateReceived','verbose')
 	-- wip: apply to game world
 	
 	-- wip bg
@@ -57,7 +57,7 @@ end
 
 
 local afterLogin=function(response)
-	log('after login:'..Pow.pack(response))
+	log('after login:'..Pow.pack(response), "net")
 	
 	-- todo: move to pow
 	Pow.net.state.login=response.login
@@ -66,7 +66,7 @@ local afterLogin=function(response)
 	_event.addHandler("full_state", onStateReceived)
 	_event.addHandler("move", doMove)
 	
-	log("added handler of create_player_response")
+	log("added handler of create_player_response",'event')
 	-- todo: remove handler on completion
 	-- generic way?
 	
@@ -79,7 +79,7 @@ end
 
 
 local login=function()
-	log('login start')
+	log('login start','verbose')
 	-- todo: get this from user
 	local login=Pow.arg.get("login=", "defaultLogin")
 	

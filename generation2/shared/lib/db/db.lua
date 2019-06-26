@@ -97,7 +97,7 @@ _.save=function()
 end
 
 _.load=function()
-	log('db load')
+	log('db load', "db")
 	
 	local serialized=love.filesystem.read(_saveName)
 	

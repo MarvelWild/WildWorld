@@ -166,7 +166,8 @@ _.listen=function(port)
 	
 	_tcpServer:listen(host, port)
 	
-	_log("listening at:"..host..":"..port)
+	if (DebugContext.net)
+		_log("listening at:"..host..":"..port)
 end
 
 

@@ -26,6 +26,7 @@ local netChannel={
 
 channels.net=netChannel
 
+
 -- todo: настройка какие из ченнелов попадают в мейн
 -- todo: multichannel messages
 
@@ -39,6 +40,22 @@ local newChannel=function(name)
 	return result
 end
 
+channels.db=newChannel("db")
+channels.event=newChannel("event")
+channels.verbose=newChannel("verbose")
+channels.entity=newChannel("entity")
+channels.input=newChannel("input")
+
+-- all console settings
+channels.entity.useConsole=false
+channels.input.useConsole=false
+channels.verbose.useConsole=false
+channels.event.useConsole=false
+channels.db.useConsole=false
+
+-- used if no channel name provided
+local _mainChannel=newChannel("main")
+channels.main=_mainChannel
 
 
 _debug.log=function(message,channelName)
@@ -55,10 +72,6 @@ _debug.log=function(message,channelName)
 	
 	
 	local preparedMessage = _debug.pow.getFrame().."\t"
-	
-
-	
-	
 	
 	if _debug.useConsole and channelName then
 		preparedMessage=preparedMessage.."["..channelName.."]\t"
@@ -83,30 +96,33 @@ _debug.log=function(message,channelName)
 	
 	preparedMessage=preparedMessage..message
 	
-	if _debug.useFile then 
-		if channelName then
-			local channel=channels[channelName]
-			if not channel then
-				channel=newChannel(channelName)
-				channels[channelName]=channel
-			end
-			
-			table.insert(channel.messages, preparedMessage) 
-			
-			-- trace log, full timeline
-			table.insert(_debug.messages, preparedMessage)
-		else
-			table.insert(_debug.messages, preparedMessage) 
+	local channel
+	if channelName then
+		channel=channels[channelName]
+		if not channel then
+			channel=newChannel(channelName)
+			channels[channelName]=channel
 		end
+	else
+		channel=_mainChannel
 	end
 	
-	if _debug.useConsole then
+	if channel.useFile then 
+		table.insert(channel.messages, preparedMessage) 
+		
+		-- trace log, full timeline
+		table.insert(_debug.messages, preparedMessage)
+	else
+		table.insert(_debug.messages, preparedMessage) 
+	end
+	
+	if channel.useConsole then
 		local consoleMessage
 -- todo: reimplement		
 --		if not Config.isFullLog then
 --			consoleMessage=Util.oneLine(preparedMessage)
 --		else
-			consoleMessage=preparedMessage
+		consoleMessage=preparedMessage
 --		end
 
 		print(consoleMessage)
@@ -151,6 +167,8 @@ _debug.writeLogs=function()
 	writeChannels()
 end
 
+
+-- extra text to log messages
 _debug.enterContext=function(context)
 	table.insert(_contexts, context)
 end

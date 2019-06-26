@@ -11,6 +11,8 @@ local _uiDraws={}
 
 --добавить сущность в менеджер
 _.add=function(entity)
+	log('adding entity:'..Entity.toString(entity),'entity')
+	
 	local entityCode=nil
 	if entity.isService then
 		entityCode=entity
@@ -68,5 +70,11 @@ _.lateUpdate=function(dt)
 	end	
 end
 
+
+
+_.toString=function(entity)
+	if entity==nil then return "nil" end
+	return entity.entityName.." id:"..tostring(entity.id)
+end
 
 return _

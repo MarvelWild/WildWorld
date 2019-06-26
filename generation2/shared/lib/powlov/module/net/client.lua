@@ -54,7 +54,7 @@ _.requestId=1
 
 
 local recv=function(data) -- search alias: receive
-	log('client recv:'..data)
+	log('client recv:'..data, "net")
 	
 	local receivedMessages
 	receivedMessages=_receiver.receive(_receiverInst, data)
@@ -149,7 +149,7 @@ local shouldSendEventFromClient=function(event)
 		log("error:unk event:".._.toString(event))
 	end
 	
-	log("shouldSendEventFromClient:".._event.toString(event).." result:"..tostring(result))
+	log("shouldSendEventFromClient:".._event.toString(event).." result:"..tostring(result),'event')
 
 	return result
 end
@@ -179,7 +179,7 @@ end
 local onEventProcessing=function(event)
 	if shouldSendEventFromClient(event) then
 		sendEventToServer(event)
-		log("event sending:"..Pow.pack(event))
+		log("event sending:"..Pow.pack(event), 'event')
 	end
 end
 

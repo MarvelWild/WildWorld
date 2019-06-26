@@ -1,0 +1,31 @@
+	server full_state
+return players with state
+create logged in player on all clients
+
+
+
+client2 moves
+
+client1 crashes
+
+
+
+
+Error: shared/entity/movable.lua:36: attempt to index local 'actor' (a nil value)
+stack traceback:
+        [string "boot.lua"]:637: in function '__index'
+        shared/entity/movable.lua:36: in function 'move'
+        entity/service/client_service.lua:55: in function 'handler'
+        shared/lib/powlov/module/net/event.lua:115: in function 'doProcessEvent'
+        shared/lib/powlov/module/net/event.lua:135: in function 'processEvent'
+        shared/lib/powlov/module/net/event.lua:145: in function 'process'
+        shared/lib/powlov/module/net/client.lua:45: in function 'handler'
+        shared/lib/powlov/module/net/client.lua:80: in function 'recv'
+        shared/lib/powlov/deps/grease/grease/core.lua:122: in function 'update'
+        shared/lib/powlov/module/net/client.lua:175: in function 'update'
+        entity/service/client_service.lua:107: in function 'updateProc'
+        shared/lib/powlov/module/entity/entity.lua:60: in function 'update'
+        shared/lib/powlov/pow.lua:237: in function 'update'
+        main.lua:46: in function 'update'
+        [string "boot.lua"]:509: in function <[string "boot.lua"]:493>
+        [C]: in function 'xpcall'

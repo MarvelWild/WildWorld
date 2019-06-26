@@ -4,7 +4,7 @@
 local _=BaseEntity.new('game',true)
 
 _.start=function()
-	log('GameService start')
+	log('GameService start','verbose')
 	ClientService.start()
 end
 
@@ -31,7 +31,7 @@ end
 
 -- screen coord
 _.mousepressed=function(x,y,button)
-	log('mouse pressed:'..x..','..y..' b:'..button)
+	log('mouse pressed:'..x..','..y..' b:'..button,'input')
 	
 	if (button==1) then
 		-- wip transform screen to game

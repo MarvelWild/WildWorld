@@ -106,12 +106,12 @@ end
 -- move processing logic outside? no, connect handlers to this module
 -- without queue, without checks
 local doProcessEvent=function(event)
-	log("doProcessEvent:".._.toString(event))
+	log("doProcessEvent:".._.toString(event),'event')
 	local eventCode=event.code
 	
 	local handler=_eventHandlers[eventCode]
 	if handler~=nil then
-		log("processing event:".._.toString(event).." full:".._serialize(event))
+		log("processing event:".._.toString(event).." full:".._serialize(event), "event")
 		handler(event)
 	else
 		-- should be registered in _eventHandlers by creating
@@ -128,7 +128,7 @@ local processEvent=function(event)
 
 	
 	if shouldSkipEvent(event) then 
-		log("skip event:".._.toString(event))
+		log("skip event:".._.toString(event),'event')
 		return
 	end
 	
@@ -136,7 +136,7 @@ local processEvent=function(event)
 end
 
 
-
+-- todo: doc
 _.earlyUpdate=function()
 	
 end
