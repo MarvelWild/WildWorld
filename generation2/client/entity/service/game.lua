@@ -9,6 +9,7 @@ _.start=function()
 end
 
 local drawBg=function()
+	log('drawBg','verbose',true)
 	if (GameState.lastState==nil) then return end
 	
 	local level=GameState.level
@@ -20,22 +21,14 @@ end
 
 _.draw=function()
 	drawBg()
-	
-	if GameState.lastState~=nil then
-		local player=GameState.lastState.player
-		if player~=nil then
-			draw(Img.get("player"), player.x, player.y)
-		end
-	end
 end
 
--- screen coord
-_.mousepressed=function(x,y,button)
-	log('mouse pressed:'..x..','..y..' b:'..button,'input')
+_.mousepressed=function(gameX,gameY,button)
+	log('mouse pressed:'..gameX..','..gameY..' b:'..button,'input')
 	
 	if (button==1) then
 		-- wip transform screen to game
-		ClientService.move(x,y)
+		ClientService.move(gameX,gameY)
 	end
 	
 end

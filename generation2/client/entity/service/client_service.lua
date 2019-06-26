@@ -29,6 +29,7 @@ local afterPlayerCreated=function(response)
 	
 	local player=response.player
 	event.playerId=player.id
+	GameState.playerId=player.id
 	event.target="server"
 	
 	_event.process(event)
@@ -39,13 +40,26 @@ end
 
 local onStateReceived=function(response)
 	log('onStateReceived','verbose')
-	-- wip: apply to game world
+	
 	
 	-- wip bg
 	-- state = {level = {bg = "main.png"} --[[table: 0x0f49dd38]], player = {entity = "player", id = 21, level = "start", name = "mw"} --[[table: 0x0f4510a8]]}
 	local state=response.state
-	GameState.level=state.level
+	local level=state.level
+	GameState.level=level
 	GameState.lastState=state
+	
+	-- here comes entities from getLevelEntities -> Db.getLevelContainer(levelName)
+	-- and level container has subcontainers for each entity
+	
+	for k,entityContainer in pairs(level.entities) do
+		-- should we do it on server?
+		-- do we need separate entity containers on client?
+		
+		for k2,entity in pairs(entityContainer) do
+			Entity.add(entity)
+		end
+	end
 end
 
 local doMove=function(event)

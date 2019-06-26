@@ -26,6 +26,14 @@ local initUi=function()
 end
 
 
+
+
+local loadEntities=function()
+	-- code
+	Entity.addCode("player",require("entity.world.player"))
+end
+
+
 love.load=function()
 	local netState=Pow.net.state
 	netState.isServer=false
@@ -33,6 +41,7 @@ love.load=function()
 	
 	love.graphics.setDefaultFilter( "nearest", "nearest" )
 	
+	loadEntities()
 	Entity.add(GameService)
 	Entity.add(ClientService)
 	GameService.start()

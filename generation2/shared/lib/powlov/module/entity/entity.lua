@@ -2,6 +2,8 @@
 
 local _={}
 
+-- wip: processing order
+
 
 -- _.update=
 local _drawable={}
@@ -11,12 +13,10 @@ local _uiDraws={}
 
 --добавить сущность в менеджер
 _.add=function(entity)
-	log('adding entity:'..Entity.toString(entity),'entity')
+	log('adding entity:'..Entity.toString(entity),'entity',true)
 	
-	local entityCode=nil
-	if entity.isService then
-		entityCode=entity
-	end
+	-- entityCode is module with draw,update etc contolling current entity data/dto
+	local entityCode=_.getCode(entity)
 	
 	local draw=entityCode.draw
 	if draw~=nil then
@@ -46,8 +46,10 @@ _.remove=function(entity)
 end
 
 _.draw=function()
+	
+	-- wip: sort by z
 	for entity,drawProc in pairs(_drawable) do
-		drawProc()
+		drawProc(entity)
 	end
 end
 
@@ -74,7 +76,38 @@ end
 
 _.toString=function(entity)
 	if entity==nil then return "nil" end
-	return entity.entityName.." id:"..tostring(entity.id)
+	
+	if (entity.entityName==nil) then
+		local a=1
+	end
+	
+	
+	return entity.entityName.." id:"..tostring(entity.id)..' xy:'..tostring(entity.x)..','..tostring(entity.y)
+end
+
+local _entityCode={}
+
+-- register code that corresponds to data object
+_.addCode=function(entityName,code)
+	_entityCode[entityName]=code
+end
+
+
+-- description of code functions:
+-- draw/upd/etc code for entity data/dto
+_.getCode=function(entity)
+	if entity.isService then
+		-- service does not separate data, everything is a single module
+		return entity
+	else
+		-- how we bind code and data? in _entityCode
+		local result = _entityCode[entity.entityName]
+		if (result==nil) then
+			log("error: entity has no code:"..entity.entityName)
+		end
+		
+		return result 
+	end
 end
 
 return _

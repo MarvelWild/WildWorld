@@ -40,4 +40,16 @@ end
 
 
 
+
+_.draw=function(entity)
+	local spriteName=entity.sprite
+	if (spriteName==nil) then
+		return
+	end
+	-- todo: cache it, do not query every frame
+	local sprite=Img.get(spriteName)
+	log('drawing:'..Entity.toString(entity))
+	love.graphics.draw(sprite,entity.x,entity.y)
+end
+
 return _

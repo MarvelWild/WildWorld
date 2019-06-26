@@ -3,6 +3,8 @@
 -- requirements
 -- global Session (search code for usage)
 
+-- todo: show errors always, event if channel is disabled
+
 local _debug={}
 
 
@@ -16,6 +18,7 @@ _debug.messages={}
 
 local _contexts={}
 local channels={}
+_debug.channel=channels
 
 local netChannel={
 	name="net",
@@ -58,7 +61,8 @@ local _mainChannel=newChannel("main")
 channels.main=_mainChannel
 
 
-_debug.log=function(message,channelName)
+-- forceConsole: show message in console even if its channel is disabled
+_debug.log=function(message,channelName,forceConsole)
 	-- local time = love.timer.getTime() -- "\t"..time
 	
 	if string.find(message,"error") then
@@ -116,7 +120,7 @@ _debug.log=function(message,channelName)
 		table.insert(_debug.messages, preparedMessage) 
 	end
 	
-	if channel.useConsole then
+	if channel.useConsole or forceConsole then
 		local consoleMessage
 -- todo: reimplement		
 --		if not Config.isFullLog then

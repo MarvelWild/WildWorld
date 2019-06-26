@@ -4,6 +4,16 @@ local isDebug=arg[#arg] == "-debug"
 if isDebug then require("mobdebug").start() end
 
 require("shared.libs")
+
+local cleanSave=function()
+	log('cleanSave','fs')
+	love.filesystem.remove('db')
+	love.filesystem.remove('id')
+end
+
+
+cleanSave()
+
 Pow.setup(
 	{
 		"server",

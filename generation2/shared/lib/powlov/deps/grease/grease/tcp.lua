@@ -61,6 +61,7 @@ function tcpServer:createSocket()
 end
 
 function tcpServer:_listen()
+	-- todo: error in port in use
 	self.socket:bind(self.address,self.port)
 	self.socket:listen(5)
 end
@@ -105,11 +106,12 @@ function tcpServer:receive()
 end
 
 function tcpServer:accept()
-	local sock = self.socket:accept()
+	local socket=self.socket
+	local sock = socket:accept()
 	while sock do
 		sock:settimeout(0)
 		self._socks[#self._socks+1] = sock
-		sock = self.socket:accept()
+		sock = socket:accept()
 	end
 end
 

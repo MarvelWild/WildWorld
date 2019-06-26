@@ -10,6 +10,8 @@ _.new=function()
 	result.footX=7
 	result.footY=15
 	
+	result.sprite="player"
+	
 	return result
 end
 

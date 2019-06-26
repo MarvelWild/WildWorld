@@ -16,6 +16,8 @@ local createPlayer=function(event)
 	local playerName=event.player_name
 	local login=event.login
 	
+	log('creating player:'..playerName..' login:'..login,'verbose',true)
+	
 	local player=Player.new()
 	player.name=playerName
 	-- todo: start coord
@@ -64,13 +66,10 @@ end
 
 
 local getFullState=function(playerId)
-	local player=getPlayerState(playerId)
+  local player=getPlayerState(playerId)
 	local levelState=getLevelState(player.levelName)
 	local result={}
-	
 	result.level=levelState
-	result.player=player
-	
 	return result
 end
 

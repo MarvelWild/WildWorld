@@ -212,7 +212,6 @@ _.baseEntity=require(folderOfThisFile.."/module/entity/base_entity")
 
 local drawGame=function()
 	_.entity.draw()
-	
 end
 
 

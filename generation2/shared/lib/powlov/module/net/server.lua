@@ -163,20 +163,9 @@ _.listen=function(port)
 	callbacks.disconnect=disconnect
 	
 	_tcpServer.handshake=_shared.handShake
-	
 	_tcpServer:listen(host, port)
-	
-	if (DebugContext.net)
-		_log("listening at:"..host..":"..port)
+	_log("listening at:"..host..":"..port,'net')
 end
-
-
-
-
-
-
-
-
 
 _.update=function(dt)
 end
