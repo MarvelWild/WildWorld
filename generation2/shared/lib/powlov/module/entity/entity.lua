@@ -6,6 +6,8 @@ local _={}
 
 
 -- _.update=
+
+-- key-index, value - draw - {entity,draw}
 local _drawable={}
 local _updatable={}
 local _lateUpdatable={}
@@ -20,7 +22,7 @@ _.add=function(entity)
 	
 	local draw=entityCode.draw
 	if draw~=nil then
-		_drawable[entity]=draw
+		table.insert(_drawable,{entity=entity,draw=draw})
 	end
 	
 	local update=entityCode.update
@@ -39,17 +41,47 @@ _.add=function(entity)
 	end
 end
 
+local removeDrawable=function(entity,container)
+	--local countBefore
+	log("drawables before remove:"..#container)
+	for k,info in ipairs(container) do
+		if info.entity==entity then 
+			table.remove(container,k)
+			-- container[k]=nil wrong way (sort crash on nil)
+			
+			log("drawables after remove:"..#container)
+			return
+		end
+	end
+	
+	local count=#container
+	log("drawables after remove:"..count)
+	
+	if count>0 then
+		log("error: removeDrawable failed. Entity was not in drawables:".._ets(entity))
+	end
+end
+
 _.remove=function(entity)
-	_drawable[entity]=nil
+	removeDrawable(entity,_drawable)
 	_updatable[entity]=nil
 	_lateUpdatable[entity]=nil
 end
 
+local compareByDrawLayer=function(info1,info2)
+	local entity1=info1.entity
+	local entity2=info2.entity
+	if entity1.drawLayer>entity2.drawLayer then return false end
+	if entity1.drawLayer<entity2.drawLayer then return true end
+	return false
+end
+
 _.draw=function()
+	-- todo: optimize
+	table.sort(_drawable,compareByDrawLayer)
 	
-	-- wip: sort by z
-	for entity,drawProc in pairs(_drawable) do
-		drawProc(entity)
+	for k,drawInfo in ipairs(_drawable) do
+		drawInfo.draw(drawInfo.entity)
 	end
 end
 
@@ -71,7 +103,6 @@ _.lateUpdate=function(dt)
 		updateProc(dt)
 	end	
 end
-
 
 
 _.toString=function(entity)

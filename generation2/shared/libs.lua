@@ -15,4 +15,4 @@ draw=love.graphics.draw
 
 serialize=Pow.pack
 deserialize=Pow.unpack
-
+_ets=Entity.toString

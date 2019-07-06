@@ -1,6 +1,8 @@
->sleep
+remove leaving player
 	
-	
+	+draw upgraded
+	+property defined
++entity draw layer property
 	
 	+make sure drawUi is called
 	+add it to local entities

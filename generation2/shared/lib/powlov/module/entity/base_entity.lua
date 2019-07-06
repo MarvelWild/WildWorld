@@ -13,6 +13,7 @@ _.new=function(entityName,isService)
 	
 	result.isService=isService
 	result.entityName=entityName
+	result.drawLayer=0
 	
 	
 	return result
