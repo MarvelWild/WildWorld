@@ -49,7 +49,7 @@ _.draw=function(entity)
 	end
 	-- todo: cache it, do not query every frame
 	local sprite=Img.get(spriteName)
-	log('drawing:'..Entity.toString(entity))
+	-- log('drawing:'..Entity.toString(entity))
 	love.graphics.draw(sprite,entity.x,entity.y)
 end
 

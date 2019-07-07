@@ -10,14 +10,13 @@ _.start=function()
 end
 
 local drawBg=function()
-	log('drawBg','verbose',true)
+	-- log('drawBg','verbose',true)
 	if (GameState.lastState==nil) then return end
 	
 	local level=GameState.level
 	local bgName=level.bg
 	local bgSprite=Img.get("level/"..bgName)
 	draw(bgSprite)
-	local a=1;
 end
 
 _.draw=function()

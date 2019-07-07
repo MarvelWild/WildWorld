@@ -18,6 +18,7 @@ local _saveName="db"
 
 
 -- creates empty
+-- 
 local getEntityContainer=function(levelContainer, entityName)
 	local result = levelContainer[entityName]
 	if result==nil then
@@ -39,6 +40,9 @@ local getLevelContainer=function(levelName)
 	return result
 end
 
+
+
+
 local getLevelName=function(entity)
 	-- это только для игрока, остальные сущности сразу должны помещаться в контейнер, который определяет уровень
 	local result=entity.levelName
@@ -51,6 +55,8 @@ local getLevelName=function(entity)
 end
 
 
+
+-- put entity into level
 _.add=function(entity, levelName)
 	assert(entity)
 	
@@ -69,6 +75,30 @@ _.add=function(entity, levelName)
 	assert(entityContainer[entityId]==nil)
 	entityContainer[entityId]=entity
 end
+
+-- remove entity from level
+_.remove=function(entity,levelName)
+	-- wip test
+	-- todo: refactor paste, same code in add
+	if levelName==nil then
+		levelName=getLevelName(entity)
+		assert(levelName)
+	end
+	
+	local levelContainer=getLevelContainer(levelName)
+	
+	local entityName=entity.entityName
+	
+	local entityContainer=getEntityContainer(levelContainer,entityName)
+	-- table.insert(entityContainer, entity)
+	local entityId=entity.id
+	if (entityContainer[entityId]==nil) then
+		log("warn: trying to delete entity that is not present")
+	end
+	
+	entityContainer[entityId]=nil
+end
+
 
 
 

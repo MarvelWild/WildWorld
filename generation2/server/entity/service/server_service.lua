@@ -23,6 +23,7 @@ local createPlayer=function(event)
 	-- todo: start coord
 	player.x=100
 	player.y=20
+	player.login=login
 	
 	Db.add(player, "player")
 	
@@ -49,7 +50,6 @@ local getLevelState=function(levelName)
 	local state={}
 	state.bg="main"
 	state.entities=getLevelEntities(levelName)
-	-- wip players
 	return state
 end
 
@@ -114,12 +114,30 @@ local doMove=function(event)
 	Movable.move(actor,event.x,event.y)
 end
 
+local logoff=function(event)
+	-- event example: {code = "logoff", entityName = "Event", id = 1579, login = "client1", target = "server"}
+	
+	-- remove player from level
+	local player=Player.getByLogin(event.login)
+	local levelName=player.levelName
+	Db.remove(player,levelName)
+	
+	-- wip: notify everyone on this level
+	local removedEvent=_event.new("entity_removed")
+	removedEvent.entityRef=BaseEntity.getReference(player)
+	removedEvent.target="level"
+	removedEvent.level=player.levelName
+	_event.process(removedEvent)
+	
+end
+
 
 _.start=function()
 	_event.addHandler("create_player", createPlayer)
 	_event.addHandler("game_start", gameStart)
 	_event.addHandler("intent_move", movePlayer)
 	_event.addHandler("move", doMove)
+	_event.addHandler("logoff", logoff)
 	
 	
 	_server.listen(ConfigService.port)

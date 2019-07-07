@@ -58,6 +58,7 @@ _.new=function(code)
 		server	
 		others	except self
 		login		specified login (private chat). field:targetLogin
+		level		everyone on same level
 	]]--
 	event.target="all"
 	event.targetLogin=nil
@@ -95,6 +96,25 @@ local shouldSkipEvent=function(event)
 		if event.targetLogin~= ourLogin then
 			return true
 		end
+	elseif target=="level" then
+		if _netState.isClient then
+			-- wip: where to get curr level / curr player
+			-- wip test
+			-- todo: GameState shouldn't be used here
+			local currentPlayer=GameState.getPlayer()
+			local currentLevel=currentPlayer.levelName
+			if (currentLevel~=event.level) then
+				log("warn: skipping level event (probably not supposed to receive it)")
+				return true
+			else
+				return false
+			end
+		else
+			-- always skip on server
+			return true 
+		end
+	else
+		log("error: unknown event target")
 	end
 	
 	return false
@@ -119,6 +139,7 @@ local doProcessEvent=function(event)
 		log("error:event unprocessed:".._serialize(event))
 	end
 end
+
 
 
 local processEvent=function(event)

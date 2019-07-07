@@ -69,7 +69,16 @@ local doMove=function(event)
 	Movable.move(actor,event.x,event.y)
 end
 
+local onEntityRemoved=function(event)
+	-- wip remove from local state
+	log("onEntityRemoved:"..Pow.inspect(event))
+	
+	-- wip: do logoff if self removed? now always, only when logoff requested
+end
 
+
+
+-- 
 local afterLogin=function(response)
 	log('after login:'..Pow.pack(response), "net")
 	
@@ -79,6 +88,7 @@ local afterLogin=function(response)
 	_event.addHandler("create_player_response", afterPlayerCreated)
 	_event.addHandler("full_state", onStateReceived)
 	_event.addHandler("move", doMove)
+	_event.addHandler("entity_removed", onEntityRemoved)
 	
 	log("added handler of create_player_response",'event')
 	-- todo: remove handler on completion
@@ -137,4 +147,10 @@ end
 
 
 
+
+_.logoff=function()
+	
+end
+
+	
 return _

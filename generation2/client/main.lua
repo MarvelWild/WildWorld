@@ -2,6 +2,21 @@
 local isDebug=arg[#arg] == "-debug"
 if isDebug then require("mobdebug").start() end
 
+-- todo: on server too
+
+-- todo: mobdebug failed, try newer one
+-- require "shared/lib/strict"
+
+-- defined in pow
+TSerial=nil
+
+-- for grease
+_G.common=nil
+
+-- for mobdebug
+-- ...=nil
+
+
 require("shared.libs")
 Pow.setup(
 	{
@@ -10,6 +25,7 @@ Pow.setup(
 	}
 )
 
+Event=Pow.net.event
 ConfigService=require("shared.entity.service.config")
 ClientService=require("entity.service.client_service")
 GameService=require("entity.service.game")
@@ -70,7 +86,52 @@ love.resize=function(width, height)
 	Pow.resize(width, height)
 end
 
+local doQuit=function()
+	Pow.quit()
+	
+	log("*** Quit ***")
+	love.event.quit()
+end
+
+local startQuitTimer=function()
+	log("startQuitTimer")
+	
+	
+	-- wip: test logoff first
+	-- Pow.timer:after(2, doQuit)
+end
+
+-- are we in logoff process
+local _isLogoff=false
+
+
+local logoff=function()
+	log("logoff")
+	_isLogoff=true
+
+	startQuitTimer()
+	
+	local event=Event.new()
+	event.code="logoff"
+	event.target="server" 
+	Event.process(event)
+	
+	-- response: removed player entity
+end
+
+
 
 love.quit=function()
-	Pow.quit()
+	if not _isLogoff then
+		logoff()
+		
+		-- Abort quitting. If true, do not close the game.
+		return true
+	end
+	
+	-- ok if we hit quit twice, then don't wait for logoff
+	doQuit()
+	
+	-- proceed with quit
+	return false
 end

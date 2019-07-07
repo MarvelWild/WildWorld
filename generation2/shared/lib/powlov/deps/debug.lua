@@ -22,7 +22,7 @@ _debug.channel=channels
 
 local netChannel={
 	name="net",
-	useConsole=false,
+	useConsole=true,
 	useFile=true,
 	messages={},
 }

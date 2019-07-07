@@ -20,6 +20,10 @@ function string.split(str, div)
     return result
 end
 
+-- Allen.includes(str,sub)
+--function string.contains(str,what)
+--end
+
 
 -- numbered only
 table.clear=function(t)

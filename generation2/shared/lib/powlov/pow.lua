@@ -19,6 +19,8 @@ end
 
 
 
+
+-- save id, logs
 _.quit=function()
 	_.id.save()
 	_.debug.writeLogs()
@@ -79,6 +81,13 @@ local initDeps=function(...)
 	
 	_.arg=require(folderOfThisFile .. "/deps/arg.arg")
 	_.arg.init(_)
+	
+		
+	local timerLib=folderOfThisFile .. "/deps/timer/Timer"
+	_.timerLib=timerLib
+	
+	-- example: Pow.timer:after(2, doQuit)
+	_.timer=timerLib()
 end
 
 initDeps(...)

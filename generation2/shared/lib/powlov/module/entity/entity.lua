@@ -108,11 +108,6 @@ end
 _.toString=function(entity)
 	if entity==nil then return "nil" end
 	
-	if (entity.entityName==nil) then
-		local a=1
-	end
-	
-	
 	return entity.entityName.." id:"..tostring(entity.id)..' xy:'..tostring(entity.x)..','..tostring(entity.y)
 end
 
