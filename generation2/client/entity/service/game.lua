@@ -10,8 +10,8 @@ _.start=function()
 end
 
 local drawBg=function()
-	-- log('drawBg','verbose',true)
-	if (GameState.lastState==nil) then return end
+--	log('drawBg','verbose',true)
+	if (GameState.get()==nil) then return end
 	
 	local level=GameState.level
 	local bgName=level.bg

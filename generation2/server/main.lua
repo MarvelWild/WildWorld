@@ -7,12 +7,13 @@ require("shared.libs")
 
 local cleanSave=function()
 	log('cleanSave','fs')
-	love.filesystem.remove('db')
-	love.filesystem.remove('id')
+	local fs=love.filesystem
+	local saveParts=fs.getDirectoryItems(Pow.saveDir)
+	for k,file in pairs(saveParts) do
+		love.filesystem.remove(Pow.saveDir..file)
+	end
 end
 
-
-cleanSave()
 
 Pow.setup(
 	{
@@ -24,6 +25,7 @@ Id=Pow.id
 
 BaseEntity=Pow.baseEntity
 Db=require("shared.lib.db.db")
+Db.init(Pow.saveDir)
 ServerService=require("entity.service.server_service")
 ConfigService=require("shared.entity.service.config")
 
@@ -31,6 +33,10 @@ Player=require("entity.player")
 Seed=require("entity.world.seed")
 
 love.load=function()
+	local isClean=Pow.arg.get("clean",false)~=false
+	if isClean then
+		cleanSave()
+	end
 	
 	local netState=Pow.net.state
 	netState.isServer=true

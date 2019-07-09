@@ -98,8 +98,6 @@ local shouldSkipEvent=function(event)
 		end
 	elseif target=="level" then
 		if _netState.isClient then
-			-- wip: where to get curr level / curr player
-			-- wip test
 			-- todo: GameState shouldn't be used here
 			local currentPlayer=GameState.getPlayer()
 			local currentLevel=currentPlayer.levelName
@@ -113,6 +111,8 @@ local shouldSkipEvent=function(event)
 			-- always skip on server
 			return true 
 		end
+	elseif target=="all" then			
+		return false		
 	else
 		log("error: unknown event target")
 	end

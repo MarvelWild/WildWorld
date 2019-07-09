@@ -1,16 +1,19 @@
-rest
-				
 				+dont skip it on client
-			>handle entity_removed
+				>by removing from local state
+			handle entity_removed
 				+make sure it sent
 				+log all received
 			+receive entity_removed on client
 			+introduce event target type 'level'
 		notify everyone on this level
 		+remove player
+			do logoff on receive
+		send logoff ok event
 	handle logoff on server
 	+send logoff event
 remove leaving player
+
++qol: clean start mode
 	
 	+draw upgraded
 	+property defined

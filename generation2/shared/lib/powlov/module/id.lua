@@ -10,8 +10,7 @@ local _deserialize
 
 _.init=function(pow)
 	_pow=pow
-	--todo save dir
-	local saveDir=nil
+	local saveDir=pow.saveDir
 	if saveDir==nil then saveDir="" end
 	
 	savePath=saveDir.."id"

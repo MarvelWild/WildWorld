@@ -53,4 +53,10 @@ _.draw=function(entity)
 	love.graphics.draw(sprite,entity.x,entity.y)
 end
 
+
+_.isReferencedBy=function(entity,ref)
+	local ref2=_.getReference(entity)
+	local result=_.referenceEquals(ref,ref2)
+	return result
+end
 return _

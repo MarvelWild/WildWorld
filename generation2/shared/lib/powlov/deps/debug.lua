@@ -141,7 +141,7 @@ local writeChannels=function()
 			log=log..message.."\n"
 		end
 		
-		love.filesystem.append("log_"..channel.name..".txt", log)
+		love.filesystem.append(_debug.pow.saveDir.."log_"..channel.name..".txt", log)
 		channel.messages={}
 	end
 	
@@ -163,7 +163,7 @@ _debug.writeLogs=function()
 			log=log..v.."\n"
 		end
 		
-		love.filesystem.append("log.txt", log)
+		love.filesystem.append(_debug.pow.saveDir.."log.txt", log)
 		
 		_debug.messages={}
 	end

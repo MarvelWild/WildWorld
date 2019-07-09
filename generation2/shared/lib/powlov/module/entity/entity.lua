@@ -1,9 +1,7 @@
 -- entity manager. single instance.
+-- single entity code in base_entity
 
 local _={}
-
--- wip: processing order
-
 
 -- _.update=
 
@@ -81,7 +79,9 @@ _.draw=function()
 	table.sort(_drawable,compareByDrawLayer)
 	
 	for k,drawInfo in ipairs(_drawable) do
+		--log("drawing:".._ets(drawInfo.entity))
 		drawInfo.draw(drawInfo.entity)
+		
 	end
 end
 

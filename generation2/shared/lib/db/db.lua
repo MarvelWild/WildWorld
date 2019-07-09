@@ -6,6 +6,7 @@ local entitiesContainer=_levelContainer[levelName]
 local entityContainer=entitiesContainer[entityName]
 local entity=entityContainer[entityId]
 
+server only. todo: make it not exist on client
 ]]--
 
 local _={}
@@ -16,6 +17,11 @@ local _levelContainers={}
 
 local _saveName="db"
 
+
+local _saveDir=""
+_.init=function(saveDir)
+	_saveDir=saveDir
+end
 
 -- creates empty
 -- 
@@ -123,13 +129,13 @@ _.save=function()
 	log('db save')
 	
 	local serialized=Pow.serialize(_container)
-	love.filesystem.write(_saveName, serialized)
+	love.filesystem.write(_saveDir.._saveName, serialized)
 end
 
 _.load=function()
 	log('db load', "db")
 	
-	local serialized=love.filesystem.read(_saveName)
+	local serialized=love.filesystem.read(_saveDir.._saveName)
 	
 	if serialized~=nil then
 		_container=Pow.deserialize(serialized)

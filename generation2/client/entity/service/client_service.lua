@@ -42,16 +42,17 @@ local onStateReceived=function(response)
 	log('onStateReceived','verbose')
 	
 	
-	-- wip bg
 	-- state = {level = {bg = "main.png"} --[[table: 0x0f49dd38]], player = {entity = "player", id = 21, level = "start", name = "mw"} --[[table: 0x0f4510a8]]}
 	local state=response.state
 	local level=state.level
 	GameState.level=level
-	GameState.lastState=state
+	GameState.set(state)
 	
 	-- here comes entities from getLevelEntities -> Db.getLevelContainer(levelName)
 	-- and level container has subcontainers for each entity
 	
+	-- todo: unregister previous / update
+	-- but now we only receive state once, then updates
 	for k,entityContainer in pairs(level.entities) do
 		-- should we do it on server?
 		-- do we need separate entity containers on client?
@@ -70,10 +71,17 @@ local doMove=function(event)
 end
 
 local onEntityRemoved=function(event)
-	-- wip remove from local state
+	--[[ event example:
+	{
+		code = "entity_removed", entityName = "Event", entityRef = 
+			{entityName = "player", id = 11}  
+		id = 42, level = "start", target = "level"}	
+	]]--
 	log("onEntityRemoved:"..Pow.inspect(event))
 	
-	-- wip: do logoff if self removed? now always, only when logoff requested
+	-- wip remove from local state	
+	local entity=GameState.findEntity(event.entityRef)
+
 end
 
 

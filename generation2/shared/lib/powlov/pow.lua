@@ -2,6 +2,7 @@
 -- framework extraction from "Wild World"
 local _={}
 
+_.saveDir="save/"
 _.options={}
 local _frame=0
 
@@ -265,6 +266,12 @@ _.setup=function(options)
 	_.server=_.net.server
 	_.client=_.net.client
 
+	local saveDirInfo=love.filesystem.getInfo(_.saveDir)
+	if saveDirInfo==nil then
+		love.filesystem.createDirectory(_.saveDir)
+	end
+	
+	
 	
 end
 
@@ -282,6 +289,7 @@ end
 _.resize=function(width, height)
 	_cam:setWindow(0,0,width,height)
 end
+
 
 
 
