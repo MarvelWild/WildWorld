@@ -199,9 +199,7 @@ local shouldSendEvent=function(event,targetLogin)
 	elseif target=="all" then 
 		result=true
 	elseif target=="level" then 
-		-- wip test
-		local level
-		=event.level
+		local level=event.level
 		local targetPlayer=Player.getByLogin(targetLogin)
 		local targetLevel=targetPlayer.levelName
 		if (level==targetLevel) then 

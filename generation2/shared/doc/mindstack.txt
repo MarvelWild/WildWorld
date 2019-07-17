@@ -1,6 +1,9 @@
+при втором логоффе сервер пытался удалить игрока с ид 1 хотя был создан с ид 2
+нужно на логине заходить тем же игроком с ид=1
+				
 				+dont skip it on client
-				>by removing from local state
-			handle entity_removed
+				+by removing from local state
+			+handle entity_removed
 				+make sure it sent
 				+log all received
 			+receive entity_removed on client

@@ -5,7 +5,7 @@ _.drawUi=function()
 	-- background
 	love.graphics.draw(Img.ui_low,0,0)
 	
-	-- wip : draw actions/items
+	-- todo : draw actions/items
 end
 
 

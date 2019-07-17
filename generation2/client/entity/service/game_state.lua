@@ -93,7 +93,10 @@ end
 -- ну и пусть, всё таки бд- сервер сайд, а тут клиент
 _.removeEntity=function(entityRef)
 	local entity=_.findEntity(entityRef,deleteOnFound)
-	if entity==nil then return end
+	if entity==nil then 
+		log("warn: trying remove entity that not exists:"..BaseEntity.refToSting(entityRef))
+		return 
+	end
 	
 	Entity.remove(entity)
 end

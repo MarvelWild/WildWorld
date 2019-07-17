@@ -84,7 +84,6 @@ end
 
 -- remove entity from level
 _.remove=function(entity,levelName)
-	-- wip test
 	-- todo: refactor paste, same code in add
 	if levelName==nil then
 		levelName=getLevelName(entity)
@@ -104,10 +103,6 @@ _.remove=function(entity,levelName)
 	
 	entityContainer[entityId]=nil
 end
-
-
-
-
 
 local get=function(levelName,entityName, entityId)
 	local levelContainer=getLevelContainer(levelName)

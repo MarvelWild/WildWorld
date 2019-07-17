@@ -6,7 +6,7 @@ local _client=Pow.client
 local _event=Pow.net.event
 
 local afterPlayerCreated=function(response)
-	-- wip : start as player
+	-- start as player
 	
 		--[[
 		response example: 
@@ -79,9 +79,7 @@ local onEntityRemoved=function(event)
 	]]--
 	log("onEntityRemoved:"..Pow.inspect(event))
 	
-	-- wip remove from local state	
-	local entity=GameState.findEntity(event.entityRef)
-
+	GameState.removeEntity(event.entityRef)
 end
 
 

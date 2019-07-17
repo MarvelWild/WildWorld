@@ -59,4 +59,9 @@ _.isReferencedBy=function(entity,ref)
 	local result=_.referenceEquals(ref,ref2)
 	return result
 end
+_.refToSting=function(entityRef)
+	if entityRef==nil then return "nil" end
+	return entityRef.id..":"..entityRef.entityName
+end
+
 return _
