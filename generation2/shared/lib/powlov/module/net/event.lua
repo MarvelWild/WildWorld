@@ -107,13 +107,18 @@ local shouldSkipEvent=function(event)
 		if _netState.isClient then
 			-- todo: GameState shouldn't be used here
 			local currentPlayer=GameState.getPlayer()
-			local currentLevel=currentPlayer.levelName
-			if (currentLevel~=event.level) then
-				log("warn: skipping level event (probably not supposed to receive it)")
-				return true
+			if currentPlayer~=nil then
+				local currentLevel=currentPlayer.levelName
+				if (currentLevel~=event.level) then
+					log("warn: skipping level event (probably not supposed to receive it)")
+					return true
+				else
+					return false
+				end
 			else
-				return false
+				log("warn:received level event when no player")
 			end
+			
 		else
 			-- always skip on server
 			return true 

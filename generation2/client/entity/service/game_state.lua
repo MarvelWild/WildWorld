@@ -101,7 +101,15 @@ _.removeEntity=function(entityRef)
 	Entity.remove(entity)
 end
 
-
+_.addEntity=function(entity)
+	if _lastState==nil then return nil end
+	
+	local entityContainers=_lastState.level.entities
+	local entities=entityContainers[entity.entityName]
+	
+	table.insert(entities,entity)
+	Entity.add(entity)
+end
 
 
 return _

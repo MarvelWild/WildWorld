@@ -84,7 +84,26 @@ local gameStart=function(event)
 	
 	
 	local player=Player.getById(playerId)
-	Db.add(player, player.levelName)
+	local levelName=player.levelName
+	local alreadyLogged=Db.get(levelName,Player.entityName,player.id)
+	if alreadyLogged==nil then
+		
+		--todo: generic way: hook db add
+		Db.add(player, levelName)
+		-- notify others
+		
+		-- wip proc on client
+		local notifyEvent=_event.new("entity_added")
+		notifyEvent.target="level"
+		notifyEvent.level=levelName
+		notifyEvent.entities={player}
+		
+		_event.process(notifyEvent)
+		
+	else
+		log("warn:logging player which already on level")
+	end
+	
 	
 	local fullState=getFullState(playerId)
 	

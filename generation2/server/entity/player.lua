@@ -1,7 +1,9 @@
 local _={}
 
+_.entityName="player"
+
 _.new=function()
-	local result=BaseEntity.new("player")
+	local result=BaseEntity.new(_.entityName)
 	
 	result.name='Joe'
 	result.levelName='start'

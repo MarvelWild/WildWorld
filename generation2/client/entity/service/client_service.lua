@@ -108,17 +108,28 @@ local onPlayersListed=function(event)
 	
 end
 
+local onEntityAdded=function(event)
+	log("onEntityAdded")
+	local entities=event.entities
+	for k,entity in pairs(entities) do
+		GameState.addEntity(entity)
+	end
+end
+
+
 -- 
 local afterLogin=function(response)
 	log('after login:'..Pow.pack(response), "net")
 	
 	-- todo: move to pow
 	Pow.net.state.login=response.login
+	love.window.setTitle(love.window.getTitle().." l:"..response.login)
 	
 	_event.addHandler("create_player_response", afterPlayerCreated)
 	_event.addHandler("full_state", onStateReceived)
 	_event.addHandler("move", doMove)
 	_event.addHandler("entity_removed", onEntityRemoved)
+	_event.addHandler("entity_added", onEntityAdded)
 	
 	log("added handler of create_player_response",'event')
 	-- todo: remove handler on completion
