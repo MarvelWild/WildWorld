@@ -96,9 +96,8 @@ end
 local startQuitTimer=function()
 	log("startQuitTimer")
 	
-	
-	-- wip: test logoff first
-	-- Pow.timer:after(2, doQuit)
+	log("quitting by timer")
+	Pow.timer:after(2, doQuit)
 end
 
 -- are we in logoff process
@@ -114,7 +113,7 @@ local logoff=function()
 	local event=Event.new()
 	event.code="logoff"
 	event.target="server" 
-	Event.process(event)
+	Event.process(event,doQuit)
 	
 	-- response: removed player entity
 end

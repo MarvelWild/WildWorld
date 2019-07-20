@@ -93,9 +93,8 @@ end
 -- response to list_players
 local onPlayersListed=function(event)
 	log("onPlayersListed")
-	-- wip
 	local players=event.players
-	-- todo: seledct by player
+	-- todo: select by player
 	
 	local selectedPlayer=Pow.lume.first(players)
 	if selectedPlayer==nil then
@@ -104,7 +103,6 @@ local onPlayersListed=function(event)
 			event.target="server"
 			_event.process(event)
 	else
-		log("wip login existing")
 		startGameForPlayer(selectedPlayer)
 	end
 	
@@ -124,23 +122,11 @@ local afterLogin=function(response)
 	
 	log("added handler of create_player_response",'event')
 	-- todo: remove handler on completion
-	-- generic way?
+	-- generic way? single response
 	
-	
-	-- wip: query existing players
-	
-	-- wip: single hander
-	
-	-- wip test
 	local event=_event.new("list_players")
 	event.target="server"
 	_event.process(event,onPlayersListed)
-	
-	
---	local event=_event.new("create_player")
---	event.player_name="mw"
---	event.target="server"
---	_event.process(event)
 end
 
 

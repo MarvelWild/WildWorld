@@ -122,12 +122,16 @@ local logoff=function(event)
 	local levelName=player.levelName
 	Db.remove(player,levelName)
 	
-	-- wip: notify everyone on this level
 	local removedEvent=_event.new("entity_removed")
 	removedEvent.entityRef=BaseEntity.getReference(player)
 	removedEvent.target="level"
 	removedEvent.level=player.levelName
 	_event.process(removedEvent)
+	
+	local logoffOkEvent=_event.new("logoff_ok", event.id)
+	logoffOkEvent.target="login"
+	logoffOkEvent.targetLogin=event.login
+	_event.process(logoffOkEvent)
 	
 end
 

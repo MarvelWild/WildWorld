@@ -27,7 +27,6 @@ _.mousepressed=function(gameX,gameY,button)
 	log('mouse pressed:'..gameX..','..gameY..' b:'..button,'input')
 	
 	if (button==1) then
-		-- wip transform screen to game
 		ClientService.move(gameX,gameY)
 	end
 	

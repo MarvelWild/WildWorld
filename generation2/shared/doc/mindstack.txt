@@ -1,4 +1,6 @@
-выход из игры при логоффе
+dual player test
+
++выход из игры при логоффе
 
 +при втором логоффе сервер пытался удалить игрока с ид 1 хотя был создан с ид 2
 
@@ -17,11 +19,11 @@
 			+introduce event target type 'level'
 		notify everyone on this level
 		+remove player
-			do logoff on receive
-		send logoff ok event
-	handle logoff on server
+			+do logoff on receive
+		+send logoff ok event
+	+handle logoff on server
 	+send logoff event
-remove leaving player
++remove leaving player
 
 +qol: clean start mode
 	

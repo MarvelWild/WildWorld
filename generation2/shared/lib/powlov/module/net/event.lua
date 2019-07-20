@@ -42,7 +42,7 @@ end
 
 
 -- code=eventCode
-_.new=function(code)
+_.new=function(code,requestId)
 	-- BaseEntity.new() event is not a entity
 	--log("Event.new:".._traceback())
 	local event={}
@@ -50,6 +50,10 @@ _.new=function(code)
 	event.entityName="Event"
 	event.id=_id.new(event.entityName)
 	event.login=_netState.login
+	if requestId~=nil then
+		event.requestId=requestId
+	end
+	
 	
 	-- alias doNotSend
 	-- client do not send remote event to server, and should mark received as remote
@@ -143,6 +147,7 @@ local doProcessEvent=function(event)
 			local handler=_responseHandlers[requestId]
 			if handler~=nil then
 				handler(event)
+				_responseHandlers[requestId]=nil
 			else
 				log("error:event unprocessed:".._serialize(event))
 			end

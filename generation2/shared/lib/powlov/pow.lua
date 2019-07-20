@@ -84,7 +84,7 @@ local initDeps=function(...)
 	_.arg.init(_)
 	
 		
-	local timerLib=folderOfThisFile .. "/deps/timer/Timer"
+	local timerLib=require(folderOfThisFile .. "/deps/timer/Timer")
 	_.timerLib=timerLib
 	
 	-- example: Pow.timer:after(2, doQuit)
