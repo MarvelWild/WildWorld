@@ -5,6 +5,19 @@ local _client=Pow.client
 
 local _event=Pow.net.event
 
+local startGameForPlayer=function(player)
+	local event=_event.new("game_start")
+	
+	
+	event.playerId=player.id
+	GameState.playerId=player.id
+	event.target="server"
+	
+	_event.process(event)
+end
+
+	
+
 local afterPlayerCreated=function(response)
 	-- start as player
 	
@@ -25,15 +38,8 @@ local afterPlayerCreated=function(response)
 	
 	log('afterPlayerCreated', "verbose")
 	
-	local event=_event.new("game_start")
-	
 	local player=response.player
-	event.playerId=player.id
-	GameState.playerId=player.id
-	event.target="server"
-	
-	_event.process(event)
-	
+	startGameForPlayer(player)
 	-- response is generic : onStateReceived
 end
 
@@ -84,6 +90,26 @@ end
 
 
 
+-- response to list_players
+local onPlayersListed=function(event)
+	log("onPlayersListed")
+	-- wip
+	local players=event.players
+	-- todo: seledct by player
+	
+	local selectedPlayer=Pow.lume.first(players)
+	if selectedPlayer==nil then
+			local event=_event.new("create_player")
+			event.player_name="mw"
+			event.target="server"
+			_event.process(event)
+	else
+		log("wip login existing")
+		startGameForPlayer(selectedPlayer)
+	end
+	
+end
+
 -- 
 local afterLogin=function(response)
 	log('after login:'..Pow.pack(response), "net")
@@ -101,10 +127,20 @@ local afterLogin=function(response)
 	-- generic way?
 	
 	
-	local event=_event.new("create_player")
-	event.player_name="mw"
+	-- wip: query existing players
+	
+	-- wip: single hander
+	
+	-- wip test
+	local event=_event.new("list_players")
 	event.target="server"
-	_event.process(event)
+	_event.process(event,onPlayersListed)
+	
+	
+--	local event=_event.new("create_player")
+--	event.player_name="mw"
+--	event.target="server"
+--	_event.process(event)
 end
 
 

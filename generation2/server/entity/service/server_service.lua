@@ -132,12 +132,31 @@ local logoff=function(event)
 end
 
 
+
+-- get players for login
+local listPlayers=function(event)
+ 	local login=event.login
+	
+	-- todo: поддержка нескольких игроков
+	-- пока что 1 игрок - 1 логин
+	local player=Player.getByLogin(login)
+	
+	local response=_event.new("list_players_response")
+	response.target="login"
+	response.targetLogin=login
+	response.requestId=event.id
+	response.players={player}
+	_event.process(response)
+end
+
+
 _.start=function()
 	_event.addHandler("create_player", createPlayer)
 	_event.addHandler("game_start", gameStart)
 	_event.addHandler("intent_move", movePlayer)
 	_event.addHandler("move", doMove)
 	_event.addHandler("logoff", logoff)
+	_event.addHandler("list_players", listPlayers)
 	
 	
 	_server.listen(ConfigService.port)

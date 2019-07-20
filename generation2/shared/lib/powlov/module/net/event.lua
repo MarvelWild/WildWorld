@@ -12,6 +12,9 @@ local _={}
 -- val=handler
 local _eventHandlers={}
 
+-- key: request event id, val: f()
+local _responseHandlers={}
+
 local _pow
 local _id
 local _netState
@@ -134,15 +137,28 @@ local doProcessEvent=function(event)
 		log("processing event:".._.toString(event).." full:".._serialize(event), "event")
 		handler(event)
 	else
-		-- should be registered in _eventHandlers by creating
-		-- event/name.lua. autoloaded from there
-		log("error:event unprocessed:".._serialize(event))
+		local requestId=event.requestId
+		if requestId~=nil then
+			--_responseHandlers
+			local handler=_responseHandlers[requestId]
+			if handler~=nil then
+				handler(event)
+			else
+				log("error:event unprocessed:".._serialize(event))
+			end
+		else
+			-- should be registered in _eventHandlers by creating
+			-- event/name.lua. autoloaded from there
+			log("error:event unprocessed:".._serialize(event))
+		end
 	end
 end
 
 
 
 local processEvent=function(event)
+	-- _externalProcessor is net sender
+	-- connected from server/client onEventProcessing-sendEvent
 	if (_externalProcessor~=nil) then
 		_externalProcessor(event)
 	end
@@ -162,8 +178,15 @@ _.earlyUpdate=function()
 	
 end
 
-_.process=function(event)
+_.process=function(event,onResponse)
 	processEvent(event)
+	
+	if onResponse~=nil then
+		local eventId=event.id
+		_responseHandlers[eventId]=onResponse
+	end
+	
+		
 end
 
 
