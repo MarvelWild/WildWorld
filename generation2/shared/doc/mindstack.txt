@@ -1,3 +1,14 @@
+				+on first activation
+			+query from server
+		+define placeable items
+			+seed should have sprite
+		+draw active item
+			+some entities could listen for keys
+		+enable/disable by F11
+			
+		>place by rclick
+	editor mode
+put seed into world
 	+list_players_response - empty
 	+сбросились коорд
 +persist server

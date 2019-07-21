@@ -28,6 +28,7 @@ Pow.setup(
 Event=Pow.net.event
 ConfigService=require("shared.entity.service.config")
 ClientService=require("entity.service.client_service")
+EditorService=require("entity.service.editor_service")
 GameService=require("entity.service.game")
 GameState=require("entity.service.game_state")
 
@@ -60,6 +61,7 @@ love.load=function()
 	loadEntities()
 	Entity.add(GameService)
 	Entity.add(ClientService)
+	Entity.add(EditorService)
 	GameService.start()
 	
 	Pow.load()
@@ -85,6 +87,11 @@ end
 love.resize=function(width, height)
 	Pow.resize(width, height)
 end
+
+love.keypressed=function(key, scancode, isrepeat)
+	Entity.keyPressed(key)
+end
+
 
 local doQuit=function()
 	Pow.quit()

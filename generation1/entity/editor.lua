@@ -99,6 +99,8 @@ end
 
 _.draw=function(editor)
 --	log("editor draw item")
+
+	-- where activeItem coords changed? in update.
 	editor.activeItemCode.draw(editor.activeItem)
 end
 

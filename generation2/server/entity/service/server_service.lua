@@ -92,7 +92,6 @@ local gameStart=function(event)
 		Db.add(player, levelName)
 		-- notify others
 		
-		-- wip proc on client
 		local notifyEvent=_event.new("entity_added")
 		notifyEvent.target="level"
 		notifyEvent.level=levelName
@@ -172,6 +171,20 @@ local listPlayers=function(event)
 	_event.process(response)
 end
 
+local editorItems=function(event)
+	local response=_event.new("editor_items_response", event.id)
+	
+	response.items={}
+	-- todo: put editor entities in special level, do not recreate them every time
+	local seed=Seed.new()
+	table.insert(response.items, seed)
+	
+	response.target="login"
+	response.targetLogin=event.login
+	_event.process(response)
+end
+
+
 
 _.start=function()
 	_event.addHandler("create_player", createPlayer)
@@ -180,7 +193,7 @@ _.start=function()
 	_event.addHandler("move", doMove)
 	_event.addHandler("logoff", logoff)
 	_event.addHandler("list_players", listPlayers)
-	
+	_event.addHandler("editor_items", editorItems)
 	
 	_server.listen(ConfigService.port)
 	

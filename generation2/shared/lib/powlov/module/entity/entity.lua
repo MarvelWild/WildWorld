@@ -9,7 +9,9 @@ local _={}
 local _drawable={}
 local _updatable={}
 local _lateUpdatable={}
+local _keyPressedListeners={}
 local _uiDraws={}
+local _uiDrawsUnscaled={}
 
 --добавить сущность в менеджер
 _.add=function(entity)
@@ -37,8 +39,20 @@ _.add=function(entity)
 	if drawUi~=nil then
 		_uiDraws[entity]=drawUi
 	end
+	
+	local drawUnscaledUi=entityCode.drawUnscaledUi
+	if drawUnscaledUi~=nil then
+		_uiDrawsUnscaled[entity]=drawUnscaledUi
+	end
+	
+	local keyPressed=entityCode.keyPressed
+	if keyPressed~=nil then
+		_keyPressedListeners[entity]=keyPressed
+	end
+	
 end
 
+-- drawables are array to make it sortable
 local removeDrawable=function(entity,container)
 	--local countBefore
 	log("drawables before remove:"..#container)
@@ -64,6 +78,9 @@ _.remove=function(entity)
 	removeDrawable(entity,_drawable)
 	_updatable[entity]=nil
 	_lateUpdatable[entity]=nil
+	_keyPressedListeners[entity]=nil
+	_uiDraws[entity]=nil
+	_uiDrawsUnscaled[entity]=nil
 end
 
 local compareByDrawLayer=function(info1,info2)
@@ -91,6 +108,12 @@ _.drawUi=function()
 	end
 end
 
+_.drawUnscaledUi=function()
+	for entity,draw in pairs(_uiDrawsUnscaled) do
+		draw()
+	end
+end
+
 _.update=function(dt)
 	for entity,updateProc in pairs(_updatable) do
 		updateProc(dt)
@@ -104,6 +127,12 @@ _.lateUpdate=function(dt)
 	end	
 end
 
+
+_.keyPressed=function(key)
+	for entity,lisetner in pairs(_keyPressedListeners) do
+		lisetner(key)
+	end
+end
 
 _.toString=function(entity)
 	if entity==nil then return "nil" end

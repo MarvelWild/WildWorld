@@ -29,6 +29,7 @@ Db.init(Pow.saveDir)
 ServerService=require("entity.service.server_service")
 ConfigService=require("shared.entity.service.config")
 
+-- todo: generic way to load entities
 Player=require("entity.player")
 Seed=require("entity.world.seed")
 

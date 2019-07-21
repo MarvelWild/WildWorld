@@ -229,8 +229,13 @@ _.draw=function()
 	_cam:draw(drawGame)
 	
 	-- ui scale
+	love.graphics.push()
 	love.graphics.scale(2,2)
 	Entity.drawUi()
+	love.graphics.pop()
+	
+	love.graphics.scale(1,1)
+	Entity.drawUnscaledUi()
 end
 
 
@@ -278,6 +283,7 @@ end
 
 
 _.load=function()
+	-- todo: config scale, world size
 	_cam:setScale(4)
 	_cam:setWorld(0,0,4096,4096)
 end
@@ -285,6 +291,15 @@ end
 _.getWorldCoords=function(screenX,screenY)
 	return _cam:toWorld(screenX,screenY)
 end
+
+-- in world coords
+_.getMouseXY=function()
+	local x=love.mouse.getX()
+	local y=love.mouse.getY()
+	local gameX,gameY=_.getWorldCoords(x,y)
+	return gameX,gameY
+end
+
 
 
 _.resize=function(width, height)
