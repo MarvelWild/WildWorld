@@ -12,6 +12,7 @@ server only. todo: make it not exist on client
 local _={}
 
 
+-- root container
 -- level 1 entity names by level name
 local _levelContainers={}
 
@@ -123,7 +124,7 @@ _.getEntityContainer=getEntityContainer
 _.save=function()
 	log('db save')
 	
-	local serialized=Pow.serialize(_container)
+	local serialized=Pow.serialize(_levelContainers)
 	love.filesystem.write(_saveDir.._saveName, serialized)
 end
 
@@ -133,9 +134,9 @@ _.load=function()
 	local serialized=love.filesystem.read(_saveDir.._saveName)
 	
 	if serialized~=nil then
-		_container=Pow.deserialize(serialized)
+		_levelContainers=Pow.deserialize(serialized)
 	else
-		_container={}
+		_levelContainers={}
 	end
 end
 

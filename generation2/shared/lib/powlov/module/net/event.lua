@@ -116,7 +116,8 @@ local shouldSkipEvent=function(event)
 					return false
 				end
 			else
-				log("warn:received level event when no player")
+				-- its ok
+				-- log("warn:received level event when no player")
 			end
 			
 		else

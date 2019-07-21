@@ -238,6 +238,7 @@ end
 _.update=function(dt)
 	_frame=_frame+1
 	
+	_.timer:update(dt)
 	_.flux.update(dt)
 	
 	-- here unprocessed events from prev frame went to this one

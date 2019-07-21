@@ -1,1 +1,1 @@
-"c:\Program Files\LOVE\love.exe" server clean=true
+"c:\Program Files\LOVE\love.exe" server
