@@ -48,6 +48,9 @@ end
 local loadEntities=function()
 	-- code
 	Entity.addCode("player",require("entity.world.player"))
+	
+	local seed=require("entity.world.seed")
+	Entity.addCode(seed.entityName,seed)
 end
 
 
@@ -78,10 +81,7 @@ love.update=function(dt)
 end
 
 love.mousepressed=function(x,y,button,istouch)
-	local gameX,gameY
-	gameX,gameY=Pow.getWorldCoords(x,y)
-	
-	GameService.mousepressed(gameX,gameY,button,istouch)
+	Pow.mousePressed(x,y,button,istouch)
 end
 
 love.resize=function(width, height)

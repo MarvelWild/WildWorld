@@ -88,17 +88,7 @@ local gameStart=function(event)
 	local alreadyLogged=Db.get(levelName,Player.entityName,player.id)
 	if alreadyLogged==nil then
 		
-		--todo: generic way: hook db add
 		Db.add(player, levelName)
-		-- notify others
-		
-		local notifyEvent=_event.new("entity_added")
-		notifyEvent.target="level"
-		notifyEvent.level=levelName
-		notifyEvent.entities={player}
-		
-		_event.process(notifyEvent)
-		
 	else
 		log("warn:logging player which already on level")
 	end
@@ -185,6 +175,29 @@ local editorItems=function(event)
 end
 
 
+local editorPlaceItem=function(event)
+	local item=event.item
+	local entityCode=Entity.getCode(item)
+	local instance=entityCode.new()
+	instance.x=item.x
+	instance.y=item.y
+	
+	local levelName="start"
+	Db.add(instance,levelName)
+end
+
+
+
+
+local onEntityAdded=function(entity,levelName)
+	local notifyEvent=_event.new("entity_added")
+	notifyEvent.target="level"
+	notifyEvent.level=levelName
+	notifyEvent.entities={entity}
+	
+	_event.process(notifyEvent)
+end
+
 
 _.start=function()
 	_event.addHandler("create_player", createPlayer)
@@ -194,6 +207,9 @@ _.start=function()
 	_event.addHandler("logoff", logoff)
 	_event.addHandler("list_players", listPlayers)
 	_event.addHandler("editor_items", editorItems)
+	_event.addHandler("editor_place_item", editorPlaceItem)
+	
+	Db.onAdded=onEntityAdded
 	
 	_server.listen(ConfigService.port)
 	

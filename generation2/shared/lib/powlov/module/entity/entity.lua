@@ -10,6 +10,7 @@ local _drawable={}
 local _updatable={}
 local _lateUpdatable={}
 local _keyPressedListeners={}
+local _mousePressedListeners={}
 local _uiDraws={}
 local _uiDrawsUnscaled={}
 
@@ -19,6 +20,10 @@ _.add=function(entity)
 	
 	-- entityCode is module with draw,update etc contolling current entity data/dto
 	local entityCode=_.getCode(entity)
+	
+	if entityCode==nil then
+		local a=1
+	end
 	
 	local draw=entityCode.draw
 	if draw~=nil then
@@ -50,6 +55,10 @@ _.add=function(entity)
 		_keyPressedListeners[entity]=keyPressed
 	end
 	
+	local mousePressed=entityCode.mousePressed
+	if mousePressed~=nil then
+		_mousePressedListeners[entity]=mousePressed
+	end
 end
 
 -- drawables are array to make it sortable
@@ -81,6 +90,7 @@ _.remove=function(entity)
 	_keyPressedListeners[entity]=nil
 	_uiDraws[entity]=nil
 	_uiDrawsUnscaled[entity]=nil
+	_mousePressedListeners[entity]=nil
 end
 
 local compareByDrawLayer=function(info1,info2)
@@ -129,10 +139,17 @@ end
 
 
 _.keyPressed=function(key)
-	for entity,lisetner in pairs(_keyPressedListeners) do
-		lisetner(key)
+	for entity,listener in pairs(_keyPressedListeners) do
+		listener(key)
 	end
 end
+
+_.mousePressed=function(gameX,gameY,button,istouch)
+	for entity,listener in pairs(_mousePressedListeners) do
+		listener(gameX,gameY,button,istouch)
+	end
+end
+
 
 _.toString=function(entity)
 	if entity==nil then return "nil" end

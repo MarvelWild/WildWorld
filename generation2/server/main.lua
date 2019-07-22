@@ -33,6 +33,13 @@ ConfigService=require("shared.entity.service.config")
 Player=require("entity.player")
 Seed=require("entity.world.seed")
 
+local loadEntities=function()
+	-- todo: generic way, on client too
+	
+	-- code
+	Entity.addCode(Seed.entityName,Seed)
+end
+
 love.load=function()
 	local isClean=Pow.arg.get("clean",false)~=false
 	if isClean then
@@ -46,6 +53,7 @@ love.load=function()
 	Db.load()
 	
 	Entity.add(ServerService)
+	loadEntities()
 	ServerService.start()
 end
 

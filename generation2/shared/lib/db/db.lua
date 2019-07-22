@@ -20,6 +20,10 @@ local _saveName="db"
 
 
 local _saveDir=""
+
+-- external hook to notify clients from server
+_.onAdded=nil
+
 _.init=function(saveDir)
 	_saveDir=saveDir
 end
@@ -81,6 +85,11 @@ _.add=function(entity, levelName)
 	local entityId=entity.id
 	assert(entityContainer[entityId]==nil)
 	entityContainer[entityId]=entity
+	
+	if _.onAdded~=nil then
+		_.onAdded(entity, levelName)
+	end
+	
 end
 
 -- remove entity from level

@@ -31,8 +31,7 @@ end
 
 local toggleActive=function()
 	_isActive=not _isActive
-	-- wip show current item under cursor when active
-	
+
 	if _isActive then
 		if _editorItems==nil and not _isFetchingItems then
 			initItems()
@@ -48,6 +47,23 @@ _.keyPressed=function(key)
 		toggleActive()
 	end
 end
+
+local placeItem=function()
+	local event=Event.new()
+	event.code="editor_place_item"
+	event.item=_activeItem
+	event.target="server"
+	Event.process(event)
+end
+
+
+_.mousePressed=function(x,y,button)
+	if not _isActive then return end
+	if button==2 then
+		placeItem()
+	end
+end
+
 
 _.drawUnscaledUi=function()
 	if _isActive then

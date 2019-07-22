@@ -5,7 +5,8 @@
 		+draw active item
 			+some entities could listen for keys
 		+enable/disable by F11
-			
+
+			entity react to mouse click
 		>place by rclick
 	editor mode
 put seed into world

@@ -23,7 +23,7 @@ _.draw=function()
 	drawBg()
 end
 
-_.mousepressed=function(gameX,gameY,button)
+_.mousePressed=function(gameX,gameY,button)
 	log('mouse pressed:'..gameX..','..gameY..' b:'..button,'input')
 	
 	if (button==1) then

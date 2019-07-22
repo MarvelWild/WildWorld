@@ -309,4 +309,12 @@ end
 
 
 
+
+_.mousePressed=function(x,y,button,istouch)
+	local gameX,gameY
+	gameX,gameY=Pow.getWorldCoords(x,y)
+	
+	Entity.mousePressed(gameX,gameY,button,istouch)
+end
+
 return _

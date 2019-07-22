@@ -101,13 +101,25 @@ _.removeEntity=function(entityRef)
 	Entity.remove(entity)
 end
 
-_.addEntity=function(entity)
+local getEntityContainer=function(entityName)
 	if _lastState==nil then return nil end
-	
 	local entityContainers=_lastState.level.entities
-	local entities=entityContainers[entity.entityName]
+	local container=entityContainers[entityName]
+	if container==nil then
+		container={}
+		entityContainers[entityName]=container
+	end
 	
-	table.insert(entities,entity)
+	return container
+end
+
+
+-- adds into world too
+_.addEntity=function(entity)
+	local container=getEntityContainer(entity.entityName)
+	if container==nil then return nil end
+	
+	table.insert(container,entity)
 	Entity.add(entity)
 end
 
