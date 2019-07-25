@@ -1,3 +1,8 @@
+
+	to editor
+add panther
+	
+seed should grow
 				+on first activation
 			+query from server
 		+define placeable items
@@ -6,10 +11,10 @@
 			+some entities could listen for keys
 		+enable/disable by F11
 
-			entity react to mouse click
-		>place by rclick
-	editor mode
-put seed into world
+			+entity react to mouse click
+		+place by rclick
+	+editor mode
++put seed into world
 	+list_players_response - empty
 	+сбросились коорд
 +persist server

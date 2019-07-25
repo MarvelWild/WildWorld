@@ -161,13 +161,32 @@ local listPlayers=function(event)
 	_event.process(response)
 end
 
+
+-- todo: put editor entities in special level, do not recreate them every time
+local _editorItemsCache=nil
+
+local populateEditorItemsCache=function()
+	_editorItemsCache={}
+	
+	local seed=Seed.new()
+	table.insert(_editorItemsCache, seed)
+	
+	local panther=Panther.new()
+	table.insert(_editorItemsCache, panther)
+end
+
+
 local editorItems=function(event)
 	local response=_event.new("editor_items_response", event.id)
 	
-	response.items={}
-	-- todo: put editor entities in special level, do not recreate them every time
-	local seed=Seed.new()
-	table.insert(response.items, seed)
+	if _editorItemsCache==nil then
+		populateEditorItemsCache()
+		
+	end
+	
+	
+	response.items=_editorItemsCache
+
 	
 	response.target="login"
 	response.targetLogin=event.login

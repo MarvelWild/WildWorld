@@ -29,15 +29,30 @@ Db.init(Pow.saveDir)
 ServerService=require("entity.service.server_service")
 ConfigService=require("shared.entity.service.config")
 
--- todo: generic way to load entities
+local registerGlobal=function(name,value)
+	assert(_G[name]==nil)
+	_G[name]=value
+end
+
+
+local loadEntity=function(path)
+	local entity=require(path)
+	local globalVarName=Pow.allen.capitalizeFirst(entity.entityName)
+	registerGlobal(globalVarName, entity)
+	
+	Entity.addCode(entity.entityName,entity)
+end
+
 Player=require("entity.player")
-Seed=require("entity.world.seed")
 
 local loadEntities=function()
 	-- todo: generic way, on client too
 	
 	-- code
-	Entity.addCode(Seed.entityName,Seed)
+	
+	
+	loadEntity("entity.world.seed")
+	loadEntity("entity.world.panther")
 end
 
 love.load=function()

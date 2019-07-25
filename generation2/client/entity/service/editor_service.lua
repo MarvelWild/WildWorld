@@ -41,10 +41,36 @@ local toggleActive=function()
 	
 end
 
+local setActiveItem=function(item)
+	_activeItem=item
+end
 
+
+local nextItem=function()
+	local currentItem=_activeItem
+	local items=_editorItems
+	
+	-- wip
+	local currentPos=Pow.lume.find(items,currentItem)
+	local maxPos=#items
+	
+	if currentPos==maxPos then
+		currentPos=1
+	else
+		currentPos=currentPos+1
+	end
+	
+	local nextItem=items[currentPos]
+	setActiveItem(nextItem)
+end
+
+
+-- todo: visual help
 _.keyPressed=function(key)
 	if key=="f11" then
 		toggleActive()
+	elseif key=="kp+" then
+		nextItem()
 	end
 end
 

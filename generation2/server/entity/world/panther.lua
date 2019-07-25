@@ -1,12 +1,12 @@
-
 local _={}
 
-_.entityName="seed"
+-- todo: from file name
+_.entityName="panther"
 
 _.new=function()
 	local result=BaseEntity.new(_.entityName)
 	
-	result.sprite="seed"
+	result.sprite="pantera"
 	
 	return result
 end
