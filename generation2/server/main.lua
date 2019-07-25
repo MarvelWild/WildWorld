@@ -29,28 +29,17 @@ Db.init(Pow.saveDir)
 ServerService=require("entity.service.server_service")
 ConfigService=require("shared.entity.service.config")
 
-local registerGlobal=function(name,value)
-	assert(_G[name]==nil)
-	_G[name]=value
-end
-
 
 local loadEntity=function(path)
 	local entity=require(path)
 	local globalVarName=Pow.allen.capitalizeFirst(entity.entityName)
-	registerGlobal(globalVarName, entity)
-	
+	Pow.registerGlobal(globalVarName, entity)
 	Entity.addCode(entity.entityName,entity)
 end
 
 Player=require("entity.player")
 
 local loadEntities=function()
-	-- todo: generic way, on client too
-	
-	-- code
-	
-	
 	loadEntity("entity.world.seed")
 	loadEntity("entity.world.panther")
 end

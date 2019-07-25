@@ -43,14 +43,20 @@ local initUi=function()
 end
 
 
+local loadEntity=function(path)
+	local entity=require(path)
+	local globalVarName=Pow.allen.capitalizeFirst(entity.entityName)
+	Pow.registerGlobal(globalVarName, entity)
+	Entity.addCode(entity.entityName,entity)
+end
 
 
 local loadEntities=function()
 	-- code
 	Entity.addCode("player",require("entity.world.player"))
 	
-	local seed=require("entity.world.seed")
-	Entity.addCode(seed.entityName,seed)
+	loadEntity("entity.world.seed")
+	loadEntity("entity.world.panther")
 end
 
 

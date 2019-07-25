@@ -317,4 +317,19 @@ _.mousePressed=function(x,y,button,istouch)
 	Entity.mousePressed(gameX,gameY,button,istouch)
 end
 
+_.registerGlobal=function(name,value)
+	assert(_G[name]==nil, "global exists:"..name)
+	_G[name]=value
+end
+
+-- entity\world\panther.lua -> panther
+_.currentFile=function()
+    local source = debug.getinfo(2, "S").source
+    if source:sub(1,1) == "@" then
+        return source:sub(2):match("^.+/(.+)$"):sub(1,-5)
+    else
+        error("Caller was not defined in a file", 2)
+    end
+end
+
 return _
