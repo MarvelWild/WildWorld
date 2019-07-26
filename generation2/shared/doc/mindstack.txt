@@ -1,6 +1,8 @@
+consistent draw sort (flickering now)
 
-	to editor
-add panther
+
+	+to editor
++add panther
 	
 seed should grow
 				+on first activation

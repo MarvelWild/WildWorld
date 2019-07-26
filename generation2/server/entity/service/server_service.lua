@@ -130,11 +130,7 @@ local logoff=function(event)
 	local levelName=player.levelName
 	Db.remove(player,levelName)
 	
-	local removedEvent=_event.new("entity_removed")
-	removedEvent.entityRef=BaseEntity.getReference(player)
-	removedEvent.target="level"
-	removedEvent.level=player.levelName
-	_event.process(removedEvent)
+
 	
 	local logoffOkEvent=_event.new("logoff_ok", event.id)
 	logoffOkEvent.target="login"
@@ -218,6 +214,15 @@ local onEntityAdded=function(entity,levelName)
 end
 
 
+
+local onEntityRemoved=function(entity,levelName)
+	local removedEvent=_event.new("entity_removed")
+	removedEvent.entityRef=BaseEntity.getReference(entity)
+	removedEvent.target="level"
+	removedEvent.level=levelName
+	_event.process(removedEvent)
+end
+
 _.start=function()
 	_event.addHandler("create_player", createPlayer)
 	_event.addHandler("game_start", gameStart)
@@ -229,6 +234,7 @@ _.start=function()
 	_event.addHandler("editor_place_item", editorPlaceItem)
 	
 	Db.onAdded=onEntityAdded
+	Db.setOnRemoved(onEntityRemoved)
 	
 	_server.listen(ConfigService.port)
 	
@@ -243,6 +249,28 @@ _.lateUpdate=function(dt)
 end
 
 
+local clearWorld=function()
+	local levelName="start"
+	
+	local levelEntityContainers=getLevelEntities(levelName)
+	for entityName,container in pairs(levelEntityContainers) do
+		if entityName~="player" then
+			for k2,entity in pairs(container) do
+				Db.remove(entity,levelName)
+			end
+		end
+		
+	end
+	
+	
+	
+end
 
 
+
+_.keyPressed=function(key)
+	if key=="delete" then
+		clearWorld()
+	end
+end
 return _

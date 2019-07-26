@@ -23,6 +23,14 @@ local _saveDir=""
 
 -- external hook to notify clients from server
 _.onAdded=nil
+local _onRemoved=nil
+
+_.setOnRemoved=function(hook)
+	assert(_onRemoved==nil)
+	_onRemoved=hook
+end
+
+
 
 _.init=function(saveDir)
 	_saveDir=saveDir
@@ -112,6 +120,10 @@ _.remove=function(entity,levelName)
 	end
 	
 	entityContainer[entityId]=nil
+	
+		if _onRemoved~=nil then
+		_onRemoved(entity, levelName)
+	end
 end
 
 local get=function(levelName,entityName, entityId)

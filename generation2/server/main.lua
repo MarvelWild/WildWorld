@@ -65,6 +65,11 @@ love.update=function(dt)
 	Pow.update(dt)
 end
 
+love.keypressed=function(key, scancode, isrepeat)
+	Entity.keyPressed(key)
+end
+
+
 
 love.quit=function()
 	Db.save()
