@@ -93,6 +93,7 @@ local gameStart=function(event)
 		log("warn:logging player which already on level")
 	end
 	
+	Level.activate(levelName)
 	
 	local fullState=getFullState(playerId)
 	
@@ -117,8 +118,16 @@ local movePlayer=function(event)
 end
 
 
+
+-- handler to "move"
 local doMove=function(event)
-	local actor=Db.getByRef(event.actorRef, "player")
+	-- local levelName="player"
+	local actorRef=event.actorRef
+	if actorRef==nil then
+		local a=1
+	end
+	
+	local actor=Db.getByRef(actorRef, actorRef.levelName)
 	Movable.move(actor,event.x,event.y)
 end
 
@@ -204,6 +213,8 @@ end
 
 
 
+
+--attached to  Db.onAdded
 local onEntityAdded=function(entity,levelName)
 	local notifyEvent=_event.new("entity_added")
 	notifyEvent.target="level"

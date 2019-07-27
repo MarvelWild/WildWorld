@@ -1,6 +1,15 @@
+add levelName to entities for convenience
+	
+	log draw order - make sure its the reason of flicker
 consistent draw sort (flickering now)
 
 
++warn:logging player which already on level
+ 
+				on game_start
+			activate/deactivate level
+		add entities on server
+	ai
 	+to editor
 +add panther
 	

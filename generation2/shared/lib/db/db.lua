@@ -53,6 +53,10 @@ local getLevelContainer=function(levelName)
 	local result = _levelContainers[levelName]
 	if result==nil then 
 		result={}
+		if _levelContainers==nil or levelName==nil then
+			local a=1
+		end
+		
 		_levelContainers[levelName]=result
 	end
 	
@@ -82,6 +86,12 @@ _.add=function(entity, levelName)
 	if levelName==nil then
 		levelName=getLevelName(entity)
 		assert(levelName)
+	else
+		-- todo: rethink
+		if levelName~="player" then
+			entity.levelName=levelName
+		end
+		
 	end
 	
 	local levelContainer=getLevelContainer(levelName)
@@ -93,6 +103,12 @@ _.add=function(entity, levelName)
 	local entityId=entity.id
 	assert(entityContainer[entityId]==nil)
 	entityContainer[entityId]=entity
+	
+	if Level.isActive(levelName) then
+		-- wip: preevent double add
+		Entity.add(entity)
+	end
+	
 	
 	if _.onAdded~=nil then
 		_.onAdded(entity, levelName)

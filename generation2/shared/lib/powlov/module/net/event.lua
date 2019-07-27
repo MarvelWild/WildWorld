@@ -110,7 +110,8 @@ local shouldSkipEvent=function(event)
 			if currentPlayer~=nil then
 				local currentLevel=currentPlayer.levelName
 				if (currentLevel~=event.level) then
-					log("warn: skipping level event (probably not supposed to receive it)")
+					log("warn: skipping level event (probably not supposed to receive it). currentLevel="..tostring(currentLevel)..
+						" event.level:"..tostring(event.level))
 					return true
 				else
 					return false

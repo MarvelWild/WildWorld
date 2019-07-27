@@ -35,13 +35,15 @@ local loadEntity=function(path)
 	local globalVarName=Pow.allen.capitalizeFirst(entity.entityName)
 	Pow.registerGlobal(globalVarName, entity)
 	Entity.addCode(entity.entityName,entity)
+	if entity.load~=nil then entity.load() end
 end
-
-Player=require("entity.player")
 
 local loadEntities=function()
 	loadEntity("entity.world.seed")
 	loadEntity("entity.world.panther")
+	loadEntity("entity.level")
+	loadEntity("entity.player")
+	loadEntity("entity.service.ai")
 end
 
 love.load=function()

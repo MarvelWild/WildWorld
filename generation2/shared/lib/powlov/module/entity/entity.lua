@@ -9,6 +9,10 @@ local _={}
 local _drawable={}
 local _updatable={}
 local _lateUpdatable={}
+
+-- ai should not update every turn, or update by parts
+local _aiUpdatable={}
+
 local _keyPressedListeners={}
 local _mousePressedListeners={}
 local _uiDraws={}
@@ -21,7 +25,7 @@ _.add=function(entity)
 	-- entityCode is module with draw,update etc contolling current entity data/dto
 	local entityCode=_.getCode(entity)
 	
-	if entityCode==nil then
+	if entityCode==nil or entity.entityName=="panther" then
 		local a=1
 	end
 	
@@ -59,6 +63,13 @@ _.add=function(entity)
 	if mousePressed~=nil then
 		_mousePressedListeners[entity]=mousePressed
 	end
+	
+	local updateAi=entityCode.updateAi
+	if updateAi~=nil then
+		_aiUpdatable[entity]=updateAi
+	end
+	
+	
 end
 
 -- drawables are array to make it sortable
@@ -91,6 +102,7 @@ _.remove=function(entity)
 	_uiDraws[entity]=nil
 	_uiDrawsUnscaled[entity]=nil
 	_mousePressedListeners[entity]=nil
+	_aiUpdatable[entity]=nil
 end
 
 local compareByDrawLayer=function(info1,info2)
@@ -128,6 +140,14 @@ _.update=function(dt)
 	for entity,updateProc in pairs(_updatable) do
 		updateProc(dt)
 	end
+	
+	local frameNumber=Pow.getFrame()
+	if frameNumber%60==0 then
+		-- log("update ai")
+		for entity,updateAiProc in pairs(_aiUpdatable) do
+			updateAiProc(entity,dt)
+		end
+	end
 end
 
 
@@ -155,7 +175,13 @@ end
 _.toString=function(entity)
 	if entity==nil then return "nil" end
 	
-	return entity.entityName.." id:"..tostring(entity.id)..' xy:'..tostring(entity.x)..','..tostring(entity.y)
+	local result=entity.entityName
+	if entity.id~=nil then
+		result=result.." id:"..tostring(entity.id)..' xy:'..
+			tostring(entity.x)..','..tostring(entity.y)
+	end
+	
+	return result
 end
 
 local _entityCode={}

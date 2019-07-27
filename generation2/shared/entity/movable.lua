@@ -30,6 +30,7 @@ local smoothMove=function(actor,durationSec,x,y)
 --	entityLocals.moveTween=tween
 end
 
+-- only moves locally, no event
 _.move=function(actor,x,y)
 	local finalX
 	local finalY

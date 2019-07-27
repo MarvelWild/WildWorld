@@ -27,6 +27,7 @@ _.getReference=function(entity)
 	result.id=entity.id
 	-- result.login=entity.login no local ent/thin client
 	result.entityName=entity.entityName
+	result.levelName=entity.levelName
 	
 	return result
 end

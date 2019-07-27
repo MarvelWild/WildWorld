@@ -11,6 +11,14 @@ _.new=function()
 	return result
 end
 
+_.updateAi=function(entity)
+	log("panthera update ai")
+	
+	AiService.moveRandom(entity)
+
+end
+
+
 
 
 
