@@ -161,7 +161,7 @@ _.start=function()
 	if isConnected then
 		login()
 	else
-		log("error:cannot connect")
+		log("error:cannot connect to"..ConfigService.serverHost..":"..ConfigService.port)
 	end
 	
 end

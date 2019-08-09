@@ -136,6 +136,18 @@ _.drawUnscaledUi=function()
 	end
 end
 
+local _aiKey=nil
+local function getNextAiFn()
+	
+	local entity,fnUpdate=next(_aiUpdatable, _aiKey)
+	_aiKey=entity
+--	local result=_aiUpdatable[_aiIndex]
+--	_aiIndex=_aiIndex+1
+
+	return fnUpdate,entity
+end
+
+
 _.update=function(dt)
 	for entity,updateProc in pairs(_updatable) do
 		updateProc(dt)
@@ -144,8 +156,12 @@ _.update=function(dt)
 	local frameNumber=Pow.getFrame()
 	if frameNumber%60==0 then
 		-- log("update ai")
-		for entity,updateAiProc in pairs(_aiUpdatable) do
-			updateAiProc(entity,dt)
+--		for entity,updateAiProc in pairs(_aiUpdatable) do
+--			updateAiProc(entity,dt)
+--		end
+		local fnNextAi,entity=getNextAiFn()
+		if fnNextAi~=nil then
+			fnNextAi(entity)
 		end
 	end
 end
