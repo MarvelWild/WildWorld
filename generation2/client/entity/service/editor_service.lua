@@ -69,8 +69,10 @@ end
 _.keyPressed=function(key)
 	if key=="f11" then
 		toggleActive()
-	elseif key=="kp+" then
-		nextItem()
+	elseif _isActive then
+		if key=="kp+" then 
+			nextItem()
+		end
 	end
 end
 

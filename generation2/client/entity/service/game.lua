@@ -32,6 +32,16 @@ _.mousePressed=function(gameX,gameY,button)
 	
 end
 
+_.keyPressed=function(key)
+	if key=="=" then
+		Pow.zoomIn()
+	elseif key=="-" then
+		Pow.zoomOut()
+	end
+	
+end
+
+
 
 
 

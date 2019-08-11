@@ -2,9 +2,37 @@
 -- framework extraction from "Wild World"
 local _={}
 
+local _gameScale=4
+local _cam=nil
+
+_.setGameScale=function(scale)
+	local max=16
+	local min=1
+	
+	scale=Pow.lume.clamp(scale,min,max)
+	
+	_gameScale=scale
+	_cam:setScale(_gameScale)
+end
+
+_.zoomIn=function()
+	local newGameScale=_gameScale+1
+	
+	_.setGameScale(newGameScale)
+end
+
+_.zoomOut=function()
+	local newGameScale=_gameScale-1
+	
+	_.setGameScale(newGameScale)
+end
+
+
+
 _.saveDir="save/"
 _.options={}
 local _frame=0
+
 
 	-- lib/powlov/pow
 local pathOfThisFile = ...
@@ -102,7 +130,7 @@ local _getDirItems=love.filesystem.getDirectoryItems
 local _getInfo=love.filesystem.getInfo
 
 
-local _cam=_.gamera.new(0,0,128,128)
+_cam=_.gamera.new(0,0,128,128)
 _.cam=_cam
 
 -- function(message,channelName)
@@ -226,7 +254,12 @@ end
 
 
 _.draw=function()
+	
+	-- game
+	love.graphics.push()
 	_cam:draw(drawGame)
+	love.graphics.pop()
+	
 	
 	-- ui scale
 	love.graphics.push()
@@ -234,6 +267,7 @@ _.draw=function()
 	Entity.drawUi()
 	love.graphics.pop()
 	
+	--unscaled ui
 	love.graphics.scale(1,1)
 	Entity.drawUnscaledUi()
 end
@@ -284,7 +318,7 @@ end
 
 _.load=function()
 	-- todo: config scale, world size
-	_cam:setScale(4)
+	_cam:setScale(_gameScale)
 	_cam:setWorld(0,0,4096,4096)
 end
 
@@ -331,5 +365,8 @@ _.currentFile=function()
         error("Caller was not defined in a file", 2)
     end
 end
+
+
+
 
 return _

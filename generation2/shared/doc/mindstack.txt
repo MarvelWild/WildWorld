@@ -1,6 +1,10 @@
+camera+-
+	+sim update event
+seed should grow
 	+do not run all at once, iterate em
 +optimize ai
 
+	where it needed?
 add levelName to entities for convenience
 	
 	log draw order - make sure its the reason of flicker
@@ -16,7 +20,7 @@ consistent draw sort (flickering now)
 	+to editor
 +add panther
 	
-seed should grow
+
 				+on first activation
 			+query from server
 		+define placeable items

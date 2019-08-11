@@ -11,6 +11,11 @@ _.new=function()
 	return result
 end
 
+_.updateSimulation=function()
+	log('sim seed wip')
+end
+
+
 
 
 

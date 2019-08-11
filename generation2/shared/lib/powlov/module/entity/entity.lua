@@ -13,6 +13,9 @@ local _lateUpdatable={}
 -- ai should not update every turn, or update by parts
 local _aiUpdatable={}
 
+-- entity-fnSim(entity)
+local _simulations={}
+
 local _keyPressedListeners={}
 local _mousePressedListeners={}
 local _uiDraws={}
@@ -69,6 +72,10 @@ _.add=function(entity)
 		_aiUpdatable[entity]=updateAi
 	end
 	
+	local simulation=entityCode.updateSimulation
+	if simulation~=nil then
+		_simulations[entity]=simulation
+	end
 	
 end
 
@@ -103,6 +110,7 @@ _.remove=function(entity)
 	_uiDrawsUnscaled[entity]=nil
 	_mousePressedListeners[entity]=nil
 	_aiUpdatable[entity]=nil
+	_simulations[entity]=nil
 end
 
 local compareByDrawLayer=function(info1,info2)
@@ -147,6 +155,16 @@ local function getNextAiFn()
 	return fnUpdate,entity
 end
 
+local _simulationKey=nil
+local function getNextSimulationFn()
+	local entity,fn=next(_simulations, _simulationKey)
+	_simulationKey=entity
+	return fn,entity
+end
+
+
+
+local _isSimulationOrAi=false
 
 _.update=function(dt)
 	for entity,updateProc in pairs(_updatable) do
@@ -159,10 +177,20 @@ _.update=function(dt)
 --		for entity,updateAiProc in pairs(_aiUpdatable) do
 --			updateAiProc(entity,dt)
 --		end
-		local fnNextAi,entity=getNextAiFn()
-		if fnNextAi~=nil then
-			fnNextAi(entity)
+		_isSimulationOrAi=not _isSimulationOrAi
+
+		if _isSimulationOrAi then
+			local fnNextAi,entity=getNextAiFn()
+			if fnNextAi~=nil then
+				fnNextAi(entity)
+			end
+		else
+			local fnNextSimulation,entity=getNextSimulationFn()
+			if fnNextSimulation~=nil then
+				fnNextSimulation(entity)
+			end
 		end
+		
 	end
 end
 
