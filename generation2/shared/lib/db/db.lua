@@ -87,7 +87,7 @@ _.add=function(entity, levelName)
 		levelName=getLevelName(entity)
 		assert(levelName)
 	else
-		-- todo: rethink
+
 		if levelName~="player" then
 			entity.levelName=levelName
 		end
@@ -137,7 +137,11 @@ _.remove=function(entity,levelName)
 	
 	entityContainer[entityId]=nil
 	
-		if _onRemoved~=nil then
+	if Level.isActive(levelName) then
+		Entity.remove(entity)
+	end
+	
+	if _onRemoved~=nil then
 		_onRemoved(entity, levelName)
 	end
 end

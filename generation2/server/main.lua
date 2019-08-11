@@ -38,9 +38,22 @@ local loadEntity=function(path)
 	if entity.load~=nil then entity.load() end
 end
 
+
+
+local loadEntitiesFromDir=function(dirName)
+	local dirItems=love.filesystem.getDirectoryItems(dirName)
+	for k,fileName in ipairs(dirItems) do
+		local entityName=Pow.replace(fileName,".lua","")
+		local entityPath=dirName.."."..entityName
+		loadEntity(entityPath)
+	end
+end
+
+
 local loadEntities=function()
-	loadEntity("entity.world.seed")
-	loadEntity("entity.world.panther")
+	loadEntitiesFromDir("entity/world")
+	-- loadEntity("entity.world.seed")
+	-- loadEntity("entity.world.panther")
 	loadEntity("entity.level")
 	loadEntity("entity.player")
 	loadEntity("entity.service.ai")

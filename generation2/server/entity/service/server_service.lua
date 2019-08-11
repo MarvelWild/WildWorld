@@ -200,13 +200,15 @@ end
 
 
 local editorPlaceItem=function(event)
+	local login=event.login
+	local player=Player.getByLogin(login)
 	local item=event.item
 	local entityCode=Entity.getCode(item)
 	local instance=entityCode.new()
 	instance.x=item.x
 	instance.y=item.y
 	
-	local levelName="start"
+	local levelName=player.levelName
 	Db.add(instance,levelName)
 end
 

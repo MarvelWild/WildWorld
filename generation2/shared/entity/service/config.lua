@@ -1,4 +1,5 @@
 -- shared config
+-- global ConfigService
 
 local _={}
 
@@ -9,6 +10,8 @@ _.serverHost='127.0.0.1'
 
 -- localhost only
 _.serverListen='127.0.0.1'
+
+_.serverFps=60
 
 -- listens on ipv6
 -- _.serverListen='*'

@@ -367,6 +367,19 @@ _.currentFile=function()
 end
 
 
+-- Inhibit Regular Expression magic characters ^$()%.[]*+-?)
+local strPlainText=function(strText)
+    -- Prefix every non-alphanumeric character (%W) with a % escape character, 
+    -- where %% is the % escape, and %1 is original character
+    return strText:gsub("(%W)","%%%1")
+end -- function strPlainText
+
+_.replace=function(str,old,new)
+	local s1=strPlainText(old)
+	local s2=strPlainText(new)
+	return str:gsub(s1,s2)
+end
+
 
 
 return _

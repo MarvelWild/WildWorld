@@ -56,6 +56,7 @@ local loadEntities=function()
 	Entity.addCode("player",require("entity.world.player"))
 	
 	loadEntity("entity.world.seed")
+	loadEntity("entity.world.tree")
 	loadEntity("entity.world.panther")
 end
 

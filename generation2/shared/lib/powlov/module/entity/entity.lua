@@ -22,6 +22,7 @@ local _uiDraws={}
 local _uiDrawsUnscaled={}
 
 --добавить сущность в менеджер
+-- use Db.add
 _.add=function(entity)
 	log('adding entity:'..Entity.toString(entity),'entity',true)
 	
@@ -243,14 +244,19 @@ _.getCode=function(entity)
 		-- service does not separate data, everything is a single module
 		return entity
 	else
-		-- how we bind code and data? in _entityCode
-		local result = _entityCode[entity.entityName]
+		local result = _.getCodeByName(entity.entityName)
+		return result
+	end
+end
+
+_.getCodeByName=function(entityName)
+		local result=_entityCode[entityName]
 		if (result==nil) then
-			log("error: entity has no code:"..entity.entityName)
+			log("error: entity has no code:"..entityName)
 		end
 		
 		return result 
-	end
 end
+
 
 return _

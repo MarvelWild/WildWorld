@@ -1,8 +1,16 @@
-camera+-
+	для симуляции в фоне
+	для отладки сервера
+возможность прогружать мир на сервере без клиента
+
+
+		+levelName to entity
+	+handle
 	+sim update event
 seed should grow
+
 	+do not run all at once, iterate em
 +optimize ai
++camera zoom+-
 
 	where it needed?
 add levelName to entities for convenience

@@ -1,3 +1,4 @@
+
 --- Utility-belt library for functional programming in Lua ([source](http://github.com/Yonaba/Moses))
 -- @author [Roland Yonaba](http://github.com/Yonaba)
 -- @copyright 2012-2018

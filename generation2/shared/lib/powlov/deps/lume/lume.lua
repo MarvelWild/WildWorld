@@ -117,6 +117,7 @@ function lume.vector(angle, magnitude)
   return math.cos(angle) * magnitude, math.sin(angle) * magnitude
 end
 
+-- todo:doc
 -- lume.random() 0,1
 function lume.random(a, b)
   if not a then a, b = 0, 1 end
