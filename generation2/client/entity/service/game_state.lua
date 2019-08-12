@@ -116,7 +116,8 @@ end
 
 -- adds into world too
 _.addEntity=function(entity)
-	local container=getEntityContainer(entity.entityName)
+	local entityName=entity.entityName
+	local container=getEntityContainer(entityName)
 	if container==nil then return nil end
 	
 	table.insert(container,entity)

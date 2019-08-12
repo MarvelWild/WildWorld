@@ -197,6 +197,9 @@ local shouldSendEvent=function(event,targetLogin)
 			result=true
 		end
 	elseif target=="all" then 
+		--todo not send if player not on level
+		local targetPlayer=Player.getByLogin(targetLogin)
+		
 		result=true
 	elseif target=="level" then 
 		local level=event.level

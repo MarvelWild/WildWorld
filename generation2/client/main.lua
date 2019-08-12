@@ -58,6 +58,7 @@ local loadEntities=function()
 	loadEntity("entity.world.seed")
 	loadEntity("entity.world.tree")
 	loadEntity("entity.world.panther")
+	loadEntity("entity.world.generic")
 end
 
 

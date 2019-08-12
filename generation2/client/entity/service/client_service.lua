@@ -156,7 +156,21 @@ local login=function()
 	
 end
 
+local registerGenericCode=function(entity)
+	local entityName=entity.entityName
+	local code=Entity.getCode(entity)
+	if code~=nil then return end
+	
+	code=Generic
+	
+	log('Registering generic entity:'..entityName)
+	Entity.addCode(entityName,code)
+end
+
+
 _.start=function()
+	Entity.beforeAdd=registerGenericCode
+	
 	local isConnected=_client.connect(ConfigService.serverHost, ConfigService.port)
 	if isConnected then
 		login()

@@ -21,10 +21,18 @@ local _mousePressedListeners={}
 local _uiDraws={}
 local _uiDrawsUnscaled={}
 
+
+_.beforeAdd=nil
 --добавить сущность в менеджер
 -- use Db.add
 _.add=function(entity)
 	log('adding entity:'..Entity.toString(entity),'entity',true)
+	
+	local beforeAdd=_.beforeAdd
+	if beforeAdd~=nil then
+		beforeAdd(entity)
+	end
+	
 	
 	-- entityCode is module with draw,update etc contolling current entity data/dto
 	local entityCode=_.getCode(entity)
@@ -32,6 +40,11 @@ _.add=function(entity)
 	if entityCode==nil or entity.entityName=="panther" then
 		local a=1
 	end
+	
+	if entityCode==nil then
+		local a=1
+	end
+	
 	
 	local draw=entityCode.draw
 	if draw~=nil then
@@ -245,6 +258,7 @@ _.getCode=function(entity)
 		return entity
 	else
 		local result = _.getCodeByName(entity.entityName)
+		
 		return result
 	end
 end
@@ -252,7 +266,7 @@ end
 _.getCodeByName=function(entityName)
 		local result=_entityCode[entityName]
 		if (result==nil) then
-			log("error: entity has no code:"..entityName)
+			-- log("error: entity has no code:"..entityName)
 		end
 		
 		return result 

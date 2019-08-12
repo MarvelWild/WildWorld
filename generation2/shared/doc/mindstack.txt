@@ -1,3 +1,10 @@
+server delete players from levels on shutdown
+server pause for debug
+не должны move посылать пока клиент не зашел на уровень
+	
+portal
+item pickup
+
 	для симуляции в фоне
 	для отладки сервера
 возможность прогружать мир на сервере без клиента

@@ -34,6 +34,11 @@ end
 _.move=function(actor,x,y)
 	local finalX
 	local finalY
+	if actor==nil then
+		local a=1
+	end
+	
+	
 	if actor.footX~=nil then
 		finalX=x-actor.footX
 		finalY=y-actor.footY

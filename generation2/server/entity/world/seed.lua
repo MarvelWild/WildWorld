@@ -29,8 +29,8 @@ local doGrow=function(entity)
 	local newInstance=entityCode.new()
 	
 	-- todo: use foot point
-	newInstance.x=entity.x
-	newInstance.y=entity.y
+	newInstance.x=entity.x-newInstance.footX
+	newInstance.y=entity.y-newInstance.footY
 	
 	local levelName=entity.levelName
 	Db.add(newInstance,levelName)

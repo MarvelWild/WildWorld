@@ -50,7 +50,6 @@ local nextItem=function()
 	local currentItem=_activeItem
 	local items=_editorItems
 	
-	-- wip
 	local currentPos=Pow.lume.find(items,currentItem)
 	local maxPos=#items
 	
@@ -58,6 +57,23 @@ local nextItem=function()
 		currentPos=1
 	else
 		currentPos=currentPos+1
+	end
+	
+	local nextItem=items[currentPos]
+	setActiveItem(nextItem)
+end
+
+local prevItem=function()
+	local currentItem=_activeItem
+	local items=_editorItems
+	
+	local currentPos=Pow.lume.find(items,currentItem)
+	local maxPos=#items
+	
+	if currentPos==1 then
+		currentPos=maxPos
+	else
+		currentPos=currentPos-1
 	end
 	
 	local nextItem=items[currentPos]
@@ -72,6 +88,8 @@ _.keyPressed=function(key)
 	elseif _isActive then
 		if key=="kp+" then 
 			nextItem()
+		elseif key=="kp-" then 
+			prevItem()
 		end
 	end
 end

@@ -173,11 +173,15 @@ local _editorItemsCache=nil
 local populateEditorItemsCache=function()
 	_editorItemsCache={}
 	
-	local seed=Seed.new()
-	table.insert(_editorItemsCache, seed)
+	for k,entity in ipairs(WorldEntities) do
+		local editorInstance=entity.new()
+		table.insert(_editorItemsCache, editorInstance)
+	end
+--	local seed=Seed.new()
+--	table.insert(_editorItemsCache, seed)
 	
-	local panther=Panther.new()
-	table.insert(_editorItemsCache, panther)
+--	local panther=Panther.new()
+--	table.insert(_editorItemsCache, panther)
 end
 
 

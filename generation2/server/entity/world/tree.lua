@@ -13,6 +13,10 @@ _.new=function()
 	-- при достижении финальной фазы во что превратиться дальше
 	result.growInto="tree"
 	
+	-- todo: props of sprite, not entity?
+	result.footX=15
+	result.footY=46
+	
 	result.growPhase=1
 	
 	local secondsToGrow=love.math.random(30,90)

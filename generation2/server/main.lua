@@ -28,6 +28,7 @@ Db=require("shared.lib.db.db")
 Db.init(Pow.saveDir)
 ServerService=require("entity.service.server_service")
 ConfigService=require("shared.entity.service.config")
+WorldEntities=nil
 
 
 local loadEntity=function(path)
@@ -36,22 +37,28 @@ local loadEntity=function(path)
 	Pow.registerGlobal(globalVarName, entity)
 	Entity.addCode(entity.entityName,entity)
 	if entity.load~=nil then entity.load() end
+	
+	return entity
 end
 
 
 
 local loadEntitiesFromDir=function(dirName)
+	local result={}
 	local dirItems=love.filesystem.getDirectoryItems(dirName)
 	for k,fileName in ipairs(dirItems) do
 		local entityName=Pow.replace(fileName,".lua","")
 		local entityPath=dirName.."."..entityName
-		loadEntity(entityPath)
+		local entity=loadEntity(entityPath)
+		table.insert(result,entity)
 	end
+	
+	return result
 end
 
 
 local loadEntities=function()
-	loadEntitiesFromDir("entity/world")
+	WorldEntities=loadEntitiesFromDir("entity/world")
 	-- loadEntity("entity.world.seed")
 	-- loadEntity("entity.world.panther")
 	loadEntity("entity.level")
