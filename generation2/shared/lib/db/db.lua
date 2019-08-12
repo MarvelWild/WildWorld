@@ -105,7 +105,7 @@ _.add=function(entity, levelName)
 	entityContainer[entityId]=entity
 	
 	if Level.isActive(levelName) then
-		-- wip: preevent double add
+		-- todo: preevent double add
 		Entity.add(entity)
 	end
 	
