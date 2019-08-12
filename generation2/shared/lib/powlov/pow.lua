@@ -117,7 +117,11 @@ local initDeps=function(...)
 	
 	-- example: Pow.timer:after(2, doQuit)
 	_.timer=timerLib()
+	
+	_.hc=require(folderOfThisFile .. "/deps/HC/init")
 end
+
+
 
 initDeps(...)
 
@@ -228,7 +232,13 @@ end
 
 _.internals={}
 _.internals.initModule=initModule
--- single instances
+
+_.newCollision=function()
+	local result=require(folderOfThisFile.."/module/collision")
+	initModule(result)
+	return result
+end
+
 
 -- extends lua, no pow integration
 require(folderOfThisFile.."/module/lua")
@@ -244,6 +254,11 @@ initModule(_.receiver)
 _.entity=require(folderOfThisFile.."/module/entity/entity")
 initModule(_.entity)
 local _entity=_.entity
+
+
+_.pointer=require(folderOfThisFile.."/module/entity/pointer")
+-- это сервисная сущность+код
+-- initModule(_.entity)
 
 _.baseEntity=require(folderOfThisFile.."/module/entity/base_entity")
 

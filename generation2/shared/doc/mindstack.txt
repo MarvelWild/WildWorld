@@ -1,7 +1,18 @@
+	low prior
 server delete players from levels on shutdown
+	low prior
 server pause for debug
+	перестало ломать запуск, отложено
 не должны move посылать пока клиент не зашел на уровень
-	
+
+
+		регить в ней сущности
+		+либа
+	on server
+collision model
+		collisions (check gen1)
+	activated by space
+	+as item
 portal
 item pickup
 
