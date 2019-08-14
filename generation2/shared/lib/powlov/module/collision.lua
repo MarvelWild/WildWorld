@@ -10,11 +10,22 @@ local _={}
 
 local _hc=nil
 local _pow=nil
+local _pointer=nil
+
+--entity by shape
+local _shapeByEntity={}
+--shape by entity
+local _entityByShape={}
 
 _.init=function(pow)
 	_pow=pow
 	_hc=pow.hc.new()
-
+	_pointer=_hc:point(0,0)
+	
+	--это точка для поиска её коллизий в функциях точечных коллизий
+	local pointerEntity=Pow.pointer.new()
+	_shapeByEntity[pointerEntity]=_pointer
+	_entityByShape[_pointer]=pointerEntity
 end
 
 local _log=function(message)
@@ -24,29 +35,28 @@ end
 
 -- registered collision objects
 
---entity by shape
-local _shapeByEntity={}
---shape by entity
-local _entityByShape={}
+
 
 -- todo:doc
-local _pointer=_hc.point(0,0)
 
---это точка для поиска её коллизий в функциях точечных коллизий
-local pointerEntity=Pow.pointer.new()
-_shapeByEntity[pointerEntity]=_pointer
-_entityByShape[_pointer]=pointerEntity
+
+
 
 -- highlighted in draw
 local _debugShape=nil
 
+
+-- фигура коллизии это не спрайт, а отдельное описание.
 _.getEntityShape=function(entity)
 	if entity.x==nil or entity.y==nil or entity.w==nil or entity.h==nil then
 		log("collision: warn: adding entity with no shape")
 		return nil
 	end
 	
-	local shape = _hc.rectangle(entity.x,entity.y,entity.w,entity.h)
+	local x = entity.x + entity.collisionX
+	local y = entity.y + entity.collisionY
+	
+	local shape = _hc:rectangle(x,y,entity.w,entity.h)
 	return shape
 end
 
@@ -66,9 +76,9 @@ _.add=function(entity)
 		return
 	end
 	
-	if 
-	
 	local shape = _.getEntityShape(entity)
+	if shape==nil then return end
+	
 	_shapeByEntity[entity]=shape
 	_entityByShape[shape]=entity 
 	
@@ -95,7 +105,7 @@ _.remove=function(entity)
 	
 	_shapeByEntity[entity]=nil
 	_entityByShape[shape]=nil
-	_hc.remove(shape)
+	_hc:remove(shape)
 end
 
 
@@ -109,7 +119,7 @@ _.moved=function(entity)
 	else
 		-- Pantera. Its ok for now
 		-- также сюда приходим при использовании котла
-		log("entity has no collision:"..entity.entity)
+		log("entity has no collision:"..entity.entityName)
 	end
 	
 	
@@ -123,7 +133,7 @@ _.getAtPoint=function(x,y)
 	
 	_pointer:moveTo(x,y)
 	_log("_pointer moved:"..xy(x,y))
-	local collisions = _hc.collisions(_pointer)
+	local collisions = _hc:collisions(_pointer)
 	for shape,v in pairs(collisions) do
 		-- _log("collision k:"..pack(k).." v:"..pack(v))
 		local entity=_entityByShape[shape]
@@ -140,13 +150,13 @@ _.getAtRect=function(x,y,w,h)
 	log("Collision.getAtRect:"..xywh(x,y,w,h))
 	
 	-- todo: хранить его как и pointer
-	local rect=_hc.rectangle(x,y,w,h)
+	local rect=_hc:rectangle(x,y,w,h)
 	
 	-- Get sh apes that are colliding with shape and the vector to separate the shapes
 	-- see http://hc.readthedocs.io/en/latest/MainModule.html
-	local collisions=_hc.collisions(rect)
+	local collisions=_hc:collisions(rect)
 	
-	_hc.remove(rect)
+	_hc:remove(rect)
 	
 	local result=nil
 	for shape,v in pairs(collisions) do

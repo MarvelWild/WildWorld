@@ -26,7 +26,9 @@ THE SOFTWARE.
 
 local _NAME, common_local = ..., common
 
-_NAME=string.sub(_NAME,1,7)
+-- todo: generic way
+-- _NAME=
+_NAME=string.sub(_NAME,1,26)
 
 if not (type(common) == 'table' and common.class and common.instance) then
 	assert(common_class ~= false, 'No class commons specification available.')
@@ -128,7 +130,9 @@ local instance = common_local.instance(HC)
 
 -- the module
 return setmetatable({
-	new       = function(...) return common_local.instance(HC, ...) end,
+	new       = function(...) 
+		return common_local.instance(HC, ...) 
+	end,
 	resetHash = function(...) return instance:resetHash(...) end,
 	register  = function(...) return instance:register(...) end,
 	remove    = function(...) return instance:remove(...) end,

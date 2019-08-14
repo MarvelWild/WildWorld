@@ -19,7 +19,7 @@ local smoothMove=function(actor,durationSec,x,y)
 --	end
 	
 	local onUpdate=function()
-		-- Entity.onMoved(entity)
+		CollisionService.onEntityMoved(actor)
 	end
 	
 	

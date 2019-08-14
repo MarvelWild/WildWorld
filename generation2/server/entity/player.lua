@@ -12,6 +12,18 @@ _.new=function()
 	result.footX=7
 	result.footY=15
 	
+	
+	-- откуда начинается квадрат коллизии
+	result.collisionX=3
+	result.collisionY=0
+	
+	
+	-- used for collisions
+	result.w=9
+	result.h=16
+	
+	
+	
 	result.sprite="player"
 	result.login=nil
 	

@@ -91,6 +91,7 @@ _.add=function(entity)
 		_simulations[entity]=simulation
 	end
 	
+	CollisionService.addEntity(entity)
 end
 
 -- drawables are array to make it sortable
@@ -125,6 +126,7 @@ _.remove=function(entity)
 	_mousePressedListeners[entity]=nil
 	_aiUpdatable[entity]=nil
 	_simulations[entity]=nil
+	CollisionService.removeEntity(entity)
 end
 
 local compareByDrawLayer=function(info1,info2)
@@ -272,5 +274,18 @@ _.getCodeByName=function(entityName)
 		return result 
 end
 
+
+
+_.getCenter=function(entity)
+		if entity==nil then
+		local a=1
+		-- load refactoring, no player
+	end
+	
+	local x=entity.x+(entity.w/2)
+	local y=entity.y+(entity.h/2)
+	
+	return x,y
+end
 
 return _

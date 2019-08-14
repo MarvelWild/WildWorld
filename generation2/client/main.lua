@@ -30,6 +30,7 @@ ConfigService=require("shared.entity.service.config")
 ClientService=require("entity.service.client_service")
 EditorService=require("entity.service.editor_service")
 GameService=require("entity.service.game")
+CollisionService=require("entity.service.collision_service")
 GameState=require("entity.service.game_state")
 
 

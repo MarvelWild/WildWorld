@@ -6,7 +6,10 @@ server pause for debug
 не должны move посылать пока клиент не зашел на уровень
 
 
-		регить в ней сущности
+		delete
+		update on move
+			+когда сущность добавляется на левел->Entity.add
+		+регить в ней сущности
 		+либа
 	on server
 collision model
