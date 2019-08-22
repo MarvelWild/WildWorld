@@ -1,13 +1,7 @@
-	low prior
-server delete players from levels on shutdown
-	low prior
-server pause for debug
-	перестало ломать запуск, отложено
-не должны move посылать пока клиент не зашел на уровень
-
-
+			draw it
+		debug: get collision rect on client
 		delete
-		update on move
+		+update on move
 			+когда сущность добавляется на левел->Entity.add
 		+регить в ней сущности
 		+либа
@@ -18,6 +12,16 @@ collision model
 	+as item
 portal
 item pickup
+	
+	low prior
+server delete players from levels on shutdown
+	low prior
+server pause for debug
+	перестало ломать запуск, отложено
+не должны move посылать пока клиент не зашел на уровень
+
+
+
 
 	для симуляции в фоне
 	для отладки сервера

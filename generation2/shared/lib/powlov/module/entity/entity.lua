@@ -277,15 +277,15 @@ end
 
 
 _.getCenter=function(entity)
-		if entity==nil then
+	if entity==nil then
 		local a=1
 		-- load refactoring, no player
 	end
 	
-	local x=entity.x+(entity.w/2)
-	local y=entity.y+(entity.h/2)
+	local centerX=entity.x+(entity.w/2)
+	local centerY=entity.y+(entity.h/2)
 	
-	return x,y
+	return centerX,centerY
 end
 
 return _

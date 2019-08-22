@@ -17,6 +17,8 @@ _.new=function()
 	result.collisionX=3
 	result.collisionY=0
 	
+	-- todo: вторые 2 координаты квадрата коллизии
+	
 	
 	-- used for collisions
 	result.w=9

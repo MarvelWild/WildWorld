@@ -53,10 +53,13 @@ _.getEntityShape=function(entity)
 		return nil
 	end
 	
-	local x = entity.x + entity.collisionX
-	local y = entity.y + entity.collisionY
+	local collisionBoxX = entity.x + entity.collisionX
+	local collisionBoxY = entity.y + entity.collisionY
 	
-	local shape = _hc:rectangle(x,y,entity.w,entity.h)
+	local collisionBoxW=entity.w-entity.collisionX
+	local collisionBoxH=entity.h-entity.collisionY
+	
+	local shape = _hc:rectangle(collisionBoxX,collisionBoxY,collisionBoxW,collisionBoxH)
 	return shape
 end
 
@@ -77,7 +80,10 @@ _.add=function(entity)
 	end
 	
 	local shape = _.getEntityShape(entity)
-	if shape==nil then return end
+	if shape==nil then 
+		_log("entity has no shape:"..Entity.toString(entity))
+		return 
+	end
 	
 	_shapeByEntity[entity]=shape
 	_entityByShape[shape]=entity 
@@ -121,8 +127,6 @@ _.moved=function(entity)
 		-- также сюда приходим при использовании котла
 		log("entity has no collision:"..entity.entityName)
 	end
-	
-	
 	-- _debugShape=movedRect
 end
 
