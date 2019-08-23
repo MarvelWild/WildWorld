@@ -240,6 +240,22 @@ local onEntityRemoved=function(entity,levelName)
 	_event.process(removedEvent)
 end
 
+local getCollisions=function(event)
+	local login=event.login
+	local player=Player.getByLogin(login)
+	local levelName=player.levelName
+	
+	local collisions=CollisionService.getCollisionShapes(levelName)
+	
+	local response=_event.new("collisions_get_response")
+	response.target="login"
+	response.targetLogin=login
+	response.requestId=event.id
+	response.collisions=collisions
+	_event.process(response)
+end
+
+
 _.start=function()
 	_event.addHandler("create_player", createPlayer)
 	_event.addHandler("game_start", gameStart)
@@ -249,6 +265,7 @@ _.start=function()
 	_event.addHandler("list_players", listPlayers)
 	_event.addHandler("editor_items", editorItems)
 	_event.addHandler("editor_place_item", editorPlaceItem)
+	_event.addHandler("collisions_get", getCollisions)
 	
 	Db.onAdded=onEntityAdded
 	Db.setOnRemoved(onEntityRemoved)

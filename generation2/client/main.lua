@@ -74,6 +74,7 @@ love.load=function()
 	Entity.add(GameService)
 	Entity.add(ClientService)
 	Entity.add(EditorService)
+	Entity.add(CollisionService)
 	GameService.start()
 	
 	Pow.load()

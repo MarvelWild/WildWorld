@@ -64,6 +64,7 @@ _.getEntityShape=function(entity)
 end
 
 
+
 _.add=function(entity)
 --	if entity.entity~="Player" then
 --		local a=1

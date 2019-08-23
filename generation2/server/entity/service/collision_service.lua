@@ -8,6 +8,7 @@ local _=BaseEntity.new(_entityName, true)
 
 local _levelCollisions={}
 
+-- returns instance of shared\lib\powlov\module\collision.lua
 local getLevelCollisions=function(levelName)
 	local result=_levelCollisions[levelName]
 	if result==nil then
@@ -17,6 +18,17 @@ local getLevelCollisions=function(levelName)
 	
 	return result
 end
+
+---- unfinished - we can paint it later
+--_.getCollisionShapes=function(levelName)
+--	local collisions=getLevelCollisions(levelName)
+--	local result={}
+	
+--	collisions.getShapes()
+	
+--	return result
+--end
+
 
 
 _.addEntity=function(entity)
