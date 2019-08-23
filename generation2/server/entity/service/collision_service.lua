@@ -30,6 +30,13 @@ end
 --end
 
 
+_.getEntityCollisions=function(entity)
+	local levelName=entity.levelName
+	local levelCollisions=getLevelCollisions(levelName)
+	local entityCollisions=levelCollisions.getAtEntity(entity)
+	return entityCollisions
+end
+
 
 _.addEntity=function(entity)
 	if entity==nil then 
@@ -67,8 +74,6 @@ _.removeEntity=function(entity)
 end
 
 _.onEntityMoved=function(entity)
-	-- wip
-		
 	local levelName=entity.levelName
 	
 	if levelName==nil then

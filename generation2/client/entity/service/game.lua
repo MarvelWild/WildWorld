@@ -37,6 +37,8 @@ _.keyPressed=function(key)
 		Pow.zoomIn()
 	elseif key=="-" then
 		Pow.zoomOut()
+	elseif key=="space" then
+		ClientService.defaultAction()
 	end
 	
 end

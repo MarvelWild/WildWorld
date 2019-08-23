@@ -288,4 +288,41 @@ _.getCenter=function(entity)
 	return centerX,centerY
 end
 
+-- x,y,w,h
+_.getCollisionBox=function(entity)
+	local x=entity.x
+	local y=entity.y
+	local w=entity.w
+	local h=entity.h
+	local collisionX=entity.collisionX
+	local collisionY=entity.collisionY
+	if collisionX==nil then collisionX=0 end
+	if collisionY==nil then collisionY=0 end
+	
+	if x==nil or y==nil or w==nil or h==nil then
+		log("warn: entity has no box shape (x,y,w,h)")
+		return nil
+	end
+	
+	-- todo: cache this, store as calculated fields of entity
+	local collisionBoxX = x + collisionX
+	local collisionBoxY = y + collisionY
+	
+	local collisionBoxW=w-collisionX
+	local collisionBoxH=h-collisionY
+	
+	return collisionBoxX,collisionBoxY,collisionBoxW,collisionBoxH
+end
+
+_.equals=function(entity1,entity2)
+	if entity1==nil or entity2==nil then 
+		return false 
+	end
+	
+	return entity1.id==entity2.id and entity1.entityName==entity2.entityName
+end
+
+
+
 return _
+

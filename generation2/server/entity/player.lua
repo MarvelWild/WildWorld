@@ -52,4 +52,26 @@ end
 
 
 
+
+_.gotoLevel=function(player, levelName)
+	log("gotoLevel:"..levelName)
+	-- wip:
+	-- update prop
+	-- update entity container
+	-- update collision container
+	-- send updated
+	-- unload prev on client
+	-- load new on client
+end
+
+
+_.interact=function(player,target)
+	if target.entityName=="portal" then
+		local levelName=target.location
+		_.gotoLevel(player,levelName)
+	else
+		log("interact not implemented:"..Entity.toString(target))
+	end
+end
+
 return _

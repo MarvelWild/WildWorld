@@ -212,7 +212,7 @@ local shouldSendEvent=function(event,targetLogin)
 		log("error:unk event:".._event.toString(event))
 	end
 	
-	log("shouldSendEvent from server:".._event.toString(event).." to login:"..tostring(targetLogin).." result:"..tostring(result))
+	log("shouldSendEvent from server. Event:".._event.toString(event).." to login:"..tostring(targetLogin).." result:"..tostring(result))
 
 	return result	
 end

@@ -255,6 +255,32 @@ local getCollisions=function(event)
 	_event.process(response)
 end
 
+-- player press space, enter portal
+local defaultAction=function(event)
+	-- wip
+	local login=event.login
+	local player=Player.getByLogin(login)
+	local collisions=CollisionService.getEntityCollisions(player)
+	if collisions==nil then return end
+	
+	local collisionsCount=#collisions
+	local target=nil
+	if collisionsCount==1 then
+		target=collisions[1]
+	else
+		-- todo: resolve target/give player a choice what to do
+		log("warn: action on multiple objects not implemented")
+	end
+	
+	if target==nil then return end
+	
+	local actorCode=Player
+	local fnInteract=actorCode.interact
+	if fnInteract==nil then return end
+	
+	fnInteract(player, target)
+end
+
 
 _.start=function()
 	_event.addHandler("create_player", createPlayer)
@@ -266,6 +292,7 @@ _.start=function()
 	_event.addHandler("editor_items", editorItems)
 	_event.addHandler("editor_place_item", editorPlaceItem)
 	_event.addHandler("collisions_get", getCollisions)
+	_event.addHandler("default_action", defaultAction)
 	
 	Db.onAdded=onEntityAdded
 	Db.setOnRemoved(onEntityRemoved)

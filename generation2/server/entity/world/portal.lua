@@ -7,9 +7,15 @@ _.new=function()
 	
 	result.sprite="portal"
 	
+	result.location="space"
+	
+	--todo: from sprite
+	result.w=10
+	result.h=9
+	
+	
 	return result
 end
 
--- wip: use function
 
 return _

@@ -32,8 +32,6 @@ _.activate=function(levelName)
 	end
 	
 	_activeLevels[levelName]=true
-	
-	-- wip register entities
 end
 
 

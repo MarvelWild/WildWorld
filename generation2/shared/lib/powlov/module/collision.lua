@@ -35,31 +35,15 @@ end
 
 -- registered collision objects
 
-
-
--- todo:doc
-
-
-
-
 -- highlighted in draw
 local _debugShape=nil
 
 
+
 -- фигура коллизии это не спрайт, а отдельное описание.
 _.getEntityShape=function(entity)
-	if entity.x==nil or entity.y==nil or entity.w==nil or entity.h==nil then
-		log("collision: warn: adding entity with no shape")
-		return nil
-	end
-	
-	local collisionBoxX = entity.x + entity.collisionX
-	local collisionBoxY = entity.y + entity.collisionY
-	
-	local collisionBoxW=entity.w-entity.collisionX
-	local collisionBoxH=entity.h-entity.collisionY
-	
-	local shape = _hc:rectangle(collisionBoxX,collisionBoxY,collisionBoxW,collisionBoxH)
+	local x,y,w,h=Entity.getCollisionBox(entity)
+	local shape = _hc:rectangle(x,y,w,h)
 	return shape
 end
 
@@ -148,8 +132,6 @@ _.getAtPoint=function(x,y)
 	return result
 end
 
--- option to exclude self?
-
 -- returns nil or table with entities
 _.getAtRect=function(x,y,w,h)
 	log("Collision.getAtRect:"..xywh(x,y,w,h))
@@ -157,13 +139,15 @@ _.getAtRect=function(x,y,w,h)
 	-- todo: хранить его как и pointer
 	local rect=_hc:rectangle(x,y,w,h)
 	
-	-- Get sh apes that are colliding with shape and the vector to separate the shapes
+	-- Get shapes that are colliding with shape and the vector to separate the shapes
 	-- see http://hc.readthedocs.io/en/latest/MainModule.html
 	local collisions=_hc:collisions(rect)
 	
 	_hc:remove(rect)
 	
 	local result=nil
+	
+	-- todo: what is v?
 	for shape,v in pairs(collisions) do
 --		log("collision:".._.shapeToString(shape).. " v:"..Inspect(v))
 		
@@ -182,6 +166,27 @@ _.getAtRect=function(x,y,w,h)
 	
 	_log("Collision.getAtRect. Count:"..#result)
 	return result
+end
+
+
+-- returns array or nil
+_.getAtEntity=function(entity)
+--	local x,y,w,h=Entity.getCollisionBox(entity)
+--	return _.getAtRect(x,y,w,h)
+	local shape=_.getEntityShape(entity)
+	local collisions=_hc:collisions(shape)
+	
+	local result=nil
+	for shape,v in pairs(collisions) do
+		local collisionEntity=_entityByShape[shape]
+		if not Entity.equals(collisionEntity, entity) then 
+			if result==nil then result={} end
+			table.insert(result,collisionEntity)
+		end
+	end
+	
+	_log("Collision.getAtEntity. Count:"..#result)
+	return result	
 end
 
 

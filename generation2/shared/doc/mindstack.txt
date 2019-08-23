@@ -1,5 +1,10 @@
-			draw it
-		debug: get collision rect on client
+	можно отложить, пусть будет 1 менеджер сущностей на все левела пока что
+	entitties is a prop of level
+multilevel support	
+	cam setWorld level size
+space level
+			draw it - later
+		debug: get collision rect on client - later, use log
 		delete
 		+update on move
 			+когда сущность добавляется на левел->Entity.add
@@ -9,6 +14,7 @@
 collision model
 		collisions (check gen1)
 	activated by space
+	placeable in editor
 	+as item
 portal
 item pickup

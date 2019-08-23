@@ -64,27 +64,12 @@ local getLevelContainer=function(levelName)
 end
 
 
-
-
-local getLevelName=function(entity)
-	-- это только для игрока, остальные сущности сразу должны помещаться в контейнер, который определяет уровень
-	local result=entity.levelName
-	
-	if result==nil then
-		log("error: cannot determine level for entity:"..serialize(entity))
-	end
-	
-	return result
-end
-
-
-
 -- put entity into level
 _.add=function(entity, levelName)
 	assert(entity)
 	
 	if levelName==nil then
-		levelName=getLevelName(entity)
+		levelName=entity.levelName
 		assert(levelName)
 	else
 

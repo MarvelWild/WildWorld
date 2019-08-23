@@ -1,3 +1,4 @@
+-- global 
 -- game specific network client
 local _=BaseEntity.new("client_service",true)
 
@@ -191,6 +192,7 @@ _.move=function(x,y)
 	local event=_event.new("intent_move")
 	event.target="server"
 	
+	-- todo: server knows about player, remove this
 	local player=GameState.getPlayer()
 	event.actorRef=BaseEntity.getReference(player)
 	event.x=x
@@ -206,4 +208,11 @@ _.logoff=function()
 end
 
 	
+
+_.defaultAction=function()
+	local event=_event.new("default_action")
+	event.target="server"
+	_event.process(event)
+end
+
 return _
