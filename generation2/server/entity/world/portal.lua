@@ -17,5 +17,12 @@ _.new=function()
 	return result
 end
 
+-- target is this, actor is player
+_.interact=function(actor,target)
+	local levelName=target.location
+	Player.gotoLevel(actor,levelName)
+end
+
+
 
 return _

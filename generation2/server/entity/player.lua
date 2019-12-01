@@ -54,23 +54,51 @@ end
 
 
 _.gotoLevel=function(player, levelName)
-	log("gotoLevel:"..levelName)
+	log("gotoLevel:"..levelName.." from:"..player.levelName)
 	-- wip:
-	-- update prop
-	-- update entity container
+	
+	-- delete from db because db stores entities in level containers
+	
+	-- hanlded by db->entity
 	-- update collision container
-	-- send updated
-	-- unload prev on client
-	-- load new on client
+	-- CollisionService.removeEntity(player)
+	
+	-- local prevLevel=player.levelName
+	Db.remove(player)
+	
+	-- remove from prev level,send to all on that level
+	-- ServerService.notifyEntityRemoved(player, prevLevel)
+	
+	-- update prop
+	player.levelName=levelName
+	
+	-- тут лишний раз шлётся актёру todo можно оптимизировать
+	Db.add(player)
+	
+	
+	-- CollisionService.addEntity(player) - happens in Db.add
+	
+	-- update entity container
+	-- not needed - single container for all levels
+	
+	-- send updated player,level
+	ServerService.sendFullState(player)
+	
+	
+	-- wip unload prev on client
+	-- wip load new on client
+	
+	
 end
 
 
+--
 _.interact=function(player,target)
-	if target.entityName=="portal" then
-		local levelName=target.location
-		_.gotoLevel(player,levelName)
-	else
-		log("interact not implemented:"..Entity.toString(target))
+	local target_code=Entity.getCode(target)
+	
+	local interact=target_code.interact
+	if interact~=nil then
+		interact(player,target)
 	end
 end
 

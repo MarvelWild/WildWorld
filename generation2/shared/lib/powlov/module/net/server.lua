@@ -50,7 +50,7 @@ end
 
 
 local _login=function(data, clientId, requestId)
-	log("login "..Pow.inspect(data))
+	-- log("client login:"..Pow.inspect(data))
 	
 	_registerClient(clientId, data.login)
 	
@@ -198,7 +198,7 @@ local shouldSendEvent=function(event,targetLogin)
 		end
 	elseif target=="all" then 
 		--todo not send if player not on level
-		local targetPlayer=Player.getByLogin(targetLogin)
+		--local targetPlayer=Player.getByLogin(targetLogin)
 		
 		result=true
 	elseif target=="level" then 
@@ -206,13 +206,15 @@ local shouldSendEvent=function(event,targetLogin)
 		local targetPlayer=Player.getByLogin(targetLogin)
 		local targetLevel=targetPlayer.levelName
 		if (level==targetLevel) then 
-			result=true 
+			result=true
+		else
+			result=false
 		end
 	else
 		log("error:unk event:".._event.toString(event))
 	end
 	
-	log("shouldSendEvent from server. Event:".._event.toString(event).." to login:"..tostring(targetLogin).." result:"..tostring(result))
+	-- log("shouldSendEvent from server. Event:".._event.toString(event).." to login:"..tostring(targetLogin).." result:"..tostring(result))
 
 	return result	
 end

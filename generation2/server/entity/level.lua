@@ -34,6 +34,12 @@ _.activate=function(levelName)
 	_activeLevels[levelName]=true
 end
 
+_.load_all_metadata=function()
+	-- wip load levels metadata
+	-- wip call this
+end
+
+
 
 
 return _

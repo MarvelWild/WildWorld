@@ -12,6 +12,7 @@ local _serverUpdate=_server.update
 local _serverLateUpdate=_server.lateUpdate
 
 
+-- handler to create_player command
 local createPlayer=function(event)
 	local playerName=event.player_name
 	local login=event.login
@@ -46,9 +47,12 @@ end
 
 
 local getLevelState=function(levelName)
-	-- todo state это набор сущностей
+	log("getLevelState:"..levelName)
+	
 	local state={}
+	-- wip: real bg from level data
 	state.bg="main"
+	state.levelName=levelName
 	state.entities=getLevelEntities(levelName)
 	return state
 end
@@ -74,6 +78,21 @@ local getFullState=function(playerId)
 end
 
 
+_.sendFullState=function(player)
+	local playerId=player.id
+	local login=player.login
+	
+	
+	local fullState=getFullState(playerId)
+	
+	local responseEvent=_event.new("full_state")
+	responseEvent.target="login"
+	responseEvent.targetLogin=login
+	responseEvent.state=fullState
+	_event.process(responseEvent)
+end
+
+
 
 -- client picked player, and wants to start game. send him game state
 local gameStart=function(event)
@@ -95,15 +114,7 @@ local gameStart=function(event)
 	
 	Level.activate(levelName)
 	
-	local fullState=getFullState(playerId)
-	
-	local responseEvent=_event.new("full_state")
-	responseEvent.target="login"
-	responseEvent.targetLogin=login
-	responseEvent.state=fullState
-	_event.process(responseEvent)
-	
-	
+	_.sendFullState(player)
 end
 
 local movePlayer=function(event)
@@ -222,6 +233,13 @@ end
 
 --attached to  Db.onAdded
 local onEntityAdded=function(entity,levelName)
+	local message="onEntityAdded:".._ets(entity).." level:"..levelName
+--	if entity.entityName=="player" then
+--		local a=1
+--	end
+	
+	
+	log(message)
 	local notifyEvent=_event.new("entity_added")
 	notifyEvent.target="level"
 	notifyEvent.level=levelName
@@ -239,6 +257,8 @@ local onEntityRemoved=function(entity,levelName)
 	removedEvent.level=levelName
 	_event.process(removedEvent)
 end
+
+_.notifyEntityRemoved=onEntityRemoved
 
 local getCollisions=function(event)
 	local login=event.login

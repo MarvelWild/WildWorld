@@ -44,10 +44,12 @@ local newChannel=function(name)
 end
 
 channels.db=newChannel("db")
+channels.net=newChannel("net")
 channels.event=newChannel("event")
 channels.verbose=newChannel("verbose")
 channels.entity=newChannel("entity")
 channels.input=newChannel("input")
+channels.collision=newChannel("collision")
 
 -- all console settings
 channels.entity.useConsole=false
@@ -55,6 +57,8 @@ channels.input.useConsole=false
 channels.verbose.useConsole=false
 channels.event.useConsole=false
 channels.db.useConsole=false
+channels.net.useConsole=false
+channels.collision.useConsole=false
 
 -- used if no channel name provided
 local _mainChannel=newChannel("main")
@@ -64,6 +68,16 @@ channels.main=_mainChannel
 -- forceConsole: show message in console even if its channel is disabled
 _debug.log=function(message,channelName,forceConsole)
 	-- local time = love.timer.getTime() -- "\t"..time
+	
+	if channelName=="entity" then
+		local a=1
+	end
+	
+	if forceConsole then
+		local a=1
+	end
+	
+	
 	
 	if string.find(message,"error") then
 		-- todo: reimplement

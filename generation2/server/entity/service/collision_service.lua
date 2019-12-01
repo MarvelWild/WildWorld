@@ -61,6 +61,8 @@ _.addEntity=function(entity)
 	collision.add(entity)
 end
 
+
+
 _.removeEntity=function(entity)
 		local levelName=entity.levelName
 	

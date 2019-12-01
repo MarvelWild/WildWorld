@@ -27,10 +27,14 @@ _.level=nil
 			
 ]]--
 local _lastState=nil
+
+-- свой ид
 _.playerId=nil
 
 _.set=function(state)
 	_lastState=state
+	
+	log("state set. level:"..state.level.levelName)
 end
 
 _.get=function()

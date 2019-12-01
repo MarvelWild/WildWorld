@@ -21,18 +21,24 @@ local _mousePressedListeners={}
 local _uiDraws={}
 local _uiDrawsUnscaled={}
 
+-- возмжоность получить все зарегенные
+local _all={}
+
 
 _.beforeAdd=nil
 --добавить сущность в менеджер
 -- use Db.add
 _.add=function(entity)
-	log('adding entity:'..Entity.toString(entity),'entity',true)
+	log('adding entity:'..Entity.toString(entity),'entity')
 	
 	local beforeAdd=_.beforeAdd
 	if beforeAdd~=nil then
 		beforeAdd(entity)
 	end
 	
+	--todo: рассмотреть случай с рефрешем с сервера когда ссылки ломаются на сущность. (если вообще ломаются)
+	--table.insert(_all, entity)
+	_all[entity]=true
 	
 	-- entityCode is module with draw,update etc contolling current entity data/dto
 	local entityCode=_.getCode(entity)
@@ -97,7 +103,7 @@ end
 -- drawables are array to make it sortable
 local removeDrawable=function(entity,container)
 	--local countBefore
-	log("drawables before remove:"..#container)
+	-- log("drawables before remove:"..#container)
 	for k,info in ipairs(container) do
 		if info.entity==entity then 
 			table.remove(container,k)
@@ -109,15 +115,17 @@ local removeDrawable=function(entity,container)
 	end
 	
 	local count=#container
-	log("drawables after remove:"..count)
+	-- log("drawables after remove:"..count)
 	
 	if count>0 then
 		log("error: removeDrawable failed. Entity was not in drawables:".._ets(entity))
 	end
 end
 
+-- chain: db,entity,collision
 _.remove=function(entity)
 	removeDrawable(entity,_drawable)
+	_all[entity]=nil
 	_updatable[entity]=nil
 	_lateUpdatable[entity]=nil
 	_keyPressedListeners[entity]=nil
@@ -320,6 +328,34 @@ _.equals=function(entity1,entity2)
 	end
 	
 	return entity1.id==entity2.id and entity1.entityName==entity2.entityName
+end
+
+_.unload_state=function()
+--	local player=GameState.getPlayer()
+--	if player==nil then 
+--		-- это происходит на первом получении стейта 
+--		-- log("error: not unloading (player is nil)")
+--		return 
+--	end
+	
+	if GameState.level==nil then
+		-- nothing to unload
+		return
+	end
+	
+	
+	local level_name=GameState.level.levelName--player.levelName
+	
+	log("entity:unload_state. level:"..level_name)
+	
+	for entity,has_entity in pairs(_all) do
+		local entity_level_name=entity.levelName
+		-- opt: на клиенте можно быстрее
+		if level_name==entity_level_name then
+			log("unload:".._ets(entity))
+			_.remove(entity)
+		end
+	end
 end
 
 

@@ -14,6 +14,7 @@ local startGameForPlayer=function(player)
 	GameState.playerId=player.id
 	event.target="server"
 	
+	-- response: full_state
 	_event.process(event)
 end
 
@@ -44,10 +45,15 @@ local afterPlayerCreated=function(response)
 	-- response is generic : onStateReceived
 end
 
+local unload_state=function()
+	Entity.unload_state()
+end
+
 
 local onStateReceived=function(response)
 	log('onStateReceived','verbose')
 	
+	unload_state()
 	
 	-- state = {level = {bg = "main.png"} --[[table: 0x0f49dd38]], player = {entity = "player", id = 21, level = "start", name = "mw"} --[[table: 0x0f4510a8]]}
 	local state=response.state
@@ -84,7 +90,11 @@ local onEntityRemoved=function(event)
 			{entityName = "player", id = 11}  
 		id = 42, level = "start", target = "level"}	
 	]]--
-	log("onEntityRemoved:"..Pow.inspect(event))
+--	log("onEntityRemoved:"..Pow.inspect(event))
+	
+--	if event.entityRef.entityName=="player" then
+--		local a=1
+--	end
 	
 	GameState.removeEntity(event.entityRef)
 end
@@ -110,10 +120,27 @@ local onPlayersListed=function(event)
 end
 
 local onEntityAdded=function(event)
-	log("onEntityAdded")
+	log("onEntityAdded start")
+	if GameState.level==nil then
+		log("no level yet")
+		return
+	end
+	
+	
 	local entities=event.entities
 	for k,entity in pairs(entities) do
-		GameState.addEntity(entity)
+--		if entity.entityName=="player" then
+--			local a=1
+--		end
+		
+		if GameState.level.levelName~=entity.levelName then
+			-- сейчас при проходе в портал добавляется новый игрок на новом уровне:
+			--  сервер уже знает что игрок на новом уровне, а клиент ещё нет.
+			-- log("todo: do not send event like this")
+		else
+			log("onEntityAdded:".._ets(entity).." level:"..entity.levelName)
+			GameState.addEntity(entity)
+		end
 	end
 end
 

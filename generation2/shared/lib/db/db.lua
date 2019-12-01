@@ -1,6 +1,6 @@
 --[[
 global Db
-stores entities
+stores-persists entities
 format: 
 local entitiesContainer=_levelContainer[levelName]
 local entityContainer=entitiesContainer[entityName]
@@ -22,6 +22,7 @@ local _saveName="db"
 local _saveDir=""
 
 -- external hook to notify clients from server
+-- server service sends entity_added to level
 _.onAdded=nil
 local _onRemoved=nil
 
@@ -64,7 +65,10 @@ local getLevelContainer=function(levelName)
 end
 
 
+
+
 -- put entity into level
+-- levelName optional
 _.add=function(entity, levelName)
 	assert(entity)
 	
@@ -103,9 +107,8 @@ end
 
 -- remove entity from level
 _.remove=function(entity,levelName)
-	-- todo: refactor paste, same code in add
 	if levelName==nil then
-		levelName=getLevelName(entity)
+		levelName=entity.levelName
 		assert(levelName)
 	end
 	
@@ -127,6 +130,7 @@ _.remove=function(entity,levelName)
 	end
 	
 	if _onRemoved~=nil then
+		-- sends entity_removed notification
 		_onRemoved(entity, levelName)
 	end
 end

@@ -1,4 +1,3 @@
--- wip process paste from gen1
 -- todo: collision world for levels
 
 -- todo: multiple instances for levels
@@ -50,9 +49,9 @@ end
 
 
 _.add=function(entity)
---	if entity.entity~="Player" then
---		local a=1
---	end
+	if entity.entityName=="player" then
+		local a=1
+	end
 	
 	
 	_log("Collision.add:"..Entity.toString(entity))
@@ -110,6 +109,7 @@ _.moved=function(entity)
 	else
 		-- Pantera. Its ok for now
 		-- также сюда приходим при использовании котла
+		-- чтобы добавить коллизию - нужно чтобы было в _shapeByEntity -> Collision.add
 		log("entity has no collision:"..entity.entityName)
 	end
 	-- _debugShape=movedRect
