@@ -80,6 +80,10 @@ local doMove=function(event)
 	
 	-- local actor=Db.getByRef(event.actorRef)
 	local actor=GameState.findEntity(event.actorRef)
+	if actor==nil then
+		local a=1
+	end
+	
 	Movable.move(actor,event.x,event.y)
 end
 
@@ -120,7 +124,7 @@ local onPlayersListed=function(event)
 end
 
 local onEntityAdded=function(event)
-	log("onEntityAdded start")
+	--log("onEntityAdded start")
 	if GameState.level==nil then
 		log("no level yet")
 		return

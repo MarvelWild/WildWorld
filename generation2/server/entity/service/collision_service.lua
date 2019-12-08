@@ -12,6 +12,7 @@ local _levelCollisions={}
 local getLevelCollisions=function(levelName)
 	local result=_levelCollisions[levelName]
 	if result==nil then
+		log("created new level collisions:"..levelName)
 		result=Pow.newCollision()
 		_levelCollisions[levelName]=result
 	end

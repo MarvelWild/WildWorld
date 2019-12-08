@@ -1,4 +1,35 @@
+
+
 mount pegasus
+
+	+move теперь шлём на левел а не всем
++client 1 в космосе упал когда c2 start двигался
+	
+	
+	+ивент не выполнялся на сервере
++прогружается старый стейт - пентера походила, юзаем портал, снова - она на старом месте
+
+
+
+
+
+
+	+double require
++_entityByShape содержало сущности разных уровней
+		
+		
+		
+		+тут nil
+	+local collisionEntity=_entityByShape[shape]
++test failed: multi portal a-b-a
+
+
+	event
+	{actorRef = {entityName = "pegasus", id = 8, levelName = "start"} --[[table: 0x294c6518]], code = "move", entityName = "Event", id = 210, 	target = "all", x = 201.37167591564, y = 680.51903374577} --[[table: 0x2943fb60]]
++error: move from start level went to space level player
+
+
+
 
 +pegasus
 
@@ -439,13 +470,6 @@ server:
 		затем оно же onEntityAdded
 		первый раз удаляется по событию с сервера
 
-	на клиенте при портале:
-	18047   drawables after remove:3
-	18047   onEntityAdded
-	18047   entity:unload_state
-	18047   unload:portal id:2 xy:103,9.25
-	18047   drawables after remove:3
-	18047   unload:player id:1 xy:97.75,4.75
 +18047   error: removeDrawable failed. Entity was not in drawables:player id:1 xy:97.75,4.75
 
 

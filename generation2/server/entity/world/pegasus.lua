@@ -12,7 +12,7 @@ _.new=function()
 end
 
 _.updateAi=function(entity)
-	log("pegasus update ai")
+--	log("pegasus update ai")
 	
 	AiService.moveRandom(entity)
 

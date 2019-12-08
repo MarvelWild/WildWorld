@@ -13,7 +13,7 @@ _.new=function()
 end
 
 _.updateAi=function(entity)
-	log("panthera update ai")
+--	log("panthera update ai")
 	
 	AiService.moveRandom(entity)
 

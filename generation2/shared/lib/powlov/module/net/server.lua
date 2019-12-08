@@ -219,20 +219,6 @@ local shouldSendEvent=function(event,targetLogin)
 	return result	
 end
 
--- deprecated
---local prepareEventsForLogin=function(login,events)
---	local result={}
-	
---	for k,event in pairs(events) do
---		if shouldSendEvent(event,login) then
---			table.insert(result,event)
---		end
---	end
-	
---	return result
---end
-
-
 local sendEvent=function(event)
 	for login,client in pairs(_clientByLogin) do
 		-- local preparedEvents=prepareEventsForLogin(login,_unprocessedEvents)
@@ -244,7 +230,7 @@ local sendEvent=function(event)
 				event=event
 			}
 			
-			log("sending event:".._event.toString(event))
+			log("sending event:".._event.toString(event),"event")
 			
 			_.send(command,client)
 		else

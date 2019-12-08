@@ -15,6 +15,7 @@ local _pointer=nil
 local _shapeByEntity={}
 --shape by entity
 local _entityByShape={}
+log("collision init: _entityByShape mem:"..get_mem_addr(_entityByShape))
 
 _.init=function(pow)
 	_pow=pow
@@ -72,6 +73,7 @@ _.add=function(entity)
 	_shapeByEntity[entity]=shape
 	_entityByShape[shape]=entity 
 	
+	log("_entityByShape loc:"..get_mem_addr(_entityByShape))
 	--_log("Collidable entity registered: "..Entity.toString(entity))
 end
 
@@ -180,6 +182,12 @@ _.getAtEntity=function(entity)
 	local result_count=0
 	for shape,v in pairs(collisions) do
 		local collisionEntity=_entityByShape[shape]
+		if collisionEntity==nil then
+			local a=1
+			_.debug_print()
+			--assert(collisionEntity)
+		end
+		
 		if not Entity.equals(collisionEntity, entity) then 
 			if result==nil then result={} end
 			table.insert(result,collisionEntity)
@@ -187,8 +195,13 @@ _.getAtEntity=function(entity)
 		end
 	end
 	
+	_log("Collision.getAtEntity. Count:"..result_count.." entity:".._ets(entity))
+	if result~=nil then
+		for k,collision in pairs(result) do
+			log("collision:".._ets(collision))
+		end
+	end
 	
-	_log("Collision.getAtEntity. Count:"..result_count)
 	return result	
 end
 
@@ -210,5 +223,16 @@ end
 
 
 
+
+_.debug_print=function()
+	log("collisions debug_print start")
+	log("ebs mem:"..get_mem_addr(_entityByShape))
+	for shape,entity in pairs(_entityByShape) do
+		log("entity:".._ets(entity)..' shape:'..Pow.inspect(shape))
+	end
+	
+	
+	log("collisions debug_print end")
+end
 
 return _

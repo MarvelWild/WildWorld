@@ -120,7 +120,10 @@ end
 
 local movePlayer=function(event)
 	local responseEvent=_event.new("move")
-	responseEvent.target="all"
+	
+	local player=Player.getByLogin(event.login)
+	responseEvent.target="level"
+	responseEvent.level=player.levelName
 	responseEvent.x=event.x
 	responseEvent.y=event.y
 	
@@ -189,6 +192,11 @@ local populateEditorItemsCache=function()
 		local editorInstance=entity.new()
 		table.insert(_editorItemsCache, editorInstance)
 	end
+	
+	local portal_start=Portal.new()
+	portal_start.sprite="portal_start"
+	portal_start.location="start"
+	table.insert(_editorItemsCache, portal_start)
 --	local seed=Seed.new()
 --	table.insert(_editorItemsCache, seed)
 	
@@ -224,6 +232,10 @@ local editorPlaceItem=function(event)
 	instance.x=item.x
 	instance.y=item.y
 	
+	-- custom prop: portal dest, sprite
+	instance.sprite=item.sprite
+	instance.location=item.location
+	
 	local levelName=player.levelName
 	Db.add(instance,levelName)
 end
@@ -244,6 +256,7 @@ local onEntityAdded=function(entity,levelName)
 	local notifyEvent=_event.new("entity_added")
 	notifyEvent.target="level"
 	notifyEvent.level=levelName
+	notifyEvent.do_not_process_on_server=true
 	notifyEvent.entities={entity}
 	
 	_event.process(notifyEvent)
@@ -255,6 +268,7 @@ local onEntityRemoved=function(entity,levelName)
 	local removedEvent=_event.new("entity_removed")
 	removedEvent.entityRef=BaseEntity.getReference(entity)
 	removedEvent.target="level"
+	removedEvent.do_not_process_on_server=true
 	removedEvent.level=levelName
 	_event.process(removedEvent)
 end

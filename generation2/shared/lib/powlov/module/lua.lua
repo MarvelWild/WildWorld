@@ -30,3 +30,8 @@ table.clear=function(t)
 	local count = #t
 	for i=0, count do t[i]=nil end
 end
+
+function get_mem_addr (object)
+    local str = tostring(object)    
+    return str:sub(str:find(' ') + 1)
+end

@@ -234,7 +234,8 @@ _.internals={}
 _.internals.initModule=initModule
 
 _.newCollision=function()
-	local result=require(folderOfThisFile.."/module/collision")
+	--local result=require(folderOfThisFile.."/module/collision")
+	local result=dofile("shared/lib/powlov/module/collision.lua")
 	initModule(result)
 	return result
 end

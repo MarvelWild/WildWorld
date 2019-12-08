@@ -99,7 +99,9 @@ _.add=function(entity)
 		_simulations[entity]=simulation
 	end
 	
-	CollisionService.addEntity(entity)
+	if not entity.isService then
+		CollisionService.addEntity(entity)
+	end
 end
 
 -- drawables are array to make it sortable
@@ -111,7 +113,7 @@ local removeDrawable=function(entity,container)
 			table.remove(container,k)
 			-- container[k]=nil wrong way (sort crash on nil)
 			
-			log("drawables after remove:"..#container)
+			--log("drawables after remove:"..#container)
 			return
 		end
 	end
@@ -252,7 +254,7 @@ _.toString=function(entity)
 	local result=entity.entityName
 	if entity.id~=nil then
 		result=result.." id:"..tostring(entity.id)..' xy:'..
-			tostring(entity.x)..','..tostring(entity.y)
+			tostring(entity.x)..','..tostring(entity.y).." lvl:"..entity.levelName
 	end
 	
 	return result
@@ -358,7 +360,7 @@ _.unload_state=function()
 		local entity_level_name=entity.levelName
 		-- opt: на клиенте можно быстрее
 		if level_name==entity_level_name then
-			log("unload:".._ets(entity))
+			--log("unload:".._ets(entity))
 			_.remove(entity)
 		end
 	end

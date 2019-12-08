@@ -65,7 +65,7 @@ _.new=function(code,requestId)
 		server	
 		others	except self
 		login		specified login (private chat). field:targetLogin
-		level		everyone on same level
+		level		everyone on same level as event.level
 	]]--
 	event.target="all"
 	event.targetLogin=nil
@@ -121,9 +121,12 @@ local shouldSkipEvent=function(event)
 				-- log("warn:received level event when no player")
 			end
 			
-		else
+		else -- server
+			if event.do_not_process_on_server then return true end
 			-- always skip on server
-			return true 
+			-- now always execute
+			--return true 
+			return false
 		end
 	elseif target=="all" then			
 		return false		
