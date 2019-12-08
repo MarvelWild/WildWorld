@@ -248,7 +248,7 @@ local sendEvent=function(event)
 			
 			_.send(command,client)
 		else
-			log("not sending event:".._event.toString(event))
+			log("not sending event:".._event.toString(event), "event")
 		end
 	end
 end

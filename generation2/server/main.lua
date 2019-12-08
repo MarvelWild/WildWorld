@@ -67,6 +67,14 @@ local loadEntities=function()
 	loadEntity("entity.service.ai")
 end
 
+local entity_on_removed=function(entity)
+	if entity.is_movable then
+		Movable.destroy(entity)
+	end
+	
+end
+
+
 love.load=function()
 	local isClean=Pow.arg.get("clean",false)~=false
 	if isClean then
@@ -81,6 +89,10 @@ love.load=function()
 	
 	Entity.add(ServerService)
 	loadEntities()
+	
+	Entity.on_removed=entity_on_removed
+	
+	--loadLevels()
 	ServerService.start()
 end
 

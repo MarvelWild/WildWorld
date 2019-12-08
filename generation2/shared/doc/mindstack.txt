@@ -1,39 +1,39 @@
+pegasus
 
-812     entity:unload_state. level:start
-812     unload:player id:4 xy:71.96890821683,101.75
-			_all проходит
-		второй раз по анлоад стейта на новом стейте - тут не должен
-		
-812     onEntityRemoved:{
-  code = "entity_removed",
-  entityName = "Event",
-  entityRef = {
-    entityName = "player",
-    id = 4,
-    levelName = "start"
-  },
-  id = 48,
-  level = "start",
-  target = "level"
-}		
-		первый раз по портальному ремуву
-	2 раза unload игрока запрошен
-		пока что морочно, просто на клиенте игнорим
-	да не надо себе же слать, мы ещё не на новом уровне, себя с полным стейтом получим
-	затем оно же onEntityAdded
-	первый раз удаляется по событию с сервера
-
-на клиенте при портале:
-18047   drawables after remove:3
-18047   onEntityAdded
-18047   entity:unload_state
-18047   unload:portal id:2 xy:103,9.25
-18047   drawables after remove:3
-18047   unload:player id:1 xy:97.75,4.75
-18047   error: removeDrawable failed. Entity was not in drawables:player id:1 xy:97.75,4.75
++Error: shared/lib/powlov/module/collision.lua:188: attempt to get length of local 'result' (a nil value)
+	stack traceback:
+        [string "boot.lua"]:777: in function '__len'
+        shared/lib/powlov/module/collision.lua:188: in function 'getAtEntity'
+        entity/service/collision_service.lua:36: in function 'getEntityCollisions'
+        entity/service/server_service.lua:284: in function 'handler'
+        shared/lib/powlov/module/net/event.lua:149: in function 'doProcessEvent'
+        shared/lib/powlov/module/net/event.lua:184: in function 'processEvent'
+        shared/lib/powlov/module/net/event.lua:194: in function 'process'
+        shared/lib/powlov/module/net/server.lua:295: in function 'handler'
+        shared/lib/powlov/module/net/server.lua:101: in function 'recv'
+        shared/lib/powlov/deps/grease/grease/core.lua:208: in function 'update'
+        shared/lib/powlov/module/net/server.lua:270: in function '_serverLateUpdate'
+        entity/service/server_service.lua:330: in function 'updateProc'
+        shared/lib/powlov/module/entity/entity.lua:230: in function 'lateUpdate'
+        shared/lib/powlov/pow.lua:306: in function 'update'
+        main.lua:100: in function 'update'
+        [string "boot.lua"]:612: in function <[string "boot.lua"]:594>
+        [C]: in function 'xpcall'
+				
+				?Level.isActive("space" - false!
+			+не добавился?
+		+ожидалось что игрок удалится из коллизии и добавится в неё
+	+после прохода через портал
+	
+		+где они добавляются во флюкс?
+	+удалять сущности из флюкса при их удалении
++entity has no collision:player
 
 
-space level bg
+	+использовать его
+		+getLevelState
+	+должно вернуться с стейтом
++space level bg
 	
 	
 	
@@ -70,34 +70,20 @@ space level bg
 
 
 
-814     [net]   send: rqid=nil to:client1 cmd=event size=132 data:{
-cmd="event",
-event={
-        target="login",
-        code="logoff_ok",
-        id=174,
-        requestId=1600,
-        targetLogin="client1",
-        entityName="Event"
-}
-}
-815     entity has no collision:player
-
-
 
 				+регистрировать все добавленные сущности в entity
 			+те что принадлежат текущему левелу!
 		+изучаем какие сущности надо анлоадить
-		игрок не анлоаднулся
-	анлоад на клиенте
+		+игрок не анлоаднулся
+	+анлоад на клиенте
 	+дополнить инфой что это переход? да не важно, пусть на любом фулл стейт будет релоад
-ServerService.sendFullState(player)
++ServerService.sendFullState(player)
 		code:
 			enter portal on server: Player.gotoLevel
 			processing portal on client: entity\service\client_service.lua onStateReceived
-	unload prev state
-	should receive full_state on client
-enter portal, get into another level
+	+unload prev state
+	+should receive full_state on client
++enter portal, get into another level
 
 
 
@@ -105,9 +91,9 @@ enter portal, get into another level
 delete collisions
 	можно отложить, пусть будет 1 менеджер сущностей на все левела пока что
 	entitties is a prop of level
-multilevel support
-	cam setWorld level size
-space level
++multilevel support
+cam setWorld level size
++space level
 			draw it - later
 		+-debug: get collision rect on client - later, use log
 		
@@ -121,7 +107,7 @@ space level
 	activated by space
 	placeable in editor
 	+as item
-portal
++portal
 item pickup
 	
 	low prior
@@ -427,6 +413,40 @@ server:
 +client: event without code
 
 
+	812     entity:unload_state. level:start
+	812     unload:player id:4 xy:71.96890821683,101.75
+				_all проходит
+			второй раз по анлоад стейта на новом стейте - тут не должен
+			
+	812     onEntityRemoved:{
+		code = "entity_removed",
+		entityName = "Event",
+		entityRef = {
+			entityName = "player",
+			id = 4,
+			levelName = "start"
+		},
+		id = 48,
+		level = "start",
+		target = "level"
+	}		
+			первый раз по портальному ремуву
+		2 раза unload игрока запрошен
+			пока что морочно, просто на клиенте игнорим
+		да не надо себе же слать, мы ещё не на новом уровне, себя с полным стейтом получим
+		затем оно же onEntityAdded
+		первый раз удаляется по событию с сервера
+
+	на клиенте при портале:
+	18047   drawables after remove:3
+	18047   onEntityAdded
+	18047   entity:unload_state
+	18047   unload:portal id:2 xy:103,9.25
+	18047   drawables after remove:3
+	18047   unload:player id:1 xy:97.75,4.75
++18047   error: removeDrawable failed. Entity was not in drawables:player id:1 xy:97.75,4.75
+
+
 
 
 	
@@ -514,3 +534,5 @@ Concept
 	protected
 	mystery
 	rethink everything, totally new iteration
+	
+	

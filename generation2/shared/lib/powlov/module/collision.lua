@@ -177,15 +177,18 @@ _.getAtEntity=function(entity)
 	local collisions=_hc:collisions(shape)
 	
 	local result=nil
+	local result_count=0
 	for shape,v in pairs(collisions) do
 		local collisionEntity=_entityByShape[shape]
 		if not Entity.equals(collisionEntity, entity) then 
 			if result==nil then result={} end
 			table.insert(result,collisionEntity)
+			result_count=result_count+1
 		end
 	end
 	
-	_log("Collision.getAtEntity. Count:"..#result)
+	
+	_log("Collision.getAtEntity. Count:"..result_count)
 	return result	
 end
 

@@ -50,9 +50,10 @@ local getLevelState=function(levelName)
 	log("getLevelState:"..levelName)
 	
 	local state={}
-	-- wip: real bg from level data
-	state.bg="main"
+	
+	local levelDescriptor=Level.getDescriptor(levelName)
 	state.levelName=levelName
+	state.levelDescriptor=levelDescriptor
 	state.entities=getLevelEntities(levelName)
 	return state
 end
@@ -277,7 +278,6 @@ end
 
 -- player press space, enter portal
 local defaultAction=function(event)
-	-- wip
 	local login=event.login
 	local player=Player.getByLogin(login)
 	local collisions=CollisionService.getEntityCollisions(player)
@@ -287,7 +287,7 @@ local defaultAction=function(event)
 	local target=nil
 	if collisionsCount==1 then
 		target=collisions[1]
-	else
+	elseif collisionsCount>1 then
 		-- todo: resolve target/give player a choice what to do
 		log("warn: action on multiple objects not implemented")
 	end

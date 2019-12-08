@@ -71,6 +71,7 @@ _.gotoLevel=function(player, levelName)
 	
 	-- update prop
 	player.levelName=levelName
+	Level.activate(levelName)
 	
 	-- тут лишний раз шлётся актёру todo можно оптимизировать
 	Db.add(player)

@@ -24,8 +24,10 @@ local _uiDrawsUnscaled={}
 -- возмжоность получить все зарегенные
 local _all={}
 
-
+-- функция вызывается при удалении сущности с параметром сущности
+_.on_removed=nil
 _.beforeAdd=nil
+
 --добавить сущность в менеджер
 -- use Db.add
 _.add=function(entity)
@@ -135,6 +137,10 @@ _.remove=function(entity)
 	_aiUpdatable[entity]=nil
 	_simulations[entity]=nil
 	CollisionService.removeEntity(entity)
+	
+	if _.on_removed~=nil then
+		_.on_removed(entity)
+	end
 end
 
 local compareByDrawLayer=function(info1,info2)

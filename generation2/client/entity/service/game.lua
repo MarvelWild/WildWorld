@@ -9,12 +9,13 @@ _.start=function()
 	ClientService.start()
 end
 
+--opt: один раз получили левел, проставили спрайт
 local drawBg=function()
 --	log('drawBg','verbose',true)
 	if (GameState.get()==nil) then return end
 	
 	local level=GameState.level
-	local bgName=level.bg
+	local bgName=level.levelDescriptor.bg
 	local bgSprite=Img.get("level/"..bgName)
 	draw(bgSprite)
 end

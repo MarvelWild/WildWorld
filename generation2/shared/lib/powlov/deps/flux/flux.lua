@@ -175,6 +175,8 @@ function flux:update(deltatime)
 end
 
 
+
+-- todo: doc
 function flux:clear(obj, vars)
   for t in pairs(self[obj]) do
     if t.inited then

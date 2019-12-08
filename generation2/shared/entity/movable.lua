@@ -1,37 +1,53 @@
 local _={}
 
 
+-- to destroy tweens when entity destroys
+local _smooth_moving={}
+
+local stop_tween=function(entity)
+	local existing_tween=_smooth_moving[entity]
+	if existing_tween~=nil then
+		existing_tween:stop()
+		_smooth_moving[entity]=nil
+	end
+end
+
 
 local smoothMove=function(actor,durationSec,x,y)
---	local entityLocals=Entity.getLocals(entity)
---	entityLocals.isMoving=true
-	
---	local prevTween=entityLocals.moveTween
---	if prevTween~=nil then
---		log("cancel prev move")
---		prevTween:stop()
---	end
-	
---	local onComplete=function() 
---		entityLocals.isMoving=false
---		entityLocals.moveTween=nil
---		log("end move:".._ets(entity))
---	end
+	local onComplete=function(p1,p2) 
+		_smooth_moving[actor]=nil
+	end
+
+	local existing_tween=_smooth_moving[actor]
+	if existing_tween~=nil then
+		existing_tween:stop()
+	end
 	
 	local onUpdate=function()
 		CollisionService.onEntityMoved(actor)
 	end
 	
-	
 	local tween=Flux.to(actor, durationSec, { x=x, y=y }):ease("quadout")
 		:onupdate(onUpdate)
---		:oncomplete(onComplete)
+		:oncomplete(onComplete)
 		
---	entityLocals.moveTween=tween
+	_smooth_moving[actor]=tween
 end
+
+
+
+-- вызывается по флагу is_movable
+_.destroy=function(entity)
+	stop_tween(entity)
+end
+
 
 -- only moves locally, no event
 _.move=function(actor,x,y)
+	-- по этому флагу entity определит destroy
+	-- можно сделать в init, понятней будет
+	actor.is_movable=true
+	
 	local finalX
 	local finalY
 	if actor==nil then
