@@ -5,15 +5,14 @@ _.entityName=Pow.currentFile()
 _.new=function()
 	local result=BaseEntity.new(_.entityName)
 	
-	result.sprite="pantera"
-	
+	result.sprite="pegasus"
 	BaseEntity.init_bounds_from_sprite(result)
 	
 	return result
 end
 
 _.updateAi=function(entity)
-	log("panthera update ai")
+	log("pegasus update ai")
 	
 	AiService.moveRandom(entity)
 

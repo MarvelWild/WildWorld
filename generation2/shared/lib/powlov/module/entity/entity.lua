@@ -314,7 +314,7 @@ _.getCollisionBox=function(entity)
 	if collisionY==nil then collisionY=0 end
 	
 	if x==nil or y==nil or w==nil or h==nil then
-		log("warn: entity has no box shape (x,y,w,h)")
+		log("warn: entity has no box shape (x,y,w,h):".._ets(entity))
 		return nil
 	end
 	

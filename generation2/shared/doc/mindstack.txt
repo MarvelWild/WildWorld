@@ -1,4 +1,6 @@
-pegasus
+mount pegasus
+
++pegasus
 
 +Error: shared/lib/powlov/module/collision.lua:188: attempt to get length of local 'result' (a nil value)
 	stack traceback:

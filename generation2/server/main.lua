@@ -60,8 +60,6 @@ end
 
 local loadEntities=function()
 	WorldEntities=loadEntitiesFromDir("entity/world")
-	-- loadEntity("entity.world.seed")
-	-- loadEntity("entity.world.panther")
 	loadEntity("entity.level")
 	loadEntity("entity.player")
 	loadEntity("entity.service.ai")

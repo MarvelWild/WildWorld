@@ -65,4 +65,12 @@ _.refToSting=function(entityRef)
 	return entityRef.id..":"..entityRef.entityName
 end
 
+_.init_bounds_from_sprite=function(entity)
+	local spriteName=entity.sprite
+	local sprite=Img.get(spriteName)
+	local w,h=sprite:getDimensions()
+	entity.w=w
+	entity.h=h
+end
+
 return _
