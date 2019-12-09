@@ -14,11 +14,14 @@ end
 _.updateAi=function(entity)
 --	log("pegasus update ai")
 	
-	AiService.moveRandom(entity)
+	-- todo: enable after mount
+	-- AiService.moveRandom(entity)
 
 end
 
-
+_.interact=function(actor,target)
+	Mountable.toggle_mount(actor,target)
+end
 
 
 

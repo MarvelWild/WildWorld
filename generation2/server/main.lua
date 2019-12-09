@@ -59,6 +59,9 @@ end
 
 
 local loadEntities=function()
+	Movable=require "shared.entity.trait.movable"
+	Mountable=require "entity.trait.mountable"
+	
 	WorldEntities=loadEntitiesFromDir("entity/world")
 	loadEntity("entity.level")
 	loadEntity("entity.player")

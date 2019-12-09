@@ -58,7 +58,7 @@ channels.verbose.useConsole=false
 channels.event.useConsole=false
 channels.db.useConsole=false
 channels.net.useConsole=false
---channels.collision.useConsole=false
+channels.collision.useConsole=false
 
 -- used if no channel name provided
 local _mainChannel=newChannel("main")

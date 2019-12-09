@@ -55,8 +55,6 @@ end
 
 _.gotoLevel=function(player, levelName)
 	log("gotoLevel:"..levelName.." from:"..player.levelName)
-	-- wip:
-	
 	-- delete from db because db stores entities in level containers
 	
 	-- hanlded by db->entity
@@ -84,16 +82,10 @@ _.gotoLevel=function(player, levelName)
 	
 	-- send updated player,level
 	ServerService.sendFullState(player)
-	
-	
-	-- wip unload prev on client
-	-- wip load new on client
-	
-	
 end
 
 
---
+-- executed on server
 _.interact=function(player,target)
 	local target_code=Entity.getCode(target)
 	

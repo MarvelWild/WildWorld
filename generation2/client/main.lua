@@ -53,6 +53,7 @@ end
 
 
 local loadEntities=function()
+	Movable=require "shared.entity.trait.movable"
 	-- code
 	Entity.addCode("player",require("entity.world.player"))
 	
