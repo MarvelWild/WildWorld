@@ -366,6 +366,17 @@ _.unload_state=function()
 	end
 end
 
+-- light reference
+-- reverse: find_by_ref
+_.get_reference=function(entity)
+	local result={}
+	
+	result.id=entity.id
+	result.entity_name=entity.entity_name
+	
+	return result
+end
+
 
 
 return _

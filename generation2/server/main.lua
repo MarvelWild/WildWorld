@@ -34,6 +34,12 @@ WorldEntities=nil
 
 local loadEntity=function(path)
 	local entity=require(path)
+	
+	log("loadEntity:"..path)
+	if entity==true then
+		log("error:entity not loaded:"..path)
+	end
+	
 	local globalVarName=Pow.allen.capitalizeFirst(entity.entityName)
 	Pow.registerGlobal(globalVarName, entity)
 	Entity.addCode(entity.entityName,entity)

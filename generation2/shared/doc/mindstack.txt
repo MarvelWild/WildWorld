@@ -1,6 +1,16 @@
+перекатываемся во фримайнд
+	
+	
+apple tree
+		horse
+		apple
+	feed apple to horse
+	tamed follow player
+tame animals
 
 
-	implement mountable
+		
+	>implement mountable
 mount pegasus
 
 	+move теперь шлём на левел а не всем
