@@ -42,7 +42,8 @@ local folderOfThisFile = string.sub(pathOfThisFile, 0, string.len(pathOfThisFile
 
 
 
-_.getFrame=function()
+-- todo: performance tests, this should be fast
+_.get_frame=function()
 	return _frame
 end
 

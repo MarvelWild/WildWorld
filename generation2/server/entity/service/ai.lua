@@ -1,5 +1,5 @@
-local _entityName='AiService'
-local _=BaseEntity.new(_entityName, true)
+local _entity_name='AiService'
+local _=BaseEntity.new(_entity_name, true)
 
 local _maxDistance=50
 
@@ -23,7 +23,7 @@ _.moveRandom=function(entity)
 	
 	local responseEvent=_event.new("move")
 	responseEvent.target="level"
-	responseEvent.level=entity.levelName
+	responseEvent.level=entity.level_name
 	responseEvent.x=nextX
 	responseEvent.y=nextY
 	responseEvent.actorRef=BaseEntity.getReference(entity)

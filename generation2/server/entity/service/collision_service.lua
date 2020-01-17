@@ -2,27 +2,27 @@
 -- цель - коллизии по уровням,
 -- следующий уровень абстракции: collision (одноуровневая модель)
 
-local _entityName='CollisionService'
-local _=BaseEntity.new(_entityName, true)
+local _entity_name='CollisionService'
+local _=BaseEntity.new(_entity_name, true)
 
 
 local _levelCollisions={}
 
 -- returns instance of shared\lib\powlov\module\collision.lua
-local getLevelCollisions=function(levelName)
-	local result=_levelCollisions[levelName]
+local getLevelCollisions=function(level_name)
+	local result=_levelCollisions[level_name]
 	if result==nil then
-		log("created new level collisions:"..levelName)
+		log("created new level collisions:"..level_name)
 		result=Pow.newCollision()
-		_levelCollisions[levelName]=result
+		_levelCollisions[level_name]=result
 	end
 	
 	return result
 end
 
 ---- unfinished - we can paint it later
---_.getCollisionShapes=function(levelName)
---	local collisions=getLevelCollisions(levelName)
+--_.getCollisionShapes=function(level_name)
+--	local collisions=getLevelCollisions(level_name)
 --	local result={}
 	
 --	collisions.getShapes()
@@ -32,8 +32,8 @@ end
 
 
 _.getEntityCollisions=function(entity)
-	local levelName=entity.levelName
-	local levelCollisions=getLevelCollisions(levelName)
+	local level_name=entity.level_name
+	local levelCollisions=getLevelCollisions(level_name)
 	local entityCollisions=levelCollisions.getAtEntity(entity)
 	return entityCollisions
 end
@@ -51,40 +51,40 @@ _.addEntity=function(entity)
 	
 	
 	
-	local levelName=entity.levelName
+	local level_name=entity.level_name
 	
-	if levelName==nil then
-		log('error: adding entity with no levelName to collision system')
+	if level_name==nil then
+		log('error: adding entity with no level_name to collision system')
 		return
 	end
 	
-	local collision=getLevelCollisions(levelName)
+	local collision=getLevelCollisions(level_name)
 	collision.add(entity)
 end
 
 
 
 _.removeEntity=function(entity)
-		local levelName=entity.levelName
+		local level_name=entity.level_name
 	
-	if levelName==nil then
-		log('error: removing entity with no levelName from collision system')
+	if level_name==nil then
+		log('error: removing entity with no level_name from collision system')
 		return
 	end
 	
-	local collision=getLevelCollisions(levelName)
+	local collision=getLevelCollisions(level_name)
 	collision.remove(entity)
 end
 
 _.onEntityMoved=function(entity)
-	local levelName=entity.levelName
+	local level_name=entity.level_name
 	
-	if levelName==nil then
-		log('error: moving entity with no levelName into collision system')
+	if level_name==nil then
+		log('error: moving entity with no level_name into collision system')
 		return
 	end
 	
-	local collision=getLevelCollisions(levelName)
+	local collision=getLevelCollisions(level_name)
 	collision.moved(entity)
 end
 

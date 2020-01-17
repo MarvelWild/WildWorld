@@ -47,8 +47,8 @@ _.new=function(code,requestId)
 	--log("Event.new:".._traceback())
 	local event={}
 	
-	event.entityName="Event"
-	event.id=_id.new(event.entityName)
+	event.entity_name="Event"
+	event.id=_id.new(event.entity_name)
 	event.login=_netState.login
 	if requestId~=nil then
 		event.requestId=requestId
@@ -108,7 +108,7 @@ local shouldSkipEvent=function(event)
 			-- todo: GameState shouldn't be used here
 			local currentPlayer=GameState.getPlayer()
 			if currentPlayer~=nil then
-				local currentLevel=currentPlayer.levelName
+				local currentLevel=currentPlayer.level_name
 				if (currentLevel~=event.level) then
 					log("warn: skipping level event (probably not supposed to receive it). currentLevel="..tostring(currentLevel)..
 						" event.level:"..tostring(event.level))

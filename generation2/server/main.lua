@@ -40,9 +40,9 @@ local loadEntity=function(path)
 		log("error:entity not loaded:"..path)
 	end
 	
-	local globalVarName=Pow.allen.capitalizeFirst(entity.entityName)
+	local globalVarName=Pow.allen.capitalizeFirst(entity.entity_name)
 	Pow.registerGlobal(globalVarName, entity)
-	Entity.addCode(entity.entityName,entity)
+	Entity.addCode(entity.entity_name,entity)
 	if entity.load~=nil then entity.load() end
 	
 	return entity
@@ -54,8 +54,8 @@ local loadEntitiesFromDir=function(dirName)
 	local result={}
 	local dirItems=love.filesystem.getDirectoryItems(dirName)
 	for k,fileName in ipairs(dirItems) do
-		local entityName=Pow.replace(fileName,".lua","")
-		local entityPath=dirName.."."..entityName
+		local entity_name=Pow.replace(fileName,".lua","")
+		local entityPath=dirName.."."..entity_name
 		local entity=loadEntity(entityPath)
 		table.insert(result,entity)
 	end
@@ -101,6 +101,8 @@ love.load=function()
 	
 	--loadLevels()
 	ServerService.start()
+	
+	Level.activate("start")
 end
 
 love.update=function(dt)

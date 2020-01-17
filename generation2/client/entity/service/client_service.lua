@@ -61,7 +61,7 @@ local onStateReceived=function(response)
 	GameState.level=level
 	GameState.set(state)
 	
-	-- here comes entities from getLevelEntities -> Db.getLevelContainer(levelName)
+	-- here comes entities from getLevelEntities -> Db.getLevelContainer(level_name)
 	-- and level container has subcontainers for each entity
 	
 	-- todo: unregister previous / update
@@ -90,13 +90,13 @@ end
 local onEntityRemoved=function(event)
 	--[[ event example:
 	{
-		code = "entity_removed", entityName = "Event", entityRef = 
-			{entityName = "player", id = 11}  
+		code = "entity_removed", entity_name = "Event", entityRef = 
+			{entity_name = "player", id = 11}  
 		id = 42, level = "start", target = "level"}	
 	]]--
 --	log("onEntityRemoved:"..Pow.inspect(event))
 	
---	if event.entityRef.entityName=="player" then
+--	if event.entityRef.entity_name=="player" then
 --		local a=1
 --	end
 	
@@ -133,16 +133,16 @@ local onEntityAdded=function(event)
 	
 	local entities=event.entities
 	for k,entity in pairs(entities) do
---		if entity.entityName=="player" then
+--		if entity.entity_name=="player" then
 --			local a=1
 --		end
 		
-		if GameState.level.levelName~=entity.levelName then
+		if GameState.level.level_name~=entity.level_name then
 			-- сейчас при проходе в портал добавляется новый игрок на новом уровне:
 			--  сервер уже знает что игрок на новом уровне, а клиент ещё нет.
 			-- log("todo: do not send event like this")
 		else
-			log("onEntityAdded:".._ets(entity).." level:"..entity.levelName)
+			log("onEntityAdded:".._ets(entity))
 			GameState.addEntity(entity)
 		end
 	end
@@ -189,14 +189,14 @@ local login=function()
 end
 
 local registerGenericCode=function(entity)
-	local entityName=entity.entityName
+	local entity_name=entity.entity_name
 	local code=Entity.getCode(entity)
 	if code~=nil then return end
 	
 	code=Generic
 	
-	log('Registering generic entity:'..entityName)
-	Entity.addCode(entityName,code)
+	log('Registering generic entity:'..entity_name)
+	Entity.addCode(entity_name,code)
 end
 
 

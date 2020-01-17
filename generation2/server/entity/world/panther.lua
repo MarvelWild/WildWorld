@@ -1,9 +1,9 @@
 local _={}
 
-_.entityName=Pow.currentFile()
+_.entity_name=Pow.currentFile()
 
 _.new=function()
-	local result=BaseEntity.new(_.entityName)
+	local result=BaseEntity.new(_.entity_name)
 	
 	result.sprite="pantera"
 	

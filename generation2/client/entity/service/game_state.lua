@@ -19,7 +19,7 @@ _.level=nil
 			{
 				[12] = 
 				{
-					drawLayer = 0, entityName = "player", footX = 7, footY = 15, id = 12, levelName = "start", login = "mw", name = "mw", sprite = "player", x = 100, y = 20
+					drawLayer = 0, entity_name = "player", footX = 7, footY = 15, id = 12, level_name = "start", login = "mw", name = "mw", sprite = "player", x = 100, y = 20
 				}
 			}
 		}
@@ -34,7 +34,7 @@ _.playerId=nil
 _.set=function(state)
 	_lastState=state
 	
-	log("state set. level:"..state.level.levelName)
+	log("state set. level:"..state.level.level_name)
 end
 
 _.get=function()
@@ -71,7 +71,7 @@ _.findEntity=function(entityRef,onFound)
 --		return player
 --	end
 	local entityContainers=_lastState.level.entities
-	local entities=entityContainers[entityRef.entityName]
+	local entities=entityContainers[entityRef.entity_name]
 	if entities==nil then return nil end
 	
 	for k,entity in pairs(entities) do
@@ -105,13 +105,13 @@ _.removeEntity=function(entityRef)
 	Entity.remove(entity)
 end
 
-local getEntityContainer=function(entityName)
+local getEntityContainer=function(entity_name)
 	if _lastState==nil then return nil end
 	local entityContainers=_lastState.level.entities
-	local container=entityContainers[entityName]
+	local container=entityContainers[entity_name]
 	if container==nil then
 		container={}
-		entityContainers[entityName]=container
+		entityContainers[entity_name]=container
 	end
 	
 	return container
@@ -120,8 +120,8 @@ end
 
 -- adds into world too
 _.addEntity=function(entity)
-	local entityName=entity.entityName
-	local container=getEntityContainer(entityName)
+	local entity_name=entity.entity_name
+	local container=getEntityContainer(entity_name)
 	if container==nil then return nil end
 	
 	table.insert(container,entity)

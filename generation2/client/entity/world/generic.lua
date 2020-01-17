@@ -1,7 +1,7 @@
--- global Generic<-entityName
+-- global Generic<-entity_name
 local _={}
 
-_.entityName=Pow.currentFile()
+_.entity_name=Pow.currentFile()
 _.draw=BaseEntity.draw
 
 return _

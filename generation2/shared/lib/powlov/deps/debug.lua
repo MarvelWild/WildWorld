@@ -89,7 +89,7 @@ _debug.log=function(message,channelName,forceConsole)
 	end
 	
 	
-	local preparedMessage = _debug.pow.getFrame().."\t"
+	local preparedMessage = _debug.pow.get_frame().."\t"
 	
 	if _debug.useConsole and channelName then
 		preparedMessage=preparedMessage.."["..channelName.."]\t"

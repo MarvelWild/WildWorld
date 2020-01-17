@@ -1,9 +1,9 @@
 local _={}
 
-_.entityName="portal"
+_.entity_name="portal"
 
 _.new=function()
-	local result=BaseEntity.new(_.entityName)
+	local result=BaseEntity.new(_.entity_name)
 	
 	result.sprite="portal"
 	
@@ -19,8 +19,8 @@ end
 
 -- target is this, actor is player
 _.interact=function(actor,target)
-	local levelName=target.location
-	Player.gotoLevel(actor,levelName)
+	local level_name=target.location
+	Player.gotoLevel(actor,level_name)
 end
 
 

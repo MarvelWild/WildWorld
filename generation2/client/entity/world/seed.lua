@@ -2,7 +2,7 @@
 
 local _={}
 
-_.entityName="seed"
+_.entity_name="seed"
 
 
 _.draw=BaseEntity.draw

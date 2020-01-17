@@ -46,9 +46,9 @@ end
 
 local loadEntity=function(path)
 	local entity=require(path)
-	local globalVarName=Pow.allen.capitalizeFirst(entity.entityName)
+	local globalVarName=Pow.allen.capitalizeFirst(entity.entity_name)
 	Pow.registerGlobal(globalVarName, entity)
-	Entity.addCode(entity.entityName,entity)
+	Entity.addCode(entity.entity_name,entity)
 end
 
 

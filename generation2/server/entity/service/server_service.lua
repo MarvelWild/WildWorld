@@ -1,8 +1,8 @@
 -- game specific server code
 
 
-local _entityName='ServerService'
-local _=BaseEntity.new(_entityName, true)
+local _entity_name='ServerService'
+local _=BaseEntity.new(_entity_name, true)
 
 _.isService=true
 
@@ -40,21 +40,21 @@ local createPlayer=function(event)
 	
 end
 
-local getLevelEntities=function(levelName)
-	local levelContainer=Db.getLevelContainer(levelName)
+local getLevelEntities=function(level_name)
+	local levelContainer=Db.getLevelContainer(level_name)
 	return levelContainer
 end
 
 
-local getLevelState=function(levelName)
-	log("getLevelState:"..levelName)
+local getLevelState=function(level_name)
+	log("getLevelState:"..level_name)
 	
 	local state={}
 	
-	local levelDescriptor=Level.getDescriptor(levelName)
-	state.levelName=levelName
+	local levelDescriptor=Level.getDescriptor(level_name)
+	state.level_name=level_name
 	state.levelDescriptor=levelDescriptor
-	state.entities=getLevelEntities(levelName)
+	state.entities=getLevelEntities(level_name)
 	return state
 end
 
@@ -72,7 +72,7 @@ end
 
 local getFullState=function(playerId)
   local player=getPlayerState(playerId)
-	local levelState=getLevelState(player.levelName)
+	local levelState=getLevelState(player.level_name)
 	local result={}
 	result.level=levelState
 	return result
@@ -104,16 +104,16 @@ local gameStart=function(event)
 	
 	
 	local player=Player.getById(playerId)
-	local levelName=player.levelName
-	local alreadyLogged=Db.get(levelName,Player.entityName,player.id)
+	local level_name=player.level_name
+	local alreadyLogged=Db.get(level_name,Player.entity_name,player.id)
 	if alreadyLogged==nil then
 		
-		Db.add(player, levelName)
+		Db.add(player, level_name)
 	else
 		log("warn:logging player which already on level")
 	end
 	
-	Level.activate(levelName)
+	Level.activate(level_name)
 	
 	_.sendFullState(player)
 end
@@ -123,7 +123,7 @@ local movePlayer=function(event)
 	
 	local player=Player.getByLogin(event.login)
 	responseEvent.target="level"
-	responseEvent.level=player.levelName
+	responseEvent.level=player.level_name
 	responseEvent.x=event.x
 	responseEvent.y=event.y
 	
@@ -136,23 +136,23 @@ end
 
 -- handler to "move"
 local doMove=function(event)
-	-- local levelName="player"
+	-- local level_name="player"
 	local actorRef=event.actorRef
 	if actorRef==nil then
 		local a=1
 	end
 	
-	local actor=Db.getByRef(actorRef, actorRef.levelName)
+	local actor=Db.getByRef(actorRef, actorRef.level_name)
 	Movable.move(actor,event.x,event.y)
 end
 
 local logoff=function(event)
-	-- event example: {code = "logoff", entityName = "Event", id = 1579, login = "client1", target = "server"}
+	-- event example: {code = "logoff", entity_name = "Event", id = 1579, login = "client1", target = "server"}
 	
 	-- remove player from level
 	local player=Player.getByLogin(event.login)
-	local levelName=player.levelName
-	Db.remove(player,levelName)
+	local level_name=player.level_name
+	Db.remove(player,level_name)
 	
 
 	
@@ -236,8 +236,8 @@ local editorPlaceItem=function(event)
 	instance.sprite=item.sprite
 	instance.location=item.location
 	
-	local levelName=player.levelName
-	Db.add(instance,levelName)
+	local level_name=player.level_name
+	Db.add(instance,level_name)
 end
 
 
@@ -245,9 +245,9 @@ end
 
 
 --attached to  Db.onAdded
-local onEntityAdded=function(entity,levelName)
-	local message="onEntityAdded:".._ets(entity).." level:"..levelName
---	if entity.entityName=="player" then
+local onEntityAdded=function(entity,level_name)
+	local message="onEntityAdded:".._ets(entity).." level:"..level_name
+--	if entity.entity_name=="player" then
 --		local a=1
 --	end
 	
@@ -255,7 +255,7 @@ local onEntityAdded=function(entity,levelName)
 	log(message)
 	local notifyEvent=_event.new("entity_added")
 	notifyEvent.target="level"
-	notifyEvent.level=levelName
+	notifyEvent.level=level_name
 	notifyEvent.do_not_process_on_server=true
 	notifyEvent.entities={entity}
 	
@@ -264,12 +264,12 @@ end
 
 
 
-local onEntityRemoved=function(entity,levelName)
+local onEntityRemoved=function(entity,level_name)
 	local removedEvent=_event.new("entity_removed")
 	removedEvent.entityRef=BaseEntity.getReference(entity)
 	removedEvent.target="level"
 	removedEvent.do_not_process_on_server=true
-	removedEvent.level=levelName
+	removedEvent.level=level_name
 	_event.process(removedEvent)
 end
 
@@ -278,9 +278,9 @@ _.notifyEntityRemoved=onEntityRemoved
 local getCollisions=function(event)
 	local login=event.login
 	local player=Player.getByLogin(login)
-	local levelName=player.levelName
+	local level_name=player.level_name
 	
-	local collisions=CollisionService.getCollisionShapes(levelName)
+	local collisions=CollisionService.getCollisionShapes(level_name)
 	
 	local response=_event.new("collisions_get_response")
 	response.target="login"
@@ -316,6 +316,20 @@ local defaultAction=function(event)
 end
 
 
+
+-- wip: server mount handler
+-- 
+-- generic part attach rider to mount
+-- 
+local do_mount=function()
+	-- wip
+	log("server_service.do_mount start")
+	
+	
+	
+end
+
+
 _.start=function()
 	_event.addHandler("create_player", createPlayer)
 	_event.addHandler("game_start", gameStart)
@@ -327,6 +341,7 @@ _.start=function()
 	_event.addHandler("editor_place_item", editorPlaceItem)
 	_event.addHandler("collisions_get", getCollisions)
 	_event.addHandler("default_action", defaultAction)
+	_event.addHandler("do_mount", do_mount)
 	
 	Db.onAdded=onEntityAdded
 	Db.setOnRemoved(onEntityRemoved)
@@ -345,13 +360,13 @@ end
 
 
 local clearWorld=function()
-	local levelName="start"
+	local level_name="start"
 	
-	local levelEntityContainers=getLevelEntities(levelName)
-	for entityName,container in pairs(levelEntityContainers) do
-		if entityName~="player" then
+	local levelEntityContainers=getLevelEntities(level_name)
+	for entity_name,container in pairs(levelEntityContainers) do
+		if entity_name~="player" then
 			for k2,entity in pairs(container) do
-				Db.remove(entity,levelName)
+				Db.remove(entity,level_name)
 			end
 		end
 		

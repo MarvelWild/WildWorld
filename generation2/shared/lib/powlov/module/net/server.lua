@@ -204,7 +204,7 @@ local shouldSendEvent=function(event,targetLogin)
 	elseif target=="level" then 
 		local level=event.level
 		local targetPlayer=Player.getByLogin(targetLogin)
-		local targetLevel=targetPlayer.levelName
+		local targetLevel=targetPlayer.level_name
 		if (level==targetLevel) then 
 			result=true
 		else

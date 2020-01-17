@@ -1,12 +1,12 @@
 local _={}
 
-_.entityName="player"
+_.entity_name="player"
 
 _.new=function()
-	local result=BaseEntity.new(_.entityName)
+	local result=BaseEntity.new(_.entity_name)
 	
 	result.name='Joe'
-	result.levelName='start'
+	result.level_name='start'
 	
 	-- todo это свойства спрайта
 	result.footX=7
@@ -53,23 +53,23 @@ end
 
 
 
-_.gotoLevel=function(player, levelName)
-	log("gotoLevel:"..levelName.." from:"..player.levelName)
+_.gotoLevel=function(player, level_name)
+	log("gotoLevel:"..level_name.." from:"..player.level_name)
 	-- delete from db because db stores entities in level containers
 	
 	-- hanlded by db->entity
 	-- update collision container
 	-- CollisionService.removeEntity(player)
 	
-	-- local prevLevel=player.levelName
+	-- local prevLevel=player.level_name
 	Db.remove(player)
 	
 	-- remove from prev level,send to all on that level
 	-- ServerService.notifyEntityRemoved(player, prevLevel)
 	
 	-- update prop
-	player.levelName=levelName
-	Level.activate(levelName)
+	player.level_name=level_name
+	Level.activate(level_name)
 	
 	-- тут лишний раз шлётся актёру todo можно оптимизировать
 	Db.add(player)

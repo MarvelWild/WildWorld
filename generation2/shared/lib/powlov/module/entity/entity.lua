@@ -31,7 +31,7 @@ _.beforeAdd=nil
 --добавить сущность в менеджер
 -- use Db.add
 _.add=function(entity)
-	log('adding entity:'..Entity.toString(entity),'entity')
+	log('adding entity:'.._.toString(entity),'entity')
 	
 	local beforeAdd=_.beforeAdd
 	if beforeAdd~=nil then
@@ -45,7 +45,7 @@ _.add=function(entity)
 	-- entityCode is module with draw,update etc contolling current entity data/dto
 	local entityCode=_.getCode(entity)
 	
-	if entityCode==nil or entity.entityName=="panther" then
+	if entityCode==nil or entity.entity_name=="panther" then
 		local a=1
 	end
 	
@@ -94,7 +94,7 @@ _.add=function(entity)
 		_aiUpdatable[entity]=updateAi
 	end
 	
-	local simulation=entityCode.updateSimulation
+	local simulation=entityCode.update_simulation
 	if simulation~=nil then
 		_simulations[entity]=simulation
 	end
@@ -203,7 +203,7 @@ _.update=function(dt)
 		updateProc(dt)
 	end
 	
-	local frameNumber=Pow.getFrame()
+	local frameNumber=Pow.get_frame()
 	if frameNumber%60==0 then
 		-- log("update ai")
 --		for entity,updateAiProc in pairs(_aiUpdatable) do
@@ -251,10 +251,18 @@ end
 _.toString=function(entity)
 	if entity==nil then return "nil" end
 	
-	local result=entity.entityName
+	local result=entity.entity_name
+	
+-- its ok, ServerService	
+--	if entity.level_name==nil then
+--		local a=1
+--	end
+	
+		
+		
 	if entity.id~=nil then
 		result=result.." id:"..tostring(entity.id)..' xy:'..
-			tostring(entity.x)..','..tostring(entity.y).." lvl:"..entity.levelName
+			tostring(entity.x)..','..tostring(entity.y).." lvl:"..tostring(entity.level_name)
 	end
 	
 	return result
@@ -263,8 +271,8 @@ end
 local _entityCode={}
 
 -- register code that corresponds to data object
-_.addCode=function(entityName,code)
-	_entityCode[entityName]=code
+_.addCode=function(entity_name,code)
+	_entityCode[entity_name]=code
 end
 
 
@@ -275,16 +283,16 @@ _.getCode=function(entity)
 		-- service does not separate data, everything is a single module
 		return entity
 	else
-		local result = _.getCodeByName(entity.entityName)
+		local result = _.getCodeByName(entity.entity_name)
 		
 		return result
 	end
 end
 
-_.getCodeByName=function(entityName)
-		local result=_entityCode[entityName]
+_.getCodeByName=function(entity_name)
+		local result=_entityCode[entity_name]
 		if (result==nil) then
-			-- log("error: entity has no code:"..entityName)
+			-- log("error: entity has no code:"..entity_name)
 		end
 		
 		return result 
@@ -335,7 +343,7 @@ _.equals=function(entity1,entity2)
 		return false 
 	end
 	
-	return entity1.id==entity2.id and entity1.entityName==entity2.entityName
+	return entity1.id==entity2.id and entity1.entity_name==entity2.entity_name
 end
 
 _.unload_state=function()
@@ -352,12 +360,12 @@ _.unload_state=function()
 	end
 	
 	
-	local level_name=GameState.level.levelName--player.levelName
+	local level_name=GameState.level.level_name--player.level_name
 	
 	log("entity:unload_state. level:"..level_name)
 	
 	for entity,has_entity in pairs(_all) do
-		local entity_level_name=entity.levelName
+		local entity_level_name=entity.level_name
 		-- opt: на клиенте можно быстрее
 		if level_name==entity_level_name then
 			--log("unload:".._ets(entity))

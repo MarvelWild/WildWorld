@@ -4,8 +4,8 @@
 
 -- на клиенте пока что не используется
 
-local _entityName='CollisionService'
-local _=BaseEntity.new(_entityName, true)
+local _entity_name='CollisionService'
+local _=BaseEntity.new(_entity_name, true)
 
 
 local _levelCollisions={}

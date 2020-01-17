@@ -1,15 +1,15 @@
 local _={}
 
-_.entityName="tree"
+_.entity_name="tree"
 
 _.new=function()
-	local result=BaseEntity.new(_.entityName)
+	local result=BaseEntity.new(_.entity_name)
 	
 	result.sprite="seed"
 	-- result.sprite="tree_apple_9"
-	result.plantedOn=Pow.getFrame()
+	result.planted_on=Pow.get_frame()
 
-	-- entityName
+	-- entity_name
 	
 	-- при достижении финальной фазы во что превратиться дальше
 	-- result.growInto="tree"
@@ -18,10 +18,20 @@ _.new=function()
 	result.footX=15
 	result.footY=46
 	
-	result.growPhase=1
+	result.planted_on=Pow.get_frame()
 	
 	local secondsToGrow=love.math.random(30,90)
-	result.growOn=secondsToGrow*ConfigService.serverFps
+	
+	--[[ тут можно сделать процедуры будущего - 
+	например через 42 фрейма вызвать расти. 
+	Минусы:
+	может быть неактуально
+	Плюсы: нет проверки каждый фрейм
+	
+	пусть пока что проверка будет, надо будет оптимизация - сделаю.
+	
+	]]--
+	result.grow_on=secondsToGrow*ConfigService.serverFps
 	
 	BaseEntity.init_bounds_from_sprite(result)
 	
@@ -30,11 +40,11 @@ end
 
 -- todo grow
 
-_.updateSimulation=function(entity)
-	log("tree update sim")
+_.update_simulation=function(entity)
+--	log("tree update sim")
 	
---	local frame=Pow.getFrame()
---	local growOn=entity.growOn
+	local frame=Pow.get_frame()
+	local grow_on=entity.grow_on
 --	if growOn~=nil then
 --		if frame>growOn then
 --			doGrow(entity)
@@ -53,18 +63,18 @@ return _
 
 local _={}
 
-_.entityName="seed"
+_.entity_name="seed"
 
 
 _.new=function()
-	local result=BaseEntity.new(_.entityName)
+	local result=BaseEntity.new(_.entity_name)
 	
 	result.sprite="seed"
 	
-	local frame=Pow.getFrame()
+	local frame=Pow.get_frame()
 	result.plantedOn=frame
 
-	-- entityName
+	-- entity_name
 	result.growInto="tree"
 	
 	local secondsToGrow=love.math.random(5,20)
@@ -84,15 +94,15 @@ local doGrow=function(entity)
 	newInstance.x=entity.x-newInstance.footX
 	newInstance.y=entity.y-newInstance.footY
 	
-	local levelName=entity.levelName
-	Db.add(newInstance,levelName)
+	local level_name=entity.level_name
+	Db.add(newInstance,level_name)
 	
-	Db.remove(entity,levelName)
+	Db.remove(entity,level_name)
 end
 
 
-_.updateSimulation=function(entity)
-	local frame=Pow.getFrame()
+_.update_simulation=function(entity)
+	local frame=Pow.get_frame()
 	local growOn=entity.growOn
 	if growOn~=nil then
 		if frame>growOn then

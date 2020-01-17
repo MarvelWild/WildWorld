@@ -44,15 +44,17 @@ end
 
 -- only moves locally, no event
 _.move=function(actor,x,y)
+	if actor==nil then
+		local a=1
+	end
+	
 	-- по этому флагу entity определит destroy
 	-- можно сделать в init, понятней будет
 	actor.is_movable=true
 	
 	local finalX
 	local finalY
-	if actor==nil then
-		local a=1
-	end
+
 	
 	
 	if actor.footX~=nil then

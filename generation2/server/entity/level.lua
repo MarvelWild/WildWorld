@@ -6,7 +6,7 @@ local _={}
 local _activeLevels={}
 local _descriptors={}
 
-_.entityName=Pow.currentFile()
+_.entity_name=Pow.currentFile()
 
 --_.new=function()
 --	local result={}
@@ -16,19 +16,19 @@ _.entityName=Pow.currentFile()
 --	return result
 --end
 
-_.isActive=function(levelName)
-	return _activeLevels[levelName]
+_.isActive=function(level_name)
+	return _activeLevels[level_name]
 end
 
-_.getDescriptor=function(levelName)
-	local existing=_descriptors[levelName]
+_.getDescriptor=function(level_name)
+	local existing=_descriptors[level_name]
 	if existing~=nil then
 		return existing
 	else
-		local fileName="level/"..levelName
+		local fileName="level/"..level_name
 		local newDescriptor=require(fileName)
 		if newDescriptor==nil then
-			log("error:no level descriptor:"..levelName)
+			log("error:no level descriptor:"..level_name)
 		end
 		
 		return newDescriptor
@@ -44,10 +44,12 @@ end
 
 
 -- activate entire level: all entities on it
-_.activate=function(levelName)
-	if _activeLevels[levelName] then return end
+_.activate=function(level_name)
+	log("level activate:"..level_name)
 	
-	local entityContainers=Db.getLevelContainer(levelName)
+	if _activeLevels[level_name] then return end
+	
+	local entityContainers=Db.getLevelContainer(level_name)
 	for k,entityContainer in pairs(entityContainers) do
 		for k2,entity in pairs(entityContainer) do
 			Entity.add(entity)
@@ -55,7 +57,7 @@ _.activate=function(levelName)
 		
 	end
 	
-	_activeLevels[levelName]=true
+	_activeLevels[level_name]=true
 end
 
 

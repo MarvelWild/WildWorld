@@ -50,7 +50,7 @@ end
 
 
 _.add=function(entity)
-	if entity.entityName=="player" then
+	if entity.entity_name=="player" then
 		local a=1
 	end
 	
@@ -73,7 +73,7 @@ _.add=function(entity)
 	_shapeByEntity[entity]=shape
 	_entityByShape[shape]=entity 
 	
-	log("_entityByShape loc:"..get_mem_addr(_entityByShape))
+	--log("_entityByShape loc:"..get_mem_addr(_entityByShape))
 	--_log("Collidable entity registered: "..Entity.toString(entity))
 end
 
@@ -112,7 +112,7 @@ _.moved=function(entity)
 		-- Pantera. Its ok for now
 		-- также сюда приходим при использовании котла
 		-- чтобы добавить коллизию - нужно чтобы было в _shapeByEntity -> Collision.add
-		log("entity has no collision:"..entity.entityName)
+		log("entity has no collision:"..entity.entity_name)
 	end
 	-- _debugShape=movedRect
 end

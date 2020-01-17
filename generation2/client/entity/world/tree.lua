@@ -2,7 +2,7 @@
 
 local _={}
 
-_.entityName="tree"
+_.entity_name="tree"
 
 
 _.draw=BaseEntity.draw

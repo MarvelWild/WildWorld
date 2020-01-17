@@ -1,4 +1,141 @@
-перекатываемся во фримайнд
+
+			got working state, commit!
+		>back to riding )
+			
+		gen1 knowledge:
+			log message confirmed
+		client execution
+			log message confirmed
+		server execution
+		
+			all event emitters are in server_service
+		emit mount event
+	>implement mountable
+mount pegasus
+
+	
+	
+	
+	
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	+when refactoring, do both client and server!
++entityName->entity_name unfinished refactor
++levelName-level_name
+
+	Error: shared/entity/trait/movable.lua:49: attempt to index local 'actor' (a nil value)
+stack traceback:
+        [string "boot.lua"]:777: in function '__newindex'
+        shared/entity/trait/movable.lua:49: in function 'move'
+        entity/service/client_service.lua:87: in function 'handler'
+
++client crash on move
+
++clear log, entity tostring reports level name now
+
+
+
+
+
+
+
+				no help, other dirs interferring. hack editor, no ugly naming!
+			try rename to e
+		entity folder is interferring
+	make entity to appear at top of list
+qol
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+		+old entity name came from save
+		
+		+Error: shared/lib/powlov/module/entity/entity.lua:257: attempt to concatenate local 'result'
+		
++make server start again	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 apple tree
@@ -10,8 +147,7 @@ tame animals
 
 
 		
-	>implement mountable
-mount pegasus
+
 
 	+move теперь шлём на левел а не всем
 +client 1 в космосе упал когда c2 start двигался
@@ -36,7 +172,7 @@ mount pegasus
 
 
 	event
-	{actorRef = {entityName = "pegasus", id = 8, levelName = "start"} --[[table: 0x294c6518]], code = "move", entityName = "Event", id = 210, 	target = "all", x = 201.37167591564, y = 680.51903374577} --[[table: 0x2943fb60]]
+	{actorRef = {entity_name = "pegasus", id = 8, level_name = "start"} --[[table: 0x294c6518]], code = "move", entity_name = "Event", id = 210, 	target = "all", x = 201.37167591564, y = 680.51903374577} --[[table: 0x2943fb60]]
 +error: move from start level went to space level player
 
 
@@ -169,7 +305,7 @@ server pause for debug
 возможность прогружать мир на сервере без клиента
 
 
-		+levelName to entity
+		+level_name to entity
 	+handle
 	+sim update event
 seed should grow
@@ -179,7 +315,7 @@ seed should grow
 +camera zoom+-
 
 	where it needed?
-add levelName to entities for convenience
+add level_name to entities for convenience
 	
 	log draw order - make sure its the reason of flicker
 consistent draw sort (flickering now)
@@ -462,11 +598,11 @@ server:
 			
 	812     onEntityRemoved:{
 		code = "entity_removed",
-		entityName = "Event",
+		entity_name = "Event",
 		entityRef = {
-			entityName = "player",
+			entity_name = "player",
 			id = 4,
-			levelName = "start"
+			level_name = "start"
 		},
 		id = 48,
 		level = "start",

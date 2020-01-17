@@ -2,8 +2,8 @@
 global Db
 stores-persists entities
 format: 
-local entitiesContainer=_levelContainer[levelName]
-local entityContainer=entitiesContainer[entityName]
+local entitiesContainer=_levelContainer[level_name]
+local entityContainer=entitiesContainer[entity_name]
 local entity=entityContainer[entityId]
 
 server only. todo: make it not exist on client
@@ -39,26 +39,26 @@ end
 
 -- creates empty
 -- 
-local getEntityContainer=function(levelContainer, entityName)
-	local result = levelContainer[entityName]
+local getEntityContainer=function(levelContainer, entity_name)
+	local result = levelContainer[entity_name]
 	if result==nil then
 		result={}
-		levelContainer[entityName]=result
+		levelContainer[entity_name]=result
 	end
 	return result
 end
 
 
--- key=entityName val={id=entity}
-local getLevelContainer=function(levelName)
-	local result = _levelContainers[levelName]
+-- key=entity_name val={id=entity}
+local getLevelContainer=function(level_name)
+	local result = _levelContainers[level_name]
 	if result==nil then 
 		result={}
-		if _levelContainers==nil or levelName==nil then
+		if _levelContainers==nil or level_name==nil then
 			local a=1
 		end
 		
-		_levelContainers[levelName]=result
+		_levelContainers[level_name]=result
 	end
 	
 	return result
@@ -68,55 +68,55 @@ end
 
 
 -- put entity into level
--- levelName optional
-_.add=function(entity, levelName)
+-- level_name optional
+_.add=function(entity, level_name)
 	assert(entity)
 	
-	if levelName==nil then
-		levelName=entity.levelName
-		assert(levelName)
+	if level_name==nil then
+		level_name=entity.level_name
+		assert(level_name)
 	else
 
-		if levelName~="player" then
-			entity.levelName=levelName
+		if level_name~="player" then
+			entity.level_name=level_name
 		end
 		
 	end
 	
-	local levelContainer=getLevelContainer(levelName)
+	local levelContainer=getLevelContainer(level_name)
 	
-	local entityName=entity.entityName
+	local entity_name=entity.entity_name
 	
-	local entityContainer=getEntityContainer(levelContainer,entityName)
+	local entityContainer=getEntityContainer(levelContainer,entity_name)
 	-- table.insert(entityContainer, entity)
 	local entityId=entity.id
 	assert(entityContainer[entityId]==nil)
 	entityContainer[entityId]=entity
 	
-	if Level.isActive(levelName) then
+	if Level.isActive(level_name) then
 		-- todo: preevent double add
 		Entity.add(entity)
 	end
 	
 	
 	if _.onAdded~=nil then
-		_.onAdded(entity, levelName)
+		_.onAdded(entity, level_name)
 	end
 	
 end
 
 -- remove entity from level
-_.remove=function(entity,levelName)
-	if levelName==nil then
-		levelName=entity.levelName
-		assert(levelName)
+_.remove=function(entity,level_name)
+	if level_name==nil then
+		level_name=entity.level_name
+		assert(level_name)
 	end
 	
-	local levelContainer=getLevelContainer(levelName)
+	local levelContainer=getLevelContainer(level_name)
 	
-	local entityName=entity.entityName
+	local entity_name=entity.entity_name
 	
-	local entityContainer=getEntityContainer(levelContainer,entityName)
+	local entityContainer=getEntityContainer(levelContainer,entity_name)
 	-- table.insert(entityContainer, entity)
 	local entityId=entity.id
 	if (entityContainer[entityId]==nil) then
@@ -125,25 +125,25 @@ _.remove=function(entity,levelName)
 	
 	entityContainer[entityId]=nil
 	
-	if Level.isActive(levelName) then
+	if Level.isActive(level_name) then
 		Entity.remove(entity)
 	end
 	
 	if _onRemoved~=nil then
 		-- sends entity_removed notification
-		_onRemoved(entity, levelName)
+		_onRemoved(entity, level_name)
 	end
 end
 
-local get=function(levelName,entityName, entityId)
-	local levelContainer=getLevelContainer(levelName)
-	local entityContainer=getEntityContainer(levelContainer, entityName)
+local get=function(level_name,entity_name, entityId)
+	local levelContainer=getLevelContainer(level_name)
+	local entityContainer=getEntityContainer(levelContainer, entity_name)
 	local result = entityContainer[entityId]
 	return result
 end
 
-local getByRef=function(ref, levelName)
-	return get(levelName, ref.entityName, ref.id)
+local getByRef=function(ref, level_name)
+	return get(level_name, ref.entity_name, ref.id)
 end
 
 _.get=get
