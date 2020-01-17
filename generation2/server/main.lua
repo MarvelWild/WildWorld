@@ -115,6 +115,11 @@ end
 
 
 
+
+love.draw=function()
+	love.graphics.print("server up")
+end
+
 love.quit=function()
 	Db.save()
 	Pow.quit()

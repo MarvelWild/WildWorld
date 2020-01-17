@@ -1,6 +1,6 @@
 
-			got working state, commit!
-		>back to riding )
+
+
 			
 		gen1 knowledge:
 			log message confirmed
@@ -8,8 +8,28 @@
 			log message confirmed
 		server execution
 		
-			all event emitters are in server_service
-		emit mount event
+		
+		
+							+with unwanted server code
+						+or expose for now? no, do not garbage client
+						
+								
+							
+									>sleep
+								try separated
+							>merge server and shared or keep separated?
+							+sounds ok. see movable shared trait
+						mountable shared base module?
+					both should call Mountable.do_toggle_mount?
+				error: event unprocessed code="do_mount" on client
+		
+		
+				+Error: entity/trait/mountable.lua:20: attempt to index global 'Event' (a nil value)
+				
+			emitting from mountable
+				+nah, emit from everywhere you want!
+			+all event emitters are in server_service
+		>emit mount event
 	>implement mountable
 mount pegasus
 
@@ -55,9 +75,9 @@ mount pegasus
 
 
 
++server draw something )
 
-
-
++got working state, commit!
 
 	+when refactoring, do both client and server!
 +entityName->entity_name unfinished refactor
@@ -533,7 +553,7 @@ events={
 
 
 server sends create_player_response to client:
-	should happens in wip
+	should happens in 
 	 error:event unprocessed:{
 	player={
 					entity="player",

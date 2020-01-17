@@ -7,7 +7,7 @@ function love.conf(t)
     t.window.title = "Wild World 2 server" 
     t.version = "11.1"
 		t.console = true
-		t.window.x=200
+		t.window.x=700
 		t.window.y=250
 		t.identity="WiW2_server"
 end

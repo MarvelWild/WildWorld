@@ -36,6 +36,8 @@ end
 
 
 
+
+
 -- вызывается по флагу is_movable
 _.destroy=function(entity)
 	stop_tween(entity)
