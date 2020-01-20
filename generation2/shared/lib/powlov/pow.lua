@@ -399,4 +399,21 @@ end
 
 
 
+
+-- multi-file module, members are merged
+-- example: Cell=multirequire("shared/world/cell","world/cell")
+_.multirequire=function(...)
+	local params={...}
+	local result=nil
+	for k,path in ipairs(params) do
+		if result==nil then
+			result=require(path)
+		else
+			result=_lume.merge(result, require(path))
+		end
+	end
+	
+	return result
+end
+
 return _

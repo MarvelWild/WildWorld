@@ -1,36 +1,22 @@
+	break, rest
+	
+	
+	+where they stored on client? in game_state
++enfity.find on client. _deref
 
 
+			+read gen1
+		+reverse: find_by_ref (not implemented in gen2)
+		+_ref=Entity.get_reference
 
-			
-		gen1 knowledge:
-			log message confirmed
-		client execution
-			log message confirmed
-		server execution
-		
-		
-		
-							+with unwanted server code
-						+or expose for now? no, do not garbage client
-						
-								
-							
-									>sleep
-								try separated
-							>merge server and shared or keep separated?
-							+sounds ok. see movable shared trait
-						mountable shared base module?
-					both should call Mountable.do_toggle_mount?
-				error: event unprocessed code="do_mount" on client
-		
-		
-				+Error: entity/trait/mountable.lua:20: attempt to index global 'Event' (a nil value)
-				
-			emitting from mountable
-				+nah, emit from everywhere you want!
-			+all event emitters are in server_service
-		>emit mount event
-	>implement mountable
+			>test/implment bind on server
+		bind properties mounted_on, mounted_by
+		move rider to mount
+	>implement mount:
+	
+	
+	implement deref on server
+	think generic way to pin one entity to another, and move together. later
 mount pegasus
 
 	
@@ -66,6 +52,56 @@ mount pegasus
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	+implement deref on client
++bind properties mounted_on, mounted_by
+
+server: drop timeouted player (i may leave them in world actually, that seems fun)
+server: do not join twice, use same player object if still not dropped by timeout
+
+
+			make it auto for next modules later
+		+multirequire shared mountable on client
+		+use mountable.do_mount to process
+		
+	+unprocessed code="do_mount" on client
+				+Error: entity/trait/mountable.lua:20: attempt to index global 'Event' (a nil value)
+				
+			+emitting from mountable
+				+nah, emit from everywhere you want!
+			+all event emitters are in server_service
+		+emit mount event
+	+implement mountable
+			+with unwanted server code
+		+or expose for now? no, do not garbage client
+					
+					
+					
+					+which project RL2
+				+try mixing. read gen -1
+				-try separated
+			+merge server and shared or keep separated?
+			+sounds ok. see movable shared trait
+		+mountable shared base module?
+	+both should call Mountable.do_mount? 	try shared
++mount part: mountable trait (server+client)
 
 
 

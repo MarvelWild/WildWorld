@@ -60,6 +60,8 @@ _.getPlayer=function()
 	end
 end
 
+
+-- onFound создавался для возможности удалить, понимается плохо, порефакторить
 _.findEntity=function(entityRef,onFound)
 	if _lastState==nil then return nil end
 	

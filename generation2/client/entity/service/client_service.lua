@@ -81,7 +81,7 @@ local doMove=function(event)
 	-- local actor=Db.getByRef(event.actorRef)
 	local actor=GameState.findEntity(event.actorRef)
 	if actor==nil then
-		local a=1
+		log("warn: move no actor")
 	end
 	
 	Movable.move(actor,event.x,event.y)
@@ -148,6 +148,20 @@ local onEntityAdded=function(event)
 	end
 end
 
+local do_mount=function(event)
+	-- paste from server
+	log("client_service.do_mount start")
+	
+	local rider_ref=event.rider_ref
+	local mount_ref=event.mount_ref
+	
+	local rider=_deref(rider_ref)
+	local mount=_deref(mount_ref)
+	
+	Mountable.do_mount(rider,mount)
+end
+
+
 
 -- 
 local afterLogin=function(response)
@@ -162,6 +176,7 @@ local afterLogin=function(response)
 	_event.addHandler("move", doMove)
 	_event.addHandler("entity_removed", onEntityRemoved)
 	_event.addHandler("entity_added", onEntityAdded)
+	_event.addHandler("do_mount", do_mount)
 	
 	log("added handler of create_player_response",'event')
 	-- todo: remove handler on completion

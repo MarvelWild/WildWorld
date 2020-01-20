@@ -18,6 +18,7 @@ _G.common=nil
 
 
 require("shared.libs")
+
 Pow.setup(
 	{
 		--"server",
@@ -32,6 +33,7 @@ EditorService=require("entity.service.editor_service")
 GameService=require("entity.service.game")
 CollisionService=require("entity.service.collision_service")
 GameState=require("entity.service.game_state")
+_deref=GameState.findEntity
 
 
 love.draw=function()
@@ -54,6 +56,11 @@ end
 
 local loadEntities=function()
 	Movable=require "shared.entity.trait.movable"
+	-- Mountable=Pow.multirequire("shared.entity.trait.mountable","entity.trait.mountable")
+	
+	-- no client part for now
+	Mountable=require("shared.entity.trait.mountable")
+	
 	-- code
 	Entity.addCode("player",require("entity.world.player"))
 	

@@ -321,12 +321,16 @@ end
 -- 
 -- generic part attach rider to mount
 -- 
-local do_mount=function()
-	-- wip
+local do_mount=function(event)
 	log("server_service.do_mount start")
-	Mountable.do_toggle_mount
 	
+	local rider_ref=event.rider_ref
+	local mount_ref=event.mount_ref
 	
+	local rider=nil
+	local mount=nil
+	
+	Mountable.do_mount(rider,mount)
 end
 
 
