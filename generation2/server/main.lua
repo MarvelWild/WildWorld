@@ -26,6 +26,7 @@ Id=Pow.id
 BaseEntity=Pow.baseEntity
 Db=require("shared.lib.db.db")
 Db.init(Pow.saveDir)
+_deref=Db.getByRef
 ServerService=require("entity.service.server_service")
 CollisionService=require("entity.service.collision_service")
 ConfigService=require("shared.entity.service.config")

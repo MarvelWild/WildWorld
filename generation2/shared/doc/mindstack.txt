@@ -1,5 +1,9 @@
-	break, rest
+
+add level name into reference. - later
+
 	
+	test with Db.getByRef
+_deref on server
 	
 	+where they stored on client? in game_state
 +enfity.find on client. _deref
@@ -8,6 +12,7 @@
 			+read gen1
 		+reverse: find_by_ref (not implemented in gen2)
 		+_ref=Entity.get_reference
+
 
 			>test/implment bind on server
 		bind properties mounted_on, mounted_by

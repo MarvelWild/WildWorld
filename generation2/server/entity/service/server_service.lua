@@ -324,11 +324,30 @@ end
 local do_mount=function(event)
 	log("server_service.do_mount start")
 	
+	-- need to know level name here
+	--[[
+	
+	how its done in other places
+	local player=Player.getByLogin(event.login)
+	local level_name=player.level_name
+	
+	how i see it:
+	put level name into ref
+	
+	use old method for now
+	
+	where event.login populated?
+		Event.new
+	
+	why it empty in do_mount event?
+		emitted on server
+	]]--
+	
 	local rider_ref=event.rider_ref
 	local mount_ref=event.mount_ref
 	
-	local rider=nil
-	local mount=nil
+	local rider=_deref(rider_ref)
+	local mount=_deref(mount_ref)
 	
 	Mountable.do_mount(rider,mount)
 end

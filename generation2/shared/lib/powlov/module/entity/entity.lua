@@ -382,10 +382,22 @@ _.get_reference=function(entity)
 	result.id=entity.id
 	result.entity_name=entity.entity_name
 	
+	-- todo: может быть избыточно но удобно, понаблюдать
+	result.level_name=entity.level_name
+	
 	return result
 end
 
 
+
+
+_.log=function()
+	log("logging all entities:")
+	for entity,has_entity in pairs(_all) do
+		log(_ets(entity))
+	end
+	
+end
 
 return _
 

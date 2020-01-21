@@ -143,6 +143,9 @@ local get=function(level_name,entity_name, entityId)
 end
 
 local getByRef=function(ref, level_name)
+	if level_name==nil then 
+		level_name=ref.level_name 
+	end
 	return get(level_name, ref.entity_name, ref.id)
 end
 

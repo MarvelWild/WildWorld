@@ -2,6 +2,11 @@
 
 local _={}
 
+--[[
+связать 2 сущности
+подвинуть райдера в точку маунта
+
+]]--
 _.do_mount=function(rider,mount)
 	log("shared mountable: do_toggle_mount")
 	
@@ -25,6 +30,8 @@ _.do_mount=function(rider,mount)
 			mount.mounted_by=_ref(rider)
 		end
 	end
+	
+	-- wip move rider to mount
 end
 
 return _
