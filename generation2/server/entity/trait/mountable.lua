@@ -21,6 +21,7 @@ _.toggle_mount=function(rider,mount)
 	-- no, animation, and stuff, so it's a mount
 	local do_mount_event=_event.new("do_mount")
 	do_mount_event.target="all"
+	do_mount_event.is_mounting=is_mounting
 	
 	-- props updated in response, only directive to mount here
 	do_mount_event.rider_ref=_ref(rider)

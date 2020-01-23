@@ -9,6 +9,7 @@ _.new=function()
 	result.level_name='start'
 	
 	-- todo это свойства спрайта
+	-- но и в сущности оставить спрайто независимые
 	result.footX=7
 	result.footY=15
 	
@@ -23,6 +24,9 @@ _.new=function()
 	-- used for collisions
 	result.w=9
 	result.h=16
+	
+	result.riderX=7
+	result.riderY=11
 	
 	
 	

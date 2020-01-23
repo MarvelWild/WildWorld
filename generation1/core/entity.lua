@@ -738,7 +738,7 @@ end
 
 
 -- локальное мгновенное перемещение сущности. 
--- если нужно плавное - 
+-- если нужно плавное - smoothMove
 _.move=function(entity,newX,newY)
 	entity.x=newX
 	entity.y=newY

@@ -112,16 +112,15 @@ end
 
 
 local doQuit=function()
+	log("*** Quit pow ***")
 	Pow.quit()
 	
-	log("*** Quit ***")
+	log("*** Quit event ***")
 	love.event.quit()
 end
 
 local startQuitTimer=function()
 	log("startQuitTimer")
-	
-	log("quitting by timer")
 	Pow.timer:after(2, doQuit)
 end
 

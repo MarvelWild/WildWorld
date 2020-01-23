@@ -1,3 +1,5 @@
+-- shared movable
+
 local _={}
 
 
@@ -12,19 +14,44 @@ local stop_tween=function(entity)
 	end
 end
 
+local on_moved=function(moved_entity)
+	CollisionService.onEntityMoved(moved_entity)
+	
+	
+	if moved_entity.mounted_by~=nil then
+		local rider=_deref(moved_entity.mounted_by)
+		
+		-- rider could log off, should handle on delete
+		if rider~=nil then
+			local riderX,riderY=Mountable.get_rider_point(moved_entity,rider)
+		
+			_.instant_move(rider,riderX,riderY)
+		end
+	end
+end
+
+_.instant_move=function(entity,new_x,new_y)
+	entity.x=new_x
+	entity.y=new_y
+	
+	-- update rider collision
+	on_moved(entity)
+end
+
 
 local smoothMove=function(actor,durationSec,x,y)
 	local onComplete=function(p1,p2) 
 		_smooth_moving[actor]=nil
 	end
 
+	-- todo: actor может обновиться, это dto. рассмотреть этот случай/написать тест.
 	local existing_tween=_smooth_moving[actor]
 	if existing_tween~=nil then
 		existing_tween:stop()
 	end
 	
 	local onUpdate=function()
-		CollisionService.onEntityMoved(actor)
+		on_moved(actor)
 	end
 	
 	local tween=Flux.to(actor, durationSec, { x=x, y=y }):ease("quadout")
@@ -44,14 +71,20 @@ _.destroy=function(entity)
 end
 
 
+-- todo: speed/time
 -- only moves locally, no event
 _.move=function(actor,x,y)
 	if actor==nil then
 		local a=1
 	end
 	
-	-- по этому флагу entity определит destroy
-	-- можно сделать в init, понятней будет
+	if actor.mounted_on~=nil then
+		local final_actor=_deref(actor.mounted_on)
+		actor=final_actor
+	end
+
+	-- todo: test updated entity
+	-- по этому флагу entity определит destroy to stop tweens
 	actor.is_movable=true
 	
 	local finalX

@@ -134,15 +134,12 @@ end
 
 
 
--- handler to "move"
+-- server handler to "move"
 local doMove=function(event)
-	-- local level_name="player"
 	local actorRef=event.actorRef
-	if actorRef==nil then
-		local a=1
-	end
 	
 	local actor=Db.getByRef(actorRef, actorRef.level_name)
+	
 	Movable.move(actor,event.x,event.y)
 end
 
@@ -317,10 +314,7 @@ end
 
 
 
--- wip: server mount handler
--- 
--- generic part attach rider to mount
--- 
+-- server mount handler
 local do_mount=function(event)
 	log("server_service.do_mount start")
 	
@@ -349,7 +343,7 @@ local do_mount=function(event)
 	local rider=_deref(rider_ref)
 	local mount=_deref(mount_ref)
 	
-	Mountable.do_mount(rider,mount)
+	Mountable.do_mount(rider,mount, event.is_mounting)
 end
 
 

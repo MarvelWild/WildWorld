@@ -120,6 +120,7 @@ end
 
 
 
+-- send move intent
 _.move=function(actor,x,y)
 	
 	local nextX,nextY

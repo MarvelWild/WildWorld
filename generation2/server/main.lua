@@ -80,6 +80,10 @@ local entity_on_removed=function(entity)
 		Movable.destroy(entity)
 	end
 	
+	if entity.is_mountable then
+		Mountable.destroy(entity)
+	end
+	
 end
 
 

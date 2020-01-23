@@ -8,6 +8,9 @@ _.new=function()
 	result.sprite="pegasus"
 	BaseEntity.init_bounds_from_sprite(result)
 	
+	result.mountX=27
+	result.mountY=31
+	
 	return result
 end
 

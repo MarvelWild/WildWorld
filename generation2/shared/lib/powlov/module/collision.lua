@@ -184,6 +184,7 @@ _.getAtEntity=function(entity)
 		local collisionEntity=_entityByShape[shape]
 		if collisionEntity==nil then
 			local a=1
+			log("error:collisionEntity is nil")
 			_.debug_print()
 			--assert(collisionEntity)
 		end
