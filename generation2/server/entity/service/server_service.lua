@@ -47,7 +47,7 @@ end
 
 
 local getLevelState=function(level_name)
-	log("getLevelState:"..level_name)
+	log("getLevelState:"..level_name, "verbose")
 	
 	local state={}
 	
@@ -97,7 +97,7 @@ end
 
 -- client picked player, and wants to start game. send him game state
 local gameStart=function(event)
-	log("game_start:"..Pow.pack(event))
+	log("game_start:"..Pow.pack(event), "verbose")
 	
 	local login=event.login
 	local playerId=event.playerId
@@ -316,7 +316,7 @@ end
 
 -- server mount handler
 local do_mount=function(event)
-	log("server_service.do_mount start")
+	log("server_service.do_mount start", "verbose")
 	
 	-- need to know level name here
 	--[[

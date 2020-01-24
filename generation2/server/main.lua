@@ -36,7 +36,7 @@ WorldEntities=nil
 local loadEntity=function(path)
 	local entity=require(path)
 	
-	log("loadEntity:"..path)
+	log("loadEntity:"..path,"verbose")
 	if entity==true then
 		log("error:entity not loaded:"..path)
 	end

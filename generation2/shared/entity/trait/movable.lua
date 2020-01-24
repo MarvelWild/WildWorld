@@ -40,6 +40,8 @@ end
 
 
 local smoothMove=function(actor,durationSec,x,y)
+	log("smoothMove:".._ets(actor).." to"..x..","..y, "move")
+	
 	local onComplete=function(p1,p2) 
 		_smooth_moving[actor]=nil
 	end
@@ -73,14 +75,17 @@ end
 
 -- todo: speed/time
 -- only moves locally, no event
-_.move=function(actor,x,y)
-	if actor==nil then
-		local a=1
-	end
+-- todo: refactor params to table
+_.move=function(actor,x,y,force_this,ignore_foot)
+--	if actor==nil then
+--		local a=1
+--	end
 	
-	if actor.mounted_on~=nil then
-		local final_actor=_deref(actor.mounted_on)
-		actor=final_actor
+	if not force_this then
+		if actor.mounted_on~=nil then
+			local final_actor=_deref(actor.mounted_on)
+			actor=final_actor
+		end
 	end
 
 	-- todo: test updated entity
@@ -90,9 +95,7 @@ _.move=function(actor,x,y)
 	local finalX
 	local finalY
 
-	
-	
-	if actor.footX~=nil then
+	if not ignore_foot and actor.footX~=nil then
 		finalX=x-actor.footX
 		finalY=y-actor.footY
 	else

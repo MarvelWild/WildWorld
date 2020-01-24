@@ -5,6 +5,8 @@
 -- top collision abstraction layer / api
 -- HC lib beneath
 
+-- note use _log inside this module
+
 local _={}
 
 local _hc=nil
@@ -15,7 +17,12 @@ local _pointer=nil
 local _shapeByEntity={}
 --shape by entity
 local _entityByShape={}
-log("collision init: _entityByShape mem:"..get_mem_addr(_entityByShape))
+
+local _log=function(message)
+	log(message,"collision")
+end
+
+_log("collision init: _entityByShape mem:"..get_mem_addr(_entityByShape))
 
 _.init=function(pow)
 	_pow=pow
@@ -28,9 +35,7 @@ _.init=function(pow)
 	_entityByShape[_pointer]=pointerEntity
 end
 
-local _log=function(message)
-	log(message,"collision")
-end
+
 
 
 -- registered collision objects
@@ -112,7 +117,7 @@ _.moved=function(entity)
 		-- Pantera. Its ok for now
 		-- также сюда приходим при использовании котла
 		-- чтобы добавить коллизию - нужно чтобы было в _shapeByEntity -> Collision.add
-		log("entity has no collision:"..entity.entity_name)
+		_log("entity has no collision:"..entity.entity_name)
 	end
 	-- _debugShape=movedRect
 end
@@ -136,7 +141,7 @@ end
 
 -- returns nil or table with entities
 _.getAtRect=function(x,y,w,h)
-	log("Collision.getAtRect:"..xywh(x,y,w,h))
+	_log("Collision.getAtRect:"..xywh(x,y,w,h))
 	
 	-- todo: хранить его как и pointer
 	local rect=_hc:rectangle(x,y,w,h)
@@ -184,7 +189,7 @@ _.getAtEntity=function(entity)
 		local collisionEntity=_entityByShape[shape]
 		if collisionEntity==nil then
 			local a=1
-			log("error:collisionEntity is nil")
+			_log("error:collisionEntity is nil")
 			_.debug_print()
 			--assert(collisionEntity)
 		end
@@ -199,7 +204,7 @@ _.getAtEntity=function(entity)
 	_log("Collision.getAtEntity. Count:"..result_count.." entity:".._ets(entity))
 	if result~=nil then
 		for k,collision in pairs(result) do
-			log("collision:".._ets(collision))
+			_log("getAtEntity collision:".._ets(collision))
 		end
 	end
 	
@@ -226,14 +231,14 @@ end
 
 
 _.debug_print=function()
-	log("collisions debug_print start")
-	log("ebs mem:"..get_mem_addr(_entityByShape))
+	_log("collisions debug_print start")
+	_log("ebs mem:"..get_mem_addr(_entityByShape))
 	for shape,entity in pairs(_entityByShape) do
-		log("entity:".._ets(entity)..' shape:'..Pow.inspect(shape))
+		_log("entity:".._ets(entity)..' shape:'..Pow.inspect(shape))
 	end
 	
 	
-	log("collisions debug_print end")
+	_log("collisions debug_print end")
 end
 
 return _

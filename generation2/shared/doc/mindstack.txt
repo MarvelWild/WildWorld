@@ -1,3 +1,81 @@
+commit stable state
+		
+		
+		
+	now it moves to ul corner
+mount foot position
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+				+yes, some moves should calc foot point, some not, like here, with sit point
+			+test
+		+foot adjustment?
+	+calc is right, move is not?
+
+
+		
+		+check gen1 - same
+	+y seems inverted? - no
+
+		+_get_rider_point info:
+		+mount at:
+		+player at:
+	+story (log this): (unlog this)
++move to seat.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 [[
 gen1:
 

@@ -46,10 +46,16 @@ end
 channels.db=newChannel("db")
 channels.net=newChannel("net")
 channels.event=newChannel("event")
+
+-- todo: alias v
 channels.verbose=newChannel("verbose")
 channels.entity=newChannel("entity")
 channels.input=newChannel("input")
 channels.collision=newChannel("collision")
+
+-- todo: too much typing here
+channels.move=newChannel("collision")
+channels.mount=newChannel("mount")
 
 -- all console settings
 channels.entity.useConsole=false
@@ -59,6 +65,9 @@ channels.event.useConsole=false
 channels.db.useConsole=false
 channels.net.useConsole=false
 channels.collision.useConsole=false
+--channels.move.useConsole=false
+--channels.mount.useConsole=false
+
 
 -- used if no channel name provided
 local _mainChannel=newChannel("main")

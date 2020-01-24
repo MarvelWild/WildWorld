@@ -45,7 +45,7 @@ end
 
 -- activate entire level: all entities on it
 _.activate=function(level_name)
-	log("level activate:"..level_name)
+	log("level activate:"..level_name, "verbose")
 	
 	if _activeLevels[level_name] then return end
 	

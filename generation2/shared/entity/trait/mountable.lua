@@ -2,7 +2,7 @@
 
 local _={}
 
---[[
+--[[ where rider should sit on this mount
 duck typing:
 rider.riderX
 rider.riderY
@@ -13,6 +13,14 @@ mount.mountY
 _.get_rider_point=function(mount, rider)
 	local riderX=mount.x+mount.mountX-rider.riderX
 	local riderY=mount.y+mount.mountY-rider.riderY
+	
+--	log("get_rider_point calculation: riderX=mount.x+mount.mountX-rider.riderX"..
+--		riderX.."="..mount.x.."+"..mount.mountX.."-"..rider.riderX
+--		,"mount")
+	
+--	log("get_rider_point calculation: riderY=mount.y+mount.mountY-rider.riderY"..
+--		riderY.."="..mount.y.."+"..mount.mountY.."-"..rider.riderY
+--		,"mount")
 	
 	return riderX,riderY 
 end
@@ -26,7 +34,7 @@ local _get_rider_point=_.get_rider_point
 ]]--
 _.do_mount=function(rider,mount,is_mounting)
 	log("shared mountable: do_toggle_mount start. rider:".._ets(rider)..
-		" mount:".._ets(mount).." is_mounting:"..tostring(is_mounting))
+		" mount:".._ets(mount).." is_mounting:"..tostring(is_mounting), "mount")
 	
 	-- todo: make this 1 time on create
 	rider.is_mountable=true
@@ -51,18 +59,17 @@ _.do_mount=function(rider,mount,is_mounting)
 			rider.mounted_on=_ref(mount)
 			mount.mounted_by=_ref(rider)
 			
-			log("mount references set")
+			log("mount references set", "verbose")
 			
 			if rider==nil then
 				local a=1
 			end
 			
-				
-			
-			-- wip test
 			-- jump to seat
+			log("mounting. mount:".._ets(mount), "mount")
+			
 			local riderX,riderY=_get_rider_point(mount,rider)
-			Movable.move(rider,riderX,riderY)
+			Movable.move(rider,riderX,riderY,true,true)
 		end
 	end
 end

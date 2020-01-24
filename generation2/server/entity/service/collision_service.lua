@@ -12,7 +12,7 @@ local _levelCollisions={}
 local getLevelCollisions=function(level_name)
 	local result=_levelCollisions[level_name]
 	if result==nil then
-		log("created new level collisions:"..level_name)
+		log("created collision level:"..level_name, "verbose")
 		result=Pow.newCollision()
 		_levelCollisions[level_name]=result
 	end
