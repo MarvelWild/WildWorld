@@ -8,6 +8,7 @@ Current state: early development. Generation: 2 (rewrite from gen1).
 <details>
  <summary>Controls</summary>
 
+
 editor: F11
 
 	prev/next editor item: lp- kp+
@@ -27,6 +28,7 @@ scale: -,=
 
 <details>
  <summary>Features</summary>
+	
 
 2d multiplayer world
 
