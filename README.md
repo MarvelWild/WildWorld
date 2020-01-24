@@ -15,7 +15,9 @@ editor: F11
 	place editor item: rmb
 
 move: lmb
+
 mount/dismount/interact: space
+
 scale: -,=
 
 </details>
@@ -27,8 +29,11 @@ scale: -,=
  <summary>Features</summary>
 
 2d multiplayer world
+
 Ingame editor
+
 Multiple levels with portals
+
 riding
 
 
