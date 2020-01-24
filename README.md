@@ -3,38 +3,20 @@ Freestyle/multiplayer/sandbox/experimental game written with [LÖVE ](https://lo
 
 Influenced by Sketch Tales, World of Warcraft, Minecraft, Don't Starve, Realm of the Mad God, Atari 2600 games.
 
-Current state: early development.
+Current state: early development. Generation: 2 (rewrite from gen1).
 
 <details>
  <summary>Controls</summary>
 
 editor: F11
 
-	next editor item: page down
+	prev/next editor item: lp- kp+
 
 	place editor item: rmb
 
-debugger: F12
-
-	dump world F1
-
 move: lmb
-
-select world object: shift+lmb
-
-use active item: rmb
-
-switch active item: 1-4
-
-mount/dismount horse: x
-
-change player skin: z
-
-change player sprite to any sprite: home
-
-scale: kp+,kp-
-
-profiler: F10
+mount/dismount/interact: space
+scale: -,=
 
 </details>
 
@@ -45,13 +27,9 @@ profiler: F10
  <summary>Features</summary>
 
 2d multiplayer world
-9 creatures (pantera, pegasus)
-	some of them mountable
-10 items (cauldron, tree seed,...)
 Ingame editor
-
-upcoming: 
-	multiple worlds with portals
+Multiple levels with portals
+riding
 
 
 </details>
