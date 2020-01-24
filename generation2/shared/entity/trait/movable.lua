@@ -42,6 +42,11 @@ end
 local smoothMove=function(actor,durationSec,x,y)
 	log("smoothMove:".._ets(actor).." to"..x..","..y, "move")
 	
+	if actor.entity_name=="pegasus" then
+		local a=1
+	end
+	
+	
 	local onComplete=function(p1,p2) 
 		_smooth_moving[actor]=nil
 	end
@@ -77,6 +82,7 @@ end
 -- only moves locally, no event
 -- todo: refactor params to table
 _.move=function(actor,x,y,force_this,ignore_foot)
+	log("Movable.move:".._ets(actor).." to:"..x..","..y)
 --	if actor==nil then
 --		local a=1
 --	end
@@ -95,15 +101,35 @@ _.move=function(actor,x,y,force_this,ignore_foot)
 	local finalX
 	local finalY
 
-	if not ignore_foot and actor.footX~=nil then
-		finalX=x-actor.footX
-		finalY=y-actor.footY
+	if not ignore_foot then
+		if actor.footX~=nil then
+			finalX=x-actor.footX
+			finalY=y-actor.footY
+		else
+			log("warn: movable has no footX:".._ets(actor))
+			finalX=x
+			finalY=y
+		end
 	else
 		finalX=x
 		finalY=y
 	end
 	
+	
+	
+	
 	smoothMove(actor,2,finalX,finalY)
 end
+
+
+_.is_moving=function(actor)
+	return _smooth_moving[actor]~=nil
+end
+
+_.cannot_move=function(actor)
+	local is_mounting=Mountable.is_mounting(actor)
+	return is_mounting
+end
+
 
 return _

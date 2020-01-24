@@ -1,9 +1,71 @@
-commit stable state
+		+warn: action on multiple objects not implemented - use random
+	+should be able to unmount when riding over another mount
+
+	test multiplayer
+test mount/unmount	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+		
+
 		
 		
 		
-	now it moves to ul corner
-mount foot position
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+			+warn in that case
+		+check feet of pegasus - nil
+	+story: i click ul corner of mount, expecting it to move feet point there
+	+collect data 
++mount foot position - now it moves to ul corner
 
 
 
@@ -36,7 +98,23 @@ mount foot position
 
 
 
+		+now it stored in Movable._smooth_moving
+	+detect when rider still moving to seat
 
+
+		queue move?
+		fast finish, move both?
+		
+					sit
+					approach
+				split mount into parts
+			fine too, cancel prev command!, make later
+		move player
+		
+			+ok, some actions require time
+		+not accept move command?
+	should be:
++if player moves while moving to seat, then pegasus start to move, and player not
 
 
 

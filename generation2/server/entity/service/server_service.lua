@@ -118,10 +118,18 @@ local gameStart=function(event)
 	_.sendFullState(player)
 end
 
+-- handler to intent_move
 local movePlayer=function(event)
 	local responseEvent=_event.new("move")
 	
 	local player=Player.getByLogin(event.login)
+	
+	if Movable.cannot_move(player) then
+		log("cannot move")
+		return
+	end
+	
+	
 	responseEvent.target="level"
 	responseEvent.level=player.level_name
 	responseEvent.x=event.x
@@ -139,6 +147,32 @@ local doMove=function(event)
 	local actorRef=event.actorRef
 	
 	local actor=Db.getByRef(actorRef, actorRef.level_name)
+	
+	-- test not allow to move mount while rider still mounting
+	
+
+	
+	-- wip this should happed earlier, should not emit move at all
+	
+--	local mount_ref=actor.mounted_on
+--	if mount_ref~=nil then
+--		-- local mount=_deref(mount_ref)
+--		if Movable.is_moving(actor) then
+--			log("move cancel: rider is moving")
+--			return
+--		end
+--	end
+	
+	
+-- bug: intent to move comes from player
+--	local rider_ref=actor.mounted_by
+--	if rider_ref~=nil then
+--		local rider=_deref(rider_ref)
+--		if Movable.is_moving(rider) then
+--			log("move cancel: rider is moving")
+--			return
+--		end
+--	end
 	
 	Movable.move(actor,event.x,event.y)
 end
@@ -291,19 +325,29 @@ end
 local defaultAction=function(event)
 	local login=event.login
 	local player=Player.getByLogin(login)
-	local collisions=CollisionService.getEntityCollisions(player)
-	if collisions==nil then return end
+	local mounted_on=player.mounted_on
 	
-	local collisionsCount=#collisions
 	local target=nil
-	if collisionsCount==1 then
-		target=collisions[1]
-	elseif collisionsCount>1 then
-		-- todo: resolve target/give player a choice what to do
-		log("warn: action on multiple objects not implemented")
-	end
 	
-	if target==nil then return end
+	if mounted_on~=nil then
+		target=_deref(mounted_on)
+	else
+		local collisions=CollisionService.getEntityCollisions(player)
+		if collisions==nil then return end
+		
+		local collisionsCount=#collisions
+		
+		if collisionsCount==1 then
+			target=collisions[1]
+		elseif collisionsCount>1 then
+			-- todo: resolve target/give player a choice what to do
+			log("action on multiple objects not implemented, picking random target")
+			
+			target=Pow.lume.randomchoice(collisions)
+		end
+		
+		if target==nil then return end
+	end
 	
 	local actorCode=Player
 	local fnInteract=actorCode.interact

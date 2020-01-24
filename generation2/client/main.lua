@@ -2,6 +2,8 @@
 local isDebug=arg[#arg] == "-debug"
 if isDebug then require("mobdebug").start() end
 
+_traceback=debug.traceback
+
 -- todo: on server too
 
 -- todo: mobdebug failed, try newer one

@@ -8,6 +8,13 @@ _.new=function()
 	result.sprite="pegasus"
 	BaseEntity.init_bounds_from_sprite(result)
 	
+-- todo: from gen1, what it was for? editor placing...	flip point.
+--	result.originX=27
+--	result.originY=31	
+	
+	result.footX=22
+	result.footY=46	
+	
 	result.mountX=27
 	result.mountY=31
 	

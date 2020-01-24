@@ -3,6 +3,8 @@
 local isDebug=arg[#arg] == "-debug"
 if isDebug then require("mobdebug").start() end
 
+_traceback=debug.traceback
+
 require("shared.libs")
 
 local cleanSave=function()

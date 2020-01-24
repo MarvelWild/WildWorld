@@ -84,6 +84,9 @@ local doMove=function(event)
 		log("warn: move no actor")
 	end
 	
+	local a=1
+	
+	
 	Movable.move(actor,event.x,event.y)
 end
 
