@@ -1,4 +1,10 @@
 
+
+		https://github.com/kikito/bump.lua closer, slide cossision is start,
+			http://hc.readthedocs.org/? it only detect collision, not resolve move
+		implement is_solid
+	wall
+solid objects (impassable)
 	
 	
 	
@@ -23,7 +29,7 @@
 	
 	
 	
-solid objects (impassable)	
+	
 	
 	
 	
