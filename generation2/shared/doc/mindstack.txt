@@ -1,64 +1,91 @@
-		+warn: action on multiple objects not implemented - use random
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+solid objects (impassable)	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+ww-based stream minigame	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+		
+
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+				+warn: action on multiple objects not implemented - use random
 	+should be able to unmount when riding over another mount
 
-	test multiplayer
-test mount/unmount	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-
-		
-
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+			+p2 can mount p1 mounted creature
+			+on server - reject mount intent
+		+don't allow to mount already mounted
+			
+		+when picking from mutiple mounts to interact, ignore mounted
+	+test multiplayer
++test mount/unmount	
 		
 		
 			+warn in that case

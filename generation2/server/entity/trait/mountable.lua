@@ -15,6 +15,14 @@ _.toggle_mount=function(rider,mount)
 	
 	local is_mounting=rider.mounted_on==nil
 	
+	if is_mounting then
+		if mount.mounted_by~=nil then
+			log("mount already mounted")
+			return
+		end
+		
+	end
+	
 	-- goal: notify all it mounted (declarations updated: )
 	
 	-- so its generic entity update? 

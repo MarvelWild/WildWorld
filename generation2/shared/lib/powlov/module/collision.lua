@@ -176,7 +176,8 @@ _.getAtRect=function(x,y,w,h)
 end
 
 
--- returns array or nil
+
+-- returns array of entity or nil
 _.getAtEntity=function(entity)
 --	local x,y,w,h=Entity.getCollisionBox(entity)
 --	return _.getAtRect(x,y,w,h)

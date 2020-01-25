@@ -31,6 +31,7 @@ end
 --end
 
 
+-- returns array of entity
 _.getEntityCollisions=function(entity)
 	local level_name=entity.level_name
 	local levelCollisions=getLevelCollisions(level_name)

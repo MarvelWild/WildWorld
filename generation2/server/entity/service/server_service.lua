@@ -332,18 +332,38 @@ local defaultAction=function(event)
 	if mounted_on~=nil then
 		target=_deref(mounted_on)
 	else
-		local collisions=CollisionService.getEntityCollisions(player)
-		if collisions==nil then return end
+		local collision_entities=CollisionService.getEntityCollisions(player)
+		if collision_entities==nil then return end
 		
-		local collisionsCount=#collisions
+		
+		
+		local collision_entities_filtered={}
+		-- exclude mounted
+		
+		local is_excluded=function(entity)
+			if entity.mounted_by~=nil then
+				return true
+			end
+			
+			return false
+		end
+		
+		for k,entity in pairs(collision_entities) do
+			if not is_excluded(entity) then
+				table.insert(collision_entities_filtered, entity)
+			end
+		end
+		
+		
+		local collisionsCount=#collision_entities_filtered
 		
 		if collisionsCount==1 then
-			target=collisions[1]
+			target=collision_entities_filtered[1]
 		elseif collisionsCount>1 then
 			-- todo: resolve target/give player a choice what to do
 			log("action on multiple objects not implemented, picking random target")
 			
-			target=Pow.lume.randomchoice(collisions)
+			target=Pow.lume.randomchoice(collision_entities_filtered)
 		end
 		
 		if target==nil then return end
