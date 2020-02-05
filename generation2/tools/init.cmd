@@ -1,9 +1,9 @@
-# config
-# todo: universal way
-set game_path=c:\Gamedev\Love\LoFiFreestyleGame\generation2\
+:: config
+:: todo: universal way
+set game_path=c:\Gamedev\Love\WildWorld\generation2\
 
 
 
-#code
+::code
 mklink /D "../client/shared" %game_path%shared
 mklink /D "../server/shared" %game_path%shared
