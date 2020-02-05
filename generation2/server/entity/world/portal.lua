@@ -1,3 +1,5 @@
+-- server
+
 local _={}
 
 _.entity_name="portal"

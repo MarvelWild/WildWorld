@@ -1,10 +1,84 @@
 
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	make it automatically if only 1 portal
+	portal can be linked to other portal
+portal locations
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		and make it later - fun first
+	make it simple for now - stop any movement on collision
 		https://github.com/kikito/bump.lua closer, slide cossision is start,
 			http://hc.readthedocs.org/? it only detect collision, not resolve move
 		implement is_solid
 	wall
 solid objects (impassable)
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	
