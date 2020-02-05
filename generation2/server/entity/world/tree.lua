@@ -45,6 +45,8 @@ _.update_simulation=function(entity)
 	
 	local frame=Pow.get_frame()
 	local grow_on=entity.grow_on
+  
+  -- wip
 --	if growOn~=nil then
 --		if frame>growOn then
 --			doGrow(entity)
