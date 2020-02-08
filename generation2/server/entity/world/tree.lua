@@ -41,7 +41,7 @@ end
 -- todo grow
 
 _.update_simulation=function(entity)
---	log("tree update sim")
+	-- log("tree update sim")
 	
 	local frame=Pow.get_frame()
 	local grow_on=entity.grow_on
