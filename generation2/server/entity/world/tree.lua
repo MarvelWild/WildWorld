@@ -9,8 +9,6 @@ _.new=function()
 	-- result.sprite="tree_apple_9"
 	result.planted_on=Pow.get_frame()
 
-	-- entity_name
-	
 	-- при достижении финальной фазы во что превратиться дальше
 	-- result.growInto="tree"
 	
@@ -20,7 +18,7 @@ _.new=function()
 	
 	result.planted_on=Pow.get_frame()
 	
-	local secondsToGrow=love.math.random(30,90)
+	
 	
 	--[[ тут можно сделать процедуры будущего - 
 	например через 42 фрейма вызвать расти. 
@@ -31,30 +29,23 @@ _.new=function()
 	пусть пока что проверка будет, надо будет оптимизация - сделаю.
 	
 	]]--
-	result.grow_on=secondsToGrow*ConfigService.serverFps
+	
+	Growable.init(result)
+	
 	
 	BaseEntity.init_bounds_from_sprite(result)
 	
 	return result
 end
 
--- todo grow
+
 
 _.update_simulation=function(entity)
 	-- log("tree update sim")
 	
-	local frame=Pow.get_frame()
-	local grow_on=entity.grow_on
-  
-  -- wip
---	if growOn~=nil then
---		if frame>growOn then
---			doGrow(entity)
---		else
---			log("not time to grow, now "..frame..", will grow on:"..growOn)
---		end
---	else
---		log("seed wont grow:")
+	-- todo: easy attach/detach traits
+	Growable.update_simulation(entity)
+
 		
 end
 
@@ -80,7 +71,7 @@ _.new=function()
 	result.growInto="tree"
 	
 	local secondsToGrow=love.math.random(5,20)
-	result.growOn=secondsToGrow*ConfigService.serverFps+frame
+	result.growOn=secondsToGrow*Config.serverFps+frame
 	
 	return result
 end

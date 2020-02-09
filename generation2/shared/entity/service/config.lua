@@ -1,5 +1,5 @@
 -- shared config
--- global ConfigService
+-- global Config
 
 local _={}
 
@@ -12,6 +12,11 @@ _.serverHost='127.0.0.1'
 _.serverListen='127.0.0.1'
 
 _.serverFps=60
+
+
+
+-- to debug tree
+_.fast_grow=true
 
 -- listens on ipv6
 -- _.serverListen='*'

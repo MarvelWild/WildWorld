@@ -60,7 +60,7 @@ _.new=function(code,requestId)
 	event.isRemote=nil
 	
 	--[[
-		all			
+		all			all levels
 		self		
 		server	
 		others	except self
@@ -221,7 +221,7 @@ _.init=function(pow)
 end
 
 -- handler sig: handler(event)
-_.addHandler=function(eventCode, handler)
+_.add_handler=function(eventCode, handler)
 	local oldHandler=_eventHandlers[eventCode]
 	assert(oldHandler==nil)
 	_eventHandlers[eventCode]=handler

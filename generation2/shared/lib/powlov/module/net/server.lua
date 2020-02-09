@@ -149,7 +149,7 @@ end
 
 _.listen=function(port)
 	-- todo: option to disable pow inner log messages
-	local host=ConfigService.serverListen
+	local host=Config.serverListen
 	
 	-- todo
 	if (_tcpServer~=nil) then
@@ -262,7 +262,7 @@ end
 
 
 -- handler sig:  handler(response, clientId, requestId)
-_.addHandler=function(cmd,handler)
+_.add_handler=function(cmd,handler)
 	local existingCommand=_responseHandlers[cmd]
 	if existingCommand~=nil then
 		log("error:multiple nahdlers for same command is not supported")
@@ -282,7 +282,7 @@ local handleEvent=function(response, clientId, requestId)
 end
 
 
-_.addHandler("event", handleEvent)
+_.add_handler("event", handleEvent)
 
 _.init=function(pow)
 	_log=pow.log
@@ -291,7 +291,7 @@ _.init=function(pow)
 	_msgSeparator=_shared.netMsgSeparator
 	_unpack=pow.tserial.unpack
 	_pack=pow.tserial.pack
-	_.addHandler("login", _login)
+	_.add_handler("login", _login)
 	
 	_receiver=pow.receiver
 	_event=pow.net.event

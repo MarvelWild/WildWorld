@@ -412,22 +412,22 @@ end
 
 
 _.start=function()
-	_event.addHandler("create_player", createPlayer)
-	_event.addHandler("game_start", gameStart)
-	_event.addHandler("intent_move", movePlayer)
-	_event.addHandler("move", doMove)
-	_event.addHandler("logoff", logoff)
-	_event.addHandler("list_players", listPlayers)
-	_event.addHandler("editor_items", editorItems)
-	_event.addHandler("editor_place_item", editorPlaceItem)
-	_event.addHandler("collisions_get", getCollisions)
-	_event.addHandler("default_action", defaultAction)
-	_event.addHandler("do_mount", do_mount)
+	_event.add_handler("create_player", createPlayer)
+	_event.add_handler("game_start", gameStart)
+	_event.add_handler("intent_move", movePlayer)
+	_event.add_handler("move", doMove)
+	_event.add_handler("logoff", logoff)
+	_event.add_handler("list_players", listPlayers)
+	_event.add_handler("editor_items", editorItems)
+	_event.add_handler("editor_place_item", editorPlaceItem)
+	_event.add_handler("collisions_get", getCollisions)
+	_event.add_handler("default_action", defaultAction)
+	_event.add_handler("do_mount", do_mount)
 	
 	Db.onAdded=onEntityAdded
 	Db.setOnRemoved(onEntityRemoved)
 	
-	_server.listen(ConfigService.port)
+	_server.listen(Config.port)
 	
 end
 

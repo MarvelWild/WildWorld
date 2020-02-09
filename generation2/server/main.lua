@@ -25,13 +25,14 @@ Pow.setup(
 )
 Id=Pow.id
 
+Event=Pow.net.event
 BaseEntity=Pow.baseEntity
 Db=require("shared.lib.db.db")
 Db.init(Pow.saveDir)
 _deref=Db.getByRef
 ServerService=require("entity.service.server_service")
 CollisionService=require("entity.service.collision_service")
-ConfigService=require("shared.entity.service.config")
+Config=require("shared.entity.service.config")
 WorldEntities=nil
 
 
@@ -69,6 +70,7 @@ end
 
 local loadEntities=function()
 	Movable=require "shared.entity.trait.movable"
+	Growable=require("entity.trait.growable")
 	Mountable=Pow.multirequire("shared.entity.trait.mountable","entity.trait.mountable")
 	
 	WorldEntities=loadEntitiesFromDir("entity/world")

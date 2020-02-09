@@ -1,4 +1,7 @@
 
+	set new sprite after time
+		process do_grow on c
+		process do_grow on server
   +tree.update_simulation
 tree grow
 
@@ -47,7 +50,7 @@ vegetation from gen1
 	
 	
 	
-	
+live land : can change shape	
 	
 	
 	make it automatically if only 1 portal

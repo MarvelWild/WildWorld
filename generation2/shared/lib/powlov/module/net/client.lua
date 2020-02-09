@@ -33,7 +33,7 @@ local _event
 local _netState
 
 -- responds infinitely
-_.addHandler=function(cmd, handler)
+_.add_handler=function(cmd, handler)
 	assert(_responseHandlers[cmd]==nil)
 	
 	_responseHandlers[cmd]=handler
@@ -193,7 +193,7 @@ _.init=function(pow)
 	_unpack=pow.tserial.unpack
 	_event=pow.net.event
 	_netState=pow.net.state
-	_.addHandler('event', handleEvent)
+	_.add_handler('event', handleEvent)
 	
 	_event.setProcessor(onEventProcessing)
 end
