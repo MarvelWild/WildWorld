@@ -174,12 +174,12 @@ local afterLogin=function(response)
 	Pow.net.state.login=response.login
 	love.window.setTitle(love.window.getTitle().." l:"..response.login)
 	
-	_event.addHandler("create_player_response", afterPlayerCreated)
-	_event.addHandler("full_state", onStateReceived)
-	_event.addHandler("move", doMove)
-	_event.addHandler("entity_removed", onEntityRemoved)
-	_event.addHandler("entity_added", onEntityAdded)
-	_event.addHandler("do_mount", do_mount)
+	_event.add_handler("create_player_response", afterPlayerCreated)
+	_event.add_handler("full_state", onStateReceived)
+	_event.add_handler("move", doMove)
+	_event.add_handler("entity_removed", onEntityRemoved)
+	_event.add_handler("entity_added", onEntityAdded)
+	_event.add_handler("do_mount", do_mount)
 	
 	log("added handler of create_player_response",'event')
 	-- todo: remove handler on completion

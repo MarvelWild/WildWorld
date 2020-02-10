@@ -410,6 +410,14 @@ local do_mount=function(event)
 	Mountable.do_mount(rider,mount, event.is_mounting)
 end
 
+-- emitted on growable.start_grow
+local do_grow=function(event)
+	-- wip
+	local entity=_deref(event.entity)
+	Growable.do_grow(entity)
+end
+
+
 
 _.start=function()
 	_event.add_handler("create_player", createPlayer)
@@ -423,6 +431,7 @@ _.start=function()
 	_event.add_handler("collisions_get", getCollisions)
 	_event.add_handler("default_action", defaultAction)
 	_event.add_handler("do_mount", do_mount)
+	_event.add_handler("do_grow", do_grow)
 	
 	Db.onAdded=onEntityAdded
 	Db.setOnRemoved(onEntityRemoved)

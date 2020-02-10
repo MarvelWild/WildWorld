@@ -70,7 +70,8 @@ end
 
 local loadEntities=function()
 	Movable=require "shared.entity.trait.movable"
-	Growable=require("entity.trait.growable")
+	Growable=Pow.multirequire("shared.entity.trait.growable", "entity.trait.growable")
+	
 	Mountable=Pow.multirequire("shared.entity.trait.mountable","entity.trait.mountable")
 	
 	WorldEntities=loadEntitiesFromDir("entity/world")

@@ -11,6 +11,7 @@ BaseEntity=Pow.baseEntity
 -- shortcuts
 log=Pow.debug.log
 draw=love.graphics.draw
+Inspect=Pow.inspect
 
 serialize=Pow.pack
 deserialize=Pow.unpack
