@@ -412,9 +412,8 @@ end
 
 -- emitted on growable.start_grow
 local do_grow=function(event)
-	-- wip
 	local entity=_deref(event.entity)
-	Growable.do_grow(entity)
+	Growable.do_grow(entity,event.sprite)
 end
 
 

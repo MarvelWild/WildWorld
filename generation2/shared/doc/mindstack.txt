@@ -1,7 +1,41 @@
 
+
+
+
+
+>process do_grow on client
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	set new sprite after time
+			should receive updated entity when processed on server? no, grow may have additional effects on client
 		process do_grow on c
-		process do_grow on server
+		
+					
+		+stop calling do_grow when no next phase - later, todo
+		+make phase increase
+		+update grow_on
+		+full cycle
+	+test this
+	+process do_grow on server
   +tree.update_simulation
 tree grow
 
@@ -20,7 +54,7 @@ tree grow
 
 
 
-
+more nature simulation
 
 
 	

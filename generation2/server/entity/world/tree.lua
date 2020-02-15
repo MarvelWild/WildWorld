@@ -5,9 +5,38 @@ _.entity_name="tree"
 _.new=function()
 	local result=BaseEntity.new(_.entity_name)
 	
+	-- todo: this should be pop in growable init from phase 1
 	result.sprite="seed"
 	-- result.sprite="tree_apple_9"
 	result.planted_on=Pow.get_frame()
+	result.grow_phases=
+	{
+			{
+				sprite="seed",
+				duration=_rnd(600, 6000),
+			},
+			{
+				sprite="birch_tree_1",
+				duration=_rnd(600, 6000),
+			},			
+			{
+				sprite="birch_tree_2",
+				duration=_rnd(600, 6000),
+			},
+			{
+				sprite="birch_tree_3",
+				duration=_rnd(600, 6000),
+			},
+			{
+				sprite="birch_tree_4",
+				duration=_rnd(600, 6000),
+			},
+			{
+				sprite="birch_tree_5",
+				-- duration=_rnd(600, 6000),
+			},
+			-- todo: die cycle
+	}
 
 	-- при достижении финальной фазы во что превратиться дальше
 	-- result.growInto="tree"

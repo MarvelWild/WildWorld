@@ -9,7 +9,7 @@ _.new=function()
 	
 	BaseEntity.init_bounds_from_sprite(result)
 	
-	-- wip: implement
+	-- todo: implement
 	result.is_solid=true
 	
 	

@@ -413,51 +413,5 @@ _.get_locals=function(entity)
 	return entity_locals
 end
 
--- в gen2 это movable
---_.on_moved=function(movedEntity)
-		
---	-- wip paste from gen1
---	-- todo: move collision model 
---	-- todo: condition when
-----	if entity.worldId~=nil then
-----		Collision.moved(movedEntity)
-----	end
-	
---	-- todo: move to mountable
---	if movedEntity.mountedBy~=nil then
---		local rider=_deref(movedEntity.mounted_by)
---		local riderX,riderY=Mountable.get_rider_point(movedEntity,rider)
---		-- wip
---		Entity.move(rider,riderX,riderY)
---	end
-	
---end
-
-
---_.smooth_move=function(entity, duration_sec, x, y)
---	-- wip
---	log("start move:".._ets(entity))
---	local entity_locals=_.get_locals(entity)
---	local prev_tween=entity_locals.move_tween
---	if prev_tween~=nil then
---		log("cancel prev move")
---		prev_tween:stop()
---	end
-	
---	local on_complete=function() 
---		entity_locals.move_tween=nil
---		log("end move:".._ets(entity))
---	end
-	
---		local on_update=function() 
---		--wip
---		Entity.on_moved(entity)
---	end
-	
---	-- wip
-	
-	
---end
-
 return _
 

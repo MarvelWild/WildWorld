@@ -56,6 +56,7 @@ channels.collision=newChannel("collision")
 -- todo: too much typing here
 channels.move=newChannel("collision")
 channels.mount=newChannel("mount")
+channels.grow=newChannel("grow")
 
 -- all console settings
 channels.entity.useConsole=false
@@ -65,6 +66,7 @@ channels.event.useConsole=false
 channels.db.useConsole=false
 channels.net.useConsole=false
 channels.collision.useConsole=false
+channels.grow.useConsole=false
 --channels.move.useConsole=false
 --channels.mount.useConsole=false
 

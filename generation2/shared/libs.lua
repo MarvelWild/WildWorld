@@ -17,6 +17,8 @@ serialize=Pow.pack
 deserialize=Pow.unpack
 _ets=Entity.toString
 _ref=Entity.get_reference
+_rnd=love.math.random
+_frm=Pow.get_frame
 
 -- resolve entity from reference dto
 -- defined for client and server separatedly
