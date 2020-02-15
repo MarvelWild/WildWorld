@@ -2,9 +2,7 @@
 
 
 
-
->process do_grow on client
-
+more nature simulation
 
 
 
@@ -25,9 +23,22 @@
 
 
 
-	set new sprite after time
-			should receive updated entity when processed on server? no, grow may have additional effects on client
-		process do_grow on c
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+			+should receive updated entity when processed on server? no, grow may have additional effects on client
+		+process do_grow on c
 		
 					
 		+stop calling do_grow when no next phase - later, todo
@@ -37,7 +48,7 @@
 	+test this
 	+process do_grow on server
   +tree.update_simulation
-tree grow
++tree grow
 
 
 
@@ -48,13 +59,13 @@ tree grow
 
 
 
+grow: use root point when changing sprites (origin)
 
 
 
 
 
 
-more nature simulation
 
 
 	
@@ -104,6 +115,25 @@ portal locations
 
 
 
+				+level scope
+			+entity\trait\growable.lua
+		+check send location
+		
+					
+				+still no do_grow
+			+trace all events (comment channels.event.useConsole=false)
+		no event.
+				
+			+debug place tree
+				+was growing too fast, now uses phase
+				
+				
+			+need active client
+			fix: no level_name in level event
+		+trace send
+	+confirm event
+	+update sprite
++process do_grow on client
 
 
 

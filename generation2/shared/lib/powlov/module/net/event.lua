@@ -43,8 +43,9 @@ end
 
 -- code=eventCode
 _.new=function(code,requestId)
-	-- BaseEntity.new() event is not a entity
-	log("Event.new:".._traceback(), "event")
+	log("Event.new:".._traceback(), "verbose")
+
+-- event is not a entity
 	local event={}
 	
 	event.entity_name="Event"

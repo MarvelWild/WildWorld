@@ -8,6 +8,8 @@ is_growing
 
 grow_phases
 {
+	duration -- how much frames to grow into next
+	sprite -- name of sprite
 		wip phase sample here
 }
 
@@ -22,7 +24,7 @@ todo: try
 
 local _={}
 
--- time to grow, do checks,
+-- time to grow (grow_on already checked), do other checks,
 -- emit event to actually grow
 local start_grow=function(entity)
 	log("start_grow")
@@ -31,7 +33,8 @@ local start_grow=function(entity)
 	
 	event.entity=_ref(entity)
 	event.target="level"
-	event.level=entity.levelName
+	event.level=entity.level_name
+--	assert(event.level~=nil)
 	
 	
 	local current_phase_index=entity.grow_phase_index or 1
@@ -64,12 +67,21 @@ _.init=function(entity)
 		secondsToGrow=love.math.random(5,8)
 	end
 	
+	local grow_phase=nil
 	if entity.grow_phases==nil then
 		log("warn: growable entity has no grow_phases")
+	else
+		grow_phase=entity.grow_phases[entity.grow_phase_index]
 	end
 	
 	-- evo: grow progress, could be altered by weather, watering, fertile land
-	entity.grow_on=secondsToGrow*Config.serverFps
+	
+	if grow_phase~=nil then
+		entity.grow_on=_frm()+grow_phase.duration
+	else
+		log("warn: growable has no grow phase")
+		entity.grow_on=secondsToGrow*Config.serverFps
+	end
 end
 
 

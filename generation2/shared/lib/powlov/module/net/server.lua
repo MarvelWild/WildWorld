@@ -175,8 +175,8 @@ local shouldSendEvent=function(event,targetLogin)
 	local target=event.target
 	
 	local result=true
-	local ourLogin=_netState.login
-	local sourceLogin=event.login
+	local ourLogin=_netState.login -- nil for server. todo: why this code?
+	local sourceLogin=event.login -- who this event from. nil for server
 	
 	-- source==taget
 	if sourceLogin==targetLogin then -- не нужно возвращать отправителю
@@ -203,6 +203,11 @@ local shouldSendEvent=function(event,targetLogin)
 		result=true
 	elseif target=="level" then 
 		local level=event.level
+		if level==nil then
+			log("error: level event without target .level")
+		end
+		
+		
 		local targetPlayer=Player.getByLogin(targetLogin)
 		local targetLevel=targetPlayer.level_name
 		if (level==targetLevel) then 

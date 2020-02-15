@@ -34,7 +34,8 @@ ServerService=require("entity.service.server_service")
 CollisionService=require("entity.service.collision_service")
 Config=require("shared.entity.service.config")
 WorldEntities=nil
-
+DebugFlag={}
+DebugFlag.create_tree=true
 
 local loadEntity=function(path)
 	local entity=require(path)
@@ -113,6 +114,16 @@ love.load=function()
 	ServerService.start()
 	
 	Level.activate("start")
+	
+	if DebugFlag.create_tree then
+		
+		-- todo: destroy all prev trees
+		local tree=Tree.new()
+		tree.x=0
+		tree.y=0
+		
+		Db.add(tree,"start")
+	end
 end
 
 love.update=function(dt)

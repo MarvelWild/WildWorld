@@ -13,7 +13,7 @@ _.new=function()
 	{
 			{
 				sprite="seed",
-				duration=_rnd(600, 6000),
+				duration=_rnd(3000, 6000),
 			},
 			{
 				sprite="birch_tree_1",

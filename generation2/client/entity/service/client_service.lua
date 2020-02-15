@@ -165,6 +165,29 @@ local do_mount=function(event)
 end
 
 
+local do_grow=function(event)
+	log("client_service.do_grow start")
+	
+	--[[
+event sample	
+{
+level="start",
+target="level",
+code="do_grow",
+id=2787,
+entity={
+        entity_name="tree",
+        level_name="start",
+        id=27
+},
+entity_name="Event",
+sprite="birch_tree_1"
+}	
+	]]--
+
+	local entity=_deref(event.entity)
+	entity.sprite=event.sprite
+end
 
 -- 
 local afterLogin=function(response)
@@ -180,6 +203,7 @@ local afterLogin=function(response)
 	_event.add_handler("entity_removed", onEntityRemoved)
 	_event.add_handler("entity_added", onEntityAdded)
 	_event.add_handler("do_mount", do_mount)
+	_event.add_handler("do_grow", do_grow)
 	
 	log("added handler of create_player_response",'event')
 	-- todo: remove handler on completion
