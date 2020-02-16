@@ -91,6 +91,12 @@ end
 
 -- executed on server
 _.interact=function(player,target)
+	
+	-- todo: implement
+	if target.entity_name=="player" then
+		return
+	end
+	
 	local target_code=Entity.getCode(target)
 	
 	local interact=target_code.interact
