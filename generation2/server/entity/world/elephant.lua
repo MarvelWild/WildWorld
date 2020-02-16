@@ -5,27 +5,27 @@ _.entity_name=Pow.currentFile()
 _.new=function()
 	local result=BaseEntity.new(_.entity_name)
 	
-	result.sprite="pantera"
+	result.sprite="elephant"
 	
 	BaseEntity.init_bounds_from_sprite(result)
 	
 	result.footX=15
-	result.footY=11
+	result.footY=31
 	
-	result.mountX=12
-	result.mountY=5
+	result.mountX=15
+	result.mountY=21
 	
 	return result
 end
 
 _.updateAi=function(entity)
---	log("panthera update ai")
-	
 	AiService.moveRandom(entity)
 
 end
 
+-- todo: think easy mountable init, from prop
 _.interact=Mountable.toggle_mount
+
 
 
 

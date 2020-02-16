@@ -35,7 +35,7 @@ CollisionService=require("entity.service.collision_service")
 Config=require("shared.entity.service.config")
 WorldEntities=nil
 DebugFlag={}
-DebugFlag.create_tree=true
+DebugFlag.create_tree=false
 
 local loadEntity=function(path)
 	local entity=require(path)
