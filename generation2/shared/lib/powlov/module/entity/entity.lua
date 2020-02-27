@@ -200,7 +200,7 @@ local _isSimulationOrAi=false
 
 _.update=function(dt)
 	for entity,updateProc in pairs(_updatable) do
-		updateProc(dt)
+		updateProc(dt,entity)
 	end
 	
 	local frameNumber=Pow.get_frame()

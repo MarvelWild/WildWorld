@@ -22,8 +22,6 @@ local send_updated_entities=function()
 		event.level=entity.level_name
 		event.do_not_process_on_server=true
 		Event.process(event)
-		-- wip handle on client
-		
 	end
 	
 	_updated_entities={}

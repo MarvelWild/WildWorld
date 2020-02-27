@@ -1,7 +1,11 @@
 
 
 
-		zombie npc
+			
+		zombie perform attack
+			define collision damage
+		-take damage if collision with zombie
+		+zombie npc
 	zombie attack anyone
 			only in debug mode
 		+display (text)
@@ -10,6 +14,7 @@
 combat mechanics
 
 
+			opt: do not send them to client, only send staus change (fatgued,well rested/fed)
 		+send with slow update (once per sec), like entity_update event
 	decrease with actions
 	+decrease over time

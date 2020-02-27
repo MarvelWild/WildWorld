@@ -114,4 +114,25 @@ _.interact=function(player,target)
 	end
 end
 
+
+
+--local take_damage=function(player)
+--	-- todo detect damage source
+	
+--	local collsions=CollisionService.getEntityCollisions(player)
+--	for k,entity in pairs(collsions) do
+--		log("collision:".._ets(entity))
+--		-- todo
+		
+--	end
+	
+	
+--end
+
+
+--_.update=function(dt,player)
+----	take_damage(player)
+--end
+
+
 return _

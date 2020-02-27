@@ -7,9 +7,7 @@ local calc_energy_decrease=function(entity)
 end
 
 
--- wip connect
 _.update_simulation=function()
-	-- wip
 	-- todo iterate only energy entities
 	local entities=Entity.get_all()
 	for entity,t in pairs(entities) do

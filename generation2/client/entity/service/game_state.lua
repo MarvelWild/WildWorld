@@ -143,8 +143,7 @@ local do_update_entity=function(remote,local_entity)
 			local prev_value=local_entity[key]
 
 			if prev_value~=value then
-				-- todo: ignore some, like xy
-				log("value "..key.." changed from "..tostring(prev_value).." to "..tostring(value).." ent_rem:".._ets(remote))
+--				log("value "..key.." changed from "..tostring(prev_value).." to "..tostring(value).." ent_rem:".._ets(remote))
 				local_entity[key]=value
 			end
 		end
