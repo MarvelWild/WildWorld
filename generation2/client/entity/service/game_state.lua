@@ -131,4 +131,41 @@ _.addEntity=function(entity)
 end
 
 
+local is_ignored_update_prop=function(name)
+	if name=="x" or name=="y" then return true end
+	return false
+end
+
+
+local do_update_entity=function(remote,local_entity)
+	for key,value in pairs(remote) do
+		if not is_ignored_update_prop(key) then
+			local prev_value=local_entity[key]
+
+			if prev_value~=value then
+				-- todo: ignore some, like xy
+				log("value "..key.." changed from "..tostring(prev_value).." to "..tostring(value).." ent_rem:".._ets(remote))
+				local_entity[key]=value
+			end
+		end
+	end
+end
+
+	
+
+-- how to handle?
+-- copy props? ok try this.
+
+-- entity comes from server, and state may have local
+_.update_entity=function(entity)
+	local ref=_ref(entity)
+	local local_entity=_.findEntity(ref)
+	if local_entity==nil then
+		_.addEntity(entity)
+	else
+		do_update_entity(entity,local_entity)
+	end
+end
+
+
 return _

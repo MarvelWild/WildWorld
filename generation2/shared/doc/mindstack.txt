@@ -1,3 +1,27 @@
+
+
+
+		zombie npc
+	zombie attack anyone
+			only in debug mode
+		+display (text)
+		+define
+	hp
+combat mechanics
+
+
+		+send with slow update (once per sec), like entity_update event
+	decrease with actions
+	+decrease over time
+	+define, show
+		ms debuff
+	when hits low
+	when hits zero
+		ms bonus
+	when close to full
+energy
+
+	
 	+elephant
 	+camel
 port stuff from gen1
@@ -24,6 +48,8 @@ more nature simulation
 
 
 
+	split player/human
+play as anything
 
 
 
@@ -32,6 +58,19 @@ more nature simulation
 
 
 
+	camel={
+		[6]={
+			sprite="camel",
+			id=6,
+			y=-63,
+			x=-28.304216234414,
+			...
+		}
+	
+	there is clamp already, but they do
++ai: do not travel off screen
+
++clean log
 
 
 

@@ -82,7 +82,7 @@ end
 -- only moves locally, no event
 -- todo: refactor params to table
 _.move=function(actor,x,y,force_this,ignore_foot)
-	log("Movable.move:".._ets(actor).." to:"..x..","..y)
+	log("Movable.move:".._ets(actor).." to:"..x..","..y, "move")
 --	if actor==nil then
 --		local a=1
 --	end

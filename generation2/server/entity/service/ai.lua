@@ -9,6 +9,13 @@ _.load=function()
 end
 
 _.moveRandom=function(entity)
+	
+	if entity.entity_name=="camel" then
+		local a=1
+	end
+	
+	 
+	
 	local maxDistance=_maxDistance
 	local random=Pow.lume.random
 	local clamp=Pow.lume.clamp
@@ -18,8 +25,14 @@ _.moveRandom=function(entity)
 	
 	-- local world=CurrentWorld
 	-- todo actual level size
-	local nextX=clamp(nextXRaw,0,4096)
-	local nextY=clamp(nextYRaw,0,4096)
+	
+	local border=64
+	
+	local min=0+border
+	local max=4096-border
+	
+	local nextX=clamp(nextXRaw,min,max)
+	local nextY=clamp(nextYRaw,min,max)
 	
 	local responseEvent=_event.new("move")
 	responseEvent.target="level"

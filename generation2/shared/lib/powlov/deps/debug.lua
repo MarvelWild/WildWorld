@@ -62,13 +62,13 @@ channels.grow=newChannel("grow")
 channels.entity.useConsole=false
 channels.input.useConsole=false
 channels.verbose.useConsole=false
---channels.event.useConsole=false
+channels.event.useConsole=false
 channels.db.useConsole=false
 channels.net.useConsole=false
 channels.collision.useConsole=false
 channels.grow.useConsole=false
---channels.move.useConsole=false
---channels.mount.useConsole=false
+channels.move.useConsole=false
+channels.mount.useConsole=false
 
 
 -- used if no channel name provided

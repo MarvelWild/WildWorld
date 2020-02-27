@@ -93,7 +93,7 @@ _.update_simulation=function(entity)
 		if frame>grow_on then
 			start_grow(entity)
 		else
-			log("not time to grow, now "..frame..", will grow on:"..grow_on)
+			log("not time to grow, now "..frame..", will grow on:"..grow_on, "grow")
 		end
 	else
 		-- evo think moving out of sim / slower sim queue / next update self subscribe at frame we want

@@ -1,7 +1,7 @@
 local _=BaseEntity.new("hotbar",true)
 
 
-_.drawUi=function()
+_.draw_ui=function()
 	-- background
 	love.graphics.draw(Img.ui_low,0,0)
 	

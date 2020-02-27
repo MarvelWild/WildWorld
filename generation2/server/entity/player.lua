@@ -5,6 +5,9 @@ _.entity_name="player"
 _.new=function()
 	local result=BaseEntity.new(_.entity_name)
 	
+	
+	-- todo: player is controlling entity attached to world entity
+	
 	result.name='Joe'
 	result.level_name='start'
 	
@@ -27,6 +30,12 @@ _.new=function()
 	
 	result.riderX=7
 	result.riderY=11
+	
+	result.hp=10
+	result.hp_max=10
+	
+	result.energy=100
+	result.energy_max=100
 	
 	
 	

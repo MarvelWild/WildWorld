@@ -151,6 +151,15 @@ local onEntityAdded=function(event)
 	end
 end
 
+
+local on_entity_updated=function(event)
+	---todo: checks
+	
+	local entity=event.entity
+	GameState.update_entity(entity)
+end
+
+
 local do_mount=function(event)
 	-- paste from server
 	log("client_service.do_mount start")
@@ -202,6 +211,7 @@ local afterLogin=function(response)
 	_event.add_handler("move", doMove)
 	_event.add_handler("entity_removed", onEntityRemoved)
 	_event.add_handler("entity_added", onEntityAdded)
+	_event.add_handler("entity_updated", on_entity_updated)
 	_event.add_handler("do_mount", do_mount)
 	_event.add_handler("do_grow", do_grow)
 	

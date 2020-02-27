@@ -281,7 +281,7 @@ _.draw=function()
 	-- ui scale
 	love.graphics.push()
 	love.graphics.scale(2,2)
-	Entity.drawUi()
+	Entity.draw_ui()
 	love.graphics.pop()
 	
 	--unscaled ui

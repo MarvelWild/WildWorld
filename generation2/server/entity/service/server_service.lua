@@ -12,6 +12,28 @@ local _serverUpdate=_server.update
 local _serverLateUpdate=_server.lateUpdate
 
 
+local _updated_entities={}
+
+local send_updated_entities=function()
+	for entity,t in pairs(_updated_entities) do
+		local event=Event.new("entity_updated")
+		event.entity=entity
+		event.target="level"
+		event.level=entity.level_name
+		event.do_not_process_on_server=true
+		Event.process(event)
+		-- wip handle on client
+		
+	end
+	
+	_updated_entities={}
+end
+
+-- notify server should send updated entity 
+_.entity_updated=function(entity)
+	_updated_entities[entity]=true
+end
+
 -- handler to create_player command
 local createPlayer=function(event)
 	local playerName=event.player_name
@@ -283,7 +305,7 @@ local onEntityAdded=function(entity,level_name)
 --	end
 	
 	
-	log(message)
+	log(message, "entity")
 	local notifyEvent=_event.new("entity_added")
 	notifyEvent.target="level"
 	notifyEvent.level=level_name
@@ -440,6 +462,7 @@ _.start=function()
 end
 
 _.update=function(dt)
+	send_updated_entities()
 	_serverUpdate(dt)
 end
 
@@ -472,4 +495,9 @@ _.keyPressed=function(key)
 		clearWorld()
 	end
 end
+
+
+
+
 return _
+

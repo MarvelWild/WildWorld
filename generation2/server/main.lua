@@ -32,6 +32,7 @@ Db.init(Pow.saveDir)
 _deref=Db.getByRef
 ServerService=require("entity.service.server_service")
 CollisionService=require("entity.service.collision_service")
+EnergyService=require("entity.service.energy_service")
 Config=require("shared.entity.service.config")
 WorldEntities=nil
 DebugFlag={}
@@ -105,6 +106,7 @@ love.load=function()
 	
 	Db.load()
 	
+	Entity.add(EnergyService)
 	Entity.add(ServerService)
 	loadEntities()
 	

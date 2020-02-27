@@ -69,9 +69,9 @@ _.add=function(entity)
 		_lateUpdatable[entity]=lateUpdate
 	end
 	
-	local drawUi=entityCode.drawUi
-	if drawUi~=nil then
-		_uiDraws[entity]=drawUi
+	local draw_ui=entityCode.draw_ui
+	if draw_ui~=nil then
+		_uiDraws[entity]=draw_ui
 	end
 	
 	local drawUnscaledUi=entityCode.drawUnscaledUi
@@ -164,9 +164,9 @@ _.draw=function()
 	end
 end
 
-_.drawUi=function()
+_.draw_ui=function()
 	for entity,draw in pairs(_uiDraws) do
-		draw()
+		draw(entity)
 	end
 end
 
@@ -400,6 +400,7 @@ _.log=function()
 end
 
 
+-- todo: describe how they used
 -- local state
 -- duck typing: local state attached to entity
 -- todo: resolve entity update (store locals detached, by ref?)
@@ -412,6 +413,11 @@ _.get_locals=function(entity)
 	
 	return entity_locals
 end
+
+_.get_all=function()
+	return _all
+end
+
 
 return _
 
