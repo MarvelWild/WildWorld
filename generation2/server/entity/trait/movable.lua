@@ -30,7 +30,8 @@ _.calc_move_duration=function(actor,x,y)
 	-- todo: easy way to log variable with name, some reflection?
 	log("calc_move_duration. move_speed:"..move_speed..
 		" distance:"..distance..
-		" duration:"..duration
+		" duration:"..duration,
+		"move"
 		)
 	
 	return duration

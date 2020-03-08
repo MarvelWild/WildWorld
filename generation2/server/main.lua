@@ -63,10 +63,13 @@ local loadEntitiesFromDir=function(dirName)
 	local result={}
 	local dirItems=love.filesystem.getDirectoryItems(dirName)
 	for k,fileName in ipairs(dirItems) do
-		local entity_name=Pow.replace(fileName,".lua","")
-		local entityPath=dirName.."."..entity_name
-		local entity=loadEntity(entityPath)
-		table.insert(result,entity)
+		if Pow.allen.endsWith(fileName, ".lua") then
+			local entity_name=Pow.replace(fileName,".lua","")
+			local entityPath=dirName.."."..entity_name
+		
+			local entity=loadEntity(entityPath)
+			table.insert(result,entity)
+		end
 	end
 	
 	return result

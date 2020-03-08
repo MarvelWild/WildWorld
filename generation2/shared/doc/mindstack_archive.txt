@@ -1,0 +1,13 @@
+conclusions
+		но у него есть таргет, что круто
+	event по сути та же команда, но отправляемая в конце хода - есть время обработать их
+	
+	
+visions
+
+	event lifecycle
+		process
+		send
+		clean
+
+	
