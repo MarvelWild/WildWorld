@@ -13,6 +13,9 @@ local _default_move_speed=15
 local calc_distance=Pow.lume.distance
 
 _.calc_move_duration=function(actor,x,y)
+	if actor.mounted_on then
+		actor=_deref(actor.mounted_on)
+	end
 	
 	local now_x=actor.x+actor.footX
 	local now_y=actor.y+actor.footY

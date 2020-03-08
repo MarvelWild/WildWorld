@@ -1,4 +1,7 @@
-commit
+
+
+
+
 
 
 
@@ -115,7 +118,7 @@ responseEvent.duration=Movable.calc_move_duration(player,x,y)
 new signature
 _.move=function(actor,x,y,duration,force_this,ignore_foot)
 
-wip apply it
++apply it
 
 
 
@@ -125,7 +128,8 @@ wip apply it
 
 
 
-
+	+now it does
++test when mounted should use mount movespeed
 
 
 
@@ -150,9 +154,9 @@ wip apply it
 		event.target="server"
 		-- calc move params here
 		local responseEvent=_event.new("move")
-	duration calc (server only)
+	+duration calc (server only)
 	+apply ms to ai movements
-movement speed
++movement speed
 
 
 

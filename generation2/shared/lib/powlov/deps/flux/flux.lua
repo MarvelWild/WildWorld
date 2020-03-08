@@ -61,7 +61,7 @@ end
 flux.easing["quadout"]=function(p)
 	local p_inverted = 1 - p
 	local result=1 - (p_inverted * p_inverted)
-	log("quadout easing. p:"..p.." result.:"..result)
+--	log("quadout easing. p:"..p.." result.:"..result)
   return result
 end
 
