@@ -152,8 +152,13 @@ local movePlayer=function(event)
 	
 	responseEvent.target="level"
 	responseEvent.level=player.level_name
+	local x=event.x
+	local y=event.y
+	
 	responseEvent.x=event.x
 	responseEvent.y=event.y
+	
+	responseEvent.duration=Movable.calc_move_duration(player,x,y)
 	
 	responseEvent.actorRef=event.actorRef
 
@@ -169,32 +174,8 @@ local doMove=function(event)
 	local actor=Db.getByRef(actorRef, actorRef.level_name)
 	
 	-- test not allow to move mount while rider still mounting
-	
 
-	
-	-- wip this should happed earlier, should not emit move at all
-	
---	local mount_ref=actor.mounted_on
---	if mount_ref~=nil then
---		-- local mount=_deref(mount_ref)
---		if Movable.is_moving(actor) then
---			log("move cancel: rider is moving")
---			return
---		end
---	end
-	
-	
--- bug: intent to move comes from player
---	local rider_ref=actor.mounted_by
---	if rider_ref~=nil then
---		local rider=_deref(rider_ref)
---		if Movable.is_moving(rider) then
---			log("move cancel: rider is moving")
---			return
---		end
---	end
-	
-	Movable.move(actor,event.x,event.y)
+	Movable.move(actor,event.x,event.y,event.duration)
 end
 
 local logoff=function(event)

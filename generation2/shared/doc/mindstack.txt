@@ -1,17 +1,148 @@
+commit, 5 min break
+
+
+
+
+
+_.calc_move_duration=function(player,x,y)
+	-- wip
+	return 10
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-- wip use
+responseEvent.duration=Movable.calc_move_duration(player,x,y)
+
+
+new signature
+_.move=function(actor,x,y,duration,force_this,ignore_foot)
+
+wip apply it
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+				+non-squared. squared  is faster, should used for comparsion, optimizations
+			+squared / non squared?
+
+			+function lume.distance(x1, y1, x2, y2, squared)
+		+check libs / know ur libs
+	+distance between points?
+		+move chain:
+		love.mousepressed
+		Pow.mousePressed
+		Entity.mousePressed(gameX,gameY,button,istouch)
+		game _.mousePressed=function(gameX,gameY,button)
+		ClientService.move(gameX,gameY)
+		local event=_event.new("intent_move")
+		event.target="server"
+		-- calc move params here
+		local responseEvent=_event.new("move")
+	duration calc (server only)
+	+apply ms to ai movements
+movement speed
+
+
 
 
 
 			
-		zombie perform attack
-			define collision damage
-		-take damage if collision with zombie
-		+zombie npc
-	zombie attack anyone
-			only in debug mode
-		+display (text)
-		+define
-	hp
-combat mechanics
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 			opt: do not send them to client, only send staus change (fatgued,well rested/fed)
@@ -41,7 +172,7 @@ more nature simulation
 
 
 
-
++clean / finish wip
 
 
 
@@ -191,7 +322,18 @@ portal locations
 
 
 
-
+skip, make it peaceful
+			send attack+result event to level
+		zombie perform attack
+			-define collision damage
+		-take damage if collision with zombie
+		+zombie npc
+	zombie attack anyone
+			only in debug mode
+		+display (text)
+		+define
+	hp
+combat mechanics
 
 
 
@@ -225,8 +367,8 @@ solid objects (impassable)
 	
 	
 	
-	
-	
+	Error: shared/lib/powlov/deps/grease/grease/tcp.lua:110: calling 'accept' on bad self 
+nice message when port is busy	
 	
 	
 	

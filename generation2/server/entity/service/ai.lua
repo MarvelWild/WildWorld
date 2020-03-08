@@ -9,13 +9,6 @@ _.load=function()
 end
 
 _.moveRandom=function(entity)
-	
-	if entity.entity_name=="camel" then
-		local a=1
-	end
-	
-	 
-	
 	local maxDistance=_maxDistance
 	local random=Pow.lume.random
 	local clamp=Pow.lume.clamp
@@ -34,11 +27,14 @@ _.moveRandom=function(entity)
 	local nextX=clamp(nextXRaw,min,max)
 	local nextY=clamp(nextYRaw,min,max)
 	
+	
+	-- todo: event factory? same event produced for player
 	local responseEvent=_event.new("move")
 	responseEvent.target="level"
 	responseEvent.level=entity.level_name
 	responseEvent.x=nextX
 	responseEvent.y=nextY
+	responseEvent.duration=Movable.calc_move_duration(entity,nextX,nextY)
 	responseEvent.actorRef=BaseEntity.getReference(entity)
 	_event.process(responseEvent)
 end

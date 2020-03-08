@@ -10,7 +10,7 @@ grow_phases
 {
 	duration -- how much frames to grow into next
 	sprite -- name of sprite
-		wip phase sample here
+		todo phase sample here
 }
 
 grow_phase_index
@@ -54,7 +54,6 @@ local start_grow=function(entity)
 	end
 	
 	Event.process(event)
-	-- wip handle on client
 end
 
 -- tests entity for growable duck typing

@@ -35,8 +35,11 @@ CollisionService=require("entity.service.collision_service")
 EnergyService=require("entity.service.energy_service")
 Config=require("shared.entity.service.config")
 WorldEntities=nil
-DebugFlag={}
-DebugFlag.create_tree=false
+DebugFlag=
+{
+	create_tree=false,
+	create_camel=false,
+}
 
 local loadEntity=function(path)
 	local entity=require(path)
@@ -71,9 +74,8 @@ end
 
 
 local loadEntities=function()
-	Movable=require "shared.entity.trait.movable"
+	Movable=Pow.multirequire("shared.entity.trait.movable", "entity.trait.movable")
 	Growable=Pow.multirequire("shared.entity.trait.growable", "entity.trait.growable")
-	
 	Mountable=Pow.multirequire("shared.entity.trait.mountable","entity.trait.mountable")
 	
 	WorldEntities=loadEntitiesFromDir("entity/world")
@@ -125,6 +127,15 @@ love.load=function()
 		tree.y=0
 		
 		Db.add(tree,"start")
+	end
+	
+	if DebugFlag.create_camel then
+		
+		local entity=Camel.new()
+		entity.x=0
+		entity.y=0
+		
+		Db.add(entity,"start")
 	end
 end
 

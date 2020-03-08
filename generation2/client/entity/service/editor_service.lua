@@ -104,6 +104,7 @@ end
 
 
 _.mousePressed=function(x,y,button)
+	-- todo opt: unsub/sub on active
 	if not _isActive then return end
 	if button==2 then
 		placeItem()
