@@ -12,6 +12,11 @@ _.new=function()
 	result.footX=33
 	result.footY=63
 	
+	result.mountX=28
+	result.mountY=44
+	
+	Mountable.init(result)
+	
 	return result
 end
 

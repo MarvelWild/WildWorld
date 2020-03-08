@@ -69,7 +69,11 @@ _.do_mount=function(rider,mount,is_mounting)
 			log("mounting. mount:".._ets(mount), "mount")
 			
 			local riderX,riderY=_get_rider_point(mount,rider)
-			Movable.move(rider,riderX,riderY,true,true)
+		
+			-- hop on mount
+			local duration=0.4
+			-- _.move=function(actor,x,y,duration,force_this,ignore_foot)
+			Movable.move(rider,riderX,riderY,duration,true,true)
 		end
 	end
 end

@@ -2,9 +2,6 @@ commit
 
 
 
-		
-
-
 
 
 
@@ -245,6 +242,62 @@ more nature simulation
 play as anything
 
 
++mount camel
+
+	mount hop has no duration
+	Error: shared/entity/trait/movable.lua:93: attempt to concatenate local 'duration' (a boolean value)
+	stack traceback:
+					[string "boot.lua"]:777: in function '__concat'
+					shared/entity/trait/movable.lua:93: in function 'move'
+					shared/entity/trait/mountable.lua:72: in function 'do_mount'
+					entity/service/client_service.lua:170: in function 'handler'
+					shared/lib/powlov/module/net/event.lua:153: in function 'doProcessEvent'
+					shared/lib/powlov/module/net/event.lua:188: in function 'processEvent'
+					shared/lib/powlov/module/net/event.lua:198: in function 'process'
+					shared/lib/powlov/module/net/client.lua:45: in function 'handler'
+					shared/lib/powlov/module/net/client.lua:80: in function 'recv'
+					shared/lib/powlov/deps/grease/grease/core.lua:122: in function 'update'
+					shared/lib/powlov/module/net/client.lua:175: in function 'update'
+					entity/service/client_service.lua:265: in function 'updateProc'
+					shared/lib/powlov/module/entity/entity.lua:203: in function 'update'
+					shared/lib/powlov/pow.lua:303: in function 'update'
+					main.lua:96: in function 'update'
+
+
+
+
+
+
+
+
+
+
+
++Error: shared/entity/trait/mountable.lua:14: attempt to perform arithmetic on field 'mountX' (a nil value)
+stack traceback:
+        [string "boot.lua"]:777: in function '__add'
+        shared/entity/trait/mountable.lua:14: in function '_get_rider_point'
+        shared/entity/trait/mountable.lua:71: in function 'do_mount'
+        entity/service/server_service.lua:411: in function 'handler'
+        shared/lib/powlov/module/net/event.lua:153: in function 'doProcessEvent'
+        shared/lib/powlov/module/net/event.lua:188: in function 'processEvent'
+        shared/lib/powlov/module/net/event.lua:198: in function 'process'
+        entity/trait/mountable.lua:38: in function 'interact'
+        entity/player.lua:113: in function 'fnInteract'
+        ...
+        shared/lib/powlov/module/net/server.lua:101: in function 'recv'
+        shared/lib/powlov/deps/grease/grease/core.lua:208: in function 'update'
+        shared/lib/powlov/module/net/server.lua:261: in function '_serverLateUpdate'
+        entity/service/server_service.lua:449: in function 'updateProc'
+        shared/lib/powlov/module/entity/entity.lua:232: in function 'lateUpdate'
+        shared/lib/powlov/pow.lua:308: in function 'update'
+        main.lua:143: in function 'update'
+        [string "boot.lua"]:612: in function <[string "boot.lua"]:594>
+        [C]: in function 'xpcall'
+
+
+
+		
 
 
 

@@ -57,4 +57,11 @@ _.is_mounting=function(rider)
 	return false
 end
 
+
+_.init=function(entity)
+	if not entity.mountX then log("error: no mountX:".._ets(entity)) end
+	if not entity.mountY then log("error: no mountY:".._ets(entity)) end
+end
+
+
 return _
