@@ -1,0 +1,5 @@
+	local now_x=actor.footX instead of
+	local now_x=actor.x+actor.footX
+	
+	
+	

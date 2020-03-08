@@ -13,6 +13,7 @@ flux.__index = flux
 flux.tweens = {}
 flux.easing = { linear = function(p) return p end }
 
+-- they are not global. use in,out,inout suffix
 local easing = {
   quad    = "p * p",
   cubic   = "p * p * p",
@@ -22,14 +23,24 @@ local easing = {
   sine    = "-math.cos(p * (math.pi * .5)) + 1",
   circ    = "-(math.sqrt(1 - (p * p)) - 1)",
   back    = "p * p * (2.7 * p - 1.7)",
+	
+	-- https://docs.microsoft.com/en-us/dotnet/media/elasticease-graph.png
   elastic = "-(2^(10 * (p - 1)) * math.sin((p - 1.075) * (math.pi * 2) / .3))"
 }
 
+
+-- todo: rewrite to make it debuggable, no code in text
+-- dangerous: new line not compile, like log\n(
 local makefunc = function(str, expr)
   local load = loadstring or load
-  return load("return function(p) " .. str:gsub("%$e", expr) .. " end")()
+	
+	local fn_text="return function(p) " .. str:gsub("%$e", expr) .. " end";
+	local fn,error_message=load(fn_text)
+	local result=fn()
+  return result
 end
 
+-- v is easing expression
 for k, v in pairs(easing) do
   flux.easing[k .. "in"] = makefunc("return $e", v)
   flux.easing[k .. "out"] = makefunc([[
@@ -46,6 +57,15 @@ for k, v in pairs(easing) do
     end
   ]], v)
 end
+
+flux.easing["quadout"]=function(p)
+	local p_inverted = 1 - p
+	local result=1 - (p_inverted * p_inverted)
+	log("quadout easing. p:"..p.." result.:"..result)
+  return result
+end
+
+
 
 
 

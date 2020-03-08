@@ -1,4 +1,59 @@
-commit, 5 min break
+commit
+
+
+
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+qol: 1 click macro on mouse to restart server and client
+qol: less precise numbers in log, too much numbers now
+
+
+
+
+
+
 
 
 
@@ -107,6 +162,8 @@ movement speed
 
 
 			
++fun: try elastic move
++return movement inertia, tune it
 
 
 
@@ -119,7 +176,7 @@ movement speed
 
 
 
-
++fun break, add snail to test slow move speed
 
 
 
@@ -462,7 +519,37 @@ ww-based stream minigame
 
 
 
+	+easier debug: disable easing, make movement linear
+	+test with linear speed
 
+	
+
+server:
+slow/seems legit
+554     calc_move_duration. move_speed:5 distance:27.365319989538 duration:5.4730639979077
+554     [move]  Movable.move:player id:3 xy:57.422298285647,50 lvl:start to:72.25,73 dur:5.4730639979077
+554     [move]  smoothMove:player id:3 xy:57.422298285647,50 lvl:start to65.25,58 dur:5.4730639979077
+
+speedhack bug
+986     calc_move_duration. move_speed:5 distance:4.7762432936357 duration:0.95524865872714
+986     [move]  Movable.move:player id:3 xy:65.25,58 lvl:start to:68.75,61.25 dur:0.95524865872714
+986     [move]  smoothMove:player id:3 xy:65.25,58 lvl:start to61.75,46.25 dur:0.95524865872714	
+
+
+client:
+220     [move]  Movable.move:player id:3 xy:57.422298285647,50 lvl:start to:72.25,73 dur:5.4730639979077
+220     [move]  smoothMove:player id:3 xy:57.422298285647,50 lvl:start to65.25,58 dur:5.4730639979077
+
+
+656     [move]  Movable.move:player id:3 xy:65.25,58 lvl:start to:68.75,61.25 dur:0.95524865872714
+656     [move]  smoothMove:player id:3 xy:65.25,58 lvl:start to61.75,46.25 dur:0.95524865872714
+
+		+collect log
+	+reproduce: click on shoulder
+	
+	+log calculation. surprise ) already.
+	+gotcha! distance was calculated not from foot point
++bug: fast run
 
 
 
@@ -624,7 +711,20 @@ mount pegasus
 
 
 
-
+9401    calc_move_duration. move_speed:15 distance:
+>112.50610373813
+duration:7.5004069158751
+9401    [move]  Movable.move:player id:1 xy:81.583654049608,74 lvl:start to:91.083654049608,89.75 dur:7.5004069158751
+9401    [move]  smoothMove:player id:1 xy:81.583654049608,74 lvl:start to84.083654049608,74.75 dur:7.5004069158751
+		
+			
+			
+		+collect log
+		+steps: click lr leg corner
+	+speed is different
+		+10 still slow
+	+feels too slow
++test movement. make pantera fast.
 
 
 +add level name into reference.

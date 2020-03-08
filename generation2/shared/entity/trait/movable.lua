@@ -61,7 +61,16 @@ local smoothMove=function(actor,durationSec,x,y)
 		on_moved(actor)
 	end
 	
-	local tween=Flux.to(actor, durationSec, { x=x, y=y }):ease("quadout")
+	
+	-- todo: i want inertia at beginning and end of move, not for entire duration
+	
+	
+	local tween=Flux.to(actor, durationSec, { x=x, y=y })
+		-- :ease("quadout")
+--		:ease("linear") -- for debug
+--		:ease("quadout_edge")
+-- todo: make out time in frames, not relative
+		:ease("quadout")
 		:onupdate(onUpdate)
 		:oncomplete(onComplete)
 		
