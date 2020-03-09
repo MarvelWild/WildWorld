@@ -23,3 +23,8 @@ _frm=Pow.get_frame
 -- resolve entity from reference dto
 -- defined for client and server separatedly
 _deref=nil
+
+-- number default representation
+_n=function(number)
+	return string.format("%0.2f", number)
+end

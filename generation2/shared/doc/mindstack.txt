@@ -1,3 +1,11 @@
+commit
+
+
+
+		edible
+		collectable
+		make apples fall
+		make it produce apples
 		
 	apple tree
 more nature
@@ -42,11 +50,11 @@ more nature
 
 
 
+idle animations, make world live
 
 
 
-
-
+ai: pet want to be near friend
 
 
 
@@ -91,6 +99,8 @@ __    `--.__    `--._  `-._ `-. `. \:/ .' .-' _.-'  _.--'    __.--'    __
 
 
 
+	+_n - -- number default representation
++qol: less precise numbers in log, too much numbers now
 
 
 
@@ -110,8 +120,7 @@ __    `--.__    `--._  `-._ `-. `. \:/ .' .-' _.-'  _.--'    __.--'    __
 
 
 
-
-
++fun break - new character
 
 
 
@@ -119,7 +128,7 @@ __    `--.__    `--._  `-._ `-. `. \:/ .' .-' _.-'  _.--'    __.--'    __
 
 
 qol: 1 click macro on mouse to restart server and client
-qol: less precise numbers in log, too much numbers now
+
 
 
 
@@ -176,7 +185,13 @@ qol: less precise numbers in log, too much numbers now
 +fun break, add snail to test slow move speed
 
 
+	+move away fro  border
++ai: something wrong with movement, it moves x or y only, stays in same place
 
+
+	+put in game
+	+paint
++firecamp
 
 
 

@@ -45,9 +45,6 @@ _.new=function()
 	result.footX=15
 	result.footY=46
 	
-	result.planted_on=Pow.get_frame()
-	
-	
 	
 	--[[ тут можно сделать процедуры будущего - 
 	например через 42 фрейма вызвать расти. 

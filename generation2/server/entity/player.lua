@@ -39,7 +39,7 @@ _.new=function()
 	
 	
 	
-	result.sprite="player"
+	result.sprite="player_7"
 	result.login=nil
 	
 	return result

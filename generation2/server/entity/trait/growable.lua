@@ -57,7 +57,9 @@ local start_grow=function(entity)
 end
 
 -- tests entity for growable duck typing
+-- init vars
 _.init=function(entity)
+	entity.planted_on=Pow.get_frame()
 	entity.grow_phase_index=entity.grow_phase_index or 1
 	
 	local secondsToGrow=love.math.random(30,90)
