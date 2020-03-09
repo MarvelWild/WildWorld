@@ -57,31 +57,37 @@ local loadEntity=function(path)
 	return entity
 end
 
+local mod={}
 
-
-local loadEntitiesFromDir=function(dirName)
+-- dirName sample: entity/world
+mod.loadEntitiesFromDir=function(dirName)
 	local result={}
 	local dirItems=love.filesystem.getDirectoryItems(dirName)
 	for k,fileName in ipairs(dirItems) do
+		
+		local file_path=dirName.."/"..fileName
 		if Pow.allen.endsWith(fileName, ".lua") then
 			local entity_name=Pow.replace(fileName,".lua","")
 			local entityPath=dirName.."."..entity_name
 		
 			local entity=loadEntity(entityPath)
 			table.insert(result,entity)
+		elseif Pow.is_dir(file_path) then
+			
+			-- Error: main.lua:75: attempt to call global 'loadEntitiesFromDir' (a nil value)
+			local sub_result=mod.loadEntitiesFromDir(file_path)
+			table.append(result,sub_result)
 		end
 	end
-	
 	return result
 end
-
 
 local loadEntities=function()
 	Movable=Pow.multirequire("shared.entity.trait.movable", "entity.trait.movable")
 	Growable=Pow.multirequire("shared.entity.trait.growable", "entity.trait.growable")
 	Mountable=Pow.multirequire("shared.entity.trait.mountable","entity.trait.mountable")
 	
-	WorldEntities=loadEntitiesFromDir("entity/world")
+	WorldEntities=mod.loadEntitiesFromDir("entity/world")
 	loadEntity("entity.level")
 	loadEntity("entity.player")
 	loadEntity("entity.service.ai")

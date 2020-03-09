@@ -31,6 +31,13 @@ table.clear=function(t)
 	for i=0, count do t[i]=nil end
 end
 
+table.append=function(t,other)
+	for k,v in pairs(other) do
+		table.insert(t,v)
+	end
+end
+
+
 function get_mem_addr (object)
     local str = tostring(object)    
     return str:sub(str:find(' ') + 1)

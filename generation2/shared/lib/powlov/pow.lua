@@ -416,4 +416,11 @@ _.multirequire=function(...)
 	return result
 end
 
+-- path example: entity/world
+_.is_dir=function(path)
+	local info = love.filesystem.getInfo(path)
+	return info and info.type=="directory"
+end
+
+
 return _

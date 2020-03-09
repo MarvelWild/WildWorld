@@ -1,12 +1,15 @@
 commit
 
 
-
 		edible
 		collectable
 		make apples fall
 		make it produce apples
 		
+		+load entities from subdirs
+		
+			+why it not here? (subdir result was not merged)
+		+make it appear in editor
 	apple tree
 more nature
 
@@ -24,6 +27,25 @@ more nature
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+qol: enforce unique entity name (check, mb already?)
 
 
 
