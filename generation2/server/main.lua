@@ -161,6 +161,7 @@ end
 
 love.draw=function()
 	love.graphics.print("server up")
+	love.graphics.print("frame:".._frm(),0,12)
 end
 
 love.quit=function()

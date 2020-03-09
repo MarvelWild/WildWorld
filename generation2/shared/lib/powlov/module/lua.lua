@@ -37,6 +37,14 @@ table.append=function(t,other)
 	end
 end
 
+-- remove last element from array, and return it
+table.pull_last=function(t)
+	local result=t[#t]
+	t[#t]=nil
+	return result
+end
+
+
 
 function get_mem_addr (object)
     local str = tostring(object)    

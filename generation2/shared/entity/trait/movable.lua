@@ -40,7 +40,7 @@ end
 
 
 local smoothMove=function(actor,durationSec,x,y)
-	log("smoothMove:".._ets(actor).." to"..x..","..y.." dur:"..durationSec, "move")
+	log("smoothMove:".._ets(actor).." to".._xy(x,y).." dur:"..durationSec, "move")
 	
 	if actor.entity_name=="pegasus" then
 		local a=1
@@ -90,7 +90,7 @@ end
 -- only moves locally, no event
 -- todo: refactor params to table
 _.move=function(actor,x,y,duration,force_this,ignore_foot)
-	log("Movable.move:".._ets(actor).." to:"..x..","..y.." dur:"..duration, "move")
+	log("Movable.move:".._ets(actor).." to:".._xy(x,y).." dur:"..duration, "move")
 	
 	if not force_this then
 		if actor.mounted_on~=nil then

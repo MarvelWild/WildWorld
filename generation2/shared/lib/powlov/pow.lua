@@ -416,6 +416,8 @@ _.multirequire=function(...)
 	return result
 end
 
+--todo : sort
+
 -- path example: entity/world
 _.is_dir=function(path)
 	local info = love.filesystem.getInfo(path)

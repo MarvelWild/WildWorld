@@ -28,3 +28,8 @@ _deref=nil
 _n=function(number)
 	return string.format("%0.2f", number)
 end
+
+-- easy way to print coords
+_xy=function(x,y)
+	return _n(x)..",".._n(y)
+end

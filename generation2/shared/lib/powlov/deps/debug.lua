@@ -67,7 +67,7 @@ channels.db.useConsole=false
 channels.net.useConsole=false
 channels.collision.useConsole=false
 channels.grow.useConsole=false
-channels.move.useConsole=false
+--channels.move.useConsole=false
 channels.mount.useConsole=false
 
 

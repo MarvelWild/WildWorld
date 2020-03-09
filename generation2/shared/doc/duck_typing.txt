@@ -1,1 +1,12 @@
+Common:
 entity.move_speed
+
+
+Growable:
+entity.planted_on
+entity.grow_phases
+entity.grow_phase_index
+
+
+Inventory:
+entity.items

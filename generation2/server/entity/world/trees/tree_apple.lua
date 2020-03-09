@@ -1,3 +1,4 @@
+-- todo: separate apples from tree
 local _={}
 
 _.entity_name=Pow.currentFile()
@@ -62,6 +63,10 @@ _.new=function()
 	result.footX=15
 	result.footY=46
 	
+	-- harvestable? inventory trait? think it later.
+	-- where apples stored
+	result.items={}
+	
 	Growable.init(result)
 	
 	
@@ -71,14 +76,41 @@ _.new=function()
 end
 
 
+local drop_item=function(entity)
+	log("drop_item:".._ets(entity))
+	-- wip emit event
+	-- wip read gen1 drop
+end
+
+
 
 _.update_simulation=function(entity)
 	-- log("tree update sim")
 	
 	-- todo: easy attach/detach traits
 	Growable.update_simulation(entity)
-
+	
+	-- wip test
+	if entity.grow_phase_index==11 then
+		-- grow apples
+		local items=entity.items
+		local apple_count=#items
+		local max_apples=7
+		if apple_count<max_apples then
+			log("apple grows")
+			
+			local new_apple=1;
+			table.insert(items,new_apple)
+		end
 		
+		-- drop apples
+		-- todo: random
+		if apple_count>0 then
+			local apple=table.pull_last(items)
+			drop_item(apple)
+		end
+	end
+	
 end
 
 return _

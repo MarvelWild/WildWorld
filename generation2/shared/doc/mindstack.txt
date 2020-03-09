@@ -1,15 +1,26 @@
-commit
+persist frame number
 
 
+	
+	
+	check gen1
+drop mechanics:
+		
+		
 		edible
 		collectable
 		make apples fall
-		make it produce apples
+		
+		apple entity
+		
+			+define producing phase: 10, 
+		>make it produce apples
 		
 		+load entities from subdirs
 		
 			+why it not here? (subdir result was not merged)
 		+make it appear in editor
+		position at footX, now it jumps from seed
 	apple tree
 more nature
 
@@ -23,6 +34,10 @@ more nature
 
 
 
+	make test: move all directions for same distance, measure time )
+	log moves
+	not reproduces. leave logging on.
+something wrong with ms again
 
 
 
@@ -39,9 +54,10 @@ more nature
 
 
 
+qol: make app close faster
 
 
-
+qol: ingame console
 
 
 
@@ -139,6 +155,8 @@ __    `--.__    `--._  `-._ `-. `. \:/ .' .-' _.-'  _.--'    __.--'    __
 
 
 
+	just test it. later.
+can we persist frame number? what lua integer limit?
 
 
 
