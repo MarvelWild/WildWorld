@@ -87,6 +87,8 @@ Paul Kulchenko and ZeroBrane crew for best IDE
 
 Anders Ruud and LÖVE crew. You made making games so pleasant!
 
+Roberto Ierusalimschy for LUA
+
 Igor Vselensky. Life is much better with you!
 
 Mira Pakhomava for fresh ideas, art, cheering me up, and many other things
