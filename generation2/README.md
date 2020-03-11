@@ -91,7 +91,7 @@ Igor Vselensky. Life is much better with you!
 
 Mira Pakhomava for fresh ideas, art, cheering me up, and many other things
 
-Alexey Sytyanov for opening more dimensions in gaming.
+Alexey Sityanov for opening more dimensions in gaming.
 
 All the gamers in the Universe!
 
