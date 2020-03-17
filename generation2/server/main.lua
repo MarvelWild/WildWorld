@@ -117,7 +117,9 @@ love.load=function()
 	
 	Db.load()
 	local frame=Db.get_var("frame")
-	Pow.set_frame(frame)
+	if frame then 
+		Pow.set_frame(frame)
+	end
 	
 	Entity.add(EnergyService)
 	Entity.add(ServerService)

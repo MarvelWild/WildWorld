@@ -100,7 +100,8 @@ _.update_simulation=function(entity)
 		if apple_count<max_apples then
 			log("apple grows")
 			
-			local new_apple=1;
+			-- wip apple entity
+			local new_apple={};
 			table.insert(items,new_apple)
 		end
 		

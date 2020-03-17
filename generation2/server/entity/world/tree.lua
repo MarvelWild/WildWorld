@@ -1,6 +1,6 @@
 local _={}
 
-_.entity_name="tree"
+_.entity_name=Pow.currentFile()
 
 _.new=function()
 	local result=BaseEntity.new(_.entity_name)

@@ -5,12 +5,9 @@ _.entity_name=Pow.currentFile()
 _.new=function()
 	local result=BaseEntity.new(_.entity_name)
 	
-	result.sprite="wall"
+	result.sprite=_.entity_name
 	
 	BaseEntity.init_bounds_from_sprite(result)
-	
-	-- todo: implement
-	result.is_solid=true
 	
 	
 	return result
