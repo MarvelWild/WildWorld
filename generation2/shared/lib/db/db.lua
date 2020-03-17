@@ -7,6 +7,12 @@ local entityContainer=entitiesContainer[entity_name]
 local entity=entityContainer[entityId]
 
 server only. todo: make it not exist on client
+
+
+magic levels:
+service - 
+player - logged off players
+var - table for persisting single vars
 ]]--
 
 local _={}
@@ -14,7 +20,7 @@ local _={}
 
 -- root container
 -- level 1 entity names by level name
-local _levelContainers={}
+local _root_container={}
 
 local _saveName="db"
 
@@ -51,19 +57,27 @@ end
 
 -- key=entity_name val={id=entity}
 local getLevelContainer=function(level_name)
-	local result = _levelContainers[level_name]
+	local result = _root_container[level_name]
 	if result==nil then 
 		result={}
-		if _levelContainers==nil or level_name==nil then
+		if _root_container==nil or level_name==nil then
 			local a=1
 		end
 		
-		_levelContainers[level_name]=result
+		_root_container[level_name]=result
 	end
 	
 	return result
 end
 
+
+_.set_var=function(name,value)
+	_root_container.var[name]=value
+end
+
+_.get_var=function(name)
+	return _root_container.var[name]
+end
 
 
 
@@ -157,9 +171,22 @@ _.getEntityContainer=getEntityContainer
 _.save=function()
 	log('db save')
 	
-	local serialized=Pow.serialize(_levelContainers)
+	local serialized=Pow.serialize(_root_container)
 	love.filesystem.write(_saveDir.._saveName, serialized)
 end
+
+local new_root_container=function()
+	local result={}
+	
+	-- magic levels
+	result.var={}
+	result.service={}
+	result.player={}
+	
+	return result
+end
+
+
 
 _.load=function()
 	log('db load', "db")
@@ -167,9 +194,9 @@ _.load=function()
 	local serialized=love.filesystem.read(_saveDir.._saveName)
 	
 	if serialized~=nil then
-		_levelContainers=Pow.deserialize(serialized)
+		_root_container=Pow.deserialize(serialized)
 	else
-		_levelContainers={}
+		_root_container=new_root_container()
 	end
 end
 

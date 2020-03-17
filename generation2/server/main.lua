@@ -116,6 +116,8 @@ love.load=function()
 	netState.isClient=false
 	
 	Db.load()
+	local frame=Db.get_var("frame")
+	Pow.set_frame(frame)
 	
 	Entity.add(EnergyService)
 	Entity.add(ServerService)
@@ -165,6 +167,7 @@ love.draw=function()
 end
 
 love.quit=function()
+	Db.set_var("frame", _frm())
 	Db.save()
 	Pow.quit()
 end

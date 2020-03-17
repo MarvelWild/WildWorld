@@ -91,6 +91,7 @@ _.update_simulation=function(entity)
 	Growable.update_simulation(entity)
 	
 	-- wip test
+	--todo: better define apple producing phases
 	if entity.grow_phase_index==11 then
 		-- grow apples
 		local items=entity.items
@@ -104,7 +105,6 @@ _.update_simulation=function(entity)
 		end
 		
 		-- drop apples
-		-- todo: random
 		if apple_count>0 then
 			local apple=table.pull_last(items)
 			drop_item(apple)

@@ -47,6 +47,10 @@ _.get_frame=function()
 	return _frame
 end
 
+_.set_frame=function(val)
+	_frame=val
+end
+
 
 
 
