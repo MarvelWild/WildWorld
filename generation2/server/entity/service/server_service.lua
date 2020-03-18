@@ -255,7 +255,7 @@ local editorItems=function(event)
 end
 
 
-local editorPlaceItem=function(event)
+local editor_place_item=function(event)
 	local login=event.login
 	local player=Player.getByLogin(login)
 	local item=event.item
@@ -418,7 +418,6 @@ local do_grow=function(event)
 end
 
 
-
 _.start=function()
 	_event.add_handler("create_player", createPlayer)
 	_event.add_handler("game_start", gameStart)
@@ -427,7 +426,7 @@ _.start=function()
 	_event.add_handler("logoff", logoff)
 	_event.add_handler("list_players", listPlayers)
 	_event.add_handler("editor_items", editorItems)
-	_event.add_handler("editor_place_item", editorPlaceItem)
+	_event.add_handler("editor_place_item", editor_place_item)
 	_event.add_handler("collisions_get", getCollisions)
 	_event.add_handler("default_action", defaultAction)
 	_event.add_handler("do_mount", do_mount)

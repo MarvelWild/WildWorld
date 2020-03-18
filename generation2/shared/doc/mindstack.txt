@@ -1,3 +1,25 @@
+	edible
+	
+	
+	collectable
+		
+	
+	+limit amount of apple drops
+	
+	
+	
+		its like regular place, like from editor,
+			with extra info. think event inheritance/multievent composite
+			
+			
+		+drop event: handle on client
+		+drop event: handle on server
+			spawn example(editor):editor_place_item
+		drop is spawn
+	+make apples fall
+		-- todo: origin point for every sprite here
+	position at footX, now it jumps from seed
+apple tree
 
 
 
@@ -19,30 +41,64 @@
 
 
 
-find out how much time before frame number overflow
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
 	
+		+apple entity
+		+define producing phase: 10, 
+	+make it produce apples
 	
-	check gen1
-drop mechanics:
-		
-		
-		edible
-		collectable
-		make apples fall
-		
-			>apple entity
-			+define producing phase: 10, 
-		>make it produce apples
-		
-		+load entities from subdirs
-		
-			+why it not here? (subdir result was not merged)
-		+make it appear in editor
-		position at footX, now it jumps from seed
-	apple tree
+	+load entities from subdirs
+	
+		+why it not here? (subdir result was not merged)
+	+make it appear in editor
+	position at footX, now it jumps from seed
+apple tree
+
+
+
 more nature
 
 
@@ -52,6 +108,50 @@ more nature
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+shift-click to select object
 
 
 
@@ -571,6 +671,7 @@ nice message when port is busy
 	
 	
 	
+find out how much time before frame number overflow
 	
 	
 	
@@ -1547,7 +1648,7 @@ plugin architecture
 ingame dreams, playable )
 
 
-
+ingame landscape paint
 
 
 

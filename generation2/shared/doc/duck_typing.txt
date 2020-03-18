@@ -1,5 +1,6 @@
 Common:
 entity.move_speed
+entity.level_name
 
 
 Growable:
@@ -10,3 +11,11 @@ entity.grow_phase_index
 
 Inventory:
 entity.items
+
+
+
+
+Event:
+event.target
+event.level
+event.do_not_process_on_server
