@@ -99,7 +99,7 @@ _.add=function(entity)
 		_simulations[entity]=simulation
 	end
 	
-	if not entity.isService then
+	if not entity.is_service and not entity.shapeless then
 		CollisionService.addEntity(entity)
 	end
 end
@@ -148,8 +148,8 @@ end
 local compareByDrawLayer=function(info1,info2)
 	local entity1=info1.entity
 	local entity2=info2.entity
-	if entity1.drawLayer>entity2.drawLayer then return false end
-	if entity1.drawLayer<entity2.drawLayer then return true end
+	if entity1.draw_layer>entity2.draw_layer then return false end
+	if entity1.draw_layer<entity2.draw_layer then return true end
 	return false
 end
 
@@ -279,7 +279,7 @@ end
 -- description of code functions:
 -- draw/upd/etc code for entity data/dto
 _.getCode=function(entity)
-	if entity.isService then
+	if entity.is_service then
 		-- service does not separate data, everything is a single module
 		return entity
 	else

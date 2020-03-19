@@ -1,48 +1,41 @@
+-- controlling player.
 local _={}
 
-_.entity_name="player"
+_.entity_name=Pow.currentFile()
 
 _.new=function()
 	local result=BaseEntity.new(_.entity_name)
 	
-	
-	-- todo: player is controlling entity attached to world entity
-	
-	result.name='Joe'
+	result.controlled_entity_ref=nil -- attached later
 	result.level_name='start'
-	
-	-- todo это свойства спрайта
-	-- но и в сущности оставить спрайто независимые
-	result.footX=7
-	result.footY=15
-	
-	
-	-- откуда начинается квадрат коллизии
-	result.collisionX=3
-	result.collisionY=0
-	
-	-- todo: вторые 2 координаты квадрата коллизии
-	
-	
-	-- used for collisions
-	result.w=9
-	result.h=16
-	
-	result.riderX=7
-	result.riderY=11
-	
-	result.hp=10
-	result.hp_max=10
-	
-	result.energy=100
-	result.energy_max=100
-	
-	
-	
-	result.sprite="player_7"
 	result.login=nil
+	result.shapeless=true
 	
 	return result
+end
+
+
+_.attach=function(player,entity_ref)
+	player.controlled_entity_ref=entity_ref
+end
+
+
+
+_.interact=function(player,target)
+	
+--	-- do not interact with self
+--	-- wip: redo entity_name=="player" 
+--	-- todo: implement
+--	if target.entity_name=="player" then
+--		return
+--	end
+	
+	local target_code=Entity.getCode(target)
+	
+	local interact=target_code.interact
+	if interact~=nil then
+		interact(player,target)
+	end
 end
 
 _.getById=function(playerId)
@@ -66,6 +59,8 @@ end
 
 
 
+
+-- todo: move out, any entity can go levels
 _.gotoLevel=function(player, level_name)
 	log("gotoLevel:"..level_name.." from:"..player.level_name)
 	-- delete from db because db stores entities in level containers
@@ -98,41 +93,16 @@ _.gotoLevel=function(player, level_name)
 end
 
 
--- executed on server
-_.interact=function(player,target)
+
+
+
+_.get_controlled_entity=function(player)
+	local cached=player.controlled_entity
+	if cached~=nil then return cached end
 	
-	-- todo: implement
-	if target.entity_name=="player" then
-		return
-	end
-	
-	local target_code=Entity.getCode(target)
-	
-	local interact=target_code.interact
-	if interact~=nil then
-		interact(player,target)
-	end
+	local fresh=_deref(player.controlled_entity_ref)
+	player.controlled_entity=fresh
+	return fresh
 end
-
-
-
---local take_damage=function(player)
---	-- todo detect damage source
-	
---	local collsions=CollisionService.getEntityCollisions(player)
---	for k,entity in pairs(collsions) do
---		log("collision:".._ets(entity))
---		-- todo
-		
---	end
-	
-	
---end
-
-
---_.update=function(dt,player)
-----	take_damage(player)
---end
-
 
 return _

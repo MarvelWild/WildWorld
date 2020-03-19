@@ -20,7 +20,8 @@ local _={}
 
 -- root container
 -- level 1 entity names by level name
-local _root_container={}
+-- populated on load
+local _root_container=nil
 
 local _saveName="db"
 

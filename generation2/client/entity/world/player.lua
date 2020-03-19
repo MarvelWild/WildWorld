@@ -5,8 +5,12 @@ _.draw=BaseEntity.draw
 
 _.draw_ui=function(entity)
 	-- todo: in debug mode
-	love.graphics.print("hp:".._n(entity.hp))
-	love.graphics.print("energy:".._n(entity.energy), 0, 12)
+	
+	-- opt: do it once on player receive
+	local controlled_entity=_deref(entity.controlled_entity_ref)
+	
+	love.graphics.print("hp:".._n(controlled_entity.hp))
+	love.graphics.print("energy:".._n(controlled_entity.energy), 0, 12)
 end
 
 

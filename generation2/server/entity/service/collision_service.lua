@@ -46,7 +46,7 @@ _.addEntity=function(entity)
 		return
 	end
 	
-	if entity.isService then
+	if entity.is_service then
 		return
 	end
 	

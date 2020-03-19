@@ -26,6 +26,8 @@ _deref=nil
 
 -- number default representation
 _n=function(number)
+	if number==nil then return "nil" end
+	
 	return string.format("%0.2f", number)
 end
 

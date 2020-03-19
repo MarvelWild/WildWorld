@@ -272,9 +272,6 @@ _.move=function(x,y)
 	local event=_event.new("intent_move")
 	event.target="server"
 	
-	-- todo: server knows about player, remove this
-	local player=GameState.getPlayer()
-	event.actorRef=BaseEntity.getReference(player)
 	event.x=x
 	event.y=y
 	_event.process(event)

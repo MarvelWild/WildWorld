@@ -94,12 +94,13 @@ local drop_item=function(entity,source)
 	entity.y=source.y+_rnd(32,64)
 	
 	
-	local event=Event.new("drop")
-	event.entity=_ref(entity)
-	event.target="level"
-	event.level=source.level_name
-	event.do_not_process_on_server=true
+--	local event=Event.new("drop")
+--	event.entity=_ref(entity)
+--	event.target="level"
+--	event.level=source.level_name
+--	event.do_not_process_on_server=true
 	
+	-- no need to, Db.add sends update, that's enough for now
 	-- Event.process(event)
 	
 	Db.add(entity)
@@ -113,7 +114,6 @@ _.update_simulation=function(entity)
 	-- todo: easy attach/detach traits
 	Growable.update_simulation(entity)
 	
-	-- wip test
 	--todo: better define apple producing phases
 	if entity.grow_phase_index==11 then
 		

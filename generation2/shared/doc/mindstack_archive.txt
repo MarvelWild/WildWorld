@@ -1,3 +1,12 @@
+
+
+	+extract physical player related code
++refactor:player->humanoid
+
+
+
++test interact
+
 conclusions
 		но у него есть таргет, что круто
 	event по сути та же команда, но отправляемая в конце хода - есть время обработать их

@@ -19,7 +19,7 @@ _.level=nil
 			{
 				[12] = 
 				{
-					drawLayer = 0, entity_name = "player", footX = 7, footY = 15, id = 12, level_name = "start", login = "mw", name = "mw", sprite = "player", x = 100, y = 20
+					draw_layer = 0, entity_name = "player", footX = 7, footY = 15, id = 12, level_name = "start", login = "mw", name = "mw", sprite = "player", x = 100, y = 20
 				}
 			}
 		}
@@ -28,8 +28,14 @@ _.level=nil
 ]]--
 local _lastState=nil
 
--- свой ид
+local _controlled_entity=nil
+
 _.playerId=nil
+
+local clear_prev_state_caches=function()
+	_controlled_entity=nil
+end
+
 
 _.set=function(state)
 	_lastState=state
@@ -60,9 +66,27 @@ _.getPlayer=function()
 	end
 end
 
+local get_player=_.getPlayer
 
--- onFound создавался для возможности удалить, понимается плохо, порефакторить
+
+
+_.get_controlled_entity=function()
+	if _controlled_entity~=nil then return _controlled_entity end
+	
+	local player=get_player()
+	if player==nil then return nil end
+	
+	_controlled_entity=_deref(player.controlled_entity_ref)
+	
+	return _controlled_entity
+end
+
+
+
+
 _.findEntity=function(entityRef,onFound)
+	assert(entityRef)
+	
 	if _lastState==nil then return nil end
 	
 -- prev  code
@@ -95,8 +119,6 @@ local deleteOnFound=function(k,entity,entities)
 end
 
 
--- todo: часть функционала пересекается с db, обдумать.
--- ну и пусть, всё таки бд- сервер сайд, а тут клиент
 _.removeEntity=function(entityRef)
 	local entity=_.findEntity(entityRef,deleteOnFound)
 	if entity==nil then 

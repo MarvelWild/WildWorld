@@ -94,11 +94,11 @@ end
 
 love.update=function(dt)
 	Pow.update(dt)
-	local player=GameState.getPlayer()
-	if player~=nil then
+	local actor=GameState.get_controlled_entity()
+	if actor~=nil then
 		-- fun
 		-- player.sprite="guest_star_yars"
-		Pow.cam:setPosition(player.x, player.y)	
+		Pow.cam:setPosition(actor.x, actor.y)	
 	end
 end
 

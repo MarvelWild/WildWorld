@@ -2,7 +2,7 @@
 -- global GameService
 
 local _=BaseEntity.new('game',true)
-_.drawLayer=-1
+_.draw_layer=-1
 
 _.start=function()
 	log('GameService start','verbose')

@@ -69,17 +69,19 @@ _.add=function(entity)
 		return
 	end
 	
-	local shape = _.getEntityShape(entity)
-	if shape==nil then 
-		_log("entity has no shape:"..Entity.toString(entity))
-		return 
+	if not entity.shapeless then
+		local shape = _.getEntityShape(entity)
+		if shape==nil then 
+			_log("entity has no shape:"..Entity.toString(entity))
+			return 
+		end
+		
+		_shapeByEntity[entity]=shape
+		_entityByShape[shape]=entity 
+		
+		--log("_entityByShape loc:"..get_mem_addr(_entityByShape))
+		--_log("Collidable entity registered: "..Entity.toString(entity))
 	end
-	
-	_shapeByEntity[entity]=shape
-	_entityByShape[shape]=entity 
-	
-	--log("_entityByShape loc:"..get_mem_addr(_entityByShape))
-	--_log("Collidable entity registered: "..Entity.toString(entity))
 end
 
 _.isRegistered=function(entity)
@@ -110,7 +112,6 @@ _.moved=function(entity)
 --	log("Collision moved:"..Entity.toString(entity))
 	local movedRect=_shapeByEntity[entity]
 	
-	-- bug: still not working
 	if movedRect~=nil then
 		movedRect:moveTo(Entity.getCenter(entity))
 	else

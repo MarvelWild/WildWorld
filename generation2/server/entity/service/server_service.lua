@@ -4,7 +4,7 @@
 local _entity_name='ServerService'
 local _=BaseEntity.new(_entity_name, true)
 
-_.isService=true
+_.is_service=true
 
 local _server=Pow.server
 local _event=Pow.net.event
@@ -41,9 +41,6 @@ local createPlayer=function(event)
 	
 	local player=Player.new()
 	player.name=playerName
-	-- todo: start coord
-	player.x=100
-	player.y=20
 	player.login=login
 	
 	Db.add(player, "player")
@@ -114,6 +111,31 @@ _.sendFullState=function(player)
 end
 
 
+local put_player_into_world=function(player, level_name)
+	-- wip body
+	local controlled_entity_ref=player.controlled_entity_ref
+	if controlled_entity_ref==nil then
+		
+		-- todo: try others
+		local controlled_entity=Humanoid.new()
+		
+		-- todo: start coord
+		controlled_entity.x=100
+		controlled_entity.y=20
+		
+		controlled_entity_ref=_ref(controlled_entity)
+		player.controlled_entity_ref=controlled_entity_ref
+		Db.add(controlled_entity,level_name)
+		
+	else
+		-- wip
+		log("error: existing player not implemented")
+	end
+	
+	
+	Db.add(player, level_name)
+end
+
 
 -- client picked player, and wants to start game. send him game state
 local gameStart=function(event)
@@ -125,10 +147,11 @@ local gameStart=function(event)
 	
 	local player=Player.getById(playerId)
 	local level_name=player.level_name
+	assert(level_name)
+	
 	local alreadyLogged=Db.get(level_name,Player.entity_name,player.id)
 	if alreadyLogged==nil then
-		
-		Db.add(player, level_name)
+		put_player_into_world(player, level_name)
 	else
 		log("warn:logging player which already on level")
 	end
@@ -143,24 +166,26 @@ local movePlayer=function(event)
 	local responseEvent=_event.new("move")
 	
 	local player=Player.getByLogin(event.login)
+	local controlled_entity_ref=player.controlled_entity_ref
+	local controlled_entity=_deref(controlled_entity_ref)
 	
-	if Movable.cannot_move(player) then
+	if Movable.cannot_move(controlled_entity) then
 		log("cannot move")
 		return
 	end
 	
 	
 	responseEvent.target="level"
-	responseEvent.level=player.level_name
+	responseEvent.level=controlled_entity.level_name
 	local x=event.x
 	local y=event.y
 	
 	responseEvent.x=event.x
 	responseEvent.y=event.y
 	
-	responseEvent.duration=Movable.calc_move_duration(player,x,y)
+	responseEvent.duration=Movable.calc_move_duration(controlled_entity,x,y)
 	
-	responseEvent.actorRef=event.actorRef
+	responseEvent.actorRef=controlled_entity_ref
 
 	_event.process(responseEvent)
 end
@@ -326,14 +351,17 @@ end
 local defaultAction=function(event)
 	local login=event.login
 	local player=Player.getByLogin(login)
-	local mounted_on=player.mounted_on
+	
+	local controlled_entity=Player.get_controlled_entity(player)
+	
+	local mounted_on=controlled_entity.mounted_on
 	
 	local target=nil
 	
 	if mounted_on~=nil then
 		target=_deref(mounted_on)
 	else
-		local collision_entities=CollisionService.getEntityCollisions(player)
+		local collision_entities=CollisionService.getEntityCollisions(controlled_entity)
 		if collision_entities==nil then return end
 		
 		
@@ -374,7 +402,7 @@ local defaultAction=function(event)
 	local fnInteract=actorCode.interact
 	if fnInteract==nil then return end
 	
-	fnInteract(player, target)
+	fnInteract(controlled_entity, target)
 end
 
 

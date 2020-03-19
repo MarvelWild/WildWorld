@@ -3,17 +3,17 @@
 local _={}
 
 -- todo: check is name used
-_.new=function(entity_name,isService)
+_.new=function(entity_name,is_service)
 	assert(entity_name)
 	local result={}
 	
-	if not isService then
+	if not is_service then
 		result.id=Id.new(entity_name)
 	end
 	
-	result.isService=isService
+	result.is_service=is_service
 	result.entity_name=entity_name
-	result.drawLayer=0
+	result.draw_layer=0
 	
 	
 	return result

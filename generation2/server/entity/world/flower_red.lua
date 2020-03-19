@@ -13,15 +13,4 @@ _.new=function()
 	return result
 end
 
-_.interact=function(actor)
-	log("apple interact with:".._ets(actor))
-	-- wip implement
-	
-	-- wip put into player hand
-	-- wip move with player - pin to hand
-	-- wip remove from ground
-end
-
-
-
 return _

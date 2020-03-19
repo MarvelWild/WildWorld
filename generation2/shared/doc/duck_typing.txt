@@ -1,6 +1,7 @@
 Common:
 entity.move_speed
 entity.level_name
+entity.shapeless - not present as drawable or collidable
 
 
 Growable:
@@ -19,3 +20,12 @@ Event:
 event.target
 event.level
 event.do_not_process_on_server
+
+
+
+Player:
+player.controlled_entity_ref
+player.controlled_entity - cache
+
+
+

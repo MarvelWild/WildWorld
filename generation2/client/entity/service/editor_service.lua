@@ -114,7 +114,12 @@ end
 
 _.drawUnscaledUi=function()
 	if _isActive then
-		love.graphics.print("editor active")
+		local message="editor active."
+		if _activeItem~=nil then 
+			message=message.." item:".._ets(_activeItem)
+		end
+		
+		love.graphics.print(message)
 	end
 end
 

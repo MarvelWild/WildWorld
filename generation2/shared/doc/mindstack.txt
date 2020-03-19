@@ -1,10 +1,296 @@
+commit
+
+
+
+	+fir_tree
+	+birch tree
+	+some flowers
+	+blueberry
+more vegetation from generation 1
+
+
+
+
+make character persist in the world even when controller log off
+
+
+
+
+random vegetation editor item
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
++qol: editor: display item name to distinguish seeds
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
++make player ride again
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
++make player move again
+	
+
+
+
++autoload trees (and all child entities)-already
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+>Player.interact not with self
+	
+	
+	
+	
+	
+	
+	
+	
++think this:
+	player.controlled_entity - cached on server, shoud be stripped from dto
+	
+	con: stripping code, should be mastered anyway
+	pro: could be fast, do not lookup every time
+	
+	extra: magic suffix _cache? or define server field directly. second looks more clear.
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+speed up shutdown. take profile snapshot of shutdown.	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	edible
 	
 	
-	collectable
+	
+	
+			
+				>define hand slot
+			bind to hand slot
+				check how it's done in mounts
+			>implement interact, like with mounts
+		by pressing space
+	>collectable
 		
 	
-	+limit amount of apple drops
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+qol: bring up server log to main server window
+fun: server show some stats to make it look more alive
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	
@@ -39,6 +325,9 @@ apple tree
 
 
 
+	report copy folded copes only 1st line bug too
+	back to the fun, juyt make game, report it to author.
+qol: fix ZBS crash goto line ;206 instead of :206
 
 
 
@@ -51,7 +340,7 @@ apple tree
 
 
 
-
+	+limit amount of apple drops
 
 
 
