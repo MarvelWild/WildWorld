@@ -1,6 +1,6 @@
 local _={}
 
-_.entity_name=Pow.currentFile()
+_.entity_name="humanoid"
 
 _.new=function()
 	local result=BaseEntity.new(_.entity_name)
@@ -11,17 +11,15 @@ _.new=function()
 	result.name='Joe'
 	result.level_name='start'
 	
-	-- todo это свойства спрайта
-	-- но и в сущности оставить спрайто независимые
-	result.footX=7
+		result.footX=7
 	result.footY=15
 	
 	
-	-- откуда начинается квадрат коллизии
+	-- collision sqquare start
 	result.collisionX=3
 	result.collisionY=0
 	
-	-- todo: вторые 2 координаты квадрата коллизии
+	-- todo: collision end
 	
 	
 	-- used for collisions
@@ -40,6 +38,9 @@ _.new=function()
 	
 	
 	result.sprite="player_7"
+	if _rnd(0,10)>5 then result.sprite="girl" end
+	
+	
 	
 	BaseEntity.init_bounds_from_sprite(result)
 

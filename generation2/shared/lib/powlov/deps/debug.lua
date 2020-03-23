@@ -62,6 +62,7 @@ channels.grow=newChannel("grow")
 channels.entity.useConsole=false
 channels.input.useConsole=false
 channels.verbose.useConsole=false
+channels.verbose.useFile=false
 channels.event.useConsole=false
 channels.db.useConsole=false
 channels.net.useConsole=false

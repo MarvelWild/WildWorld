@@ -246,6 +246,10 @@ local populateEditorItemsCache=function()
 	_editorItemsCache={}
 	
 	for k,entity in ipairs(WorldEntities) do
+		if not entity.new then
+			log("error: entity has no new():"..Inspect(entity))
+		end
+		
 		local editorInstance=entity.new()
 		table.insert(_editorItemsCache, editorInstance)
 	end

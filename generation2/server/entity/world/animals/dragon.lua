@@ -9,19 +9,21 @@ _.new=function()
 	
 	BaseEntity.init_bounds_from_sprite(result)
 	
+	result.footX=20
+	result.footY=29
+	
+	result.mountX=12
+	result.mountY=19
+	result.move_speed=27
 	
 	return result
 end
 
-_.interact=function(actor)
-	log("apple interact with:".._ets(actor))
-	-- wip implement
-	
-	-- wip put into player hand
-	-- wip move with player - pin to hand
-	-- wip remove from ground
+_.updateAi=function(entity)
+	AiService.moveRandom(entity)
 end
 
+_.interact=Mountable.toggle_mount
 
 
 return _
