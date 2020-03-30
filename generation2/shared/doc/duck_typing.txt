@@ -1,7 +1,10 @@
+--- props ---
+
 Common:
 entity.move_speed
 entity.level_name
 entity.shapeless - not present as drawable or collidable
+entity.animation - see panther
 
 
 Growable:
@@ -29,3 +32,15 @@ player.controlled_entity - cache
 
 
 
+
+Entity on client:
+entity.animation_state
+
+
+
+
+--- dic ---
+
+Frame:
+	animation frame
+	game frame

@@ -9,8 +9,15 @@ _.new=function()
 	
 	BaseEntity.init_bounds_from_sprite(result)
 	
+	result.footX=16
+	result.footY=31
+	
 	
 	return result
+end
+
+_.updateAi=function(entity)
+	AiService.moveRandom(entity)
 end
 
 return _

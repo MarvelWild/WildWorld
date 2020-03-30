@@ -251,6 +251,11 @@ end
 _.toString=function(entity)
 	if entity==nil then return "nil" end
 	
+	if type(entity) == "number" then
+		nop()
+	end
+	
+	
 	local result=entity.entity_name
 	
 -- its ok, ServerService	

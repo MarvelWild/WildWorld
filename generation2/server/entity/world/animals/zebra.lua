@@ -9,8 +9,20 @@ _.new=function()
 	
 	BaseEntity.init_bounds_from_sprite(result)
 	
+	result.footX=31
+	result.footY=63
+
+	result.mountX=32
+	result.mountY=47
+	result.move_speed=16
 	
 	return result
 end
+
+_.updateAi=function(entity)
+	AiService.moveRandom(entity)
+end
+
+_.interact=Mountable.toggle_mount
 
 return _

@@ -1,6 +1,51 @@
+commit, have a rest
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	+inside entity update, see panther
++think animation system
+
+		
+	some open source guest star
 	
-	+horse_white
-more stuff from gen1
+	
+	
+			
+				need key for entity
+				
+						seems cool, no ref-deref stuff
+					implement updating from dto, do not replace
+				client entity strong reference?
+			where to store animation state? service?
+			>detect animation state
+			implement animation_service update_entity
+		apply
+		+define
+	pantera walk
+animation
 
 
 
@@ -46,6 +91,7 @@ more stuff from gen1
 
 
 
++qol: server code accessible from client? no, copy-paste works.
 
 
 
@@ -69,13 +115,46 @@ more stuff from gen1
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+sprite sorting, get rid of flickering
+
+
+
+pantera walk animation
 
 
 +bee
 
 
 
-
+	snake
+animals grow
 
 
 
@@ -196,7 +275,9 @@ random vegetation editor item
 
 
 
-
+	
+	+horse_white
++more stuff from gen1
 
 
 

@@ -35,6 +35,9 @@ EditorService=require("entity.service.editor_service")
 GameService=require("entity.service.game")
 CollisionService=require("entity.service.collision_service")
 GameState=require("entity.service.game_state")
+
+Animation_service=require("entity.service.animation_service")
+
 _deref=GameState.findEntity
 
 
@@ -85,6 +88,7 @@ love.load=function()
 	Entity.add(ClientService)
 	Entity.add(EditorService)
 	Entity.add(CollisionService)
+	Entity.add(Animation_service)
 	GameService.start()
 	
 	Pow.load()

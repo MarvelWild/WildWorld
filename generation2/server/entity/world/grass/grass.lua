@@ -13,9 +13,4 @@ _.new=function()
 	return result
 end
 
-_.interact=function(player,target)
-	log("interact with:".._ets(target))
-end
-
-
 return _

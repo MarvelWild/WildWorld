@@ -35,3 +35,6 @@ end
 _xy=function(x,y)
 	return _n(x)..",".._n(y)
 end
+
+nop=function()
+end
