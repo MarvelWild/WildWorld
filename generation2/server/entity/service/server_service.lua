@@ -153,7 +153,8 @@ local gameStart=function(event)
 	if alreadyLogged==nil then
 		put_player_into_world(player, level_name)
 	else
-		log("warn:logging player which already on level")
+		-- it's ok, players continue to exist in the world		
+		--		log("warn:logging player which already on level")
 	end
 	
 	Level.activate(level_name)

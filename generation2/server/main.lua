@@ -162,10 +162,28 @@ end
 
 
 
+local _print=love.graphics.print
+local _debug=Pow.debug
 
 love.draw=function()
-	love.graphics.print("server up")
-	love.graphics.print("frame:".._frm(),0,12)
+	
+	local y=0
+	local line_spacing=12
+	
+	local log_last_message=_debug.last_message
+	local log_prev_message=_debug.prev_message
+	
+	_print("server up",y)
+	y=y+line_spacing
+	
+	_print("frame:".._frm(),0,y)
+	y=y+line_spacing
+	
+	_print("log:"..log_last_message,0,y)
+	y=y+line_spacing
+	
+	_print(log_prev_message,0,y)
+	y=y+line_spacing
 end
 
 love.quit=function()

@@ -77,6 +77,9 @@ local _mainChannel=newChannel("main")
 channels.main=_mainChannel
 
 
+_debug.last_message=""
+_debug.prev_message=""
+
 -- forceConsole: show message in console even if its channel is disabled
 _debug.log=function(message,channelName,forceConsole)
 	-- local time = love.timer.getTime() -- "\t"..time
@@ -155,6 +158,8 @@ _debug.log=function(message,channelName,forceConsole)
 		consoleMessage=preparedMessage
 --		end
 
+		_debug.prev_message=_debug.last_message
+		_debug.last_message=consoleMessage
 		print(consoleMessage)
 	end
 end

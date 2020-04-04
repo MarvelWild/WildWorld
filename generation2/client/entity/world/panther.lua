@@ -29,6 +29,8 @@ local build_animation=function()
 	local frames_walk={}
 	result.walk=frames_walk
 	
+	result.state=nil -- idle
+	
 	local frame1={}
 	frame1.sprite_name="pantera_walk_1"
 	frame1.duration=30

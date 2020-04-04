@@ -1,16 +1,24 @@
 local _=BaseEntity.new("animation_service",true)
 
 
-local _animation_states={}
+-- local _animation_states={}
 
 
 _.update_entity=function(entity)
-	log("anim service update_entity:".._ets(entity))
+--	log("anim service update_entity:".._ets(entity))
 	-- wip: detect animation state
 	
-	local animation_state="walk"
-	
 	local entity_animation=entity.animation
+	
+--	local animation_state="walk"
+	local animation_state=entity_animation.state
+	
+	if not animation_state then 
+		-- todo: return to
+		-- idle/default sprite
+		return
+	end
+	
 	
 	-- contains frames for current state
 	local state_animation=entity_animation[animation_state]

@@ -46,6 +46,8 @@ local smoothMove=function(actor,durationSec,x,y)
 		local a=1
 	end
 	
+	-- wip : change entity state
+	-- wip: change it back when move ended
 	
 	local onComplete=function(p1,p2) 
 		_smooth_moving[actor]=nil

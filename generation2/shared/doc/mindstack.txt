@@ -1,30 +1,210 @@
-commit, have a rest
+animation state: unset walk
+
+	movable.smoothMove
+>animation state: set walk
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	log
+	breakpoint
+reproduce
+
+
+
+	server?
+	no do_mount emit found
+log do_mount emit on client
+
+
+	mountable.do_mount(rider,mount,is_mounting)
+	server_service do_mount
+	event do_mount
+stack
+
+
+trace server mount/unmount code
 
 
 
 
+	where it stored? local is_mounting=rider.mounted_on==nil
+log mountable status change
+
+
+418     onEntityAdded:camel id:9 xy:91.4214325698,73.58595894492 lvl:start
+418     Registering generic entity:camel
+520     onEntityAdded:dragon id:9 xy:84.6714325698,83.58595894492 lvl:start
+520     Registering generic entity:dragon
+547     onEntityAdded:elephant id:10 xy:74.1714325698,76.83595894492 lvl:start
+567     onEntityAdded:horse id:9 xy:73.9214325698,75.58595894492 lvl:start
+567     Registering generic entity:horse
+673     client_service.do_mount start
+673     mount references unset
+797     client_service.do_mount start
+
+
+797     warn: was not mounted but received unmount
+stack traceback:
+        shared/lib/powlov/deps/debug.lua:103: in function 'log'
+        shared/entity/trait/mountable.lua:53: in function 'do_mount'
+        entity/service/client_service.lua:170: in function 'handler'
+        shared/lib/powlov/module/net/event.lua:153: in function 'doProcessEvent'
+        shared/lib/powlov/module/net/event.lua:188: in function 'processEvent'
+        shared/lib/powlov/module/net/event.lua:198: in function 'process'
+        shared/lib/powlov/module/net/client.lua:45: in function 'handler'
+        shared/lib/powlov/module/net/client.lua:80: in function 'recv'
+        shared/lib/powlov/deps/grease/grease/core.lua:122: in function 'update'
+        shared/lib/powlov/module/net/client.lua:175: in function 'update'
+        entity/service/client_service.lua:265: in function 'updateProc'
+        shared/lib/powlov/module/entity/entity.lua:203: in function 'update'
+        shared/lib/powlov/pow.lua:307: in function 'update'
+        main.lua:100: in function 'update'
+        [string "boot.lua"]:612: in function <[string "boot.lua"]:594>
+        [C]: in function 'xpcall'
+        [string "boot.lua"]:802: in function <[string "boot.lua"]:769>
 
 
 
 
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	+last log message
++server: show more info
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	+inside entity update, see panther
 +think animation system
 
@@ -34,12 +214,18 @@ commit, have a rest
 	
 	
 			
-				need key for entity
 				
+				
+				
+		
+	снять при окончании
+	установить при начале ходьбы
+		+entity.animation.state
+	+где хранится состояние анимации?
 						seems cool, no ref-deref stuff
 					implement updating from dto, do not replace
-				client entity strong reference?
-			where to store animation state? service?
+				+client entity strong reference?
+			+where to store animation state? service? entity.
 			>detect animation state
 			implement animation_service update_entity
 		apply

@@ -159,7 +159,7 @@ end
 
 local do_mount=function(event)
 	-- paste from server
-	log("client_service.do_mount start")
+	log("client_service.do_mount start:"..Inspect(event))
 	
 	local rider_ref=event.rider_ref
 	local mount_ref=event.mount_ref
