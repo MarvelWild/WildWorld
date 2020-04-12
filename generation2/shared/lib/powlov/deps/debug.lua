@@ -215,4 +215,12 @@ _debug.exitContext=function()
 	table.remove(_contexts,lastPos)
 end
 
+
+-- todo: implement
+-- save table to file, then open it in zero brane
+_debug.zbs=function(table)
+	
+end
+
+
 return _debug

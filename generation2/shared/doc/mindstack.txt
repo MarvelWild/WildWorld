@@ -1,7 +1,69 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		
+		
+			unset back to idle
+			
+			
+			
+				>react to player walk state
+			>set entity.animation.state in smoothMove
+		apply animation
+		+define animation: humanoid.animation
+		+paint some move frames
+	sprite player_7
+player move anim
+
+
+
 animation state: unset walk
 
 	movable.smoothMove
->animation state: set walk
+animation state: set walk
 
 
 	
@@ -15,6 +77,12 @@ animation state: unset walk
 	
 	
 	
+
+	+show all entities mode
+		only debugger should receive input when open - later
+		+shade background - check RL2
+	+f12 opens it
++qol: ingame debugger	
 	
 	
 	
@@ -50,7 +118,7 @@ animation state: unset walk
 	
 	
 	
-	
+invent-a-wheel )	
 	
 	log
 	breakpoint

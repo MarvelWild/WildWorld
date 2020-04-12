@@ -49,6 +49,15 @@ local smoothMove=function(actor,durationSec,x,y)
 	-- wip : change entity state
 	-- wip: change it back when move ended
 	
+	local animation=actor.animation
+	if animation then
+		log("walk animation start")
+		animation.state="walk"
+	end
+	
+	
+	
+	
 	local onComplete=function(p1,p2) 
 		_smooth_moving[actor]=nil
 	end

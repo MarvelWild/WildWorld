@@ -2,6 +2,29 @@ local _={}
 
 _.entity_name="humanoid"
 
+local build_animation=function()
+	local result={}
+	
+	local frames_walk={}
+	result.walk=frames_walk
+	
+	local frame1={}
+	frame1.sprite_name="player_7_walk_1"
+	frame1.duration=30
+	
+	local frame2={}
+	frame2.sprite_name="player_7_walk_2"
+	frame2.duration=30
+	
+	
+	table.insert(frames_walk,frame1)
+	table.insert(frames_walk,frame2)
+	
+	return result
+end
+
+
+
 _.new=function()
 	local result=BaseEntity.new(_.entity_name)
 	
@@ -11,7 +34,7 @@ _.new=function()
 	result.name='Joe'
 	result.level_name='start'
 	
-		result.footX=7
+	result.footX=7
 	result.footY=15
 	
 	
@@ -39,6 +62,13 @@ _.new=function()
 	
 	result.sprite="player_7"
 	if _rnd(0,10)>5 then result.sprite="girl" end
+	
+	
+	-- todo: presets
+	if result.sprite=="player_7" then
+		result.animation=build_animation()
+	end
+	
 	
 	
 	

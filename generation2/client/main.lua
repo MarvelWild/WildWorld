@@ -32,6 +32,7 @@ Event=Pow.net.event
 ConfigService=require("shared.entity.service.config")
 ClientService=require("entity.service.client_service")
 EditorService=require("entity.service.editor_service")
+DebuggerService=require("entity.service.debugger_service")
 GameService=require("entity.service.game")
 CollisionService=require("entity.service.collision_service")
 GameState=require("entity.service.game_state")
@@ -42,7 +43,26 @@ _deref=GameState.findEntity
 
 
 love.draw=function()
+	
+	
+		
+	
 	Pow.draw()
+	
+	
+	if DebuggerService.is_active() then
+	
+		love.graphics.setColor(0, 0.2, 0.2, 0.8)
+		
+		local width, height = love.window.getMode( )
+		love.graphics.rectangle("fill",0,0,width,height)
+		
+		love.graphics.setColor( 1, 1, 1, 1)
+		
+		-- todo: think generic overlay system
+		DebuggerService.draw_overlay()
+	end
+	
 end
 
 local initUi=function()
@@ -87,6 +107,7 @@ love.load=function()
 	Entity.add(GameService)
 	Entity.add(ClientService)
 	Entity.add(EditorService)
+	Entity.add(DebuggerService)
 	Entity.add(CollisionService)
 	Entity.add(Animation_service)
 	GameService.start()

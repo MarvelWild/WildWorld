@@ -266,8 +266,8 @@ _.toString=function(entity)
 		
 		
 	if entity.id~=nil then
-		result=result.." id:"..tostring(entity.id)..' xy:'..
-			tostring(entity.x)..','..tostring(entity.y).." lvl:"..tostring(entity.level_name)
+		result=result.." id:"..tostring(entity.id)..' xy:'.._xy(entity.x, entity.y)
+			.." lvl:"..tostring(entity.level_name)
 	end
 	
 	return result
