@@ -61,7 +61,7 @@ _.new=function()
 	
 	
 	result.sprite="player_7"
-	if _rnd(0,10)>5 then result.sprite="girl" end
+--	if _rnd(0,10)>5 then result.sprite="girl" end
 	
 	
 	-- todo: presets

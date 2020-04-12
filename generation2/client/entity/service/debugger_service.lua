@@ -3,6 +3,20 @@ local _=BaseEntity.new("debugger_service",true)
 local _isActive=false
 
 
+
+
+local debug_to_string=function(entity)
+	local r=_ets(entity)
+	
+	local animation=entity.animation
+	if animation then
+		r=r.." anim state:"..tostring(entity.animation.state)
+	end
+	
+	return r
+end
+
+
 -- substates
 
 --- todo: implement convenient table browser
@@ -23,7 +37,7 @@ state_show_all_entities.draw=function()
 	for entity_name,entity_container in pairs(state.level.entities) do
 		for k,entity in pairs(entity_container) do
 		
-			message=message.._ets(entity).."\n"
+			message=message..debug_to_string(entity).."\n"
 		end
 	end
 	
@@ -66,13 +80,10 @@ _.keyPressed=function(key)
 end
 
 
+
 _.draw_overlay=function()
 	if _isActive then
 		local message="debugger active."
-		if _activeItem~=nil then 
-			message=message.." item:".._ets(_activeItem)
-		end
-		
 		love.graphics.print(message)
 		
 		_state.draw()
