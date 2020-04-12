@@ -428,5 +428,44 @@ _.is_dir=function(path)
 	return info and info.type=="directory"
 end
 
+_.loadEntity=function(path)
+	local entity=require(path)
+	
+	log("loadEntity:"..path,"verbose")
+	if entity==true then
+		log("error:entity not loaded:"..path)
+	end
+	
+	local globalVarName=Pow.allen.capitalizeFirst(entity.entity_name)
+	Pow.registerGlobal(globalVarName, entity)
+	Entity.addCode(entity.entity_name,entity)
+	if entity.load~=nil then entity.load() end
+	
+	return entity
+end
+
+-- todo: move to proper place
+_.loadEntitiesFromDir=function(dirName)
+	local result={}
+	local dirItems=love.filesystem.getDirectoryItems(dirName)
+	for k,fileName in ipairs(dirItems) do
+		
+		local file_path=dirName.."/"..fileName
+		if Pow.allen.endsWith(fileName, ".lua") then
+			local entity_name=Pow.replace(fileName,".lua","")
+			local entityPath=dirName.."."..entity_name
+		
+			local entity=_.loadEntity(entityPath)
+			table.insert(result,entity)
+		elseif Pow.is_dir(file_path) then
+			
+			-- Error: main.lua:75: attempt to call global 'loadEntitiesFromDir' (a nil value)
+			local sub_result=_.loadEntitiesFromDir(file_path)
+			table.append(result,sub_result)
+		end
+	end
+	return result
+end
+
 
 return _

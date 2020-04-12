@@ -37,10 +37,34 @@ local clear_prev_state_caches=function()
 end
 
 
+
+
+
+_.each_entity=function(process)
+	local level = _lastState.level
+	local containers=level.entities
+	for entity_name,container in pairs(containers) do
+		for k,entity in pairs(container) do
+			process(entity)
+		end
+	end
+end
+
+
+local register_state_entities=function()
+	_.each_entity(Entity.add)
+end
+
 _.set=function(state)
+	if _lastState then
+		log("warn: state update not implemented")
+	end
+	
+	
 	_lastState=state
 	
 	log("state set. level:"..state.level.level_name)
+	register_state_entities()
 end
 
 _.get=function()

@@ -60,20 +60,6 @@ local onStateReceived=function(response)
 	local level=state.level
 	GameState.level=level
 	GameState.set(state)
-	
-	-- here comes entities from getLevelEntities -> Db.getLevelContainer(level_name)
-	-- and level container has subcontainers for each entity
-	
-	-- todo: unregister previous / update
-	-- but now we only receive state once, then updates
-	for k,entityContainer in pairs(level.entities) do
-		-- should we do it on server?
-		-- do we need separate entity containers on client?
-		
-		for k2,entity in pairs(entityContainer) do
-			Entity.add(entity)
-		end
-	end
 end
 
 local doMove=function(event)
@@ -96,10 +82,7 @@ local onEntityRemoved=function(event)
 	]]--
 --	log("onEntityRemoved:"..Pow.inspect(event))
 	
---	if event.entityRef.entity_name=="player" then
---		local a=1
---	end
-	
+
 	GameState.removeEntity(event.entityRef)
 end
 
@@ -134,7 +117,6 @@ local onEntityAdded=function(event)
 	local entities=event.entities
 	for k,entity in pairs(entities) do
 --		if entity.entity_name=="player" then
---			local a=1
 --		end
 		
 		if GameState.level.level_name~=entity.level_name then
@@ -239,6 +221,7 @@ end
 
 local registerGenericCode=function(entity)
 	local entity_name=entity.entity_name
+	
 	local code=Entity.getCode(entity)
 	if code~=nil then return end
 	

@@ -32,26 +32,32 @@ _.beforeAdd=nil
 -- use Db.add
 _.add=function(entity)
 	log('adding entity:'.._.toString(entity),'entity')
+--	log(debug.traceback())
 	
 	local beforeAdd=_.beforeAdd
 	if beforeAdd~=nil then
-		beforeAdd(entity)
+		beforeAdd(entity) -- register generic code
 	end
 	
-	--todo: рассмотреть случай с рефрешем с сервера когда ссылки ломаются на сущность. (если вообще ломаются)
+	--todo: рассмотреть случай с рефрешем с сервера когда ссылки ломаются на сущность. (если вообще ломаются) - решено ссылки держать
 	--table.insert(_all, entity)
+	local prev=_all[entity]
+	if prev then
+		log("error: double add:".._ets(entity))
+	end
+	
+	
+	
 	_all[entity]=true
 	
 	-- entityCode is module with draw,update etc contolling current entity data/dto
 	local entityCode=_.getCode(entity)
 	
-	if entityCode==nil or entity.entity_name=="panther" then
-		local a=1
-	end
+--	if entityCode==nil or entity.entity_name=="panther" then
+--	end
 	
-	if entityCode==nil then
-		local a=1
-	end
+--	if entityCode==nil then
+--	end
 	
 	
 	local draw=entityCode.draw
@@ -260,7 +266,6 @@ _.toString=function(entity)
 	
 -- its ok, ServerService	
 --	if entity.level_name==nil then
---		local a=1
 --	end
 	
 		
@@ -306,10 +311,9 @@ end
 
 
 _.getCenter=function(entity)
-	if entity==nil then
-		local a=1
-		-- load refactoring, no player
-	end
+--	if entity==nil then
+--		-- load refactoring, no player
+--	end
 	
 	local centerX=entity.x+(entity.w/2)
 	local centerY=entity.y+(entity.h/2)

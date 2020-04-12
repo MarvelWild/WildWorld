@@ -61,9 +61,8 @@ _.do_mount=function(rider,mount,is_mounting)
 			
 			log("mount references set", "verbose")
 			
-			if rider==nil then
-				local a=1
-			end
+--			if rider==nil then
+--			end
 			
 			-- jump to seat
 			log("mounting. mount:".._ets(mount), "mount")

@@ -42,9 +42,8 @@ end
 local smoothMove=function(actor,durationSec,x,y)
 	log("smoothMove:".._ets(actor).." to".._xy(x,y).." dur:"..durationSec, "move")
 	
-	if actor.entity_name=="pegasus" then
-		local a=1
-	end
+--	if actor.entity_name=="pegasus" then
+--	end
 	
 	-- wip : change entity state
 	-- wip: change it back when move ended

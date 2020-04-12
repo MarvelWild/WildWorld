@@ -61,9 +61,8 @@ local getLevelContainer=function(level_name)
 	local result = _root_container[level_name]
 	if result==nil then 
 		result={}
-		if _root_container==nil or level_name==nil then
-			local a=1
-		end
+--		if _root_container==nil or level_name==nil then
+--		end
 		
 		_root_container[level_name]=result
 	end

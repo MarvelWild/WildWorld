@@ -13,6 +13,8 @@ local debug_to_string=function(entity)
 		r=r.." anim state:"..tostring(entity.animation.state)
 	end
 	
+	r=r.." sprite:"..tostring(entity.sprite)
+	
 	return r
 end
 

@@ -55,11 +55,6 @@ end
 
 
 _.add=function(entity)
-	if entity.entity_name=="player" then
-		local a=1
-	end
-	
-	
 	_log("Collision.add:"..Entity.toString(entity))
 --	_log(debug.traceback()) -- search key: stack traceback:
 	
@@ -190,7 +185,6 @@ _.getAtEntity=function(entity)
 	for shape,v in pairs(collisions) do
 		local collisionEntity=_entityByShape[shape]
 		if collisionEntity==nil then
-			local a=1
 			_log("error:collisionEntity is nil")
 			_.debug_print()
 			--assert(collisionEntity)

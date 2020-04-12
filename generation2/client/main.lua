@@ -89,10 +89,13 @@ local loadEntities=function()
 	-- code
 	Entity.addCode("player",require("entity.world.player"))
 	
-	loadEntity("entity.world.seed")
-	loadEntity("entity.world.tree")
-	loadEntity("entity.world.panther")
-	loadEntity("entity.world.generic")
+	
+	WorldEntities=Pow.loadEntitiesFromDir("entity/world")
+--	loadEntity("entity.world.seed")
+--	loadEntity("entity.world.tree")
+--	loadEntity("entity.world.panther")
+--	loadEntity("entity.world.generic")
+--	loadEntity("entity.world.humanoid")
 end
 
 

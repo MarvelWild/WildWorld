@@ -59,7 +59,7 @@ channels.mount=newChannel("mount")
 channels.grow=newChannel("grow")
 
 -- all console settings
-channels.entity.useConsole=false
+--channels.entity.useConsole=false
 channels.input.useConsole=false
 channels.verbose.useConsole=false
 channels.verbose.useFile=false
@@ -84,13 +84,11 @@ _debug.prev_message=""
 _debug.log=function(message,channelName,forceConsole)
 	-- local time = love.timer.getTime() -- "\t"..time
 	
-	if channelName=="entity" then
-		local a=1
-	end
+--	if channelName=="entity" then
+--	end
 	
-	if forceConsole then
-		local a=1
-	end
+--	if forceConsole then
+--	end
 	
 	
 	

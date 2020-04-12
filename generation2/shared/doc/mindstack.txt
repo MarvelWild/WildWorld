@@ -1,3 +1,59 @@
+
+
+
+
+			
+		Registering generic entity:humanoid, but it defined
+	should be registered on receive
+	
++humanoid update not called
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 		
 			unset back to idle
