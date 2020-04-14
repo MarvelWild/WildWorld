@@ -99,6 +99,8 @@ _debug.log=function(message,channelName,forceConsole)
 	elseif string.find(message,"warn") then
 		-- Session.hasWarnings=true
 		message=message+"\n"+debug.traceback()
+	elseif Pow.allen.startsWith(message,"trace") then
+		message=message+"\n"+debug.traceback()
 	end
 	
 	

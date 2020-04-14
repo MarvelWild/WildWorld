@@ -100,8 +100,7 @@ love.load=function()
 	
 	if DebugFlag.create_tree then
 		
-		-- todo: destroy all prev trees
-		local tree=Tree.new()
+		local tree=Tree_birch.new()
 		tree.x=0
 		tree.y=0
 		

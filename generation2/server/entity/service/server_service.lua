@@ -68,9 +68,9 @@ local getLevelState=function(level_name)
 	
 	local state={}
 	
-	local levelDescriptor=Level.getDescriptor(level_name)
+	local level=Level.get_level(level_name)
 	state.level_name=level_name
-	state.levelDescriptor=levelDescriptor
+	state.level=level
 	state.entities=getLevelEntities(level_name)
 	return state
 end
@@ -351,8 +351,8 @@ local getCollisions=function(event)
 	_event.process(response)
 end
 
--- player press space, enter portal
-local defaultAction=function(event)
+-- player press space, enter portal / pickup item etc
+local default_action=function(event)
 	local login=event.login
 	local player=Player.getByLogin(login)
 	
@@ -460,7 +460,7 @@ _.start=function()
 	_event.add_handler("editor_items", editorItems)
 	_event.add_handler("editor_place_item", editor_place_item)
 	_event.add_handler("collisions_get", getCollisions)
-	_event.add_handler("default_action", defaultAction)
+	_event.add_handler("default_action", default_action)
 	_event.add_handler("do_mount", do_mount)
 	_event.add_handler("do_grow", do_grow)
 	

@@ -46,6 +46,37 @@ end
 
 -- creates empty
 -- 
+
+local each_container=function(f)
+	for level_name, entities in pairs(_root_container) do
+		log("processing container:"..level_name)
+		f(entities,level_name)
+	end
+end
+
+_.each_container=each_container
+
+--local each_entity_in_container=function(c,f)
+--	for k,v in pairs(c) do
+--		nop()
+--	end
+	
+--end
+
+
+
+local each_entity=function(f)
+	each_container(function(entities,level_name)
+			for k,entity in pairs(entities) do
+				f(entity)
+			end
+		end
+	)
+end
+
+_.each_entity=each_entity
+
+
 local getEntityContainer=function(levelContainer, entity_name)
 	local result = levelContainer[entity_name]
 	if result==nil then
@@ -85,6 +116,11 @@ end
 -- level_name optional
 _.add=function(entity, level_name)
 	assert(entity)
+	
+	if level_name=="player" then
+		log("adding to player level:".._ets(entity))
+	end
+	
 	
 	if level_name==nil then
 		level_name=entity.level_name

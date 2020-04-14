@@ -1,27 +1,134 @@
-	use animation_service.set_state(entity,state)
+		pickup stone
+			pin to hand
+			
+					
+				handle it by humanoid or by stone? by humanoid (equal choices).
+				
+				
+				
+				
+				
+						
+						
+						
+						
+						
+				
+					local event=_event.new("default_action")
+	event.target="server"
+	
+				ClientService.defaultAction()
+				
+				
+				
+				
+			by click space (default action)
+		>pickup stick
+	with axe from stick and stone
+>chop a tree
+i want a boat
+what's next?
 
 
-entity_animation_state.next_game_frame нужно ставить в текущий при установке но
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	pickup items
+player ai: randomly walk over island
+
+
+
+
+
++qol: load start level on server starts
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	could be custom menu
+qol: file toc, clickable (entity is hard to open)
 		
-		
-		
-		
-		пока что отключим его чтобы дебажить аним, можно и вообще выключить чтобы меньше траффика
-	entity_updated event
-
-как прилетает sprite_7
-смотрим сеть
-
-
-
-
-multiple walk animation stop with one start
 
 
 
 
 
 
+
+
+
+						Db.add?
+					>how it came there?
+				which container? player.
+			backtrack
+		>some weird entity trapped, no id, no name
+	+log entity count
+	
+	+double activate fix should fix this
++bug: level dual init
+
++qol: debugger cursor location
+
+
++multiple walk animation stop with one start- not repr/rare
+
+
+
+
+
+		later: by complex shapes using collision lib
+		+now 1 aabb
+	+define land area
+
+	+test
++plant in:
++need a tree growing on island
 
 
 

@@ -45,6 +45,15 @@ state_show_all_entities.draw=function()
 	
 	local message=""
 	
+	-- bonus: cursor coord
+	
+	local x,y = love.mouse.getPosition()
+	local wx,wy = Pow.getWorldCoords(x,y)
+	
+	local coord="cursor w:".._xy(wx,wy).." s:".._xy(x,y)
+	
+	message=message..coord.."\n"
+	
 	for entity_name,entity_container in pairs(state.level.entities) do
 		for k,entity in pairs(entity_container) do
 		

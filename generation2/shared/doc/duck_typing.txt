@@ -38,6 +38,9 @@ Entity on client:
 entity.animation_state
 
 
+level.init
+
+
 
 
 --- dic ---
@@ -45,3 +48,21 @@ entity.animation_state
 Frame:
 	animation frame
 	game frame
+
+
+
+
+
+--- Magics ---
+new line : \n
+pure function : prefix p_
+
+-- log --
+trace - print stack with message
+error
+warn
+
+
+--- Global namespace ---
+
+-- todo: auto collect
