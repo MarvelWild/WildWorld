@@ -112,7 +112,6 @@ end
 
 
 local put_player_into_world=function(player, level_name)
-	-- wip body
 	local controlled_entity_ref=player.controlled_entity_ref
 	if controlled_entity_ref==nil then
 		
@@ -128,7 +127,7 @@ local put_player_into_world=function(player, level_name)
 		Db.add(controlled_entity,level_name)
 		
 	else
-		-- wip
+		-- todo: implement
 		log("error: existing player not implemented")
 	end
 	

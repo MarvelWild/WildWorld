@@ -6,7 +6,12 @@ local _isActive=false
 
 
 local debug_to_string=function(entity)
-	local r=_ets(entity)
+	local r=""
+	
+	local entity_addr=get_mem_addr(entity)
+	
+	r=r..entity_addr.." "
+	r=r.._ets(entity)
 	
 	local animation=entity.animation
 	if animation then
@@ -25,6 +30,10 @@ end
 -- zbs is fine, just need easy way to put anythng from game to zbs
 
 local state_explore_table={}
+
+
+-- examine single entity
+local state_entity={}
 
 
 local state_show_all_entities={}

@@ -174,7 +174,7 @@ sprite="birch_tree_1"
 	]]--
 
 	local entity=_deref(event.entity)
-	entity.sprite=event.sprite
+	Entity.set_sprite(entity,event.sprite)
 end
 
 -- 

@@ -59,7 +59,7 @@ channels.mount=newChannel("mount")
 channels.grow=newChannel("grow")
 
 -- all console settings
---channels.entity.useConsole=false
+channels.entity.useConsole=false
 channels.input.useConsole=false
 channels.verbose.useConsole=false
 channels.verbose.useFile=false

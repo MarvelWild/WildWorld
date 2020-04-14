@@ -1,3 +1,5 @@
+-- client
+
 local _=BaseEntity.new("animation_service",true)
 
 
@@ -6,7 +8,6 @@ local _=BaseEntity.new("animation_service",true)
 
 _.update_entity=function(entity)
 --	log("anim service update_entity:".._ets(entity))
-	-- wip: detect animation state
 	
 	local entity_animation=entity.animation
 	
@@ -20,8 +21,22 @@ _.update_entity=function(entity)
 	end
 	
 	
+	if animation_state=="idle" then
+		nop()
+	end	
+	
+	if animation_state=="walk" then
+		nop()
+	end
+	
 	-- contains frames for current state
 	local state_animation=entity_animation[animation_state]
+	
+	if state_animation==nil then
+		-- todo: back to idle / define idle state dyn
+		return
+	end
+	
 	
 	local entity_animation_state=entity.animation_state
 	
@@ -37,14 +52,19 @@ _.update_entity=function(entity)
 		-- duck typing: introducing animation_state.current_frame_number
 		entity_animation_state.current_frame_index=1
 		entity_animation_state.current_frame=first_animation_frame
-		entity_animation_state.next_game_frame=current_frame+first_animation_frame.duration
-		entity.sprite=first_animation_frame.sprite_name
+		
+		local duration=first_animation_frame.duration
+		if duration then
+			entity_animation_state.next_game_frame=current_frame+duration
+		end
+		
+		Entity.set_sprite(entity,first_animation_frame.sprite_name)
 	end
 	
 	
 	
 	local next_frame=entity_animation_state.next_game_frame
-	if next_frame==current_frame then
+	if next_frame and next_frame<=current_frame then
 		-- switch to next frame
 		local current_animation_frame_index=entity_animation_state.current_frame_index
 		local next_anim_index=current_animation_frame_index+1
@@ -59,9 +79,17 @@ _.update_entity=function(entity)
 		
 		entity_animation_state.current_frame_index=next_anim_index
 		entity_animation_state.current_frame=next_anim_frame
-		entity_animation_state.next_game_frame=current_frame+next_anim_frame.duration
-		entity.sprite=next_anim_frame.sprite_name
 		
+		local duration=next_anim_frame.duration
+		if duration then
+			entity_animation_state.next_game_frame=current_frame+duration
+		else
+			entity_animation_state.next_game_frame=nil
+		end
+	
+		
+		
+		Entity.set_sprite(entity, next_anim_frame.sprite_name)
 		
 	else
 		-- not time for next frame

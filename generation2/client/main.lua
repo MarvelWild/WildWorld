@@ -37,7 +37,8 @@ GameService=require("entity.service.game")
 CollisionService=require("entity.service.collision_service")
 GameState=require("entity.service.game_state")
 
-Animation_service=require("entity.service.animation_service")
+Animation_service=Pow.multirequire("shared.entity.service.animation_service","entity.service.animation_service")
+
 
 _deref=GameState.findEntity
 

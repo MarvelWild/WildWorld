@@ -20,6 +20,14 @@ local build_animation=function()
 	table.insert(frames_walk,frame1)
 	table.insert(frames_walk,frame2)
 	
+	result.idle=
+	{
+		{
+			sprite_name="player_7",
+			duration=nil
+		}
+	}
+	
 	return result
 end
 

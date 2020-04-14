@@ -428,5 +428,11 @@ _.get_all=function()
 end
 
 
+_.set_sprite=function(entity,sprite_name)
+--	log("set_sprite:"..entity.entity_name..","..sprite_name)
+	entity.sprite=sprite_name
+end
+
+
 return _
 

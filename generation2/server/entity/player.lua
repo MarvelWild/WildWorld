@@ -22,14 +22,6 @@ end
 
 
 _.interact=function(player,target)
-	
---	-- do not interact with self
---	-- wip: redo entity_name=="player" 
---	-- todo: implement
---	if target.entity_name=="player" then
---		return
---	end
-	
 	local target_code=Entity.getCode(target)
 	
 	local interact=target_code.interact

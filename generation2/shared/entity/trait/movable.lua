@@ -42,26 +42,14 @@ end
 local smoothMove=function(actor,durationSec,x,y)
 	log("smoothMove:".._ets(actor).." to".._xy(x,y).." dur:"..durationSec, "move")
 	
---	if actor.entity_name=="pegasus" then
---	end
-	
-	-- wip : change entity state
-	-- wip: change it back when move ended
-	
-	local animation=actor.animation
-	if animation then
-		log("walk animation start")
-		animation.state="walk"
-	end
-	
-	
-	
+	Animation_service.set_state(actor,"walk")
 	
 	local onComplete=function(p1,p2) 
 		_smooth_moving[actor]=nil
+		
+		Animation_service.set_state(actor,"idle")
 	end
 
-	-- todo: actor может обновиться, это dto. рассмотреть этот случай/написать тест.
 	local existing_tween=_smooth_moving[actor]
 	if existing_tween~=nil then
 		existing_tween:stop()

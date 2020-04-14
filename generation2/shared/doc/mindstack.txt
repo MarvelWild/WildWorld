@@ -1,61 +1,125 @@
+	use animation_service.set_state(entity,state)
 
 
-
-
-			
-		Registering generic entity:humanoid, but it defined
-	should be registered on receive
-	
-+humanoid update not called
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+entity_animation_state.next_game_frame нужно ставить в текущий при установке но
 		
+		
+		
+		
+		пока что отключим его чтобы дебажить аним, можно и вообще выключить чтобы меньше траффика
+	entity_updated event
+
+как прилетает sprite_7
+смотрим сеть
+
+
+
+
+multiple walk animation stop with one start
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+where entity sprite changed? back to idle
+
+
+instant switch to idle
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	should be set
+entity_animation.state
+
 			unset back to idle
 			
 			
