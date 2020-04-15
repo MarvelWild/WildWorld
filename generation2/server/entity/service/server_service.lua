@@ -127,8 +127,8 @@ local put_player_into_world=function(player, level_name)
 		Db.add(controlled_entity,level_name)
 		
 	else
-		-- todo: implement
-		log("error: existing player not implemented")
+		log("experimental: reattach player") -- manual test success
+		player.controlled_entity_ref=controlled_entity_ref
 	end
 	
 	
@@ -288,7 +288,7 @@ local editor_place_item=function(event)
 	local login=event.login
 	local player=Player.getByLogin(login)
 	local item=event.item
-	local entityCode=Entity.getCode(item)
+	local entityCode=Entity.get_code(item)
 	local instance=entityCode.new()
 	instance.x=item.x
 	instance.y=item.y
@@ -369,7 +369,7 @@ local default_action=function(event)
 		if collision_entities==nil then return end
 		
 		
-		
+		-- 1 liner?
 		local collision_entities_filtered={}
 		-- exclude mounted
 		
@@ -386,6 +386,7 @@ local default_action=function(event)
 				table.insert(collision_entities_filtered, entity)
 			end
 		end
+		-- /
 		
 		
 		local collisionsCount=#collision_entities_filtered
@@ -402,7 +403,8 @@ local default_action=function(event)
 		if target==nil then return end
 	end
 	
-	local actorCode=Player
+	-- local actorCode=Player -- wrong
+	local actorCode=Entity.get_code(controlled_entity)
 	local fnInteract=actorCode.interact
 	if fnInteract==nil then return end
 	

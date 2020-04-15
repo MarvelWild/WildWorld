@@ -222,7 +222,7 @@ end
 local registerGenericCode=function(entity)
 	local entity_name=entity.entity_name
 	
-	local code=Entity.getCode(entity)
+	local code=Entity.get_code(entity)
 	if code~=nil then return end
 	
 	code=Generic

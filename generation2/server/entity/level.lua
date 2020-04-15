@@ -21,18 +21,24 @@ _.isActive=function(level_name)
 end
 
 
-
+-- gets/creates active level
 _.get_level=function(level_name)
 	local existing=_activeLevels[level_name]
 	if existing~=nil then
 		return existing
 	else
+		-- wip try get from db
+		
+		
+		
+		
 		local fileName="level/"..level_name
 		local new_level=require(fileName)
 		if new_level==nil then
 			log("error:no level descriptor:"..level_name)
 		end
 		
+		-- bug: called on loaded level
 		new_level.init()
 		
 		return new_level

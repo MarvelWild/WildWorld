@@ -1,33 +1,227 @@
-		pickup stone
-			pin to hand
-			
-					
-				handle it by humanoid or by stone? by humanoid (equal choices).
+levels should be persisted
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	was in level.get_level
+where to call level.init?
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+error: existing player not implemented
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+entity with no id/name+?
+
+container:player
+
+
+track add
+
+
+came from save? 
+
+works on clean start, fails after save
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+						pins stored in parent entity
+						server pins entity, notifies clients
+						client/server:
+					Entity.pin(one,another,point1,point2)
+				same code with mount, we pin rider to mount. need generic way to pin entities
 				
-				
-				
-				
-				
-						
-						
-						
-						
-						
-				
-					local event=_event.new("default_action")
-	event.target="server"
-	
-				ClientService.defaultAction()
-				
-				
-				
-				
-			by click space (default action)
-		>pickup stick
+			>pin to hand
+		>pickup stone
+		pickup stick
 	with axe from stick and stone
 >chop a tree
 i want a boat
 what's next?
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -100,8 +294,7 @@ qol: file toc, clickable (entity is hard to open)
 
 
 
-
-
+db: -- todo: separate iterable containers from magic
 
 						Db.add?
 					>how it came there?

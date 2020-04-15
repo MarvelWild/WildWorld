@@ -51,7 +51,7 @@ _.add=function(entity)
 	_all[entity]=true
 	
 	-- entityCode is module with draw,update etc contolling current entity data/dto
-	local entityCode=_.getCode(entity)
+	local entityCode=_.get_code(entity)
 	
 --	if entityCode==nil or entity.entity_name=="panther" then
 --	end
@@ -257,6 +257,11 @@ end
 _.toString=function(entity)
 	if entity==nil then return "nil" end
 	
+	if entity.entity_name==nil then
+		log("error: entity with no name")
+	end
+	
+	
 	if type(entity) == "number" then
 		nop()
 	end
@@ -271,9 +276,20 @@ _.toString=function(entity)
 		
 		
 	if entity.id~=nil then
-		result=result.." id:"..tostring(entity.id)..' xy:'.._xy(entity.x, entity.y)
-			.." lvl:"..tostring(entity.level_name)
+		result=result.." id:"..tostring(entity.id)
+		
+		result=result..' xy:'.._xy(entity.x, entity.y)
+		.." lvl:"..tostring(entity.level_name)
+	else
+		-- service
+--		nop()
 	end
+	
+	
+	if result==nil then
+		nop()
+	end
+	
 	
 	return result
 end
@@ -288,7 +304,7 @@ end
 
 -- description of code functions:
 -- draw/upd/etc code for entity data/dto
-_.getCode=function(entity)
+_.get_code=function(entity)
 	if entity.is_service then
 		-- service does not separate data, everything is a single module
 		return entity

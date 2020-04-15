@@ -57,18 +57,33 @@ _.init=function()
 	
 	local counter=0
 	local increment_counter=function(entity)
-		local s=_ets(entity)
-		if s==nil then
-			nop() -- disappeared? no, happens on client login.
+		if type(entity)=="number" then
+			nop()
 		end
 		
-		log("counting:"..s)
+		
+		
+		local s=_ets(entity)
+		if s==nil then
+			nop()
+		else
+			log("counting:"..s)
+		end
+		
 		counter=counter+1
 	end
+	
+	
+	Db.self_test()
 	
 	Db.each_entity(increment_counter)
 	
 	log("level before init. entity count:"..counter)
+	
+	if counter>2 then
+		log("error: should not init loaded level")
+	end
+	
 	
 	
 	plant_trees()

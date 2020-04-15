@@ -21,15 +21,6 @@ end
 
 
 
-_.interact=function(player,target)
-	local target_code=Entity.getCode(target)
-	
-	local interact=target_code.interact
-	if interact~=nil then
-		interact(player,target)
-	end
-end
-
 _.getById=function(playerId)
 	-- special level for storing logged off players
 	local magicLevelContainer=Db.getLevelContainer("player")

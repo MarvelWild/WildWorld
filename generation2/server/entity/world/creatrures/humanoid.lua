@@ -1,3 +1,4 @@
+-- server
 local _={}
 
 _.entity_name="humanoid"
@@ -110,5 +111,38 @@ end
 ----	take_damage(player)
 --end
 
+
+local do_pickup=function(actor,entity)
+	-- wip
+	-- wip pin to hand
+end
+
+
+local try_pickup=function(actor,entity)
+	log("try_pickup:".._ets(actor).." : ".._ets(entity))
+	-- wip
+	
+	-- todo: generic pickable
+	
+	if entity.entity_name=="stone_1" then
+		local r=do_pickup(actor,entity)
+		if r then return true end
+		
+	end
+	
+	
+end
+
+
+_.interact=function(player,target)
+	local target_code=Entity.get_code(target)
+	
+	local interact=target_code.interact
+	if interact~=nil then
+		interact(player,target)
+	else
+		try_pickup(player,target)
+	end
+end
 
 return _

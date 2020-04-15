@@ -17,9 +17,10 @@ var - table for persisting single vars
 
 local _={}
 
+-- todo: separate iterable containers from magic
 
 -- root container
--- level 1 entity names by level name
+-- level 1 v=entity_names by k=level_name
 -- populated on load
 local _root_container=nil
 
@@ -44,13 +45,24 @@ _.init=function(saveDir)
 	_saveDir=saveDir
 end
 
--- creates empty
--- 
+
+
+
+local is_magic_container=function(level_name)
+	if level_name=="var" then return true end
+	if level_name=="level" then return true end
+	return false
+end
+
+
+
 
 local each_container=function(f)
 	for level_name, entities in pairs(_root_container) do
-		log("processing container:"..level_name)
-		f(entities,level_name)
+		if not is_magic_container(level_name) then 
+			log("processing container:"..level_name)
+			f(entities,level_name)
+		end
 	end
 end
 
@@ -63,12 +75,30 @@ _.each_container=each_container
 	
 --end
 
+local self_test=function()
+	local dump_to_log=function()
+		
+	end
+	
+	
+end
 
 
+_.self_test=self_test
+
+
+-- 
 local each_entity=function(f)
 	each_container(function(entities,level_name)
-			for k,entity in pairs(entities) do
-				f(entity)
+			for k,entity_container in pairs(entities) do
+				if type(entity_container)=="number" then
+					log("error:wrong type")
+				end
+				
+				for k2,entity in pairs(entity_container) do
+					nop()
+					f(entity)
+				end
 			end
 		end
 	)
@@ -111,6 +141,16 @@ _.get_var=function(name)
 end
 
 
+
+
+
+_.get_level=function(name)
+	-- wip
+end
+
+_.set_level=function(name)
+	-- wip
+end
 
 -- put entity into level
 -- level_name optional
@@ -218,6 +258,7 @@ local new_root_container=function()
 	result.var={}
 	result.service={}
 	result.player={}
+	result.level={} -- metainfo about levels
 	
 	return result
 end
@@ -234,6 +275,8 @@ _.load=function()
 	else
 		_root_container=new_root_container()
 	end
+	
+	self_test()
 end
 
 return _
