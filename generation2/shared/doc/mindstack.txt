@@ -1,9 +1,4 @@
-	in Db.level Db.get_level, Db.set_level
-	
-	+save (Db.set_level)
-		>trace
-	+load
-levels should be persisted
+commit
 
 
 
@@ -151,7 +146,18 @@ works on clean start, fails after save
 
 
 
-
+		in Db.level Db.get_level, Db.set_level
+	+save (Db.set_level)
+	
+	
+	
+	
+				+ok for now, not need init
+			-- todo: this level does not contains functions, init()
+		+trace
+	+load
+	+test
++levels should be persisted
 
 
 
