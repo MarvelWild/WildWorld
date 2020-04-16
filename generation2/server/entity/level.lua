@@ -28,6 +28,13 @@ _.get_level=function(level_name)
 		return existing
 	else
 		-- wip try get from db
+		local db_level=Db.get_level(level_name)
+		if db_level then
+			-- todo: this level does not contains functions, init()
+			
+			return db_level
+		end
+		
 		
 		
 		
@@ -40,6 +47,8 @@ _.get_level=function(level_name)
 		
 		-- bug: called on loaded level
 		new_level.init()
+		
+		Db.set_level(level_name,new_level)
 		
 		return new_level
 	end

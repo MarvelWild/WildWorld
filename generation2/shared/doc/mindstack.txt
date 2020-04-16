@@ -1,4 +1,13 @@
+	in Db.level Db.get_level, Db.set_level
+	
+	+save (Db.set_level)
+		>trace
+	+load
 levels should be persisted
+
+
+
+
 
 
 
@@ -51,7 +60,7 @@ where to call level.init?
 
 
 
-
+qol: mod zbs: store mod date of each line
 
 
 

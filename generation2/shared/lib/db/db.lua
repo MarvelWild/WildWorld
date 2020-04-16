@@ -140,16 +140,13 @@ _.get_var=function(name)
 	return _root_container.var[name]
 end
 
-
-
-
-
 _.get_level=function(name)
-	-- wip
+	return _root_container.level[name]
 end
 
-_.set_level=function(name)
-	-- wip
+_.set_level=function(name,level)
+	-- extract name from level?
+	_root_container.level[name]=level
 end
 
 -- put entity into level
