@@ -27,10 +27,9 @@ _.get_level=function(level_name)
 	if existing~=nil then
 		return existing
 	else
-		-- wip try get from db
 		local db_level=Db.get_level(level_name)
 		if db_level then
-			-- todo: this level does not contains functions, init()
+			-- todo: this level does not contains functions, init(). now ok
 			
 			return db_level
 		end

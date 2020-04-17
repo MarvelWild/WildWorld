@@ -35,6 +35,7 @@ CollisionService=require("entity.service.collision_service")
 EnergyService=require("entity.service.energy_service")
 Config=require("shared.entity.service.config")
 Animation_service=require("shared.entity.service.animation_service")
+Pin_service=require("shared.entity.service.pin_service")
 WorldEntities=nil
 DebugFlag=
 {

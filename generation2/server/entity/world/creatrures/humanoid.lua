@@ -115,6 +115,8 @@ end
 local do_pickup=function(actor,entity)
 	-- wip
 	-- wip pin to hand
+	
+	Entity.pin(one,another,point1,point2)
 end
 
 

@@ -1,0 +1,57 @@
+-- pinning entities
+
+
+Entity.pin(parent,child,parent_x,parent_y,child_x,child_y)
+
+
+Where data stored?
+parent.pins={}
+pin={
+	entity=child,
+	
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-- features:
+
+networking:
+	message routing, targets
+	partial entity update (todo)

@@ -1,5 +1,11 @@
-commit
 
+		as parent-childred link
+		
+			Pin_service
+			sounds intresting
+		>pin as separate entity
+	concepts:
+>pin one entity to another
 
 
 
@@ -18,6 +24,22 @@ commit
 
 
 
+						pins stored in parent entity
+						server pins entity, notifies clients
+						client/server:
+					Entity.pin(one,another,point1,point2)
+				same code with mount, we pin rider to mount. need generic way to pin entities
+				
+				
+				
+				where? hmanoid.do_pickup
+			>pin to hand
+		>pickup stone
+		pickup stick
+	with axe from stick and stone
+>chop a tree
+i want a boat
+what's next?
 
 
 
@@ -48,14 +70,11 @@ commit
 
 
 
-	was in level.get_level
-where to call level.init?
 
 
 
 
 
-qol: mod zbs: store mod date of each line
 
 
 
@@ -64,85 +83,6 @@ qol: mod zbs: store mod date of each line
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-error: existing player not implemented
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-entity with no id/name+?
-
-container:player
-
-
-track add
-
-
-came from save? 
-
-works on clean start, fails after save
 
 
 
@@ -195,19 +135,6 @@ works on clean start, fails after save
 
 
 
-						pins stored in parent entity
-						server pins entity, notifies clients
-						client/server:
-					Entity.pin(one,another,point1,point2)
-				same code with mount, we pin rider to mount. need generic way to pin entities
-				
-			>pin to hand
-		>pickup stone
-		pickup stick
-	with axe from stick and stone
->chop a tree
-i want a boat
-what's next?
 
 
 
@@ -2680,6 +2607,7 @@ server sends create_player_response to client:
 					[strin
 
 
+qol: mod zbs: store mod date of each line
 
 +no id for services
 

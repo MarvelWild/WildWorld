@@ -15,6 +15,10 @@ Inspect=Pow.inspect
 
 serialize=Pow.pack
 deserialize=Pow.unpack
+
+_str=serialize
+_obj=deserialize
+
 _ets=Entity.toString
 _ref=Entity.get_reference
 _rnd=love.math.random
