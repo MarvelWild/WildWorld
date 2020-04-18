@@ -209,6 +209,12 @@ local shouldSendEvent=function(event,targetLogin)
 		
 		
 		local targetPlayer=Player.getByLogin(targetLogin)
+		
+		if not targetPlayer then
+			log("warn: player not found by login:"..targetLogin)
+		end
+		
+		
 		local targetLevel=targetPlayer.level_name
 		if (level==targetLevel) then 
 			result=true

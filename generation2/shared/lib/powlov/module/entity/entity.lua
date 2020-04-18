@@ -128,7 +128,9 @@ local removeDrawable=function(entity,container)
 	-- log("drawables after remove:"..count)
 	
 	if count>0 then
-		log("error: removeDrawable failed. Entity was not in drawables:".._ets(entity))
+		-- ok, some entities not drawable
+		-- opt: do not iter on such
+		--log("error: removeDrawable failed. Entity was not in drawables:".._ets(entity))
 	end
 end
 

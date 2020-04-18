@@ -1,3 +1,57 @@
+	
+	client bind:
+		shared\lib\powlov\module\net\server.lua
+	server bind:
+network internet test
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 		as parent-childred link
 		
@@ -75,8 +129,8 @@ what's next?
 
 
 
-
-
+	splashes
+discoveries
 
 
 

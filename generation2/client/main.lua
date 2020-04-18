@@ -69,6 +69,9 @@ end
 local initUi=function()
 	local hotbar=require("entity.ui.hotbar")
 	Entity.add(hotbar)
+	
+	local splash=require("entity.ui.splash")
+	Entity.add(splash)
 end
 
 

@@ -1,3 +1,5 @@
+-- Img/.
+
 local Img={}
 
 local baseDir="shared/res/img"
@@ -12,12 +14,12 @@ local i=function(path)
 end
 
 
-Img.get=function(id)
-	
+Img.get=function(id,ext)
+	if not ext then ext="png" end
 	local result=rawget(Img,id)
 	
 	if result==nil then
-		result=i(baseDir.."/"..id..".png")
+		result=i(baseDir.."/"..id.."."..ext)
 		if result==nil then
 			log("error: no img by id:"..id)
 		end
