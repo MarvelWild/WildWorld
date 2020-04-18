@@ -127,7 +127,7 @@ local put_player_into_world=function(player, level_name)
 		Db.add(controlled_entity,level_name)
 		
 	else
-		log("experimental: reattach player") -- manual test success
+--		log("experimental: reattach player") -- manual test success
 		player.controlled_entity_ref=controlled_entity_ref
 	end
 	

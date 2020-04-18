@@ -1,4 +1,6 @@
 -- todo: tutorial messges
+-- todo: start menu
+-- todo: image ref/author
 
 local _=BaseEntity.new("splash",true)
 

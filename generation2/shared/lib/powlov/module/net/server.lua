@@ -1,6 +1,8 @@
 -- pow server
 -- generic game network abstraction
 -- Hides Grease
+-- features: message target, split stream into messages, auth
+-- 
 
 local pathOfThisFile = ...
 -- 4 is a length(thisFile) - this file
@@ -165,6 +167,11 @@ _.listen=function(port)
 	_tcpServer.handshake=_shared.handShake
 	_tcpServer:listen(host, port)
 	_log("listening at:"..host..":"..port,'net')
+	
+	
+	-- wip
+	--_tcpServer:update(0)
+	local a=1
 end
 
 _.update=function(dt)
@@ -261,9 +268,11 @@ end
 _.lateUpdate=function(dt)
 	if _tcpServer==nil then return end
 	
+	
 
 	-- sendEvents()
 	-- log('server upd')
+	
 	_tcpServer:update(dt)
 end
 
