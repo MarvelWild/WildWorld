@@ -90,6 +90,7 @@ love.load=function()
 	
 	Entity.add(EnergyService)
 	Entity.add(ServerService)
+	Entity.add(Pin_service)
 	loadEntities()
 	
 	Entity.on_removed=entity_on_removed
@@ -131,6 +132,9 @@ end
 local _print=love.graphics.print
 local _debug=Pow.debug
 
+
+local _fps=love.timer.getFPS
+
 love.draw=function()
 	
 	local y=0
@@ -139,7 +143,7 @@ love.draw=function()
 	local log_last_message=_debug.last_message
 	local log_prev_message=_debug.prev_message
 	
-	_print("server up",y)
+	_print("server up. fps:".._fps(),y)
 	y=y+line_spacing
 	
 	_print("frame:".._frm(),0,y)

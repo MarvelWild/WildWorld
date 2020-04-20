@@ -80,6 +80,11 @@ local self_test=function()
 		
 	end
 	
+--	local same_table_ref={"same_table_ref",1,42}
+--	_.set_var("test_ref_1", same_table_ref)
+--	_.set_var("test_ref_2", same_table_ref)
+--	_.set_var("test_ref_3", nil)
+	
 	
 end
 
@@ -105,6 +110,16 @@ local each_entity=function(f)
 end
 
 _.each_entity=each_entity
+
+
+_.each_entity_on_level=function(level_name,f)
+	local level_container=_root_container[level_name]
+	for entity_name,entity_container in pairs(level_container) do
+		for k,entity in pairs(entity_container) do
+			f(entity)
+		end
+	end
+end
 
 
 local getEntityContainer=function(levelContainer, entity_name)
@@ -244,6 +259,7 @@ _.getEntityContainer=getEntityContainer
 _.save=function()
 	log('db save')
 	
+	-- wip persist refs
 	local serialized=Pow.serialize(_root_container)
 	love.filesystem.write(_saveDir.._saveName, serialized)
 end

@@ -351,6 +351,17 @@ local getCollisions=function(event)
 	_event.process(response)
 end
 
+
+local do_default_action=function(actor,target)
+	local actorCode=Entity.get_code(actor)
+	local fnInteract=actorCode.interact
+	if fnInteract==nil then return false end
+	
+	local interact_result=fnInteract(actor, target)
+	return interact_result
+end
+
+
 -- player press space, enter portal / pickup item etc
 local default_action=function(event)
 	local login=event.login
@@ -388,27 +399,17 @@ local default_action=function(event)
 		end
 		-- /
 		
-		
-		local collisionsCount=#collision_entities_filtered
-		
-		if collisionsCount==1 then
-			target=collision_entities_filtered[1]
-		elseif collisionsCount>1 then
-			-- todo: resolve target/give player a choice what to do
-			log("action on multiple objects not implemented, picking random target")
-			
-			target=Pow.lume.randomchoice(collision_entities_filtered)
+		for k,entity in pairs(collision_entities_filtered) do
+			local is_interacted=do_default_action(controlled_entity,entity)
+			if is_interacted then
+				return true
+			else
+				log("not interacted with:".._ets(entity))
+			end
 		end
-		
-		if target==nil then return end
 	end
 	
-	-- local actorCode=Player -- wrong
-	local actorCode=Entity.get_code(controlled_entity)
-	local fnInteract=actorCode.interact
-	if fnInteract==nil then return end
-	
-	fnInteract(controlled_entity, target)
+	do_default_action(controlled_entity,target)
 end
 
 

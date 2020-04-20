@@ -1,8 +1,30 @@
+461     error:event unprocessed:do local _={
+ actor_ref={
+  entity_name="humanoid",
+  level_name="start",
+  id=1
+ },
+ target="level",
+ code="pickup",
+ id=25,
+ pick_ref={
+  entity_name="stone_1",
+  level_name="start",
+  id=2
+ },
+ level="start",
+ entity_name="Event",
+ do_not_process_on_server=true
+}
+return _
+end
+
+
+
+
+
 	
-	client bind:
-		shared\lib\powlov\module\net\server.lua
-	server bind:
-network internet test
+handle pin on client
 
 
 
@@ -40,20 +62,7 @@ network internet test
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-		as parent-childred link
+		as parent-children link
 		
 			Pin_service
 			sounds intresting
@@ -105,7 +114,7 @@ what's next?
 
 
 
-
+interact chain
 
 
 
@@ -161,6 +170,8 @@ discoveries
 
 
 
+	+!! player.controlled_entity was persisted as entity, not as reference
++wrong collision:
 
 
 
@@ -183,7 +194,11 @@ discoveries
 
 
 
-
+	
+	+client bind:
+		+shared\lib\powlov\module\net\server.lua
+	+server bind:
++network internet test
 
 
 

@@ -42,3 +42,15 @@ end
 
 nop=function()
 end
+
+
+_strc=function(s)
+	local result=_str(s)
+	result=Pow.allen.substitute("\n","")
+	result=Pow.allen.substitute("\\n","")
+	result=Pow.allen.substitute("\9","")
+	result=Pow.allen.substitute("\\9","")
+	-- todo: replace \n \9
+	
+	return result
+end

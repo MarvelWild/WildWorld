@@ -46,6 +46,10 @@ _.new=function()
 	result.footX=7
 	result.footY=15
 	
+	result.hand_x=10
+	result.hand_y=7
+	
+	
 	
 	-- collision sqquare start
 	result.collisionX=3
@@ -113,10 +117,19 @@ end
 
 
 local do_pickup=function(actor,entity)
-	-- wip
-	-- wip pin to hand
+	Pin_service.pin(actor,entity,actor.hand_x,actor.hand_y,entity.origin_x,entity.origin_y)
 	
-	Entity.pin(one,another,point1,point2)
+	
+	-- emit event to pin on level on clients
+	local event=Event.new("pickup")
+	event.actor_ref=_ref(actor)
+	event.pick_ref=_ref(entity)
+	event.target="level"
+	event.level=actor.level_name
+	event.do_not_process_on_server=true
+	
+	Event.process(event)
+	return true
 end
 
 
@@ -141,9 +154,9 @@ _.interact=function(player,target)
 	
 	local interact=target_code.interact
 	if interact~=nil then
-		interact(player,target)
+		return interact(player,target)
 	else
-		try_pickup(player,target)
+		return try_pickup(player,target)
 	end
 end
 

@@ -4,7 +4,6 @@
 -- @author Taehl (SelfMadeSpirit@gmail.com)
 
 
--- this version is modified for "Rogue Love 2"
 
 local TSerial = {}
 

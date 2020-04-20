@@ -307,6 +307,13 @@ end
 -- description of code functions:
 -- draw/upd/etc code for entity data/dto
 _.get_code=function(entity)
+	if entity==nil then
+		log("warn:nil")
+		return
+	end
+	
+	
+	
 	if entity.is_service then
 		-- service does not separate data, everything is a single module
 		return entity

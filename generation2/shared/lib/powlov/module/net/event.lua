@@ -43,7 +43,7 @@ end
 
 -- code=eventCode
 _.new=function(code,requestId)
-	log("Event.new:".._traceback(), "verbose")
+--	log("Event.new:".._traceback(), "verbose")
 
 -- event is not a entity
 	local event={}

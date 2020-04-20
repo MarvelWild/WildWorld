@@ -175,6 +175,18 @@ end
 
 -- returns array of entity or nil
 _.getAtEntity=function(entity)
+	-- debug
+	
+--	local level_name=entity.level_name
+--	local log_entity=function(entity)
+--		log(_ets(entity))
+--	end
+	
+--	Db.each_entity_on_level(level_name,log_entity)
+	
+	
+	
+	
 --	local x,y,w,h=Entity.getCollisionBox(entity)
 --	return _.getAtRect(x,y,w,h)
 	local shape=_.getEntityShape(entity)

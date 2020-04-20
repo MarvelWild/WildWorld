@@ -91,6 +91,9 @@ local initDeps=function(...)
 	local tserialPath=folderOfThisFile .. "/deps/TSerial"
 	_.tserial=require(tserialPath)
 	
+	local serpent_path=folderOfThisFile .. "/deps/serpent/src/serpent"
+	_.serpent=require(serpent_path)
+	
 	-- it needs to be global under this name for self
 	TSerial=_.tserial
 	
@@ -98,10 +101,31 @@ local initDeps=function(...)
 	_.unpack=TSerial.unpack
 	
 	_.serialize=function(data)
-		return TSerial.pack(data,true,true)
+		
+		-- wip try serpent
+		
+		-- wwip exclude function code
+		-- return _.serpent.dump(data) -- functions, not readable
+		-- return _.serpent.block(data) -- same ref test fail
+		return _.serpent.dump(data,
+			{
+				nocode=true,
+--				valtypeignore={
+--					"function"
+--				},
+				indent=" "
+			}
+		)
+		
+--		return TSerial.pack(data,true,true)
 	end
 	
-	_.deserialize=TSerial.unpack
+	_.deserialize=function(data)
+		local is_ok,deserialized=_.serpent.load(data)
+		return deserialized
+--		TSerial.unpack
+	end
+	
 	
 	local inspectPath=folderOfThisFile .. "/deps/inspect/inspect"
 	_.inspect=require(inspectPath)

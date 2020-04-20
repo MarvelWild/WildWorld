@@ -7,6 +7,9 @@ _.new=function()
 	
 	result.sprite=_.entity_name
 	
+	result.origin_x=2
+	result.origin_y=2
+	
 	BaseEntity.init_bounds_from_sprite(result)
 	
 	return result
