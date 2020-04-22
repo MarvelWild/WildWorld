@@ -15,9 +15,11 @@ local bgs=
 	{"3rd_party/d0b27479e2a7b136d0a49d2850757915","jpg"},
 	{"3rd_party/863f8d2e110e53dc834a06724151c0d1","jpg"},
 	{"splash/me_1","jpg"},
+	{"splash/garden_1","jpg"},
 }
 
 local random_bg_data=Pow.lume.randomchoice(bgs)
+--random_bg_data={"splash/garden_1","jpg"}
 local ext="png"
 
 local random_bg_name

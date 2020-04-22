@@ -177,6 +177,16 @@ sprite="birch_tree_1"
 	Entity.set_sprite(entity,event.sprite)
 end
 
+local pickup=function(event)
+	log("client_service.pickup start:"..Inspect(event))
+	
+	local actor=_deref(event.actor_ref)
+	local entity=_deref(event.pick_ref)
+	
+	Pin_service.pin(actor,entity,actor.hand_x,actor.hand_y,entity.origin_x,entity.origin_y)
+end
+
+
 -- 
 local afterLogin=function(response)
 	log('after login:'..Pow.pack(response), "net")
@@ -193,6 +203,7 @@ local afterLogin=function(response)
 	_event.add_handler("entity_updated", on_entity_updated)
 	_event.add_handler("do_mount", do_mount)
 	_event.add_handler("do_grow", do_grow)
+	_event.add_handler("pickup", pickup)
 	
 	log("added handler of create_player_response",'event')
 	-- todo: remove handler on completion

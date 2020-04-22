@@ -32,7 +32,7 @@ end
 _.pin=function(lead,follow,lead_x,lead_y,follow_x,follow_y)
 	local existing=_pins[follow]
 	if existing then
-		log("pin update data:".._str(pin))
+		log("pin update data:".._str(existing))
 		
 		existing.lead=lead
 		existing.lead_x=lead_x
