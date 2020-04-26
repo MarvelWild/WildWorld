@@ -375,6 +375,7 @@ local default_action=function(event)
 	
 	if mounted_on~=nil then
 		target=_deref(mounted_on)
+    do_default_action(controlled_entity,target)
 	else
 		local collision_entities=CollisionService.getEntityCollisions(controlled_entity)
 		if collision_entities==nil then return end
@@ -408,8 +409,6 @@ local default_action=function(event)
 			end
 		end
 	end
-	
-	do_default_action(controlled_entity,target)
 end
 
 

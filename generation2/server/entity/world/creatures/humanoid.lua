@@ -145,7 +145,6 @@ local try_pickup=function(actor,entity)
 		
 	end
 	
-	
 end
 
 
@@ -153,7 +152,7 @@ _.interact=function(player,target)
 	local target_code=Entity.get_code(target)
 	
 	local interact=target_code.interact
-	if interact~=nil then
+	if interact~=nil and interact~=_.interact then
 		return interact(player,target)
 	else
 		return try_pickup(player,target)
