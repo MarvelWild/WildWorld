@@ -36,8 +36,8 @@ _.new=function()
 			-- todo: die cycle
 	}
 	
-	result.footX=16
-	result.footY=60
+	result.foot_x=16
+	result.foot_y=60
 	Growable.init(result)
 	
 

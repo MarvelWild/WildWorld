@@ -19,7 +19,7 @@ _.level=nil
 			{
 				[12] = 
 				{
-					draw_layer = 0, entity_name = "player", footX = 7, footY = 15, id = 12, level_name = "start", login = "mw", name = "mw", sprite = "player", x = 100, y = 20
+					draw_layer = 0, entity_name = "player", foot_x = 7, foot_y = 15, id = 12, level_name = "start", login = "mw", name = "mw", sprite = "player", x = 100, y = 20
 				}
 			}
 		}

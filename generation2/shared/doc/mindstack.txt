@@ -1,4 +1,8 @@
-second pickup should be drop
+commit, sleep.
+
+Thanks for watching!
+
+good night!
 
 
 
@@ -7,7 +11,91 @@ second pickup should be drop
 
 
 
-persist item in hand state
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+bug: fast space click on item
+				
+			>hotkey c
+			onscreen button
+		then use crafting menu
+	and axe into another
+	we need to pick stick in one hand
+to craft an axe
+
+
+
+				where? hmanoid.do_pickup
+			>pin to hand
+		>pickup stone
+		pickup stick
+	with axe from stick and stone
+>chop a tree
+i want a boat!
+what's next?
+
+
+
+
+
+
+
+
+
+	+it should resolve during play tests
++too much actions on space button?
+
+
+
+
+
+
+
+
+
+
+
+
+ui:
+thoughts
+actions
+
+
+
+-- todo: pin on load
+
+
+	display collision boxes when debugger active
+			item pickup: fast clicking: collision box mismatch when fast drops during move
+			
+
+
+
+
+
+qol: server debug screen
+persist item in hand
+
 
 
 +qol: stop anytime from debugger?
@@ -23,6 +111,26 @@ persist item in hand state
 
 
 
+1 click play for users
+
+
+
+
+		+client: pickup event-
+		+server: humanoid.do_pickup
+	+in humanoid.hand_slot
++store carried item
+
+pin carried items
+
+
+
+
+
+
+
+				+fixed:instant pickup after (return)
+			+no drop
 
 
 
@@ -45,20 +153,7 @@ persist item in hand state
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+easy crafting: reqiered items should be nearby. no inventory juggling
 
 
 
@@ -185,14 +280,7 @@ persist item in hand state
 				
 				
 				
-				where? hmanoid.do_pickup
-			>pin to hand
-		>pickup stone
-		pickup stick
-	with axe from stick and stone
->chop a tree
-i want a boat
-what's next?
+
 
 
 
@@ -305,6 +393,10 @@ discoveries
 
 
 
+
+	+client
+	+server
++drop items (space key)
 
 
 

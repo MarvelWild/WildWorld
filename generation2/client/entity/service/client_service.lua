@@ -181,9 +181,39 @@ local pickup=function(event)
 	log("client_service.pickup start:"..Inspect(event))
 	
 	local actor=_deref(event.actor_ref)
-	local entity=_deref(event.pick_ref)
+	
+	local item_ref=event.pick_ref
+	local entity=_deref(item_ref)
+	
+	actor.hand_slot=item_ref
 	
 	Pin_service.pin(actor,entity,actor.hand_x,actor.hand_y,entity.origin_x,entity.origin_y)
+end
+
+local drop=function(event)
+	log("client_service.drop:"..Inspect(event))
+	
+	local actor=_deref(event.actor_ref)
+	local slot_name=event.slot_name
+	local item_ref=actor[slot_name]
+	actor[slot_name]=nil
+	
+	local item=_deref(item_ref)
+	
+	-- todo: extract shared code / merge dup
+	Pin_service.unpin(item)
+	
+	local item_x=item.x
+	local dy=event.dy
+	local item_y=item.y+dy
+	Movable.smooth_move(item,0.3,item_x,item_y)
+	
+--	local item_ref=event.pick_ref
+--	local entity=_deref(item_ref)
+	
+--	actor.hand_slot=item_ref
+	
+--	Pin_service.pin(actor,entity,actor.hand_x,actor.hand_y,entity.origin_x,entity.origin_y)
 end
 
 
@@ -204,6 +234,7 @@ local afterLogin=function(response)
 	_event.add_handler("do_mount", do_mount)
 	_event.add_handler("do_grow", do_grow)
 	_event.add_handler("pickup", pickup)
+	_event.add_handler("drop", drop)
 	
 	log("added handler of create_player_response",'event')
 	-- todo: remove handler on completion

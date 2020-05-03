@@ -259,7 +259,6 @@ _.getEntityContainer=getEntityContainer
 _.save=function()
 	log('db save')
 	
-	-- wip persist refs
 	local serialized=Pow.serialize(_root_container)
 	love.filesystem.write(_saveDir.._saveName, serialized)
 end

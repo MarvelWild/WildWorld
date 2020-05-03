@@ -6,8 +6,8 @@ _.new=function()
 	local result=BaseEntity.new(_.entity_name)
 	
 	result.sprite=_.entity_name
-	result.footX=16
-	result.footY=30
+	result.foot_x=16
+	result.foot_y=30
 	
 	BaseEntity.init_bounds_from_sprite(result)
 	

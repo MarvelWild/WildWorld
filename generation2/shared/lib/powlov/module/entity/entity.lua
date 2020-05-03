@@ -459,12 +459,6 @@ _.set_sprite=function(entity,sprite_name)
 end
 
 
--- try: pin as separate entity, 
---_.pin=function(parent,child,parent_x,parent_y,child_x,child_y)
---	-- wip
---end
-
-
 return _
 
 

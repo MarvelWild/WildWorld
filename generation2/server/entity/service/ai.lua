@@ -13,8 +13,8 @@ _.moveRandom=function(entity)
 	local random=Pow.lume.random
 	local clamp=Pow.lume.clamp
 	
-	local current_x=entity.x+entity.footX
-	local current_y=entity.y+entity.footY
+	local current_x=entity.x+entity.foot_x
+	local current_y=entity.y+entity.foot_y
 	
 	local dx=random(-maxDistance,maxDistance)
 	local dy=random(-maxDistance,maxDistance)

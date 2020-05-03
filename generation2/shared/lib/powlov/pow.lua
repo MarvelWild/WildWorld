@@ -102,9 +102,7 @@ local initDeps=function(...)
 	
 	_.serialize=function(data)
 		
-		-- wip try serpent
-		
-		-- wwip exclude function code
+		-- todo exclude function code. now it persists nop
 		-- return _.serpent.dump(data) -- functions, not readable
 		-- return _.serpent.block(data) -- same ref test fail
 		return _.serpent.dump(data,

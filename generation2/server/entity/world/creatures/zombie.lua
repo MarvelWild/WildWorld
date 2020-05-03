@@ -13,8 +13,8 @@ _.new=function()
 	
 --	result.originX=3
 --	result.originY=7
-	result.footX=3
-	result.footY=14
+	result.foot_x=3
+	result.foot_y=14
 	
 	
 	

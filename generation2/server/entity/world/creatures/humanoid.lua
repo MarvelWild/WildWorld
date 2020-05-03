@@ -43,8 +43,8 @@ _.new=function()
 	result.name='Joe'
 	result.level_name='start'
 	
-	result.footX=7
-	result.footY=15
+	result.foot_x=7
+	result.foot_y=15
 	
 	result.hand_x=10
 	result.hand_y=7
@@ -70,6 +70,9 @@ _.new=function()
 	
 	result.energy=100
 	result.energy_max=100
+	
+	-- 
+	result.hand_slot=nil
 	
 	
 	
@@ -116,9 +119,14 @@ end
 --end
 
 
+-- no checks
 local do_pickup=function(actor,entity)
 	Pin_service.pin(actor,entity,actor.hand_x,actor.hand_y,entity.origin_x,entity.origin_y)
 	
+	actor.hand_slot=_ref(entity)
+	
+	
+	-- todo: pin on load. now it does drop, but item not pinned
 	
 	-- emit event to pin on level on clients
 	local event=Event.new("pickup")
@@ -135,8 +143,6 @@ end
 
 local try_pickup=function(actor,entity)
 	log("try_pickup:".._ets(actor).." : ".._ets(entity))
-	-- wip
-	
 	-- todo: generic pickable
 	
 	if entity.entity_name=="stone_1" then

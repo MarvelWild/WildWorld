@@ -9,8 +9,8 @@ _.new=function()
 	
 	BaseEntity.init_bounds_from_sprite(result)
 	
-	result.footX=17
-	result.footY=22
+	result.foot_x=17
+	result.foot_y=22
 	
 	result.mountX=17
 	result.mountY=16

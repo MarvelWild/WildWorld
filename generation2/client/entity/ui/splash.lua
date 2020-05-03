@@ -83,7 +83,6 @@ _.update=function(dt,splash)
 	if frame>60 then
 		alpha=alpha-0.04
 		if alpha<0 then
-			-- wip destroy
 			Entity.remove(splash)
 		end
 		

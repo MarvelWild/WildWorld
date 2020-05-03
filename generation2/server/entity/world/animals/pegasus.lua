@@ -12,8 +12,8 @@ _.new=function()
 --	result.originX=27
 --	result.originY=31	
 	
-	result.footX=22
-	result.footY=46	
+	result.foot_x=22
+	result.foot_y=46	
 	
 	result.mountX=27
 	result.mountY=31

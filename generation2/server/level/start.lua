@@ -25,17 +25,6 @@ local plant_trees=function()
 	Db.add(entity,_.name)
 	
 	
-	
-	
-	x=love.math.random(land_area_start_x,land_area_end_x)
-	y=love.math.random(land_area_start_y,land_area_end_y)
-	
-	entity=Stone_1.new()
-	entity.x=x
-	entity.y=y
-	Db.add(entity,_.name)
-	
-	
 	x=love.math.random(land_area_start_x,land_area_end_x)
 	y=love.math.random(land_area_start_y,land_area_end_y)
 	

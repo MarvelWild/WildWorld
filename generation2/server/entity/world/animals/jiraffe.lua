@@ -15,8 +15,8 @@ _.new=function()
 	result.originX=15
 	result.originY=23
 	
-	result.footX=15
-	result.footY=31
+	result.foot_x=15
+	result.foot_y=31
 	
 	return result
 end

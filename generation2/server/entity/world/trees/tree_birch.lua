@@ -40,8 +40,8 @@ _.new=function()
 			},			
 	}
 
-	result.footX=8
-	result.footY=15
+	result.foot_x=8
+	result.foot_y=15
 
 	
 	Growable.init(result)

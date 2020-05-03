@@ -49,7 +49,7 @@ _.pin=function(lead,follow,lead_x,lead_y,follow_x,follow_y)
 	end
 end
 
--- wip should be called when entities finished moving
+-- todo should be called when entities finished moving
 _.update=function()
 	-- todo: test call order, / update levels - explicit priority (явный)
 --	log("pins update coord start")
@@ -64,9 +64,7 @@ _.update=function()
 		local follow_new_x=lead.x+pin.lead_x-follow.origin_x
 		local follow_new_y=lead.y+pin.lead_y-follow.origin_y
 		
-		follow.x=follow_new_x
-		follow.y=follow_new_y
-		
+		Movable.instant_move(follow,follow_new_x,follow_new_y)
 --		log("pinned entity coord updated:".._xy(follow_new_x,follow_new_y))
 	end
 end

@@ -1,3 +1,4 @@
+-- ex: duck_typing.txt
 --- props ---
 
 Common:
@@ -16,6 +17,9 @@ entity.grow_phase_index
 
 Inventory:
 entity.items
+slots:
+entity.hand_slot - ref
+
 
 
 
@@ -48,6 +52,7 @@ level.init
 Frame:
 	animation frame
 	game frame
+
 
 
 

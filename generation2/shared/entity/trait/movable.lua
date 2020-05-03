@@ -75,6 +75,7 @@ local smoothMove=function(actor,durationSec,x,y)
 	_smooth_moving[actor]=tween
 end
 
+_.smooth_move=smoothMove
 
 
 
@@ -87,6 +88,7 @@ end
 
 -- only moves locally, no event
 -- todo: refactor params to table
+-- force_this: resolve mount or not
 _.move=function(actor,x,y,duration,force_this,ignore_foot)
 	log("Movable.move:".._ets(actor).." to:".._xy(x,y).." dur:"..duration, "move")
 	
@@ -105,11 +107,11 @@ _.move=function(actor,x,y,duration,force_this,ignore_foot)
 	local finalY
 
 	if not ignore_foot then
-		if actor.footX~=nil then
-			finalX=x-actor.footX
-			finalY=y-actor.footY
+		if actor.foot_x~=nil then
+			finalX=x-actor.foot_x
+			finalY=y-actor.foot_y
 		else
-			log("warn: movable has no footX:".._ets(actor))
+			log("warn: movable has no foot_x:".._ets(actor))
 			finalX=x
 			finalY=y
 		end

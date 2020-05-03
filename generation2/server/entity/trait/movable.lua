@@ -17,8 +17,8 @@ _.calc_move_duration=function(actor,x,y)
 		actor=_deref(actor.mounted_on)
 	end
 	
-	local now_x=actor.x+actor.footX
-	local now_y=actor.y+actor.footY
+	local now_x=actor.x+actor.foot_x
+	local now_y=actor.y+actor.foot_y
 	
 	local distance=calc_distance(now_x,now_y,x,y)
 	

@@ -15,8 +15,8 @@ _.new=function()
 --	result.originX=15
 --	result.originY=23
 	
-	result.footX=6
-	result.footY=15
+	result.foot_x=6
+	result.foot_y=15
 	
 	result.move_speed=1
 	

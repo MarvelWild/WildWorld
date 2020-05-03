@@ -167,11 +167,6 @@ _.listen=function(port)
 	_tcpServer.handshake=_shared.handShake
 	_tcpServer:listen(host, port)
 	_log("listening at:"..host..":"..port,'net')
-	
-	
-	-- wip
-	--_tcpServer:update(0)
-	local a=1
 end
 
 _.update=function(dt)

@@ -362,7 +362,32 @@ local do_default_action=function(actor,target)
 end
 
 
--- player press space, enter portal / pickup item etc
+local do_drop=function(actor)
+			-- drop
+			local item=_deref(actor.hand_slot)
+			Pin_service.unpin(item)
+			actor.hand_slot=nil
+			-- todo: move dropped item to foot point
+			-- wip xy
+			local item_x=item.x
+			local dy=actor.foot_y-actor.hand_y
+			local item_y=item.y+dy
+			Movable.smooth_move(item,0.3,item_x,item_y)
+			
+			local event=Event.new("drop")
+			event.actor_ref=_ref(actor)
+			event.slot_name="hand_slot"
+			event.target="level"
+			event.level=actor.level_name
+			event.do_not_process_on_server=true
+			event.dy=dy
+
+			Event.process(event)	
+end
+
+
+-- todo: split
+-- player press space, enter portal / pickup-drop item etc
 local default_action=function(event)
 	local login=event.login
 	local player=Player.getByLogin(login)
@@ -373,10 +398,21 @@ local default_action=function(event)
 	
 	local target=nil
 	
+	-- todo drop item
+	
+	--- if carrying_item
+	
 	if mounted_on~=nil then
 		target=_deref(mounted_on)
     do_default_action(controlled_entity,target)
 	else
+		if controlled_entity.hand_slot~=nil then
+			do_drop(controlled_entity)
+			return
+		end
+		
+		
+		
 		local collision_entities=CollisionService.getEntityCollisions(controlled_entity)
 		if collision_entities==nil then return end
 		

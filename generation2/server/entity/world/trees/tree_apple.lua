@@ -68,8 +68,8 @@ _.new=function()
 
 
 	-- todo: props of sprite, not entity?
-	result.footX=15
-	result.footY=46
+	result.foot_x=15
+	result.foot_y=46
 	
 	result.grow_apple_frame=0
 	
