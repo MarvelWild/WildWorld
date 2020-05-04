@@ -18,6 +18,8 @@ local bgs=
 	{"splash/garden_1","jpg"},
 	{"splash/unknown_1","jpg"},
 	{"splash/unk_2","jpg"},
+	{"splash/unk_3","jpg"},
+	{"splash/unk_4","jpg"},
 }
 
 local random_bg_data=Pow.lume.randomchoice(bgs)
