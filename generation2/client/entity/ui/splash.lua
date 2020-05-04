@@ -16,10 +16,12 @@ local bgs=
 	{"3rd_party/863f8d2e110e53dc834a06724151c0d1","jpg"},
 	{"splash/me_1","jpg"},
 	{"splash/garden_1","jpg"},
+	{"splash/unknown_1","jpg"},
+	{"splash/unk_2","jpg"},
 }
 
 local random_bg_data=Pow.lume.randomchoice(bgs)
---random_bg_data={"splash/garden_1","jpg"}
+--random_bg_data={"splash/unk_2","jpg"}
 local ext="png"
 
 local random_bg_name
@@ -45,11 +47,11 @@ local extra_x=w-512
 local extra_y=h-512
 
 if extra_x>0 then
-	_x=_x-_rnd(extra_x,extra_x)
+	_x=_x-_rnd(0,extra_x)
 end
 
 if extra_y>0 then
-	_y=_y-_rnd(extra_y,extra_y)
+	_y=_y-_rnd(0,extra_y)
 end
 
 
@@ -68,6 +70,8 @@ _.drawUnscaledUi=function()
 --	love.graphics.draw(random_bg, 0, 0, 0, min_s,min_s)
 	love.graphics.setColor( 1, 1, 1, alpha )
 	love.graphics.draw(random_bg, _x, _y, 0)
+	
+--	log("drawing bg at:".._xy(_x,_y))
 	love.graphics.setColor( 1, 1, 1, 1 )
 end
 
@@ -80,7 +84,7 @@ _.update=function(dt,splash)
 --	log("splash frame:"..frame)
 	
 	-- test with frame load: client doesn't load frame number
-	if frame>60 then
+	if frame>90 then
 		alpha=alpha-0.04
 		if alpha<0 then
 			Entity.remove(splash)
