@@ -68,7 +68,7 @@ riding
 
 
 
-![Screenshot](https://3.bp.blogspot.com/-Thgk56DZZus/Wyma2y5au_I/AAAAAAAADGU/AFKZd2obv0ktZX56X_aJU8iQzYdBeeOoACLcBGAs/s1600/Blog-ULR-1.jpg)
+![Screenshot](http://o7.by/static/img/Blog-ULR-1.jpg)
 
 
 
