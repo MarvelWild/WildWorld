@@ -1,3 +1,50 @@
+bug: portal broken(calling nil level.init after loading)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 bug: fast space click on item
 
 
