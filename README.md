@@ -98,22 +98,7 @@ riding
 
 
 <details>
- <summary>Donate</summary>
-
-https://yasobe.ru/na/gamedev_way
-
-https://www.patreon.com/marvelme
-
-
-btc: 3MV443JyoGvd1WX1UhwLSKfS1VmTQg4QBr
-
-eth: 0xF58BD9894f9039C76d9329d7570011DB280049BD
-
-goals:
-better hardware,
-rent, so basically more time for open source projects.
-
-Thanks for support!
-
+ <summary>Support</summary>
+ http://o7.by/support
 </details>
 
