@@ -1,6 +1,6 @@
 :: config
 :: todo: universal way
-set game_path=c:\Gamedev\Love\WildWorld\generation2\
+set game_path=c:\dev\WildWorld\generation2\
 
 
 

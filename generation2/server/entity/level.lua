@@ -34,18 +34,15 @@ _.get_level=function(level_name)
 			return db_level
 		end
 		
-		
-		
-		
-		
 		local fileName="level/"..level_name
 		local new_level=require(fileName)
 		if new_level==nil then
 			log("error:no level descriptor:"..level_name)
 		end
 		
-		-- bug: called on loaded level
-		new_level.init()
+		if new_level.init then
+			new_level.init()
+		end
 		
 		Db.set_level(level_name,new_level)
 		
