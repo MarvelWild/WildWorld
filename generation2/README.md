@@ -12,7 +12,7 @@ I decided to rewrite from scratch for better code and easier development.
 <details>
  <summary>Installation</summary>
 
-windows: edit tools\init.cmd, put your game_path, run once
+windows: edit tools\init.cmd, put your game_path, run once from administrator (no symlink permission for regular windows user)
 
 linux: make symlink of shared dir manually (see tools\init.cmd)
 
