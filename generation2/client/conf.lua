@@ -4,7 +4,7 @@ function love.conf(t)
 --		t.window.width = 128
 --    t.window.height = 128
 		t.window.resizable = true
-    t.window.title = "Wild World 2 client" 
+    t.window.title = "client - Wild World 2" 
     t.version = "11.1"
 		t.console = true
 		t.window.x=200

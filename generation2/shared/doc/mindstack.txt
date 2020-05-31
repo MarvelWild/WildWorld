@@ -183,7 +183,8 @@ to craft an axe
 				+where? hmanoid.do_pickup
 			+pin to hand
 		+pickup stone
-			
+
+			stack: Humanoid.interact
 		>pickup stick
 	with axe from stick and stone
 >chop a tree
