@@ -1,3 +1,5 @@
+.git_pub/
+.git_priv/
 _bak/
 _in/
 _task/
@@ -9,3 +11,4 @@ generation2/shared/_tmp/
 generation2/shared/doc/sd.txt
 generation2/client/shared
 generation2/server/shared
+

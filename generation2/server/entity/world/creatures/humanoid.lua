@@ -145,9 +145,9 @@ local try_pickup=function(actor,entity)
 	log("try_pickup:".._ets(actor).." : ".._ets(entity))
 	-- todo: generic pickable
 	
-	if entity.entity_name=="stone_1" then
-		local r=do_pickup(actor,entity)
-		if r then return true end
+	if entity.is_item then
+		local result=do_pickup(actor,entity)
+		if result then return true end
 		
 	end
 	

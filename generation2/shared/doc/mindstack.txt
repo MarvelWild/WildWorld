@@ -1,176 +1,6 @@
-включить полный лог
-
-
-c:\dev\WildWorld\generation2>"c:\Program Files\LOVE\love.exe" server
-0       level start init
-0       processing container:player
-0       processing container:service
-0       level before init. entity count:0
-2640    start_grow
-3360    start_grow
-4080    start_grow
-4800    start_grow
-5880    start_grow
-26270   client connected
-26275   [verbose]       creating player:mw login:defaultLogin
-26275   adding to player level:player id:1 xy:nil,nil lvl:start
-26275   new event: create_player_response
-26674   try_pickup:humanoid id:1 xy:128.93,60.36 lvl:start : stone_1 id:1 xy:138.00,71.00 lvl:start
-26674   pinned new. lead:humanoid id:1 xy:128.93,60.36 lvl:start follow:stone_1 id:1 xy:138.00,71.00 lvl:start
-26951   try_pickup:humanoid id:1 xy:106.86,81.19 lvl:start : stone_1 id:1 xy:118.23,91.62 lvl:start
-26951   pinned new. lead:humanoid id:1 xy:106.86,81.19 lvl:start follow:stone_1 id:1 xy:118.23,91.62 lvl:start
-27095   try_pickup:humanoid id:1 xy:86.07,81.23 lvl:start : stone_1 id:1 xy:94.31,90.81 lvl:start
-27095   pinned new. lead:humanoid id:1 xy:86.07,81.23 lvl:start follow:stone_1 id:1 xy:94.31,90.81 lvl:start
-137315  client connected
-137322  [verbose]       creating player:mw login:client1
-137322  adding to player level:player id:2 xy:nil,nil lvl:start
-137322  new event: create_player_response
-150043  gotoLevel:space from:start
-Error: entity/level.lua:48: attempt to call field 'init' (a nil value)
-stack traceback:
-        [string "boot.lua"]:777: in function 'init'
-        entity/level.lua:48: in function 'get_level'
-        entity/level.lua:68: in function 'activate'
-        entity/player.lua:63: in function 'gotoLevel'
-        entity/world/buildings/portal.lua:25: in function 'fnInteract'
-        entity/service/server_service.lua:360: in function 'do_default_action'
-        entity/service/server_service.lua:440: in function 'handler'
-        shared/lib/powlov/module/net/event.lua:153: in function 'doProcessEvent'
-        shared/lib/powlov/module/net/event.lua:188: in function 'processEvent'
-        ...
-        shared/lib/powlov/module/net/server.lua:103: in function 'recv'
-        shared/lib/powlov/deps/grease/grease/core.lua:208: in function 'update'
-        shared/lib/powlov/module/net/server.lua:271: in function '_serverLateUpdate'
-        entity/service/server_service.lua:518: in function 'updateProc'
-        shared/lib/powlov/module/entity/entity.lua:240: in function 'lateUpdate'
-        shared/lib/powlov/pow.lua:334: in function 'update'
-        main.lua:123: in function 'update'
-        [string "boot.lua"]:612: in function <[string "boot.lua"]:594>
-        [C]: in function 'xpcall'
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-to fix: portal (calling nil level.init after loading)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-bug: fast space click on item
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-				
+go underground. prvate rep
+			
+			
 			>hotkey c
 			onscreen button
 		then use crafting menu
@@ -184,7 +14,11 @@ to craft an axe
 			+pin to hand
 		+pickup stone
 
-			stack: Humanoid.interact
+				
+				-- todo: generic pickable
+				entity.is_item
+				if entity.entity_name=="stone_1" then
+			stack: Humanoid.interact > try_pickup > 
 		>pickup stick
 	with axe from stick and stone
 >chop a tree
@@ -292,7 +126,7 @@ pin carried items
 
 easy crafting: reqiered items should be nearby. no inventory juggling
 
-
+bug: fast space click on item
 
 
 
