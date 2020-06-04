@@ -182,12 +182,21 @@ local pickup=function(event)
 	
 	local actor=_deref(event.actor_ref)
 	
+	local slot_number=event.slot_number
 	local item_ref=event.pick_ref
 	local entity=_deref(item_ref)
 	
-	actor.hand_slot=item_ref
+	if slot_number==1 then
+		actor.hand_slot=item_ref
+		Pin_service.pin(actor,entity,actor.hand_x,actor.hand_y,entity.origin_x,entity.origin_y)
+	elseif slot_number==2 then
+		actor.hand_slot_2=item_ref
+		Pin_service.pin(actor,entity,actor.hand_x_2,actor.hand_y_2,entity.origin_x,entity.origin_y)
+	else
+		log("error: unknown slot")
+	end
 	
-	Pin_service.pin(actor,entity,actor.hand_x,actor.hand_y,entity.origin_x,entity.origin_y)
+	
 end
 
 local drop=function(event)

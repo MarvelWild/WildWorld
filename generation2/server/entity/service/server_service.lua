@@ -406,11 +406,13 @@ local default_action=function(event)
 		target=_deref(mounted_on)
     do_default_action(controlled_entity,target)
 	else
-		if controlled_entity.hand_slot~=nil then
-			do_drop(controlled_entity)
-			return
-		end
 		
+		-- todo: d button to drop
+
+--		if controlled_entity.hand_slot~=nil then
+--			do_drop(controlled_entity)
+--			return
+--		end
 		
 		
 		local collision_entities=CollisionService.getEntityCollisions(controlled_entity)

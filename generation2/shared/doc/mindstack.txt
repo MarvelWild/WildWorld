@@ -1,12 +1,43 @@
-go underground. prvate rep
+
+	
+	but first some basics, crafting, travel, world feeling - sounds, diversity, evolution
+	source from observation, some random, from other sources/plugins.
+	cycle randomly
+develop character by controlling/managing thoughts
+
+
+
+
+
+
+
+
+
+
+
 			
 			
 			>hotkey c
-			onscreen button
+			onscreen button - later
 		then use crafting menu
-	and axe into another
-	we need to pick stick in one hand
+					+humanoid.do_pickup
+				+how it get pinned to hand_slot
+					+response to pickup button
+				+do_pickup stack: humanoid.interact>try_pickup>do_pickup
+			+bind item
+					+humanoid.hand_slot=
+				+where first defined?
+				+humanoid.hand_slot_2
+			+define second hand slot
+				+hand_x_2
+			+define hand2 point
+		+second pickup
+	+and axe into another
+	+we need to pick stick in one hand
 to craft an axe
+
+	seek for 'todo: d button to drop' marker
+todo: d button to drop
 
 
 
@@ -2974,3 +3005,5 @@ Concept
 	no text in core, plugins only
 	
 	
+	
+go underground. prvate rep	

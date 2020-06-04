@@ -48,6 +48,10 @@ _.new=function()
 	
 	result.hand_x=10
 	result.hand_y=7
+		
+		
+	result.hand_x_2=8
+	result.hand_y_2=9
 	
 	
 	
@@ -71,8 +75,9 @@ _.new=function()
 	result.energy=100
 	result.energy_max=100
 	
-	-- 
+	-- ref? to pinned item
 	result.hand_slot=nil
+	result.hand_slot_2=nil
 	
 	
 	
@@ -120,20 +125,38 @@ end
 
 
 -- no checks
-local do_pickup=function(actor,entity)
-	Pin_service.pin(actor,entity,actor.hand_x,actor.hand_y,entity.origin_x,entity.origin_y)
+local do_pickup=function(actor,pickable)
 	
-	actor.hand_slot=_ref(entity)
+	-- todo: same code on client pickup handler
+	local hand_x
+	local hand_y
+	local slot_number
+	if actor.hand_slot then
+		hand_x=actor.hand_x
+		hand_y=actor.hand_y
+		actor.hand_slot=_ref(pickable)
+		slot_number=1
+	elseif actor.hand_slot_2 then
+		hand_x=actor.hand_x_2
+		hand_y=actor.hand_y_2
+		actor.hand_slot_2=_ref(pickable)
+		slot_number=2
+	else
+		-- no free slot
+		return
+	end
 	
+	Pin_service.pin(actor,pickable,hand_x,hand_y,pickable.origin_x,pickable.origin_y)
 	
 	-- todo: pin on load. now it does drop, but item not pinned
 	
 	-- emit event to pin on level on clients
 	local event=Event.new("pickup")
 	event.actor_ref=_ref(actor)
-	event.pick_ref=_ref(entity)
+	event.pick_ref=_ref(pickable)
 	event.target="level"
 	event.level=actor.level_name
+	event.slot_number=slot_number
 	event.do_not_process_on_server=true
 	
 	Event.process(event)
