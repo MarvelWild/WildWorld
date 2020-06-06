@@ -490,4 +490,20 @@ _.loadEntitiesFromDir=function(dirName)
 end
 
 
+
+_.write_object=function(key,object)
+	local serialized=_.serialize(object)
+	local path=_.saveDir..key
+	love.filesystem.write(path, serialized)
+end
+
+_.read_object=function(key)
+	local path=_.saveDir..key
+	local serialized=love.filesystem.read(path)
+	if not serialized then return nil end
+	local result=_.deserialize(serialized)
+	return result
+end
+
+
 return _

@@ -123,7 +123,11 @@ love.load=function()
 	
 	Pow.load()
 	
+	-- todo: generic for services
+	EditorService.load()
+	
 	initUi()
+	
 end
 
 love.update=function(dt)
@@ -149,7 +153,16 @@ love.keypressed=function(key, scancode, isrepeat)
 end
 
 
+local _is_quitting=false
+
 local doQuit=function()
+	if _is_quitting then return end
+	
+	_is_quitting=true
+	
+	-- todo: generic for services
+	EditorService.save()
+	
 	log("*** Quit pow ***")
 	Pow.quit()
 	
@@ -175,6 +188,8 @@ local logoff=function()
 	local event=Event.new()
 	event.code="logoff"
 	event.target="server" 
+	
+	-- bug: dual doQuit
 	Event.process(event,doQuit)
 	
 	-- response: removed player entity

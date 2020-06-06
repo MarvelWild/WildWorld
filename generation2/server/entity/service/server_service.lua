@@ -77,9 +77,12 @@ end
 
 
 -- player has been created by createPlayer, present in Db
-local getPlayerState=function(playerId)
-	local player=Player.getById(playerId)
-	assert(player)
+local getPlayerState=function(player_id)
+	local player=Player.getById(player_id)
+	if not player then
+		local a=1
+		assert(player)
+	end
 	
 	-- todo: do not return everything server knows about player
 	return player
@@ -99,6 +102,11 @@ end
 _.sendFullState=function(player)
 	local playerId=player.id
 	local login=player.login
+	
+	if not login then
+		log("error: player without login")
+	end
+	
 	
 	
 	local fullState=getFullState(playerId)
@@ -290,7 +298,15 @@ local editor_place_item=function(event)
 	local item=event.item
 	local entityCode=Entity.get_code(item)
 	local instance=entityCode.new()
-	instance.x=item.x
+	
+	local x=item.x
+	
+	if x==nil then 
+		local a=1
+	end
+	
+	
+	instance.x=x
 	instance.y=item.y
 	
 	-- custom prop: portal dest, sprite

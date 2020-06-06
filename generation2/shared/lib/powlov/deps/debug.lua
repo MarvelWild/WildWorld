@@ -60,7 +60,7 @@ channels.grow=newChannel("grow")
 
 -- all console settings
 
-local full_log=true
+local full_log=false
 
 if not full_log then
 	channels.collision.useConsole=false

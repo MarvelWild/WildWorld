@@ -1,3 +1,234 @@
+	+implement editor load
+		+persist ()
+		+serialize item name
+	+implement editor save
+	+connect editor load
+		+check server save - Db.save() before pow quit
+	+connect editor save - main
+>qol editor persist current item
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+log("error: player without login")
+
+
+
+
+2215    gotoLevel:space from:start
+
+
+
+	это не должно вообще появляться на сервере
+2215    error:event unprocessed:do local _={
+ target="login",
+ code="full_state",
+ id=20,
+ state={
+  level={
+   level={
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+16200   apple grows
+16200   drop_item:apple id:7 xy:nil,nil lvl:start
+16217   try_pickup:humanoid id:4 xy:361.36,271.99 lvl:start : stone_1 id:6 xy:367.36,278.99 lvl:start
+16217   not interacted with:stone_1 id:6 xy:367.36,278.99 lvl:start
+16217   try_pickup:humanoid id:4 xy:361.36,271.99 lvl:start : sheep id:5 xy:339.22,265.97 lvl:start
+16217   not interacted with:sheep id:5 xy:339.22,265.97 lvl:start
+16217   not interacted with:tiger id:5 xy:368.34,280.48 lvl:start
+16217   try_pickup:humanoid id:4 xy:361.36,271.99 lvl:start : tent id:3 xy:370.18,279.60 lvl:start
+16217   not interacted with:tent id:3 xy:370.18,279.60 lvl:start
+16217   gotoLevel:space from:start
+
+	
+	
+	
+	
+	
+	>why detach? should go together
+16217   detach mountables from:humanoid id:4 xy:361.36,271.99 lvl:start
+Error: entity/service/server_service.lua:82: assertion failed!
+stack traceback:
+        [string "boot.lua"]:777: in function <[string "boot.lua"]:773>
+        [C]: in function 'assert'
+        entity/service/server_service.lua:82: in function 'getPlayerState'
+        entity/service/server_service.lua:91: in function 'getFullState'
+        entity/service/server_service.lua:104: in function 'sendFullState'
+        entity/player.lua:75: in function 'gotoLevel'
+        entity/world/buildings/portal.lua:25: in function 'fnInteract'
+        entity/service/server_service.lua:368: in function 'do_default_action'
+        entity/service/server_service.lua:450: in function 'handler'
+        ...
+        shared/lib/powlov/module/net/server.lua:103: in function 'recv'
+        shared/lib/powlov/deps/grease/grease/core.lua:208: in function 'update'
+        shared/lib/powlov/module/net/server.lua:271: in function '_serverLateUpdate'
+        entity/service/server_service.lua:528: in function 'updateProc'
+        shared/lib/powlov/module/entity/entity.lua:240: in function 'lateUpdate'
+        shared/lib/powlov/pow.lua:334: in function 'update'
+        main.lua:123: in function 'update'
+        [string "boot.lua"]:612: i
+
+
+
+	
+dual mount bug: pinned to both
+ 
+
+
+
+
+
+	>now despawn em
+zobmie implement attack event later
+
+
+ [string "boot.lua"]:802: in function <[string "boot.lua"]:769>
+2025    error:event unprocessed:do local _={
+ level="start",
+ target="level",
+ code="attack",
+ id=571,
+ damage=0.10000000000000001,
+ entity_name="Event",
+ actor={
+  entity_name="zombie",
+  level_name="start",
+  id=3
+ }
+}
+
+
+test
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 	
 	but first some basics, crafting, travel, world feeling - sounds, diversity, evolution
@@ -149,7 +380,20 @@ pin carried items
 
 
 
+		solutions: defer place after update | get xy on place+
+	happens in editor update, but place can be called before update
+	_activeItem.x=x
+	_activeItem.y=y
 
+
++84777  warn: entity has no box shape (x,y,w,h):bee id:2 xy:nil,nil lvl:start
+stack traceback:
+        shared/lib/powlov/deps/debug.lua:107: in function 'log'
+        shared/lib/powlov/module/entity/entity.lua:361: in function 'getCollisionBox'
+        shared/lib/powlov/module/collision.lua:50: in function 'getEntityShape'
+        shared/lib/powlov/module/collision.lua:68: in function 'add'
+        entity/service/collision_service.lua:63: in function 'addEntity'
+        shared/lib/powlov/module/entity/entity.lua:109:
 
 
 
@@ -193,7 +437,17 @@ bug: fast space click on item
 
 
 
+	4239    [collision]     collisions debug_print end
+	4239    [collision]     Collision.getAtEntity. Count:7 entity:humanoid id:4 xy:494.81,304.44 lvl:start
+	4239    [collision]     getAtEntity collision:stone_1 id:6 xy:498.91,316.26 lvl:start
+	4239    [collision]     getAtEntity collision:stick_1 id:6 xy:492.49,312.54 lvl:start
+	4239    try_pickup:humanoid id:4 xy:494.81,304.44 lvl:start : stone_1 id:6 xy:498.91,316.26 lvl:start
+	4239    not interacted with:stone_1 id:6 xy:498.91,316.26 lvl:start
+	4239    try_pickup:humanoid id:4 xy:494.81,304.44 lvl:start : stick_1 id:6 xy:492.49,312.54 lvl:start
+	4239    not interacted with:stick_1 id:6 xy:492.49,312.54 lvl:start
 
+
++bug not able to pickup anlything
 
 
 

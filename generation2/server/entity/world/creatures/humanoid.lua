@@ -131,12 +131,13 @@ local do_pickup=function(actor,pickable)
 	local hand_x
 	local hand_y
 	local slot_number
-	if actor.hand_slot then
+	
+	if actor.hand_slot==nil then
 		hand_x=actor.hand_x
 		hand_y=actor.hand_y
 		actor.hand_slot=_ref(pickable)
 		slot_number=1
-	elseif actor.hand_slot_2 then
+	elseif actor.hand_slot_2==nil then
 		hand_x=actor.hand_x_2
 		hand_y=actor.hand_y_2
 		actor.hand_slot_2=_ref(pickable)

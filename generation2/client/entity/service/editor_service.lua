@@ -10,12 +10,31 @@ local _isFetchingItems=false
 
 local _activeItem=nil
 
+local _save=nil
+
 
 local onItemsReceived=function(event)
 	local items=event.items
 	_editorItems=items
 	
+	
 	_activeItem=Pow.lume.first(items)
+	
+	if _save then
+		local active_item_entity_name=_save.active_item_entity_name
+		for k,item in pairs(items) do
+			local entity_name=item.entity_name
+			if entity_name==active_item_entity_name then
+				_activeItem=item
+				break
+			end
+			
+			
+		end
+		
+		
+	end
+	
 	
 	_isFetchingItems=false
 end
@@ -97,6 +116,11 @@ end
 local placeItem=function()
 	local event=Event.new()
 	event.code="editor_place_item"
+	
+	local x,y=Pow.getMouseXY()
+	_activeItem.x=x
+	_activeItem.y=y
+
 	event.item=_activeItem
 	event.target="server"
 	Event.process(event)
@@ -145,6 +169,24 @@ end
 
 
 
+
+
+
+
+_.load=function()
+	-- wip active item
+	_save=Pow.read_object(_.entity_name)
+end
+
+_.save=function()
+	local save={}
+	if _activeItem then
+		save.active_item_entity_name=_activeItem.entity_name
+	end
+	
+	Pow.write_object(_.entity_name,save)
+	
+end
 
 
 
