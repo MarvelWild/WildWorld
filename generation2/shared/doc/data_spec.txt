@@ -36,6 +36,9 @@ player.controlled_entity_ref
 player.controlled_entity - cache
 
 
+Craftable:
+quantity
+entity_name
 
 
 Entity on client:

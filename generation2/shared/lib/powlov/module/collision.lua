@@ -137,7 +137,7 @@ end
 
 -- returns nil or table with entities
 _.getAtRect=function(x,y,w,h)
-	_log("Collision.getAtRect:"..xywh(x,y,w,h))
+	_log("Collision.getAtRect:"..x..","..y..","..w..","..h)
 	
 	-- todo: хранить его как и pointer
 	local rect=_hc:rectangle(x,y,w,h)
@@ -161,7 +161,9 @@ _.getAtRect=function(x,y,w,h)
 --			local a
 --		end
 		
-		assert(entity, "entity not registered in _entityByShape. shape:"..pack(shape))
+		if not entity then
+			log("error: entity not registered in _entityByShape. shape:"..serialize(shape))
+		end
 		
 		if result==nil then result={} end
 		table.insert(result,entity)

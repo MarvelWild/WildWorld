@@ -31,13 +31,37 @@ end
 --end
 
 
--- returns array of entity
+-- returns array of entity - who collides with entity shape
 _.getEntityCollisions=function(entity)
 	local level_name=entity.level_name
 	local levelCollisions=getLevelCollisions(level_name)
 	local entityCollisions=levelCollisions.getAtEntity(entity)
 	return entityCollisions
 end
+
+-- get_at_point
+
+_.get_around=function(entity, margin)
+	local x=entity.x-margin
+	local w=entity.w+margin
+	local y=entity.y-margin
+	local h=entity.h+margin
+	
+	local level_name=entity.level_name
+
+	local result=_.get_in_rect(x,y,w,h,level_name)
+	-- wip exclude self later
+	
+	return result
+end
+
+_.get_in_rect=function(x,y,w,h,level_name)
+	-- see shared\lib\powlov\module\collision.lua
+	local level_collisions=getLevelCollisions(level_name)
+	local result=level_collisions.getAtRect(x,y,w,h)
+	return result
+end
+
 
 
 _.addEntity=function(entity)

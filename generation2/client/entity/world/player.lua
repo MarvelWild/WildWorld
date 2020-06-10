@@ -1,3 +1,5 @@
+-- controlling entity represents physical player, but no ingame entity directly
+
 local _={}
 
 _.entity_name=Pow.currentFile()
@@ -12,6 +14,17 @@ _.draw_ui=function(entity)
 	
 --	love.graphics.print("hp:".._n(controlled_entity.hp))
 --	love.graphics.print("energy:".._n(controlled_entity.energy), 0, 12)
+end
+
+-- wip keypress c - craft
+
+_.keyPressed=function(key)
+	log("craft start")
+	
+	local event=Event.new()
+	event.code="craft"
+	event.target="server"
+	Event.process(event)
 end
 
 

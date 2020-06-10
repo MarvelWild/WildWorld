@@ -506,7 +506,27 @@ local do_grow=function(event)
 end
 
 
-_.start=function()
+
+local craft=function(event)
+	log("server craft")
+	-- wip scan 
+	local login=event.login
+	local player=Player.getByLogin(login)
+	
+	local controlled_entity=Player.get_controlled_entity(player)
+	
+	
+	local entities_around=CollisionService.get_around(controlled_entity, 42)
+	-- wip craft from this
+	
+	local craftables=what_can_we_craft_from(entities_around)
+	
+	
+	
+end
+
+
+local connect_handlers=function()
 	_event.add_handler("create_player", createPlayer)
 	_event.add_handler("game_start", gameStart)
 	_event.add_handler("intent_move", movePlayer)
@@ -519,6 +539,13 @@ _.start=function()
 	_event.add_handler("default_action", default_action)
 	_event.add_handler("do_mount", do_mount)
 	_event.add_handler("do_grow", do_grow)
+	_event.add_handler("craft", craft)
+end
+
+
+_.start=function()
+	
+	connect_handlers()
 	
 	Db.onAdded=onEntityAdded
 	Db.setOnRemoved(onEntityRemoved)

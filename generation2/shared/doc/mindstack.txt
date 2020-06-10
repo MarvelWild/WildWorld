@@ -1,3 +1,132 @@
+			>get_craftables_from_items wip
+		get crafting possibilities
+	>react to c key
+easier crafting: c scans all items, offers what to crafts
+		use stick and rock to make axe
+	use axe to make it
+i want a boat!
+what's next?
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+				+->collision.getAtRect
+			which mod responsible? collision_service
+		+scan items
+		
+		
+			+receive
+					2 player entities? could be, deal with it later, reser world now
+				dual cmd bug
+			+send command to server
+		+where? player.keyPressed
+crafting iteration 2
+
+
+
+
+
+
+
+
+
+
+qol: zero brane copy relative path
+
+
+
+qol: zero brane save layout with project
+
+
+
+
+
+
+
+				-- todo: generic pickable
+				entity.is_item
+				if entity.entity_name=="stone_1" then
+			stack: Humanoid.interact > try_pickup > 
+		>pickup stick
+	with axe from stick and stone
+>chop a tree
+
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	+implement editor load
 		+persist ()
 		+serialize item name
@@ -6,110 +135,6 @@
 		+check server save - Db.save() before pow quit
 	+connect editor save - main
 >qol editor persist current item
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-log("error: player without login")
-
-
-
-
-2215    gotoLevel:space from:start
-
-
-
-	это не должно вообще появляться на сервере
-2215    error:event unprocessed:do local _={
- target="login",
- code="full_state",
- id=20,
- state={
-  level={
-   level={
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -216,6 +241,7 @@ test
 
 
 
+note: avoid assert
 
 
 
@@ -277,15 +303,6 @@ todo: d button to drop
 		+pickup stone
 
 				
-				-- todo: generic pickable
-				entity.is_item
-				if entity.entity_name=="stone_1" then
-			stack: Humanoid.interact > try_pickup > 
-		>pickup stick
-	with axe from stick and stone
->chop a tree
-i want a boat!
-what's next?
 
 
 
@@ -294,6 +311,24 @@ what's next?
 
 
 
+
+log("error: player without login")
+
+
+
+
+2215    gotoLevel:space from:start
+
+
+
+	это не должно вообще появляться на сервере
+2215    error:event unprocessed:do local _={
+ target="login",
+ code="full_state",
+ id=20,
+ state={
+  level={
+   level={
 
 	+it should resolve during play tests
 +too much actions on space button?
