@@ -519,7 +519,8 @@ local craft=function(event)
 	local entities_around=CollisionService.get_around(controlled_entity, 42)
 	-- wip craft from this
 	
-	local craftables=what_can_we_craft_from(entities_around)
+	local craftables=Crafting_service.get_craftables_from_items(entities_around)
+	
 	
 	
 	
