@@ -149,7 +149,7 @@ local shouldSendEventFromClient=function(event)
 		log("error:unk event:".._.toString(event))
 	end
 	
-	log("shouldSendEventFromClient:".._event.toString(event).." result:"..tostring(result),'event')
+	Event.log("shouldSendEventFromClient:".._event.toString(event).." result:"..tostring(result),event.code)
 
 	return result
 end
@@ -179,7 +179,7 @@ end
 local onEventProcessing=function(event)
 	if shouldSendEventFromClient(event) then
 		sendEventToServer(event)
-		log("event sending:"..Pow.pack(event), 'event')
+		Event.log("event sending:"..Pow.pack(event), event.code)
 	end
 end
 

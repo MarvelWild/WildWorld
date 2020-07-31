@@ -6,6 +6,22 @@
 local _={}
 
 
+
+local global_log=log
+local log=function(message,event_code)
+	-- skip ignored events
+	if event_code=='move' or
+		event_code=='intent_move'
+	then
+		return
+	end
+	
+	global_log(message,'event')
+end
+
+_.log=log
+
+
 -- init after Pow
 
 -- key=cmd
@@ -32,7 +48,7 @@ end
 
 
 _.toString=function(event)
-	local result=event.id.." t:"..event.target..' c:'..event.code
+	local result='c:'..event.code..' id:'..event.id.." t:"..event.target
 	
 	return result
 end
@@ -111,8 +127,10 @@ local shouldSkipEvent=function(event)
 			if currentPlayer~=nil then
 				local currentLevel=currentPlayer.level_name
 				if (currentLevel~=event.level) then
-					log("warn: skipping level event (probably not supposed to receive it). currentLevel="..tostring(currentLevel)..
-						" event.level:"..tostring(event.level))
+					
+					local message="warn: skipping level event (probably not supposed to receive it). currentLevel="..tostring(currentLevel)..
+					" event.level:"..tostring(event.level)
+					log(message, event.code)
 					return true
 				else
 					return false
@@ -132,7 +150,7 @@ local shouldSkipEvent=function(event)
 	elseif target=="all" then			
 		return false		
 	else
-		log("error: unknown event target")
+		log("error: unknown event target", event.code)
 	end
 	
 	return false
@@ -144,12 +162,13 @@ end
 -- move processing logic outside? no, connect handlers to this module
 -- without queue, without checks
 local doProcessEvent=function(event)
-	log("doProcessEvent:".._.toString(event),'event')
 	local eventCode=event.code
+	log("doProcessEvent:".._.toString(event),eventCode)
+	
 	
 	local handler=_eventHandlers[eventCode]
 	if handler~=nil then
-		log("processing event:".._.toString(event).." full:".._serialize(event), "event")
+		log("processing event:".._.toString(event).." full:".._serialize(event), event.code)
 		handler(event)
 	else
 		local requestId=event.requestId
@@ -160,7 +179,7 @@ local doProcessEvent=function(event)
 				handler(event)
 				_responseHandlers[requestId]=nil
 			else
-				log("error:event unprocessed:".._serialize(event))
+				log("error:event unprocessed:".._serialize(event), event.code)
 			end
 		else
 			-- should be registered in _eventHandlers by creating
@@ -181,7 +200,7 @@ local processEvent=function(event)
 
 	
 	if shouldSkipEvent(event) then 
-		log("skip event:".._.toString(event),'event')
+		log("skip event:".._.toString(event),event.code)
 		return
 	end
 	

@@ -16,15 +16,16 @@ _.draw_ui=function(entity)
 --	love.graphics.print("energy:".._n(controlled_entity.energy), 0, 12)
 end
 
--- wip keypress c - craft
-
+-- c - craft
 _.keyPressed=function(key)
-	log("craft start")
-	
-	local event=Event.new()
-	event.code="craft"
-	event.target="server"
-	Event.process(event)
+	if key=="c" then
+		log("craft start")
+		local event=Event.new()
+		-- craft start - request what we can craft
+		event.code="craft"
+		event.target="server"
+		Event.process(event)
+	end
 end
 
 

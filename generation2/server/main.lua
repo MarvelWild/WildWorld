@@ -33,14 +33,19 @@ _deref=Db.getByRef
 ServerService=require("entity.service.server_service")
 CollisionService=require("entity.service.collision_service")
 EnergyService=require("entity.service.energy_service")
+Crafting_service=require("entity.service.crafting_service")
 Config=require("shared.entity.service.config")
 Animation_service=require("shared.entity.service.animation_service")
 Pin_service=require("shared.entity.service.pin_service")
 WorldEntities=nil
 DebugFlag=
 {
-	create_tree=false,
+--	create_tree=false,
 	create_camel=false,
+	
+	
+	-- do not create trees
+	dev_mode=true,
 }
 
 
@@ -100,14 +105,14 @@ love.load=function()
 	
 	Level.activate("start")
 	
-	if DebugFlag.create_tree then
+--	if DebugFlag.create_tree then
 		
-		local tree=Tree_birch.new()
-		tree.x=0
-		tree.y=0
+--		local tree=Tree_birch.new()
+--		tree.x=0
+--		tree.y=0
 		
-		Db.add(tree,"start")
-	end
+--		Db.add(tree,"start")
+--	end
 	
 	if DebugFlag.create_camel then
 		

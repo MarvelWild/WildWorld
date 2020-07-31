@@ -425,10 +425,10 @@ local default_action=function(event)
 		
 		-- todo: d button to drop
 
---		if controlled_entity.hand_slot~=nil then
---			do_drop(controlled_entity)
---			return
---		end
+		if controlled_entity.hand_slot~=nil then
+			do_drop(controlled_entity)
+			return
+		end
 		
 		
 		local collision_entities=CollisionService.getEntityCollisions(controlled_entity)
@@ -506,10 +506,10 @@ local do_grow=function(event)
 end
 
 
-
+-- начало крафта - запрос от клиента что можно скрафтить
 local craft=function(event)
 	log("server craft")
-	-- wip scan 
+
 	local login=event.login
 	local player=Player.getByLogin(login)
 	
@@ -521,9 +521,14 @@ local craft=function(event)
 	
 	local craftables=Crafting_service.get_craftables_from_items(entities_around)
 	
+	-- wip send list to client
 	
+	local response=_event.new("craft_list")
+	response.craftables=craftables
+	response.target="login"
+	response.targetLogin=login
 	
-	
+	_event.process(response)
 end
 
 

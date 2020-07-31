@@ -10,7 +10,7 @@ local _recipes=
 		from=
 		{
 			{
-				name="stick",
+				name="stick_1", -- todo: generic items / item groups
 				quantity=1 -- for reference, game should accept default 1
 			},
 			{
@@ -38,55 +38,56 @@ end
 
 
 
-local get_=function()
-	-- wip
-end
-
-
 -- items - из чего крафт
+
+-- example: recipe_from {{name = "stick_1", quantity = 1}, {name = "stone_1"} 
+-- items - inventory
 _.is_craftable_from=function(recipe_from, items)
 	
 	for k_recipe,item_recipe in pairs(recipe_from) do
-			-- wip
-			local from_name=item_from.name
-			local from_quantity=item_from.quantity or 1
-			-- вп теперь нужно проверить что нужное кол-во есть
-			
-			for k_item,item in pairs(items) do
-				local item_name=item.entity_name
-			end
-			
-			
-			
-			
-			
-	end
+		local recipe_item_name=item_recipe.name -- wip test trace
+		local recipe_quantity=item_recipe.quantity or 1
+
+		for k_item,item in pairs(items) do
+			local item_name=item.entity_name
+			local item_quantity=item.quantity or 1
+			if item_name==recipe_item_name then
+				
+				recipe_quantity=recipe_quantity-item_quantity
+				
+				if recipe_quantity<1 then
+					break
+				end
+			end -- item match
+		end -- inventory items
+		
+		
+		if recipe_quantity>0 then
+				return false
+		end
+	end -- recipe items
 	
 	
 	return true
-	
-		
 end
 
 
 -- получили вещи вокруг, что можно из них скрафтить?
--- пример items:
+-- пример items:stick,stone > axe
 
 
 _.get_craftables_from_items=function(items)
-	-- wip
 	local result={}
 	
 
 	for craft_name, craft_props in pairs(_recipes) do
-		-- wip можно ли скрафтить из данного рецепта
-		
 		local from=craft_props.from
 		
-		
+		if _.is_craftable_from(from,items) then
+			-- todo: calc quantity?
+			table.insert(result, craft_name)
+		end
 	end
-	
-	
 	
 	return result
 end

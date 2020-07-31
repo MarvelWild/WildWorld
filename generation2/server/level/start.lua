@@ -18,11 +18,13 @@ local plant_trees=function()
 	local y=love.math.random(land_area_start_y,land_area_end_y)
 	
 
-	local entity=Tree_birch.new()
-	entity.x=x
-	entity.y=y
-	
-	Db.add(entity,_.name)
+	if not DebugFlag.dev_mode then
+		local entity=Tree_birch.new()
+		entity.x=x
+		entity.y=y
+		
+		Db.add(entity,_.name)
+	end
 	
 	
 	x=love.math.random(land_area_start_x,land_area_end_x)
