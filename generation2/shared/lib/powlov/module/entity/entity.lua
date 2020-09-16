@@ -243,7 +243,7 @@ end
 
 
 _.keyPressed=function(key)
-	log("entity processing key:")
+	log("entity processing key:"..key,'entity')
 	for entity,listener in pairs(_keyPressedListeners) do
 		listener(key)
 	end

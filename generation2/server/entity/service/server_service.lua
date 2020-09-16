@@ -107,8 +107,6 @@ _.sendFullState=function(player)
 		log("error: player without login")
 	end
 	
-	
-	
 	local fullState=getFullState(playerId)
 	
 	local responseEvent=_event.new("full_state")
@@ -176,6 +174,11 @@ local movePlayer=function(event)
 	local player=Player.getByLogin(event.login)
 	local controlled_entity_ref=player.controlled_entity_ref
 	local controlled_entity=_deref(controlled_entity_ref)
+	
+	if controlled_entity==nil then
+		local a=1
+	end
+	
 	
 	if Movable.cannot_move(controlled_entity) then
 		log("cannot move")
@@ -368,12 +371,12 @@ local getCollisions=function(event)
 end
 
 
-local do_default_action=function(actor,target)
+local do_default_action=function(actor,target,player)
 	local actorCode=Entity.get_code(actor)
 	local fnInteract=actorCode.interact
 	if fnInteract==nil then return false end
 	
-	local interact_result=fnInteract(actor, target)
+	local interact_result=fnInteract(actor,target,player)
 	return interact_result
 end
 
@@ -455,7 +458,7 @@ local default_action=function(event)
 		-- /
 		
 		for k,entity in pairs(collision_entities_filtered) do
-			local is_interacted=do_default_action(controlled_entity,entity)
+			local is_interacted=do_default_action(controlled_entity,entity,player)
 			if is_interacted then
 				return true
 			else

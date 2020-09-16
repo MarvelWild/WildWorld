@@ -33,7 +33,7 @@ ConfigService=require("shared.entity.service.config")
 ClientService=require("entity.service.client_service")
 EditorService=require("entity.service.editor_service")
 Pin_service=require("shared.entity.service.pin_service")
-DebuggerService=require("entity.service.debugger_service")
+DebuggerService=require("shared.entity.service.debugger_service")
 GameService=require("entity.service.game")
 CollisionService=require("entity.service.collision_service")
 GameState=require("entity.service.game_state")
@@ -45,26 +45,8 @@ _deref=GameState.findEntity
 
 
 love.draw=function()
-	
-	
-		
-	
 	Pow.draw()
-	
-	
-	if DebuggerService.is_active() then
-	
-		love.graphics.setColor(0, 0.2, 0.2, 0.8)
-		
-		local width, height = love.window.getMode( )
-		love.graphics.rectangle("fill",0,0,width,height)
-		
-		love.graphics.setColor( 1, 1, 1, 1)
-		
-		-- todo: think generic overlay system
-		DebuggerService.draw_overlay()
-	end
-	
+	DebuggerService.do_draw()
 end
 
 local initUi=function()

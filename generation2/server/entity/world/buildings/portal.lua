@@ -20,9 +20,12 @@ _.new=function()
 end
 
 -- target is this, actor is player
-_.interact=function(actor,target)
+_.interact=function(actor,target,player)
 	local level_name=target.location
-	Player.gotoLevel(actor,level_name)
+	
+	if player then
+		Player.gotoLevel(player,level_name)
+	end
 end
 
 

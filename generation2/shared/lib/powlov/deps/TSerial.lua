@@ -77,6 +77,97 @@ function TSerial.pack(t, drop, indent)
 	return result
 end
 
+
+
+function TSerial.pack_logged(t, drop, indent)
+	
+	if drop==nil then drop=true end
+	
+--	if indent==nil then indent=true end
+	
+	local type_=type(t)
+	assert(type_ == "table", "Can only TSerial.pack tables., got:"..type_)
+	
+	local empty=true
+	local indent=indent and math.max(type(indent)=="number" and indent or 0,0)
+	if indent==nil then indent=0 end
+	
+	local s = "{"..(indent and "\n" or "")
+	
+	local function proc(k,v, omitKey)	-- encode a key/value pair
+		
+		log("proc:"..k)
+		--Wild World hack
+		if (
+			   k=="Pow" 
+			or k=="package" 
+			or k=="_G"
+			or k=="serialize"
+			) 
+		then
+--			log("skip")
+			return "" 
+		end
+		
+		empty = nil	-- helps ensure empty tables return as "{}"
+		local tk, tv, skip = type(k), type(v)
+		if type(drop)=="table" and drop[k] then k = "["..drop[k].."]"
+		elseif tk == "boolean" then k = k and "[true]" or "[false]"
+		elseif tk == "string" then local f = string.format("%q",k) if f ~= '"'..k..'"' then k = '['..f..']' end
+		elseif tk == "number" then k = "["..k.."]"
+		elseif tk == "table" then k = "["..TSerial.pack(k, drop, indent and indent+1).."]"
+		elseif type(drop) == "function" then k = "["..string.format("%q",drop(k)).."]"
+		elseif drop then skip = true
+		else error("Attempted to TSerial.pack a table with an invalid key: "..tostring(k))
+		end
+		if type(drop)=="table" and drop[v] then v = drop[v]
+		elseif tv == "boolean" then v = v and "true" or "false"
+		elseif tv == "string" then v = string.format("%q", v)
+		elseif tv == "number" then	-- no change needed
+		elseif tv == "table" then v = TSerial.pack(v, drop, indent and indent+1)
+		elseif type(drop) == "function" then v = string.format("%q",drop(v))
+		elseif drop then skip = true
+		else error("Attempted to Tserial.pack a table with an invalid value: "..tostring(v))
+		end
+		if not skip then return string.rep("\t",indent or 0)..(omitKey and "" or k.."=")..v..","..(indent and "\n" or "") end
+		return ""
+	end
+	
+--default code does not process negative keys
+--	local l=-1 repeat l=l+1 until rawget(t,l+1)==nil	-- #t "can" lie!
+--	for i=1,l do s = s..proc(i, t[i], true) end	-- use ordered values when possible for better string
+--	for k, v in pairs(t) do if not (type(k)=="number" and k<=l) then s = s..proc(k, v) end end
+
+	
+	for k,v in pairs(t) do
+		local nextPart=proc(k, v)
+		s = s..nextPart
+	end
+	
+	if not empty then
+		s = string.sub(s,1,string.len(s)-1) 
+	end
+	
+	if indent then
+		s = string.sub(s,1,string.len(s)-1).."\n" 
+	end
+	
+	local result=s..string.rep("\t",(indent or 1)-1).."}"
+	return result
+end
+
+
+
+
+
+
+
+
+
+
+
+
+
 --- Loads a table into memory from a string (like those output by Tserial.pack)
 -- @param s a string of Lua defining a table, such as "{2,4,8,ex='ample'}"
 -- @param safe if true, all extraneous parts of the string will be removed, leaving only a table (prevents running anomalous code when unpacking untrusted strings). Will also cause malformed tables to quietly return nil and an error message, instead of throwing an error (so your program can't be crashed with a bad string)

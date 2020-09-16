@@ -46,6 +46,12 @@ end
 
 
 _.is_mounting=function(rider)
+	if rider==nil then
+		local a=1
+	end
+	
+	
+	
 	local mount_ref=rider.mounted_on
 	if mount_ref~=nil then
 		if Movable.is_moving(rider) then

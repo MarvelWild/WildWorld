@@ -57,7 +57,8 @@ end
 
 _.set=function(state)
 	if _lastState then
-		log("warn: state update not implemented")
+		--log("warn: state update not implemented")
+		-- ок, пока что и не нужно.
 	end
 	
 	
@@ -78,7 +79,16 @@ _.getPlayer=function()
 		--todo optimize, cache
 		local level=_lastState.level
 		local entities=level.entities
+		
 		local playerContainer=entities['player']
+		if playerContainer==nil then
+			local a=1
+		else
+			local a=1
+		end
+		
+		
+		
 		local playerId=_.playerId
 		for k, player in pairs(playerContainer) do
 			if (player.id==playerId) then

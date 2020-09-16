@@ -32,6 +32,7 @@ Db.init(Pow.saveDir)
 _deref=Db.getByRef
 ServerService=require("entity.service.server_service")
 CollisionService=require("entity.service.collision_service")
+DebuggerService=require("shared.entity.service.debugger_service")
 EnergyService=require("entity.service.energy_service")
 Crafting_service=require("entity.service.crafting_service")
 Config=require("shared.entity.service.config")
@@ -96,6 +97,7 @@ love.load=function()
 	Entity.add(EnergyService)
 	Entity.add(ServerService)
 	Entity.add(Pin_service)
+	Entity.add(DebuggerService)
 	loadEntities()
 	
 	Entity.on_removed=entity_on_removed
@@ -159,6 +161,8 @@ love.draw=function()
 	
 	_print(log_prev_message,0,y)
 	y=y+line_spacing
+	
+	DebuggerService.do_draw() 
 end
 
 love.quit=function()

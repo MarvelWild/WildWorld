@@ -49,8 +49,15 @@ end
 
 
 local is_magic_container=function(level_name)
-	if level_name=="var" then return true end
-	if level_name=="level" then return true end
+	-- описаны в server\shared\lib\db\db.lua
+	if level_name=="var" then
+		return true 
+	end
+	
+	if level_name=="level" then
+		return true 
+	end
+	
 	return false
 end
 

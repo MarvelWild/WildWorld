@@ -43,9 +43,13 @@ end
 
 
 
--- todo: move out, any entity can go levels
+-- todo: any entity can go levels
 _.gotoLevel=function(player, level_name)
-	log("gotoLevel:"..level_name.." from:"..player.level_name)
+	
+	
+	local controlled_entity=player.controlled_entity
+	
+	log("gotoLevel:"..level_name.." from:"..controlled_entity.level_name)
 	-- delete from db because db stores entities in level containers
 	
 	-- hanlded by db->entity
@@ -53,17 +57,26 @@ _.gotoLevel=function(player, level_name)
 	-- CollisionService.removeEntity(player)
 	
 	-- local prevLevel=player.level_name
-	Db.remove(player)
+	
+	
+	Db.remove(controlled_entity)
 	
 	-- remove from prev level,send to all on that level
 	-- ServerService.notifyEntityRemoved(player, prevLevel)
 	
 	-- update prop
+	
+	-- устранить дублирование? пусть будет уровень и у игрока
+	-- и у сущности им управляемой
+	controlled_entity.level_name=level_name
 	player.level_name=level_name
+	
+	
 	Level.activate(level_name)
 	
 	-- тут лишний раз шлётся актёру todo можно оптимизировать
-	Db.add(player)
+	
+	Db.add(controlled_entity)
 	
 	
 	-- CollisionService.addEntity(player) - happens in Db.add
@@ -71,6 +84,8 @@ _.gotoLevel=function(player, level_name)
 	-- update entity container
 	-- not needed - single container for all levels
 	
+	
+	-- todo отправлять стейт игроку, но разрешить переход и аи сущностям
 	-- send updated player,level
 	ServerService.sendFullState(player)
 end
