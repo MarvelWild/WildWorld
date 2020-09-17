@@ -5,6 +5,8 @@ local _={}
 
 _.level=nil
 
+_.player=nil
+
 -- заполняется в client_service onStateReceived
 
 -- структура:
@@ -61,8 +63,11 @@ _.set=function(state)
 		-- ок, пока что и не нужно.
 	end
 	
+	clear_prev_state_caches()
 	
 	_lastState=state
+	
+	_.player=state.player
 	
 	log("state set. level:"..state.level.level_name)
 	register_state_entities()
@@ -74,33 +79,11 @@ end
 
 
 
-_.getPlayer=function()
-	if _lastState~=nil then
-		--todo optimize, cache
-		local level=_lastState.level
-		local entities=level.entities
-		
-		local playerContainer=entities['player']
-		if playerContainer==nil then
-			local a=1
-		else
-			local a=1
-		end
-		
-		
-		
-		local playerId=_.playerId
-		for k, player in pairs(playerContainer) do
-			if (player.id==playerId) then
-				return player
-			end
-		end
-
-		return nil
-	end
+_.get_player=function()
+	return _.player
 end
 
-local get_player=_.getPlayer
+local get_player=_.get_player
 
 
 
@@ -123,13 +106,6 @@ _.findEntity=function(entityRef,onFound)
 	
 	if _lastState==nil then return nil end
 	
--- prev  code
---	local player=_.getPlayer()
-	
---	local playerRef=BaseEntity.getReference(player)
---	if BaseEntity.referenceEquals(playerRef, entityRef) then
---		return player
---	end
 	local entityContainers=_lastState.level.entities
 	local entities=entityContainers[entityRef.entity_name]
 	if entities==nil then return nil end
@@ -186,7 +162,7 @@ _.addEntity=function(entity)
 	Entity.add(entity)
 end
 
-
+--
 local is_ignored_update_prop=function(name)
 	if name=="x" or name=="y" then return true end
 	return false

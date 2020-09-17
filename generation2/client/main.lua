@@ -118,7 +118,9 @@ love.update=function(dt)
 	if actor~=nil then
 		-- fun
 		-- player.sprite="guest_star_yars"
-		Pow.cam:setPosition(actor.x, actor.y)	
+		local x=actor.x
+--		log("cam x:"..x)
+		Pow.cam:setPosition(x, actor.y)	
 	end
 end
 

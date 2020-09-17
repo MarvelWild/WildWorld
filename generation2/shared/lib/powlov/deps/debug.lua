@@ -230,4 +230,11 @@ _debug.zbs=function(table)
 end
 
 
+
+_debug.dump=function(target)
+	local serialized=serialize(target)
+	love.filesystem.write("debug_dump", serialized)
+end
+
+
 return _debug

@@ -122,15 +122,17 @@ local shouldSkipEvent=function(event)
 		end
 	elseif target=="level" then
 		if _netState.isClient then
-			-- todo: GameState shouldn't be used here
-			local currentPlayer=GameState.getPlayer()
+			local currentPlayer=GameState.get_player()
 			if currentPlayer~=nil then
 				local currentLevel=currentPlayer.level_name
 				if (currentLevel~=event.level) then
 					
-					local message="warn: skipping level event (probably not supposed to receive it). currentLevel="..tostring(currentLevel)..
-					" event.level:"..tostring(event.level)
-					log(message, event.code)
+					-- сейчас такое происходит с игрком в момент смены левела, игнорим
+					if (event.code~="entity_added") then
+						local message="warn: skipping level event (probably not supposed to receive it). currentLevel="..tostring(currentLevel)..
+						" event.level:"..tostring(event.level)
+						log(message, event.code)
+					end
 					return true
 				else
 					return false

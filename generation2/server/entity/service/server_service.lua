@@ -95,6 +95,7 @@ local getFullState=function(playerId)
 	local levelState=getLevelState(player.level_name)
 	local result={}
 	result.level=levelState
+	result.player=player
 	return result
 end
 
@@ -136,9 +137,6 @@ local put_player_into_world=function(player, level_name)
 --		log("experimental: reattach player") -- manual test success
 		player.controlled_entity_ref=controlled_entity_ref
 	end
-	
-	
-	Db.add(player, level_name)
 end
 
 
@@ -386,9 +384,9 @@ local do_drop=function(actor)
 			local item=_deref(actor.hand_slot)
 			Pin_service.unpin(item)
 			actor.hand_slot=nil
-			-- todo: move dropped item to foot point
-			-- wip xy
 			local item_x=item.x
+			
+			-- bug: если быстро поднимать - вещь ещё не в руке, а тут считается словно в руке
 			local dy=actor.foot_y-actor.hand_y
 			local item_y=item.y+dy
 			Movable.smooth_move(item,0.3,item_x,item_y)

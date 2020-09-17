@@ -22,6 +22,7 @@ local onItemsReceived=function(event)
 	
 	if _save then
 		local active_item_entity_name=_save.active_item_entity_name
+		log("load active item:"..active_item_entity_name)
 		for k,item in pairs(items) do
 			local entity_name=item.entity_name
 			if entity_name==active_item_entity_name then
@@ -174,8 +175,8 @@ end
 
 
 _.load=function()
-	-- wip active item
 	_save=Pow.read_object(_.entity_name)
+	-- ставится в onItemsReceived
 end
 
 _.save=function()

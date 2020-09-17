@@ -382,13 +382,6 @@ _.equals=function(entity1,entity2)
 end
 
 _.unload_state=function()
---	local player=GameState.getPlayer()
---	if player==nil then 
---		-- это происходит на первом получении стейта 
---		-- log("error: not unloading (player is nil)")
---		return 
---	end
-	
 	if GameState.level==nil then
 		-- nothing to unload
 		return

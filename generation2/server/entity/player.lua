@@ -70,11 +70,12 @@ _.gotoLevel=function(player, level_name)
 	-- и у сущности им управляемой
 	controlled_entity.level_name=level_name
 	player.level_name=level_name
+	player.controlled_entity_ref.level_name=level_name
 	
 	
 	Level.activate(level_name)
 	
-	-- тут лишний раз шлётся актёру todo можно оптимизировать
+	-- тут лишний раз шлётся актёру todo можно оптимизировать. пока что решено не трогать, не критично.
 	
 	Db.add(controlled_entity)
 	

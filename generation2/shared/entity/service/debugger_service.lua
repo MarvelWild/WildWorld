@@ -41,7 +41,7 @@ local state_show_all_entities={}
 
 state_show_all_entities.draw=function()
 
-	-- wip server
+	-- todo server
 	if not GameState then return end
 	
 	local state=GameState.get()

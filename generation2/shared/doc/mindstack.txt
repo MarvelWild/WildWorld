@@ -1,3 +1,462 @@
+	крафтим топор
+система крафта
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	wip маркеры
+почистить код
+	
+	
+	
+	
+	описать(словить) случай когда не сработало
+qol: сохранять последний элемент в редакторе
+	
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+камеру на центр игрока
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	solution: use 2 pc | run 1 instance
+zbs bug: no breakpoint hit when 2 instances running
+
+
+	поместить в новое место
+	+на сервере убрать 
+рефактор: player не хранится в контейнере левела. только в магическом левеле "player"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+где хранить его?
+клиент - поле game_state
+
+					камера после смены левела
+				>тест
+			+принимать его на клиенте (onStateReceived) GameState.set(state)
+		+добавлено поле player в фул стейт
+	+копать от передачи стейта - команда full_state, getFullState
++хранить на сервере отдельно
++передавать отдельно, не в контейнере левела
+
+
+
+		
+		
+				onStateReceived
+			стек на установке стейта
+		описать процесс входа
+	найти место где
+заполнять при входе в игру
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+			игнорим события entity_added
+			нужно не слать entity_added, ведь игрок ещё на старом левеле
+			сейчас entity_added затем full_state
+		описать порядок событий при переходе на новый
+	получили событие добавления игрока в новый уроень, а находимся на старом
+	
++-warn: skipping level event
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	as part of Pow?
+qol: offline lua bautifier
+
+
+
+
+
+
+
+
+
+
+что тут происходит?
+client:
+
+
+258     [event] shouldSendEventFromClient:c:entity_added id:12 t:level result:false
+258     [event] warn: skipping level event (probably not supposed to receive it). currentLevel=start event.level:space
+stack traceback:
+        shared/lib/powlov/deps/debug.lua:108: in function 'global_log'
+        shared/lib/powlov/module/net/event.lua:19: in function 'log'
+        shared/lib/powlov/module/net/event.lua:133: in function 'shouldSkipEvent'
+        shared/lib/powlov/module/net/event.lua:202: in function 'processEvent'
+        shared/lib/powlov/module/net/event.lua:217: in function 'process'
+        shared/lib/powlov/module/net/client.lua:45: in function 'handler'
+        shared/lib/powlov/module/net/client.lua:80: in function 'recv'
+        shared/lib/powlov/deps/grease/grease/core.lua:122: in function 'update'
+        shared/lib/powlov/module/net/client.lua:175: in function 'update'
+        entity/service/client_service.lua:299: in function 'updateProc'
+        shared/lib/powlov/module/entity/entity.lua:211: in function 'update'
+        shared/lib/powlov/pow.lua:329: in function 'update'
+        main.lua:116: in function 'update'
+        [string "boot.lua"]:612: in function <[string "boot.lua"]:594>
+        [C]: in function 'xpcall'
+        [string "boot.lua"]:802: in function <[string "boot.lua"]:769>
+258     [event] skip event:c:entity_added id:12 t:level
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+258     state set. level:space
+Error: entity/service/game_state.lua:93: bad argument #1 to 'pairs' (table expected, got nil)
+stack traceback:
+        [string "boot.lua"]:777: in function <[string "boot.lua"]:773>
+        [C]: in function 'pairs'
+        entity/service/game_state.lua:93: in function 'getPlayer'
+        shared/lib/powlov/module/net/event.lua:126: in function 'shouldSkipEvent'
+        shared/lib/powlov/module/net/event.lua:202: in function 'processEvent'
+        shared/lib/powlov/module/net/event.lua:217: in function 'process'
+        shared/lib/powlov/module/net/client.lua:45: in function 'handler'
+        shared/lib/powlov/module/net/client.lua:80: in function 'recv'
+        shared/lib/powlov/deps/grease/grease/core.lua:122: in function 'update'
+        shared/lib/powlov/module/net/client.lua:175: in function 'update'
+        entity/service/client_service.lua:299: in function 'updateProc'
+        shared/lib/powlov/module/entity/entity.lua:211: in function 'update'
+        shared/lib/powlov/pow.lua:329: in function 'update'
+        main.lua:116: in function 'update'
+        [string "boot.lua"]:612: in function <[string "boot.lua"]:594>
+        [C]: in function 'xpcall'
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+	
+	
+	
+			
+			
+			
+					
+					
+					
+					
+					
+				Player.gotoLevel(player,level_name)
+			где он меняется у игрока?
+		уровень не сменился только у рефа
+	-- bug:
+	controlled_entity_ref.level="start"
+					
+	local controlled_entity=_deref(controlled_entity_ref)
+					
+		if Movable.cannot_move(controlled_entity) then
+	local movePlayer=function(event)
+	
+	_.cannot_move=function(actor)
+	local is_mounting=Mountable.is_mounting(actor)
+	
+	is_mounting=function(rider) нет райдера
+разматываем с хвоста:
+			
+			
+			Error: entity/trait/mountable.lua:55: attempt to index local 'rider' (a nil value)
+stack traceback:
+        [string "boot.lua"]:777: in function '__index'
+        entity/trait/mountable.lua:55: in function 'is_mounting'
+        shared/entity/trait/movable.lua:135: in function 'cannot_move'
+        entity/service/server_service.lua:183: in function 'handler'
+        shared/lib/powlov/module/net/event.lua:172: in function 'doProcessEvent'
+        shared/lib/powlov/module/net/event.lua:207: in function 'processEvent'
+        shared/lib/powlov/module/net/event.lua:217: in function 'process'
+        shared/lib/powlov/module/net/server.lua:296: in function 'handler'
+        shared/lib/powlov/module/net/server.lua:103: in function 'recv'
+        shared/lib/powlov/deps/grease/grease/core.lua:208: in function 'update'
+        shared/lib/powlov/module/net/server.lua:271: in function '_serverLateUpdate'
+        entity/service/server_service.lua:572: in function 'updateProc'
+        shared/lib/powlov/module/entity/entity.lua:240: in function 'lateUpdate'
+        shared/lib/powlov/pow.lua:334: in function 'update'
+        main.lua:130: in function 'update'
+        [string "boot.lua"]:612: in function <[string "boot.lua"]:594>
+        [C]: in function 'xpcall'
+		после перехода на другой левел при попытке ходить:
+	словить, собрать больше данных что происходит
++баг при смене левела
+
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 				+реакция на f11
 			+из дебаггера по нажатии f11
 			+записать в файл
@@ -6,11 +465,20 @@
 		
 		
 		где хранятся данные игрока?
-	описать дата структуру
-баг при смене левела
-
-
-
+	описать дата структуру	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	qol: dump to file function
 	
 	
 	
@@ -25,58 +493,6 @@
 	
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-
-
-
-при входе на уровень space - нет игрока
-
-
-		local playerContainer=entities['player']
-		
-		на уровне space нет этого контейнера сущностей
-		
-		посмотреть как он создаётся и вспомнить где
-		
-		
-		createPlayer
-			Db.add(player, "player") - это не то. тут добавляем игрока, а 
-			
-			
-			при переходе игрока на другой уровень - 
-			
-			
-
-level.entities.player - тут хранятся игроки на данном уровне
 
 
 
@@ -95,37 +511,6 @@ level.entities.player - тут хранятся игроки на данном �
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-починить переход между мирами
 
 
 
@@ -173,18 +558,6 @@ level.entities.player - тут хранятся игроки на данном �
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
 доделать дроп вещей todo: d button to drop
 
 	
@@ -207,7 +580,19 @@ level.entities.player - тут хранятся игроки на данном �
 	
 	
 	
+
 	
+		не вызывается
+	ожидаю что очистится clear_prev_state_caches
+	
+	gameState _controlled_entity старый
+	+лог? нет инфы.
+	
+	
+	
+		Pow.cam:setPosition(actor.x, actor.y)	
+	стек камеры (изучить как она цепляется на старте):
++камера после смены левела не следует за игроком.	
 	
 	
 	
@@ -293,8 +678,7 @@ level.entities.player - тут хранятся игроки на данном �
 +qol: log event filter	
 	
 	
-	крафтим топор
-система крафта
+
 
 			
 			

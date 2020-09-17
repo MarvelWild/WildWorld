@@ -50,7 +50,7 @@ _.get_around=function(entity, margin)
 	local level_name=entity.level_name
 
 	local result=_.get_in_rect(x,y,w,h,level_name)
-	-- wip exclude self later
+	-- todo exclude self
 	
 	return result
 end
