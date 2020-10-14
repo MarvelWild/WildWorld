@@ -17,7 +17,10 @@ local _aiUpdatable={}
 local _simulations={}
 
 local _keyPressedListeners={}
+
+local _mouse_pressed_exclusive_entity=nil
 local _mousePressedListeners={}
+
 local _uiDraws={}
 local _uiDrawsUnscaled={}
 
@@ -93,6 +96,9 @@ _.add=function(entity)
 	local mousePressed=entityCode.mousePressed
 	if mousePressed~=nil then
 		_mousePressedListeners[entity]=mousePressed
+		if entity.mouse_pressed_exclusive then
+			_mouse_pressed_exclusive_entity=entity
+		end
 	end
 	
 	local updateAi=entityCode.updateAi
@@ -144,6 +150,11 @@ _.remove=function(entity)
 	_uiDraws[entity]=nil
 	_uiDrawsUnscaled[entity]=nil
 	_mousePressedListeners[entity]=nil
+	
+	if _mouse_pressed_exclusive_entity==entity then
+		_mouse_pressed_exclusive_entity=nil
+	end
+	
 	_aiUpdatable[entity]=nil
 	_simulations[entity]=nil
 	CollisionService.removeEntity(entity)
@@ -251,6 +262,14 @@ end
 
 -- 
 _.mousePressed=function(gameX,gameY,button,istouch)
+	if _mouse_pressed_exclusive_entity then
+		local listener=_mousePressedListeners[_mouse_pressed_exclusive_entity]
+		listener(gameX,gameY,button,istouch)
+		
+		return
+	end
+	
+	
 	for entity,listener in pairs(_mousePressedListeners) do
 		listener(gameX,gameY,button,istouch)
 	end

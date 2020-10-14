@@ -70,7 +70,7 @@ if not full_log then
 	channels.verbose.useFile=false
 	
 	channels.event.useConsole=true
-		channels.db.useConsole=false
+	channels.db.useConsole=false
 	channels.net.useConsole=false
 	channels.grow.useConsole=false
 	channels.move.useConsole=false
