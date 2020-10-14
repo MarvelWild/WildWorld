@@ -40,6 +40,7 @@ GameState=require("entity.service.game_state")
 
 Animation_service=Pow.multirequire("shared.entity.service.animation_service","entity.service.animation_service")
 
+CraftList=require("entity.ui.craft_list")
 
 _deref=GameState.findEntity
 

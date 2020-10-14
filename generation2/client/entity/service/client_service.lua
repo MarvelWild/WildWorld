@@ -50,6 +50,7 @@ local unload_state=function()
 end
 
 
+-- прилетает новый левел. 
 local onStateReceived=function(response)
 	log('onStateReceived','verbose')
 	
@@ -60,6 +61,14 @@ local onStateReceived=function(response)
 	local level=state.level
 	GameState.level=level
 	GameState.set(state)
+	
+	local sprite_name=level.level.bg
+	
+	local level_sprite=Img.get("level/"..sprite_name)
+	local level_w=level_sprite:getWidth()
+	local level_h=level_sprite:getHeight()
+	
+	Pow.cam:setWorld(0,0,level_w,level_h)
 end
 
 local doMove=function(event)
@@ -154,7 +163,7 @@ end
 
 
 local do_grow=function(event)
-	log("client_service.do_grow start")
+--	log("client_service.do_grow start")
 	
 	--[[
 event sample	
@@ -225,6 +234,20 @@ local drop=function(event)
 --	Pin_service.pin(actor,entity,actor.hand_x,actor.hand_y,entity.origin_x,entity.origin_y)
 end
 
+local craft_list=function(event)
+	-- wip: show craft list
+	local a=1
+	local craftables=event.craftables
+	
+	CraftList.set(craftables)
+	Entity.add(CraftList)
+	
+	-- wip: ui to pick from choices
+	
+	
+	
+end
+
 
 -- 
 local afterLogin=function(response)
@@ -244,6 +267,7 @@ local afterLogin=function(response)
 	_event.add_handler("do_grow", do_grow)
 	_event.add_handler("pickup", pickup)
 	_event.add_handler("drop", drop)
+	_event.add_handler("craft_list", craft_list)
 	
 	log("added handler of create_player_response",'event')
 	-- todo: remove handler on completion

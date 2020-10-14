@@ -85,7 +85,12 @@ _.get_craftables_from_items=function(items)
 		
 		if _.is_craftable_from(from,items) then
 			-- todo: calc quantity?
-			table.insert(result, craft_name)
+			local craftable=
+			{
+				name=craft_name,
+				quantity=42 -- wip
+			}
+			table.insert(result, craftable)
 		end
 	end
 	

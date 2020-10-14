@@ -22,6 +22,13 @@ local onItemsReceived=function(event)
 	
 	if _save then
 		local active_item_entity_name=_save.active_item_entity_name
+		if not active_item_entity_name then
+			-- todo: fix
+			log("error: save with no active item")
+			return
+		end
+		
+		
 		log("load active item:"..active_item_entity_name)
 		for k,item in pairs(items) do
 			local entity_name=item.entity_name

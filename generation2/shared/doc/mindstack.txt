@@ -1,3 +1,215 @@
+
+	
+server  warn: trying to delete entity that is not presen
+	
+	
+
+	
+	
+	
+	
+	
+	
+
+	where level bounds?
+		level image?
+		check camera code
+		
+		
+			event code
+				level loading
+		
+			call  location
+			
+			
+			
+			_cam:setWorld(
+			
+			pow draw 
+			_cam:draw(drawGame)
+	
+	
+	game
+	
+	local drawBg=function()
+--	log('drawBg','verbose',true)
+	if (GameState.get()==nil) then return end
+	
+	-- todo: why container?
+	local level_container=GameState.level
+	local bgName=level_container.level.bg
+	local bgSprite=Img.get("level/"..bgName)
+	draw(bgSprite)
+end
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+		read from sprite
+	level size
+	+test interact - check portal code
+	
+	generated loater
+	+hardcoded
+tent level 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	if processed, ignore resular mouse_pressed
+introduce mouse_pressed_ui
+			
+			
+			Crafting_service.get_craftables_from_items(
+		craft_list on server
+	craftables should be tables (to store xy on client)
+
+	process craftable click
+
+
+
+
+
+	+block game input
+craft list handle click
+	
+	
+	
+	
+	+shadow
+	hide
+	+show
+	+basic draw code
+		
+		
+		entity\ui\craft_list.lua
+	pick from list
+craft ui
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1182    [event] error:event unprocessed:do local _={
+ target="login",
+ code="craft_list",
+ targetLogin="defaultLogin",
+ craftables={
+  "axe"
+ },
+ entity_name="Event",
+ id=20
+}
+return _
+
+
+
+client: process
+	
+	
+			предлагаем выбор
+			получаем что можно скрафтить
+			получаем все доступные вещи (в руках и рядом)
+		+при нажатии с (реакция на кнопку)
 	крафтим топор
 система крафта
 	
@@ -38,6 +250,107 @@
 	
 	
 	
+
+	
+	
+	
+	
+47810   server craft
+47810   error: entity not registered in _entityByShape. shape:{
+_polygon={
+        area=208,
+        vertices={
+                [1]={
+                        y=374.16847045062,
+                        x=289.16865824344
+                },
+                [2]={
+                        y=358.16847045062,
+                        x=289.16865824344
+                },
+                [3]={
+                        y=358.16847045062,
+                        x=302.16865824344
+                },
+                [4]={
+                        y=374.16847045062,
+                        x=302.16865824344
+                }
+        },
+        centroid={
+                y=366.16847045062,
+                x=295.66865824344
+        },
+        _radius=10.307764064044
+},
+_type="polygon",
+_rotation=0
+}
+stack traceback:
+        shared/lib/powlov/deps/debug.lua:105: in function 'log'
+        shared/lib/powlov/module/collision.lua:165: in function 'getAtRect'
+        entity/service/collision_service.lua:61: in function 'get_in_rect'
+        entity/service/collision_service.lua:52: in function 'get_around'
+        entity/service/server_service.lua:520: in function 'handler'
+        shared/lib/powlov/module/net/event.lua:174: in function 'doProcessEvent'
+        shared/lib/powlov/module/net/event.lua:209: in function 'processEvent'
+        shared/lib/powlov/module/net/event.lua:219: in function 'process'
+        shared/lib/powlov/module/net/server.lua:296: in function 'handler'
+        shared/lib/powlov/module/net/server.lua:103: in function 'recv'
+        shared/lib/powlov/deps/grease/grease/core.lua:208: in function 'update'
+        shared/lib/powlov/module/net/server.lua:271: in function '_serverLateUpdate'
+        entity/service/server_service.lua:570: in function 'updateProc'
+        shared/lib/powlov/module/entity/entity.lua:240: in function 'lateUpdate'
+        shared/lib/powlov/pow.lua:334: in function 'update'
+        main.lua:130: in function 'update'
+        [string "boot.lua"]:612: in function <[string "boot.lua"]:594>
+        [C]: in function 'xpcall'
+        [string "boot.lua"]:802: in function <[string "boot.lua"]:769>
+47810   [event] sending event:c:craft_list id:1239 t:login
+47810   [event] skip event:c:craft_list id:1239 t:login
+47820   [event] sending event:c:move id:1240 t:level
+47880   apple grows
+47880   drop_item:apple id:26 xy:nil,nil lvl:start
+47880   [event] sending event:c:entity_added id:1241 t:level
+47880   [event] skip event:c:entity_added id:1241 t:level
+47940   [event] not sending event:c:move id:1242 t:level
+48000   apple grows
+48000   drop_item:apple id:27 xy:nil,nil lvl:start
+48000   [event] sending event:c:entity_added id:1243 t:level
+48000   [event] skip event:c:entity_added id:1243 t:level
+48060   [event] sending event:c:move id:1244 t:level
+48180   [event] sending event:c:move id:1245 t:level
+48187   [event] not sending event:c:logoff id:2940 t:server
+48187   [event] doProcessEvent:c:logoff id:2940 t:server
+48187   [event] processing event:c:logoff id:2940 t:server full:do local _={
+ target="server",
+ code="logoff",
+ id=2940,
+ entity_name="Event",
+ login="defaultLogin"
+}
+return _
+end
+48187   warn: trying to delete entity that is not present
+stack traceback:
+        shared/lib/powlov/deps/debug.lua:108: in function 'log'
+        shared/lib/db/db.lua:232: in function 'remove'
+        entity/service/server_service.lua:221: in function 'handler'
+        shared/lib/powlov/module/net/event.lua:174: in function 'doProcessEvent'
+        shared/lib/powlov/module/net/event.lua:209: in function 'processEvent'
+        shared/lib/powlov/module/net/event.lua:219: in function 'process'
+        shared/lib/powlov/module/net/server.lua:296: in function 'handler'
+        shared/lib/powlov/module/net/server.lua:103: in function 'recv'
+        shared/lib/powlov/deps/grease/grease/core.lua:208: in function 'update'
+        shared/lib/powlov/module/net/server.lua:271: in function '_serverLateUpdate'
+        entity/service/server_service.lua:570: in function 'updateProc'
+        shared/lib/powlov/module/entity/entity.lua:240: in function 'lateUpdate'
+        shared/lib/powlov/pow.lua:334: in function 'update'
+        main.lua:130: in function 'update'
+        [string "boot.lua"]:612: in function <[string "boot.lua"]:594>
+        [C]: in function 'xpcall'
+        [string "boot.lua"]:802: in function <[string "boot.lua"]:769>
+48187   [event] sending event:c:entity_removed id:1246 t:level	
 	
 	
 	
@@ -3289,7 +3602,36 @@ mount pegasus
 
 
 
+process mouse_pressed_exclusive
 
+
+>можно проще - эксклюзивный режим = если он стоит то только данная сущность слушает.
+	
+	
+	
+	описывать у сущности её приоритет
+	сортировать по ним _mousePressedListeners
+приоритеты mousePressed:
+
+
+
+
+			
+		kb
+				
+				
+				
+				
+				
+						
+							более гибко
+						можно до, определить приоритет, и блокировать остальных из ui
+							проще реализовать?
+						Game.mousePressed <- тут можно
+					Pow.mousePressed
+				love.mousepressed
+			mouse stack:
+		mouse click
 
 
 
@@ -3307,6 +3649,8 @@ duration:7.5004069158751
 9401    [move]  Movable.move:player id:1 xy:81.583654049608,74 lvl:start to:91.083654049608,89.75 dur:7.5004069158751
 9401    [move]  smoothMove:player id:1 xy:81.583654049608,74 lvl:start to84.083654049608,74.75 dur:7.5004069158751
 		
+		
+
 			
 			
 		+collect log
