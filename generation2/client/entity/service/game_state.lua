@@ -67,7 +67,17 @@ _.set=function(state)
 	
 	_lastState=state
 	
-	_.player=state.player
+	
+	
+	local prev_player=_.player
+	-- wip удалить > test
+	if prev_player then
+		Entity.remove(prev_player)
+	end
+
+	local player=state.player
+	_.player=player
+	Entity.add(player)
 	
 	log("state set. level:"..state.level.level_name)
 	register_state_entities()
