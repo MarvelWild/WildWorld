@@ -24,10 +24,14 @@ _.draw_ui=function()
 		local icon=Img.get(craftable_name)
 		love.graphics.draw(icon,x,y)
 		
+		
+		-- todo: not calc this at draw
 		craftable.x=x
 		craftable.y=y
 		craftable.w=icon:getWidth()
 		craftable.h=icon:getHeight()
+		
+		love.graphics.rectangle("line", x, y,craftable.w, craftable.h)
 		
 		y=y+24
 	end
@@ -43,19 +47,20 @@ end
 _.mouse_pressed_exclusive=true
 
 
--- wip: ui coords
 _.mousePressed=function(gameX,gameY,button,istouch)
 	if button~=1 then return end
+	
+	local ui_x,ui_y=Pow.get_ui_coords(gameX,gameY)
 	
 	-- todo: generic bbox hit
 	for k,craftable in pairs(_craftables) do
 
 		local x1=craftable.x
 		local x2=x1+craftable.w
-		if gameX>x1 and gameX<x2 then
+		if ui_x>x1 and ui_x<x2 then
 			local y1=craftable.y
 			local y2=y1+craftable.h
-			if gameY>x1 and gameX<x2 then
+			if ui_y>y1 and ui_y<y2 then
 				log("clicked:"..craftable.name)
 				-- wip
 			end

@@ -1,4 +1,122 @@
 
+			
+				>команда на сервер скрафтить выбор
+					+ui масштаб 2? да. есть ещё unscaled
+				+ui координаты
+			>реакция на выбор. | ui: см CraftList.set
+			+предлагаем выбор
+			+получаем что можно скрафтить
+			+получаем все доступные вещи (в руках и рядом)
+		+при нажатии с (реакция на кнопку)
+	крафтим топор
+система крафта
+	
+
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+next wish
+
+
+
+
+
+
+
+
+
+
+
+	
+clean log - some warns
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	
 server  warn: trying to delete entity that is not presen
 	
@@ -10,57 +128,14 @@ server  warn: trying to delete entity that is not presen
 	
 	
 	
+	
+	
+	
+	
+	
+	
+	
 
-	where level bounds?
-		level image?
-		check camera code
-		
-		
-			event code
-				level loading
-		
-			call  location
-			
-			
-			
-			_cam:setWorld(
-			
-			pow draw 
-			_cam:draw(drawGame)
-	
-	
-	game
-	
-	local drawBg=function()
---	log('drawBg','verbose',true)
-	if (GameState.get()==nil) then return end
-	
-	-- todo: why container?
-	local level_container=GameState.level
-	local bgName=level_container.level.bg
-	local bgSprite=Img.get("level/"..bgName)
-	draw(bgSprite)
-end
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-		read from sprite
-	level size
-	+test interact - check portal code
-	
-	generated loater
-	+hardcoded
-tent level 
 
 
 
@@ -206,12 +281,7 @@ return _
 client: process
 	
 	
-			предлагаем выбор
-			получаем что можно скрафтить
-			получаем все доступные вещи (в руках и рядом)
-		+при нажатии с (реакция на кнопку)
-	крафтим топор
-система крафта
+
 	
 	
 	
@@ -224,8 +294,12 @@ client: process
 	
 	
 	
+	lights
 	
 	
+	+decolorize / shade
+	+check some samples
+night	
 	
 	
 	
@@ -416,7 +490,13 @@ qol: сохранять последний элемент в редакторе
 
 
 
-
+		read from sprite+
+	level size+
+	+test interact - check portal code
+	
+	generated loater
+	+hardcoded
++tent level
 
 
 

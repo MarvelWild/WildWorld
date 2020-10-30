@@ -235,17 +235,10 @@ local drop=function(event)
 end
 
 local craft_list=function(event)
-	-- wip: show craft list
-	local a=1
 	local craftables=event.craftables
 	
 	CraftList.set(craftables)
 	Entity.add(CraftList)
-	
-	-- wip: ui to pick from choices
-	
-	
-	
 end
 
 

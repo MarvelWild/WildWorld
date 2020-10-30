@@ -3,6 +3,8 @@
 local _={}
 
 local _gameScale=4
+
+-- gamera instance
 local _cam=nil
 
 _.setGameScale=function(scale)
@@ -296,6 +298,12 @@ local drawGame=function()
 end
 
 
+test_1=false
+
+local width, height = love.graphics.getDimensions()
+local lightmask = love.graphics.newCanvas(width, height)
+
+
 _.draw=function()
 	
 	-- game
@@ -303,6 +311,34 @@ _.draw=function()
 	_cam:draw(drawGame)
 	love.graphics.pop()
 	
+	-- post effects
+	
+	-- night
+	
+--	if not test_1 then
+----		test_1=true
+		
+--		love.graphics.push()
+--		love.graphics.setColor(0.2,0.2,0.2, 0.5)
+--		local w=love.graphics.getWidth()
+--		local h=love.graphics.getHeight()
+--		love.graphics.rectangle("fill",0,0,w,h)
+		
+--		-- wip: lights
+--		--love.graphics.setColor(0,0,0, 1)
+		
+--		love.graphics.pop()
+	
+--	end
+
+	-- night v2 later
+	
+	-- love.graphics.setBlendMode("multiply")
+	
+--	-- Draw lightmask --
+--  love.graphics.setColor(255, 255, 255)
+--  love.graphics.draw(lightmask, 0, 0)
+--  love.graphics.setBlendMode("alpha")
 	
 	-- ui scale
 	love.graphics.push()
@@ -368,6 +404,18 @@ end
 _.getWorldCoords=function(screenX,screenY)
 	return _cam:toWorld(screenX,screenY)
 end
+
+_.getScreenCoords=function(worldX,worldY)
+	return _cam:toScreen(worldX,worldY)
+end
+
+-- for 2x scaled ui
+-- todo: dyn scale
+_.get_ui_coords=function(worldX,worldY)
+	local sx,sy=_.getScreenCoords(worldX,worldY)
+	return sx/2,sy/2
+end
+
 
 -- in world coords
 _.getMouseXY=function()
