@@ -517,12 +517,10 @@ local craft=function(event)
 	local controlled_entity=Player.get_controlled_entity(player)
 	
 	
-	local entities_around=CollisionService.get_around(controlled_entity, 42)
-	-- wip craft from this
+	local craft_range=Crafting_service.craft_range
+	local entities_around=CollisionService.get_around(controlled_entity, craft_range)
 	
 	local craftables=Crafting_service.get_craftables_from_items(entities_around)
-	
-	-- wip send list to client
 	
 	local response=_event.new("craft_list")
 	response.craftables=craftables
@@ -532,6 +530,42 @@ local craft=function(event)
 	_event.process(response)
 end
 
+-- клиент выбрал что крафтить, запрос на крафт
+local craft_request=function(event)
+	-- wip
+	
+	local login=event.login
+	local player=Player.getByLogin(login)
+	
+	local controlled_entity=Player.get_controlled_entity(player)
+	
+	--  craftable = {h = 16, name = "axe", quantity = 42, w = 16, x = 16, y = 16}
+	local craftable=event.craftable
+	
+	local from=craftable.from
+	
+	-- wip items still exists?
+	
+	local items=CollisionService.get_around(controlled_entity, Crafting_service.craft_range)
+	if Crafting_service.is_craftable_from(from,items) then
+		-- wip
+		for item in pairs(items) do
+			-- for 
+			
+			-- wip
+		end
+		
+	else
+		-- wip cannot craft response, with new list of possibilities
+	end
+	
+	
+	
+	
+	local a=1
+	
+end
+	
 
 local connect_handlers=function()
 	_event.add_handler("create_player", createPlayer)
@@ -547,6 +581,7 @@ local connect_handlers=function()
 	_event.add_handler("do_mount", do_mount)
 	_event.add_handler("do_grow", do_grow)
 	_event.add_handler("craft", craft)
+	_event.add_handler("craft_request", craft_request)
 end
 
 

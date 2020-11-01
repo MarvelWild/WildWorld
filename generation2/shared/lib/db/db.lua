@@ -229,7 +229,7 @@ _.remove=function(entity,level_name)
 	-- table.insert(entityContainer, entity)
 	local entityId=entity.id
 	if (entityContainer[entityId]==nil) then
-		log("warn: trying to delete entity that is not present")
+		log("warn: trying to delete entity that is not present:"..entityId)
 	end
 	
 	entityContainer[entityId]=nil

@@ -1,5 +1,7 @@
+--global Crafting_service
 local _={}
 
+_.craft_range=42
 
 -- описание что молжно крафтить вообще
 local _recipes=
@@ -42,10 +44,13 @@ end
 
 -- example: recipe_from {{name = "stick_1", quantity = 1}, {name = "stone_1"} 
 -- items - inventory
+
+-- wip вернуть также стоимость крафта
+-- wip вернуть вещи из чего
 _.is_craftable_from=function(recipe_from, items)
 	
 	for k_recipe,item_recipe in pairs(recipe_from) do
-		local recipe_item_name=item_recipe.name -- wip test trace
+		local recipe_item_name=item_recipe.name
 		local recipe_quantity=item_recipe.quantity or 1
 
 		for k_item,item in pairs(items) do
@@ -88,7 +93,8 @@ _.get_craftables_from_items=function(items)
 			local craftable=
 			{
 				name=craft_name,
-				quantity=42 -- wip
+				quantity=42, -- wip
+				from=from
 			}
 			table.insert(result, craftable)
 		end

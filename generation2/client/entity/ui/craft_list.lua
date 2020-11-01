@@ -50,6 +50,8 @@ _.mouse_pressed_exclusive=true
 _.mousePressed=function(gameX,gameY,button,istouch)
 	if button~=1 then return end
 	
+	
+	
 	local ui_x,ui_y=Pow.get_ui_coords(gameX,gameY)
 	
 	-- todo: generic bbox hit
@@ -62,7 +64,12 @@ _.mousePressed=function(gameX,gameY,button,istouch)
 			local y2=y1+craftable.h
 			if ui_y>y1 and ui_y<y2 then
 				log("clicked:"..craftable.name)
-				-- wip
+				
+				-- todo: lock until server response
+				local event=Event.new("craft_request")
+				event.target="server"
+				event.craftable=craftable
+				Event.process(event)
 			end
 		end
 	end
