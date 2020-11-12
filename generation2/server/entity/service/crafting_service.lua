@@ -125,9 +125,43 @@ end
 
 
 
+
+local craft_delete_source=function(craft_cost,level_name)
+	for k,item_craft_info in pairs(craft_cost) do
+		local item=item_craft_info.item
+		local crafted_quantity=item_craft_info.quantity
+		local item_quantity=Item.get_quantity(item)
+		if crafted_quantity==item_quantity then
+			--израсходован стак - удалить. пока что достаточно этого варианта
+			Db.remove(item,level_name)
+		else
+			-- todo уменьшен стак - апдейт количества
+		end
+	end	
+end
+
+
+local craft_create_target=function(craftable,level_name,actor)
+	local result_name=craftable.name
+	local result_quantity=craftable.quantity
+	local entity_code=Entity.getCodeByName(result_name)
+	local created=entity_code.new()
+	created.quantity=result_quantity
+	created.x=actor.x
+	created.y=actor.y
+	Db.add(created,level_name)
+end
+
+local craft_respond_success=function()
+	-- wip
+end
+
+
+
 -- удаляет исходные
--- wip создать результирующее
+-- создаёт результирующее
 -- wip отправить апдейт клиентам на уровне
+--  вещи уже отправились. сказать запросившему что крафт выполнен.
 -- wip
 _.do_craft=function(craftable,actor)
 	local from=craftable.from
@@ -138,24 +172,12 @@ _.do_craft=function(craftable,actor)
 	
 	local is_craftable,craft_cost=Crafting_service.is_craftable_from(from,items)
 	if is_craftable then
-		-- wip удалить вещи из craft_cost
+		craft_delete_source(craft_cost,level_name)
+		craft_create_target(craftable,level_name,actor)
 		
+		-- wip respond success
 		
-		for k,item_craft_info in pairs(craft_cost) do
-			local item=item_craft_info.item
-			local crafted_quantity=item_craft_info.quantity
-			local item_quantity=Item.get_quantity(item)
-			if crafted_quantity==item_quantity then
-				--израсходован стак - удалить. пока что достаточно этого варианта
-				Db.remove(item,level_name)
-				
-				
-			else
-				-- todo уменьшен стак - апдейт количества
-			end
-			
-			-- wip
-		end
+		craft_respond_success()
 		
 	else
 		-- wip cannot craft response, with new list of possibilities
