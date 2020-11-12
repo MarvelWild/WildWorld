@@ -532,8 +532,6 @@ end
 
 -- клиент выбрал что крафтить, запрос на крафт
 local craft_request=function(event)
-	-- wip
-	
 	local login=event.login
 	local player=Player.getByLogin(login)
 	
@@ -542,28 +540,7 @@ local craft_request=function(event)
 	--  craftable = {h = 16, name = "axe", quantity = 42, w = 16, x = 16, y = 16}
 	local craftable=event.craftable
 	
-	local from=craftable.from
-	
-	-- wip items still exists?
-	
-	local items=CollisionService.get_around(controlled_entity, Crafting_service.craft_range)
-	if Crafting_service.is_craftable_from(from,items) then
-		-- wip
-		for item in pairs(items) do
-			-- for 
-			
-			-- wip
-		end
-		
-	else
-		-- wip cannot craft response, with new list of possibilities
-	end
-	
-	
-	
-	
-	local a=1
-	
+	Crafting_service.do_craft(craftable,controlled_entity)
 end
 	
 

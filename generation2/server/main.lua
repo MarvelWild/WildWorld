@@ -62,6 +62,7 @@ local loadEntities=function()
 	
 	WorldEntities=Pow.loadEntitiesFromDir("entity/world")
 	Pow.loadEntity("entity.level")
+	Pow.loadEntity("entity.item")
 	Pow.loadEntity("entity.player")
 	Pow.loadEntity("entity.service.ai")
 end
