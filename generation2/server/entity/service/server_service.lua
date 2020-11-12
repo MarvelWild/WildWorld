@@ -540,7 +540,7 @@ local craft_request=function(event)
 	--  craftable = {h = 16, name = "axe", quantity = 42, w = 16, x = 16, y = 16}
 	local craftable=event.craftable
 	
-	Crafting_service.do_craft(craftable,controlled_entity)
+	Crafting_service.do_craft(craftable,controlled_entity,login)
 end
 	
 

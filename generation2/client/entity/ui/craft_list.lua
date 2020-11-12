@@ -1,3 +1,6 @@
+-- craft ui
+-- global CraftList
+
 local entity_name=Pow.currentFile()
 local _=BaseEntity.new(entity_name,true)
 

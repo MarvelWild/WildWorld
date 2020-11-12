@@ -152,8 +152,18 @@ local craft_create_target=function(craftable,level_name,actor)
 	Db.add(created,level_name)
 end
 
-local craft_respond_success=function()
-	-- wip
+
+local craft_respond_success=function(login,level_name)
+	local event=Event.new("craft_ok")
+	event.target="login"
+	event.targetLogin=login
+	
+	-- todo: нужно ли это если отправляем логину?
+	event.level=level_name
+	
+	-- todo: implement
+	event.craft_time=5
+	Event.process(event)
 end
 
 
@@ -163,7 +173,7 @@ end
 -- wip отправить апдейт клиентам на уровне
 --  вещи уже отправились. сказать запросившему что крафт выполнен.
 -- wip
-_.do_craft=function(craftable,actor)
+_.do_craft=function(craftable,actor,login)
 	local from=craftable.from
 	local level_name=actor.level_name
 	
@@ -177,7 +187,7 @@ _.do_craft=function(craftable,actor)
 		
 		-- wip respond success
 		
-		craft_respond_success()
+		craft_respond_success(login,level_name)
 		
 	else
 		-- wip cannot craft response, with new list of possibilities

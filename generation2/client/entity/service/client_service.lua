@@ -242,6 +242,17 @@ local craft_list=function(event)
 end
 
 
+local craft_ok=function(event)
+	-- wip close ui
+	Entity.remove(CraftList)
+	
+	-- todo: play craft anim
+	
+	
+	
+end
+
+
 -- 
 local afterLogin=function(response)
 	log('after login:'..Pow.pack(response), "net")
@@ -261,6 +272,7 @@ local afterLogin=function(response)
 	_event.add_handler("pickup", pickup)
 	_event.add_handler("drop", drop)
 	_event.add_handler("craft_list", craft_list)
+	_event.add_handler("craft_ok", craft_ok)
 	
 	log("added handler of create_player_response",'event')
 	-- todo: remove handler on completion
