@@ -157,7 +157,10 @@ _.remove=function(entity)
 	
 	_aiUpdatable[entity]=nil
 	_simulations[entity]=nil
-	CollisionService.removeEntity(entity)
+	
+	if not entity.is_service then
+		CollisionService.removeEntity(entity)
+	end
 	
 	if _.on_removed~=nil then
 		_.on_removed(entity)

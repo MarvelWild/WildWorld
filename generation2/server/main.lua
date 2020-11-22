@@ -33,6 +33,7 @@ _deref=Db.getByRef
 ServerService=require("entity.service.server_service")
 CollisionService=require("entity.service.collision_service")
 DebuggerService=require("shared.entity.service.debugger_service")
+HelpScreen=require("entity.service.help_screen")
 EnergyService=require("entity.service.energy_service")
 Crafting_service=require("entity.service.crafting_service")
 Config=require("shared.entity.service.config")
@@ -117,14 +118,7 @@ love.load=function()
 --		Db.add(tree,"start")
 --	end
 	
-	if DebugFlag.create_camel then
-		
-		local entity=Camel.new()
-		entity.x=0
-		entity.y=0
-		
-		Db.add(entity,"start")
-	end
+
 end
 
 love.update=function(dt)
@@ -163,6 +157,7 @@ love.draw=function()
 	_print(log_prev_message,0,y)
 	y=y+line_spacing
 	
+	Pow.draw()
 	DebuggerService.do_draw() 
 end
 

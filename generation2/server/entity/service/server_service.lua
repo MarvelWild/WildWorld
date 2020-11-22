@@ -602,9 +602,24 @@ end
 
 
 
+
+
+local toggle_help=function()
+	if not HelpScreen.active then
+		Entity.add(HelpScreen)
+		HelpScreen.active=true
+	else
+		Entity.remove(HelpScreen)
+		HelpScreen.active=false
+	end
+end
+
+
 _.keyPressed=function(key)
 	if key=="delete" then
 		clearWorld()
+	elseif key=="f1" then
+		toggle_help()
 	end
 end
 

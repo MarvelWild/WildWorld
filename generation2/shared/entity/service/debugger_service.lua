@@ -1,6 +1,9 @@
+
 local _=BaseEntity.new("debugger_service",true)
 
 local _isActive=false
+
+local _observable=nil
 
 
 
@@ -108,9 +111,58 @@ end
 
 
 
+
+local next_observable=function()
+	local all_entities=Entity.get_all()
+	
+	local first=nil
+	local pick_next=false
+	for entity,v in pairs(all_entities) do
+		
+		if first==nil then first=entity end
+		
+		if pick_next then
+			_observable=entity
+			break
+		end
+		
+		if _observable==nil then
+			_observable=entity
+			break
+		else
+			if _observable==entity then
+				pick_next=true
+			end
+		end
+		
+		-- no cycling from last to first
+	end -- for all_entities
+end -- next_observable
+
+local prev_observable=function()
+	local all_entities=Entity.get_all()
+
+	local prev=nil
+	for entity,v in pairs(all_entities) do
+		
+		if _observable==entity then
+			_observable=prev
+			break
+		end
+		
+		prev=entity
+	end -- for all_entities
+end -- prev_observable
+
+
+
 local on_key_pressed=function(key)
 	if key=="f11" then
 		full_dump()
+	elseif key=="f3" then
+		prev_observable()
+	elseif key=="f4" then	
+		next_observable()
 	end
 end
 
@@ -124,11 +176,19 @@ _.keyPressed=function(key)
 end
 
 
+local draw_observable=function()
+	if _observable==nil then return end
+	local serialized=Pow.tserial.pack(_observable)
+	love.graphics.print(serialized,0,100)
+end
+
 
 _.draw_overlay=function()
 	if _isActive then
 		local message="debugger active."
 		love.graphics.print(message)
+		
+		draw_observable()
 		
 		_state.draw()
 	end

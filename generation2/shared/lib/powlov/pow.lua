@@ -293,7 +293,7 @@ _.pointer=require(folderOfThisFile.."/module/entity/pointer")
 _.baseEntity=require(folderOfThisFile.."/module/entity/base_entity")
 
 
-local drawGame=function()
+local drawGame=function(is_visible)
 	_.entity.draw()
 end
 

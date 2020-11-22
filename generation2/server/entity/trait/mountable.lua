@@ -48,6 +48,7 @@ end
 _.is_mounting=function(rider)
 	if rider==nil then
 		local a=1
+		return
 	end
 	
 	
