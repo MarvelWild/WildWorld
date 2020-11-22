@@ -369,7 +369,7 @@ local getCollisions=function(event)
 end
 
 
-local do_default_action=function(actor,target,player)
+local default_action_mounted=function(actor,target,player)
 	local actorCode=Entity.get_code(actor)
 	local fnInteract=actorCode.interact
 	if fnInteract==nil then return false end
@@ -403,7 +403,50 @@ local do_drop=function(actor)
 end
 
 
--- todo: split
+local default_action_unmounted=function(controlled_entity)
+	-- todo: d button to drop
+
+	if controlled_entity.hand_slot~=nil then
+		do_drop(controlled_entity)
+		return
+	end
+	
+	
+	local collision_entities=CollisionService.getEntityCollisions(controlled_entity)
+	if collision_entities==nil then return end
+	
+	
+	-- 1 liner?
+	local collision_entities_filtered={}
+	-- exclude mounted
+	
+	local is_excluded=function(entity)
+		if entity.mounted_by~=nil then
+			return true
+		end
+		
+		return false
+	end
+	
+	for k,entity in pairs(collision_entities) do
+		if not is_excluded(entity) then
+			table.insert(collision_entities_filtered, entity)
+		end
+	end
+	-- /
+	
+	for k,entity in pairs(collision_entities_filtered) do
+		local is_interacted=do_default_action(controlled_entity,entity,player)
+		if is_interacted then
+			return true
+		else
+			log("not interacted with:".._ets(entity))
+		end
+	end
+end
+
+
+
 -- player press space, enter portal / pickup-drop item etc
 local default_action=function(event)
 	local login=event.login
@@ -421,48 +464,10 @@ local default_action=function(event)
 	
 	if mounted_on~=nil then
 		target=_deref(mounted_on)
-    do_default_action(controlled_entity,target)
+    default_action_mounted(controlled_entity,target)
 	else
+		default_action_unmounted(controlled_entity)
 		
-		-- todo: d button to drop
-
-		if controlled_entity.hand_slot~=nil then
-			do_drop(controlled_entity)
-			return
-		end
-		
-		
-		local collision_entities=CollisionService.getEntityCollisions(controlled_entity)
-		if collision_entities==nil then return end
-		
-		
-		-- 1 liner?
-		local collision_entities_filtered={}
-		-- exclude mounted
-		
-		local is_excluded=function(entity)
-			if entity.mounted_by~=nil then
-				return true
-			end
-			
-			return false
-		end
-		
-		for k,entity in pairs(collision_entities) do
-			if not is_excluded(entity) then
-				table.insert(collision_entities_filtered, entity)
-			end
-		end
-		-- /
-		
-		for k,entity in pairs(collision_entities_filtered) do
-			local is_interacted=do_default_action(controlled_entity,entity,player)
-			if is_interacted then
-				return true
-			else
-				log("not interacted with:".._ets(entity))
-			end
-		end
 	end
 end
 

@@ -43,7 +43,7 @@ _.moveRandom=function(entity,max_distance)
 		dx=dx-random(50)
 	end
 	
-	if current_y<max_y-300 then
+	if current_y>max_y-300 then
 		dy=dy-random(50)
 	end
 	

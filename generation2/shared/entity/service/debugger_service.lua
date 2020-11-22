@@ -1,4 +1,6 @@
 -- todo: multi observables
+-- todo: observable sort props
+-- todo: observable filter props
 local _=BaseEntity.new("debugger_service",true)
 
 local _isActive=false
@@ -180,7 +182,7 @@ local draw_observable=function()
 	if _observable==nil then return end
 	local serialized=Pow.tserial.pack(_observable)
 	
-	local name=_observable.entity_name
+	local name=_ets(_observable)
 	love.graphics.print(name,0,90)
 	love.graphics.print(serialized,0,100)
 end
