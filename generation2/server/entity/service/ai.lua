@@ -8,8 +8,13 @@ _.load=function()
 	_event=Pow.net.event
 end
 
-_.moveRandom=function(entity)
-	local maxDistance=_maxDistance
+_.moveRandom=function(entity,max_distance)
+	local maxDistance=max_distance
+	
+	if not maxDistance then
+		maxDistance=_maxDistance
+	end
+	
 	local random=Pow.lume.random
 	local clamp=Pow.lume.clamp
 	

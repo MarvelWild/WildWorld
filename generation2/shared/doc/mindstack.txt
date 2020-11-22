@@ -2,38 +2,56 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		пытался сесть на 2, сел на 1, и не отобразилось сразу, толко после его мува видно
 	отладчик - просмотреть состояние верблюдов при наличии бага
 	
 	
 	+где верблюд хранит инфу кто на нем? .mounted_by
 баг - сидим на двух верблюдах )
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	
 	
 	
@@ -53,6 +71,25 @@
 	
 	
 	
+разлогинился на маунте, после повторного входа:
+Error: shared/entity/trait/movable.lua:96: attempt to index local 'actor' (a nil value)
+stack traceback:
+        [string "boot.lua"]:777: in function '__index'
+        shared/entity/trait/movable.lua:96: in function 'move'
+        entity/service/client_service.lua:82: in function 'handler'
+        shared/lib/powlov/module/net/event.lua:174: in function 'doProcessEvent'
+        shared/lib/powlov/module/net/event.lua:209: in function 'processEvent'
+        shared/lib/powlov/module/net/event.lua:219: in function 'process'
+        shared/lib/powlov/module/net/client.lua:45: in function 'handler'
+        shared/lib/powlov/module/net/client.lua:80: in function 'recv'
+        shared/lib/powlov/deps/grease/grease/core.lua:122: in function 'update'
+        shared/lib/powlov/module/net/client.lua:175: in function 'update'
+        entity/service/client_service.lua:328: in function 'updateProc'
+        shared/lib/powlov/module/entity/entity.lua:225: in function 'update'
+        shared/lib/powlov/pow.lua:365: in function 'update'
+        main.lua:117: in function 'update'
+        [string "boot.lua"]:612: in function <[string "boot.lua"]:594>
+        [C]: in function 'xpcall'
 	
 	
 	
@@ -63,14 +100,20 @@
 	
 	
 	
+	без масштабирования - позже
++qol: клиент - рисовать ид сущностей при вкл отладчике
++qol: отладчик выводить имя сущности вверху	
 	
 	
 	
++фан - порисовать уровень
++верблюд не должен бегать далеко	
 	
-	
-	
-	
-	
+	+применить на клиенте
+	+хранить цвет в сущности (на примере верблюда)
++различия сущностей
+
+
 	
 	
 	
@@ -92,6 +135,7 @@
 			с->к move (если не Mountable.is_mounting)
 		к->c intent_move
 	описать
+		шаги:
 	воспроизвести
 пофиксить баги с маунтами	
 

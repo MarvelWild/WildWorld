@@ -1,4 +1,4 @@
-
+-- todo: multi observables
 local _=BaseEntity.new("debugger_service",true)
 
 local _isActive=false
@@ -179,13 +179,16 @@ end
 local draw_observable=function()
 	if _observable==nil then return end
 	local serialized=Pow.tserial.pack(_observable)
+	
+	local name=_observable.entity_name
+	love.graphics.print(name,0,90)
 	love.graphics.print(serialized,0,100)
 end
 
 
 _.draw_overlay=function()
 	if _isActive then
-		local message="debugger active."
+		local message="debugger active. fps:".. love.timer.getFPS()
 		love.graphics.print(message)
 		
 		draw_observable()

@@ -60,6 +60,7 @@ local loadEntities=function()
 	Movable=Pow.multirequire("shared.entity.trait.movable", "entity.trait.movable")
 	Growable=Pow.multirequire("shared.entity.trait.growable", "entity.trait.growable")
 	Mountable=Pow.multirequire("shared.entity.trait.mountable","entity.trait.mountable")
+	Colored=Pow.multirequire("shared.entity.trait.colored","entity.trait.colored")
 	
 	WorldEntities=Pow.loadEntitiesFromDir("entity/world")
 	Pow.loadEntity("entity.level")

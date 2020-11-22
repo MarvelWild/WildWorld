@@ -3,6 +3,11 @@
 local _={}
 
 _.entity_name=Pow.currentFile()
-_.draw=BaseEntity.draw
+_.draw=function(entity)
+--	BaseEntity.draw
+	Generic.draw(entity)
+end
+
+
 
 return _

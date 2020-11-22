@@ -16,12 +16,13 @@ _.new=function()
 	result.mountY=44
 	
 	Mountable.init(result)
+	Colored.set_random_color(result)
 	
 	return result
 end
 
 _.updateAi=function(entity)
-	AiService.moveRandom(entity)
+	AiService.moveRandom(entity, 10)
 
 end
 
