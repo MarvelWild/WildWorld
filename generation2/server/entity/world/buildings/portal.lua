@@ -4,16 +4,19 @@ local _={}
 
 _.entity_name="portal"
 
-_.new=function()
+_.new=function(location)
 	local result=BaseEntity.new(_.entity_name)
 	
 	result.sprite="portal"
 	
-	result.location="space"
+	if not location then
+		result.location="space"
+	else
+		result.location=location
+	end
 	
-	--todo: from sprite
-	result.w=10
-	result.h=9
+	
+	BaseEntity.init_bounds_from_sprite(result)
 	
 	
 	return result

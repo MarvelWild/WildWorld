@@ -264,13 +264,14 @@ local get_editor_items=function()
 	end
 	
 	local portal_start=Portal.new()
-	portal_start.sprite="portal_start"
+	BaseEntity.set_sprite(portal_start,"portal_start")
 	portal_start.location="start"
 	table.insert(result, portal_start)
 	
 	local portal_volcano=Portal.new()
-	portal_volcano.sprite="portal_volcano"
 	portal_volcano.location="volcano"
+	BaseEntity.set_sprite(portal_volcano,"portal_volcano")
+	
 	table.insert(result, portal_volcano)
 --	local seed=Seed.new()
 --	table.insert(_editorItemsCache, seed)

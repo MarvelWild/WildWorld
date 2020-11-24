@@ -4,10 +4,7 @@ _.entity_name=Pow.currentFile()
 
 _.new=function()
 	local result=BaseEntity.new(_.entity_name)
-	
-	result.sprite=_.entity_name
-	
-	BaseEntity.init_bounds_from_sprite(result)
+	BaseEntity.set_sprite(result,_.entity_name)
 	
 	result.foot_x=14
 	result.foot_y=29
