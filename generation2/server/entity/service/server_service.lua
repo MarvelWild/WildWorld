@@ -251,8 +251,8 @@ end
 -- todo: put editor entities in special level, do not recreate them every time
 local _editorItemsCache=nil
 
-local populateEditorItemsCache=function()
-	_editorItemsCache={}
+local get_editor_items=function()
+	local result={}
 	
 	for k,entity in ipairs(WorldEntities) do
 		if not entity.new then
@@ -260,18 +260,25 @@ local populateEditorItemsCache=function()
 		end
 		
 		local editorInstance=entity.new()
-		table.insert(_editorItemsCache, editorInstance)
+		table.insert(result, editorInstance)
 	end
 	
 	local portal_start=Portal.new()
 	portal_start.sprite="portal_start"
 	portal_start.location="start"
-	table.insert(_editorItemsCache, portal_start)
+	table.insert(result, portal_start)
+	
+	local portal_volcano=Portal.new()
+	portal_volcano.sprite="portal_volcano"
+	portal_volcano.location="volcano"
+	table.insert(result, portal_volcano)
 --	local seed=Seed.new()
 --	table.insert(_editorItemsCache, seed)
 	
 --	local panther=Panther.new()
 --	table.insert(_editorItemsCache, panther)
+
+	return result
 end
 
 
@@ -279,8 +286,7 @@ local editorItems=function(event)
 	local response=_event.new("editor_items_response", event.id)
 	
 	if _editorItemsCache==nil then
-		populateEditorItemsCache()
-		
+		_editorItemsCache=get_editor_items()
 	end
 	
 	
@@ -405,7 +411,7 @@ local do_drop=function(actor)
 end
 
 
-local default_action_unmounted=function(controlled_entity)
+local default_action_unmounted=function(controlled_entity,player)
 	-- todo: d button to drop
 
 	if controlled_entity.hand_slot~=nil then
@@ -471,7 +477,7 @@ local default_action=function(event)
 		target=_deref(mounted_on)
     default_action_generic(controlled_entity,target)
 	else
-		default_action_unmounted(controlled_entity)
+		default_action_unmounted(controlled_entity,player)
 		
 	end
 end
