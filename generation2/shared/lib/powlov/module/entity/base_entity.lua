@@ -43,6 +43,14 @@ end
 
 
 
+
+
+
+--_.sx=1
+
+--_.sy=1
+
+-- рисуем спрайт без анимации
 _.draw=function(entity)
 	local spriteName=entity.sprite
 	if (spriteName==nil) then
@@ -51,7 +59,17 @@ _.draw=function(entity)
 	-- todo: cache it, do not query every frame
 	local sprite=Img.get(spriteName)
 	-- log('drawing:'..Entity.toString(entity))
-	love.graphics.draw(sprite,entity.x,entity.y)
+	-- love.graphics.draw( drawable, x, y, r, sx, sy, ox, oy, kx, ky )
+	-- love.graphics.draw(sprite,entity.x,entity.y)
+	
+	if entity.is_watching_left then
+		love.graphics.draw(sprite,entity.x+entity.w,entity.y,0,-1,1)
+	else
+		love.graphics.draw(sprite,entity.x,entity.y,0,1,1)
+	end
+	
+	
+--	love.graphics.draw(sprite,entity.x,entity.y,0,_.sx,_.sy)
 end
 
 

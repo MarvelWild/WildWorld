@@ -31,6 +31,9 @@ local on_moved=function(moved_entity)
 end
 
 _.instant_move=function(entity,new_x,new_y)
+	-- face direction
+	entity.is_watching_left=new_x<entity.x
+	
 	entity.x=new_x
 	entity.y=new_y
 	
@@ -120,6 +123,8 @@ _.move=function(actor,x,y,duration,force_this,ignore_foot)
 		finalY=y
 	end
 	
+	-- face direction
+	actor.is_watching_left=finalX<actor.x
 	
 	
 	

@@ -134,6 +134,24 @@ love.resize=function(width, height)
 end
 
 love.keypressed=function(key, scancode, isrepeat)
+--	if key=="f3" then
+--		BaseEntity.sx=BaseEntity.sx-0.1
+--	end
+	
+--	if key=="f4" then
+--		BaseEntity.sx=BaseEntity.sx+0.1
+--	end
+	
+--	if key=="f5" then
+--		BaseEntity.sy=BaseEntity.sy-0.1
+--	end
+	
+--	if key=="f6" then
+--		BaseEntity.sy=BaseEntity.sy+0.1
+--	end
+	
+	
+	
 	Entity.keyPressed(key)
 end
 
