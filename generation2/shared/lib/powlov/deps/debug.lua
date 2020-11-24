@@ -75,10 +75,6 @@ if not full_log then
 	channels.grow.useConsole=false
 	channels.move.useConsole=false
 	channels.mount.useConsole=false
-	
-	-- mount fix
-	channels.verbose.useConsole=true
-	channels.mount.useConsole=true
 end
 
 

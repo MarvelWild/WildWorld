@@ -59,7 +59,7 @@ _.do_mount=function(rider,mount,is_mounting)
 			rider.mounted_on=_ref(mount)
 			mount.mounted_by=_ref(rider)
 			
-			log("mount references set", "verbose")
+			log("mount references set mounted_on:"..serialize(rider.mounted_on), "verbose")
 			
 --			if rider==nil then
 --			end

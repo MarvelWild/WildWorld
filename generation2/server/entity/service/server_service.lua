@@ -369,7 +369,9 @@ local getCollisions=function(event)
 end
 
 
-local default_action_mounted=function(actor,target,player)
+local default_action_generic=function(actor,target,player)
+	log("default_action_generic","verbose")
+	
 	local actorCode=Entity.get_code(actor)
 	local fnInteract=actorCode.interact
 	if fnInteract==nil then return false end
@@ -436,7 +438,7 @@ local default_action_unmounted=function(controlled_entity)
 	-- /
 	
 	for k,entity in pairs(collision_entities_filtered) do
-		local is_interacted=do_default_action(controlled_entity,entity,player)
+		local is_interacted=default_action_generic(controlled_entity,entity,player)
 		if is_interacted then
 			return true
 		else
@@ -448,7 +450,10 @@ end
 
 
 -- player press space, enter portal / pickup-drop item etc
+-- event handler "default_action"
 local default_action=function(event)
+	log("default_action","verbose")
+	
 	local login=event.login
 	local player=Player.getByLogin(login)
 	
@@ -464,7 +469,7 @@ local default_action=function(event)
 	
 	if mounted_on~=nil then
 		target=_deref(mounted_on)
-    default_action_mounted(controlled_entity,target)
+    default_action_generic(controlled_entity,target)
 	else
 		default_action_unmounted(controlled_entity)
 		
@@ -473,7 +478,7 @@ end
 
 
 
--- server mount handler
+-- server mount handler to "do_mount" event
 local do_mount=function(event)
 	log("server_service.do_mount start", "verbose")
 	

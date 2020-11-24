@@ -1,4 +1,5 @@
 -- global Generic<-entity_name
+-- обрабатываются сущности, не описанные явно
 local _={}
 
 _.entity_name=Pow.currentFile()
@@ -30,4 +31,14 @@ _.draw=function(entity)
 end
 
 
+
+
+local animation_update=Animation_service.update_entity
+_.update=function(dt,entity)
+	
+	if entity.animation then
+		animation_update(entity)
+	end
+	
+end
 return _

@@ -6,11 +6,13 @@ _.entity_name=Pow.currentFile()
 _.draw=BaseEntity.draw
 
 
-local animation_update=Animation_service.update_entity
+--local animation_update=Animation_service.update_entity
 
-_.update=function(dt,entity)
-	animation_update(entity)
-end
+--_.update=function(dt,entity)
+--	animation_update(entity)
+--end
+
+_.update=Generic.update
 
 
 return _

@@ -36,6 +36,7 @@ _.toggle_mount=function(rider,mount)
 	do_mount_event.mount_ref=_ref(mount)
 	
 	_event.process(do_mount_event)
+	return true
 end
 
 
