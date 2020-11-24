@@ -51,7 +51,11 @@ _.mouse_pressed_exclusive=true
 
 
 _.mousePressed=function(gameX,gameY,button,istouch)
-	if button~=1 then return end
+	if button~=1 then 
+		Entity.remove(CraftList)
+	end
+	
+	
 	
 	
 	
