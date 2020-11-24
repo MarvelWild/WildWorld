@@ -1,6 +1,6 @@
 local _={}
 
-_.entity_name="phoenix"
+_.entity_name=Pow.currentFile()
 
 
 _.draw=BaseEntity.draw

@@ -21,13 +21,13 @@ _.update_entity=function(entity)
 	end
 	
 	
-	if animation_state=="idle" then
-		nop()
-	end	
+--	if animation_state=="idle" then
+--		nop()
+--	end	
 	
-	if animation_state=="walk" then
-		nop()
-	end
+--	if animation_state=="walk" then
+--		nop()
+--	end
 	
 	-- contains frames for current state
 	local state_animation=entity_animation[animation_state]

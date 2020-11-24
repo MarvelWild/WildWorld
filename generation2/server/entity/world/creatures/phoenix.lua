@@ -69,11 +69,8 @@ _.new=function()
 	-- код
 	
 	BaseEntity.init_bounds_from_sprite(result)
---	if _rnd(0,10)>5 then result.sprite="girl" end
-	-- todo: presets
-	if result.sprite=="phoenix_fly1" then
-		result.animation=build_animation()
-	end
+
+	result.animation=build_animation()
 	
 	BaseEntity.init_bounds_from_sprite(result)
 
