@@ -4,10 +4,16 @@ local _={}
 
 _.entity_name="portal"
 
-_.new=function(location)
+_.new=function(location, sprite)
 	local result=BaseEntity.new(_.entity_name)
 	
-	result.sprite="portal"
+	
+	if not sprite then
+		result.sprite="portal"
+	else
+		result.sprite=sprite
+	end
+	
 	
 	if not location then
 		result.location="space"

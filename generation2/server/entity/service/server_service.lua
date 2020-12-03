@@ -305,7 +305,11 @@ local editor_place_item=function(event)
 	local player=Player.getByLogin(login)
 	local item=event.item
 	local entityCode=Entity.get_code(item)
-	local instance=entityCode.new()
+	
+	-- так делать нельзя (instance.sprite=item.sprite) - меняется и размер и точки и коллизи нужно обновить.
+	-- можно сделать set_sprite()
+
+	local instance=entityCode.new(nil,item.sprite)
 	
 	local x=item.x
 	
@@ -318,7 +322,7 @@ local editor_place_item=function(event)
 	instance.y=item.y
 	
 	-- custom prop: portal dest, sprite
-	instance.sprite=item.sprite
+
 	instance.location=item.location
 	
 	local level_name=player.level_name

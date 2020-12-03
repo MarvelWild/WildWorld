@@ -964,7 +964,12 @@ zbs bug: no breakpoint hit when 2 instances running
 
 
 
-
+	+трассировка добавления сущности в систему коллизии
+	
+			
+		+точка добавления в систему коллизий
+	+представлен сущностью server\entity\world\buildings\portal.lua
++коллизия с порталом вулкана
 
 
 где хранить его?
