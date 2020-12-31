@@ -19,7 +19,7 @@ end
 -- c - craft
 _.keyPressed=function(key)
 	if key=="c" then
-		log("craft start")
+		log("craft start request")
 		local event=Event.new()
 		-- craft start - request what we can craft
 		event.code="craft"

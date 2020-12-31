@@ -71,10 +71,6 @@ _.mousePressed=function(gameX,gameY,button,istouch)
 		_.close()
 	end
 	
-	
-	
-	
-	
 	local ui_x,ui_y=Pow.get_ui_coords(gameX,gameY)
 	
 	-- todo: generic bbox hit

@@ -76,6 +76,7 @@ _.addEntity=function(entity)
 	
 	
 	
+
 	local level_name=entity.level_name
 	
 	if level_name==nil then
@@ -86,7 +87,8 @@ _.addEntity=function(entity)
 	local collision=getLevelCollisions(level_name)
 	collision.add(entity)
 	
-	log("collision entity added:".._ets(entity))
+	local log_message="collision entity added:".._ets(entity)
+	log(log_message)
 end
 
 
@@ -114,6 +116,7 @@ _.onEntityMoved=function(entity)
 	
 	local collision=getLevelCollisions(level_name)
 	collision.moved(entity)
+	log("collision.moved:".._ets(entity))
 end
 
 return _

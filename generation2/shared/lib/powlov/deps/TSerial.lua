@@ -79,7 +79,7 @@ end
 
 
 
-function TSerial.pack_logged(t, drop, indent)
+function TSerial.pack_debug(t, drop, indent)
 	
 	if drop==nil then drop=true end
 	
@@ -96,8 +96,10 @@ function TSerial.pack_logged(t, drop, indent)
 	
 	local function proc(k,v, omitKey)	-- encode a key/value pair
 		
-		log("proc:"..k)
+		-- log("proc:"..k)
 		--Wild World hack
+		
+		-- skiplist
 		if (
 			   k=="Pow" 
 			or k=="package" 

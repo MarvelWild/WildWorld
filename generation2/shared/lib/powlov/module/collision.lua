@@ -163,6 +163,8 @@ _.getAtRect=function(x,y,w,h)
 		
 		if not entity then
 			log("error: entity not registered in _entityByShape. shape:"..serialize(shape))
+			
+			-- wip log all
 		end
 		
 		if result==nil then result={} end

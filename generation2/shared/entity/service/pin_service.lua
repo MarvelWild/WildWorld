@@ -76,8 +76,16 @@ _.update=function()
 		local follow_new_x=lead.x+lead_dx-follow.origin_x
 		local follow_new_y=lead.y+pin.lead_y-follow.origin_y
 		
-		Movable.instant_move(follow,follow_new_x,follow_new_y)
---		log("pinned entity coord updated:".._xy(follow_new_x,follow_new_y))
+		local is_moved=
+			follow_new_x~=follow.x or
+			follow_new_y~=follow.y
+			
+		if is_moved then
+			Movable.instant_move(follow,follow_new_x,follow_new_y)
+			--log("pinned entity coord updated:".._xy(follow_new_x,follow_new_y))
+		else
+			local a=1
+		end
 	end
 end
 

@@ -444,7 +444,9 @@ end
 _.log=function()
 	log("logging all entities:")
 	for entity,has_entity in pairs(_all) do
-		log(_ets(entity))
+		if not entity.is_service then
+			log(_ets(entity))
+		end
 	end
 	
 end

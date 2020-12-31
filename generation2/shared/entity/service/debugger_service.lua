@@ -106,15 +106,30 @@ local full_dump=function()
 	
 	local mem_state=_G
 	
-	local debug_serialized=Pow.tserial.pack_logged(mem_state)
+	local debug_serialized=Pow.tserial.pack_debug(mem_state)
 	
 	-- stack overflow here
 	--local serialized=serialize(mem_state)
-	love.filesystem.write("debugger_dump", debug_serialized)
+	
+	local filename="debugger_dump_"..os.time()
+	love.filesystem.write(filename, debug_serialized)
 
 	log("full dump done")
 end
 
+
+local entity_dump=function()
+	log("entity dump")
+	
+	local data=Entity.get_all()
+	
+	local debug_serialized=Pow.tserial.pack_debug(data)
+	
+	local filename="entity_dump_"..os.time()
+	love.filesystem.write(filename, debug_serialized)
+
+	log("entity dump done")
+end
 
 
 
@@ -161,22 +176,34 @@ local prev_observable=function()
 end -- prev_observable
 
 
+local entity_log=function()
+	Entity.log()
+end
+
+local keys={}
+
 local show_help=function()
-	log("f3 f4 nav observables")
-	log("f12 close")
+	for k,info in pairs(keys) do
+		log(k.." "..info.description)		
+	end
 end
 
 
+keys.f1={description="help",action=show_help}
+keys.f3={description="prev_observable",action=prev_observable}
+keys.f4={description="next_observable",action=next_observable}
+keys.f9={description="entity log",action=entity_log}
+keys.f10={description="entity dump",action=full_dump}
+keys.f11={description="full dump",action=entity_dump}
+
+
 local on_key_pressed=function(key)
-	if key=="f11" then
-		full_dump()
-	elseif key=="f1" then
-		show_help()
-	elseif key=="f3" then
-		prev_observable()
-	elseif key=="f4" then	
-		next_observable()
-	end
+	
+	local handler_info=keys[key]
+	if not handler_info then return end
+	
+	handler_info.action()
+
 end
 
 
