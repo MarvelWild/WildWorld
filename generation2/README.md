@@ -30,6 +30,13 @@ basic network
 </details>
 
 <details>
+ <summary>Server</summary>
+command line parameters:
+
+clean=1 : reset world
+</details>
+
+<details>
  <summary>Tools</summary>
 
 [love2d (engine)](https://love2d.org/)

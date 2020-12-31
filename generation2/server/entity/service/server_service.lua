@@ -530,7 +530,7 @@ end
 
 -- начало крафта - запрос от клиента что можно скрафтить
 local craft=function(event)
-	log("server craft")
+	log("server craft","verbose")
 
 	local login=event.login
 	local player=Player.getByLogin(login)

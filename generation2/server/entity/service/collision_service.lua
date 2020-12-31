@@ -85,6 +85,8 @@ _.addEntity=function(entity)
 	
 	local collision=getLevelCollisions(level_name)
 	collision.add(entity)
+	
+	log("collision entity added:".._ets(entity))
 end
 
 
@@ -99,6 +101,7 @@ _.removeEntity=function(entity)
 	
 	local collision=getLevelCollisions(level_name)
 	collision.remove(entity)
+	log("collision entity removed:".._ets(entity))
 end
 
 _.onEntityMoved=function(entity)

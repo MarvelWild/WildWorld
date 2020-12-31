@@ -50,9 +50,25 @@ end
 _.mouse_pressed_exclusive=true
 
 
+local _is_open=false
+
+_.open=function()
+	if _is_open then return end
+	Entity.add(CraftList)
+	_is_open=true
+end
+
+
+_.close=function()
+	if not _is_open then return end
+	Entity.remove(CraftList)
+	_is_open=false
+end
+
+
 _.mousePressed=function(gameX,gameY,button,istouch)
 	if button~=1 then 
-		Entity.remove(CraftList)
+		_.close()
 	end
 	
 	

@@ -1,6 +1,6 @@
 -- todo: multi observables
--- todo: observable sort props
--- todo: observable filter props
+-- todo: observable sort
+-- todo: observable filter
 local _=BaseEntity.new("debugger_service",true)
 
 local _isActive=false
@@ -24,6 +24,10 @@ local debug_to_string=function(entity)
 	end
 	
 	r=r.." sprite:"..tostring(entity.sprite)
+	
+--	if entity.is_watching_left then
+--		r=r.." watching left"
+--	end
 	
 	return r
 end
@@ -157,10 +161,17 @@ local prev_observable=function()
 end -- prev_observable
 
 
+local show_help=function()
+	log("f3 f4 nav observables")
+	log("f12 close")
+end
+
 
 local on_key_pressed=function(key)
 	if key=="f11" then
 		full_dump()
+	elseif key=="f1" then
+		show_help()
 	elseif key=="f3" then
 		prev_observable()
 	elseif key=="f4" then	

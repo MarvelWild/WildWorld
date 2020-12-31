@@ -2,6 +2,852 @@
 
 
 
+	>при крафте из неё должны уйти 2 вещи и добавиться 1
+мониторить систему коллизии
+
+
+3812    error: entity not registered in _entityByShape. shape:{
+_polygon={
+        area=208,
+        vertices={
+                [1]={
+                        y=81,
+                        x=60
+                },
+                [2]={
+                        y=65,
+                        x=60
+                },
+                [3]={
+                        y=65,
+                        x=73
+                },
+                [4]={
+                        y=81,
+                        x=73
+                }
+        },
+        centroid={
+                y=73,
+                x=66.5
+        },
+        _radius=10.307764064044
+},
+_type="polygon",
+_rotation=0
+}
+stack traceback:
+        shared/lib/powlov/deps/debug.lua:105: in function 'log'
+        shared/lib/powlov/module/collision.lua:165: in function 'getAtRect'
+        entity/service/collision_service.lua:61: in function 'get_in_rect'
+        entity/service/collision_service.lua:52: in function 'get_around'
+        entity/service/server_service.lua:542: in function 'handler'
+        shared/lib/powlov/module/net/event.lua:174: in function 'doProcessEvent'
+        shared/lib/powlov/module/net/event.lua:209: in function 'processEvent'
+        shared/lib/powlov/module/net/event.lua:219: in function 'process'
+        shared/lib/powlov/module/net/server.lua:296: in function 'handler'
+        shared/lib/powlov/module/net/server.lua:103: in function 'recv'
+        shared/lib/powlov/deps/grease/grease/core.lua:208: in function 'update'
+        shared/lib/powlov/module/net/server.lua:271: in function '_serverLateUpdate'
+        entity/service/server_service.lua:603: in function 'updateProc'
+        shared/lib/powlov/module/entity/entity.lua:254: in function 'lateUpdate'
+        shared/lib/powlov/pow.lua:370: in function 'update'
+        main.lua:126: in function 'update'
+        [string "boot.lua"]:612: in function <[string "boot.lua"]:594>
+        [C]: in function 'xpcall'
+        [string "boot.lua"]:802: in function <[string "boot.lua"]:769>
+3925    error: entity not registered in _entityByShape. shape:{
+_polygon={
+        area=208,
+        vertices={
+                [1]={
+                        y=81,
+                        x=60
+                },
+                [2]={
+                        y=65,
+                        x=60
+                },
+                [3]={
+                        y=65,
+                        x=73
+                },
+                [4]={
+                        y=81,
+                        x=73
+                }
+        },
+        centroid={
+                y=73,
+                x=66.5
+        },
+        _radius=10.307764064044
+},
+_type="polygon",
+_rotation=0
+}
+stack traceback:
+        shared/lib/powlov/deps/debug.lua:105: in function 'log'
+        shared/lib/powlov/module/collision.lua:165: in function 'getAtRect'
+        entity/service/collision_service.lua:61: in function 'get_in_rect'
+        entity/service/collision_service.lua:52: in function 'get_around'
+        entity/service/crafting_service.lua:194: in function 'do_craft'
+        entity/service/server_service.lua:564: in function 'handler'
+        shared/lib/powlov/module/net/event.lua:174: in function 'doProcessEvent'
+        shared/lib/powlov/module/net/event.lua:209: in function 'processEvent'
+        shared/lib/powlov/module/net/event.lua:219: in function 'process'
+        shared/lib/powlov/module/net/server.lua:296: in function 'handler'
+        shared/lib/powlov/module/net/server.lua:103: in function 'recv'
+        shared/lib/powlov/deps/grease/grease/core.lua:208: in function 'update'
+        shared/lib/powlov/module/net/server.lua:271: in function '_serverLateUpdate'
+        entity/service/server_service.lua:603: in function 'updateProc'
+        shared/lib/powlov/module/entity/entity.lua:254: in function 'lateUpdate'
+        shared/lib/powlov/pow.lua:370: in function 'update'
+        main.lua:126: in function 'update'
+        [string "boot.lua"]:612: in function <[string "boot.lua"]:594>
+        [C]: in function 'xpcall'
+        [string "boot.lua"]:802: in function <[string "boot.lua"]:769>
+5676    error: entity not registered in _entityByShape. shape:{
+_polygon={
+        area=208,
+        vertices={
+                [1]={
+                        y=81,
+                        x=60
+                },
+                [2]={
+                        y=65,
+                        x=60
+                },
+                [3]={
+                        y=65,
+                        x=73
+                },
+                [4]={
+                        y=81,
+                        x=73
+                }
+        },
+        centroid={
+                y=73,
+                x=66.5
+        },
+        _radius=10.307764064044
+},
+_type="polygon",
+_rotation=0
+}
+stack traceback:
+        shared/lib/powlov/deps/debug.lua:105: in function 'log'
+        shared/lib/powlov/module/collision.lua:165: in function 'getAtRect'
+        entity/service/collision_service.lua:61: in function 'get_in_rect'
+        entity/service/collision_service.lua:52: in function 'get_around'
+        entity/service/server_service.lua:542: in function 'handler'
+        shared/lib/powlov/module/net/event.lua:174: in function 'doProcessEvent'
+        shared/lib/powlov/module/net/event.lua:209: in function 'processEvent'
+        shared/lib/powlov/module/net/event.lua:219: in function 'process'
+        shared/lib/powlov/module/net/server.lua:296: in function 'handler'
+        shared/lib/powlov/module/net/server.lua:103: in function 'recv'
+        shared/lib/powlov/deps/grease/grease/core.lua:208: in function 'update'
+        shared/lib/powlov/module/net/server.lua:271: in function '_serverLateUpdate'
+        entity/service/server_service.lua:603: in function 'updateProc'
+        shared/lib/powlov/module/entity/entity.lua:254: in function 'lateUpdate'
+        shared/lib/powlov/pow.lua:370: in function 'update'
+        main.lua:126: in function 'update'
+        [string "boot.lua"]:612: in function <[string "boot.lua"]:594>
+        [C]: in function 'xpcall'
+        [string "boot.lua"]:802: in function <[string "boot.lua"]:769>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	дебаггер: просмотр состояния системы коллизий
+скрафтили топор, повторная попытка крафтить:
+
+
+stack traceback:
+        shared/lib/powlov/deps/debug.lua:105: in function 'log'
+        shared/lib/powlov/module/collision.lua:165: in function 'getAtRect'
+        entity/service/collision_service.lua:61: in function 'get_in_rect'
+        entity/service/collision_service.lua:52: in function 'get_around'
+        entity/service/server_service.lua:542: in function 'handler'
+        shared/lib/powlov/module/net/event.lua:174: in function 'doProcessEvent'
+        shared/lib/powlov/module/net/event.lua:209: in function 'processEvent'
+        shared/lib/powlov/module/net/event.lua:219: in function 'process'
+        shared/lib/powlov/module/net/server.lua:296: in function 'handler'
+        shared/lib/powlov/module/net/server.lua:103: in function 'recv'
+        shared/lib/powlov/deps/grease/grease/core.lua:208: in function 'update'
+        shared/lib/powlov/module/net/server.lua:271: in function '_serverLateUpdate'
+        entity/service/server_service.lua:603: in function 'updateProc'
+        shared/lib/powlov/module/entity/entity.lua:254: in function 'lateUpdate'
+        shared/lib/powlov/pow.lua:370: in function 'update'
+        main.lua:126: in function 'update'
+        [string "boot.lua"]:612: in function <[string "boot.lua"]:594>
+        [C]: in function 'xpcall'
+        [string "boot.lua"]:802: in function <[string "boot.lua"]:769>
+5027    error: entity not registered in _entityByShape. shape:{
+_polygon={
+        area=208,
+        vertices={
+                [1]={
+                        y=70.76570041696,
+                        x=111.87089253987
+                },
+                [2]={
+                        y=54.76570041696,
+                        x=111.87089253987
+                },
+                [3]={
+                        y=54.76570041696,
+                        x=124.87089253987
+                },
+                [4]={
+                        y=70.76570041696,
+                        x=124.87089253987
+                }
+        },
+        centroid={
+                y=62.76570041696,
+                x=118.37089253987
+        },
+        _radius=10.307764064044
+},
+_type="polygon",
+_rotation=0
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+день/ночь
+	время
+		фазы
+			вечер
+				сервер следит за временем
+					сообщает наступил вечер
+	затемнение картинки
+
+
+
+
+
+поиск семян
+
+
+hunger
+inventory screen
+
+
+
+
+
+
+	признак разворота .is_watching_left
+точка руки при развороте
+
+
+
+
++лопата каменная
+	+крафт из палки и камня
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+19110   error: double add:craft_list
+stack traceback:
+        shared/lib/powlov/deps/debug.lua:105: in function 'log'
+        shared/lib/powlov/module/entity/entity.lua:49: in function 'add'
+        entity/service/client_service.lua:241: in function 'handler'
+        shared/lib/powlov/module/net/event.lua:174: in function 'doProcessEvent'
+        shared/lib/powlov/module/net/event.lua:209: in function 'processEvent'
+        shared/lib/powlov/module/net/event.lua:219: in function 'process'
+        shared/lib/powlov/module/net/client.lua:45: in function 'handler'
+        shared/lib/powlov/module/net/client.lua:80: in function 'recv'
+        shared/lib/powlov/deps/grease/grease/core.lua:122: in function 'update'
+        shared/lib/powlov/module/net/client.lua:175: in function 'update'
+        entity/service/client_service.lua:328: in function 'updateProc'
+        shared/lib/powlov/module/entity/entity.lua:225: in function 'update'
+        shared/lib/powlov/pow.lua:365: in function 'update'
+        main.lua:117: in function 'update'
+        [string "boot.lua"]:612: in function <[string "boot.lua"]:594>
+        [C]: in function 'xpcall'
+        [string "boot.lua"]:802: in function <[string "boot.lua"]:769>
+19129   animation start:idle for:humanoid id:6 xy:113.24,77.36 lvl:start
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	захват
+	огонь 
+	разные фановые атаки
+сражаться с драконом
+
+
+битвы структур - тд стиль
+
+
+заперсистить мир хотя бы тот что с Мирой, миграции
 
 
 

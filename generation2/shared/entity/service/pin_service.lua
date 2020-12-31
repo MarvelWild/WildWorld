@@ -29,6 +29,10 @@ end
 
 -- todo: call from event
 -- happens locally.
+-- lead - сущность к которой прикрепляем
+-- follow - сущность которую прикрепляем
+-- lead_x -  в какой точке прикрепляем к lead
+-- follow_x -  в какой точке прикрепляем к follow
 _.pin=function(lead,follow,lead_x,lead_y,follow_x,follow_y)
 	local existing=_pins[follow]
 	if existing then
@@ -45,7 +49,7 @@ _.pin=function(lead,follow,lead_x,lead_y,follow_x,follow_y)
 		_pins[follow]=pin
 --		table.insert(_pins,pin)
 --		log("pinned new:".._str(pin))
-		log("pinned new. lead:".._ets(lead).." follow:".._ets(follow))
+		log("pinned new. lead:".._ets(lead).." follow:".._ets(follow),"verbose")
 	end
 end
 
@@ -61,7 +65,15 @@ _.update=function()
 		
 		local lead=pin.lead
 		
-		local follow_new_x=lead.x+pin.lead_x-follow.origin_x
+		
+		local lead_dx=pin.lead_x
+-- todo		
+--		if lead.is_watching_left then
+--			lead_dx=-lead_dx
+--		end
+		
+		
+		local follow_new_x=lead.x+lead_dx-follow.origin_x
 		local follow_new_y=lead.y+pin.lead_y-follow.origin_y
 		
 		Movable.instant_move(follow,follow_new_x,follow_new_y)

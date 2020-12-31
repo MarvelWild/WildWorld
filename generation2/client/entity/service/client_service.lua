@@ -99,7 +99,7 @@ end
 
 -- response to list_players
 local onPlayersListed=function(event)
-	log("onPlayersListed")
+--	log("onPlayersListed")
 	local players=event.players
 	-- todo: select by player
 	
@@ -187,7 +187,7 @@ sprite="birch_tree_1"
 end
 
 local pickup=function(event)
-	log("client_service.pickup start:"..Inspect(event))
+	log("client_service.pickup start:"..Inspect(event), "verbose")
 	
 	local actor=_deref(event.actor_ref)
 	
@@ -234,22 +234,17 @@ local drop=function(event)
 --	Pin_service.pin(actor,entity,actor.hand_x,actor.hand_y,entity.origin_x,entity.origin_y)
 end
 
+
 local craft_list=function(event)
 	local craftables=event.craftables
 	
 	CraftList.set(craftables)
-	Entity.add(CraftList)
+	CraftList.open()
 end
 
 
 local craft_ok=function(event)
-	-- wip close ui
-	Entity.remove(CraftList)
-	
-	-- todo: play craft anim
-	
-	
-	
+	CraftList.close()
 end
 
 
@@ -307,7 +302,7 @@ local registerGenericCode=function(entity)
 	
 	code=Generic
 	
-	log('Registering generic entity:'..entity_name)
+	log('Registering generic entity:'..entity_name, "verbose")
 	Entity.addCode(entity_name,code)
 end
 

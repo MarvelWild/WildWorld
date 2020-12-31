@@ -19,6 +19,19 @@ local _recipes=
 				name="stone_1"
 			}
 		}
+	},
+	shovel=
+	{
+		quantity=1,
+		from=
+		{
+			{
+				name="stick_1",
+			},
+			{
+				name="stone_1"
+			}			
+		}
 	}
 }
 

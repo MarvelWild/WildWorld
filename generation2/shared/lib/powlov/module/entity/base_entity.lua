@@ -62,11 +62,15 @@ _.draw=function(entity)
 	-- love.graphics.draw( drawable, x, y, r, sx, sy, ox, oy, kx, ky )
 	-- love.graphics.draw(sprite,entity.x,entity.y)
 	
-	if entity.is_watching_left then
-		love.graphics.draw(sprite,entity.x+entity.w,entity.y,0,-1,1)
-	else
+	
+	-- принято решение не поворачивать 
+		
+	
+--	if entity.is_watching_left then
+--		love.graphics.draw(sprite,entity.x+entity.w,entity.y,0,-1,1)
+--	else
 		love.graphics.draw(sprite,entity.x,entity.y,0,1,1)
-	end
+--	end
 	
 	
 --	love.graphics.draw(sprite,entity.x,entity.y,0,_.sx,_.sy)

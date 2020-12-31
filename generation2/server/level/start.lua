@@ -30,7 +30,7 @@ local plant_trees=function()
 	x=love.math.random(land_area_start_x,land_area_end_x)
 	y=love.math.random(land_area_start_y,land_area_end_y)
 	
-	if not DebugFlag.dev_mode then
+	--if not DebugFlag.dev_mode then
 		entity=Stone_1.new()
 		entity.x=x
 		entity.y=y
@@ -40,7 +40,7 @@ local plant_trees=function()
 		entity.x=x
 		entity.y=y
 		Db.add(entity,_.name)
-	end
+	-- end
 	
 end
 
