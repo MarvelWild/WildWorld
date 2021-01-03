@@ -9,6 +9,7 @@ BaseEntity=Pow.baseEntity
 
 
 -- shortcuts
+Debug=Pow.debug
 log=Pow.debug.log
 draw=love.graphics.draw
 Inspect=Pow.inspect

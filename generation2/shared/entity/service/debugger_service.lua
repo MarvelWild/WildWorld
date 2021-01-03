@@ -180,6 +180,17 @@ local entity_log=function()
 	Entity.log()
 end
 
+local collision_log=function()
+	local prev_state=Debug.channel.collision.useConsole
+	Debug.channel.collision.useConsole=true
+	
+	CollisionService.log_state()
+	
+	Debug.channel.collision.useConsole=prev_state
+end
+
+
+
 local keys={}
 
 local show_help=function()
@@ -192,6 +203,7 @@ end
 keys.f1={description="help",action=show_help}
 keys.f3={description="prev_observable",action=prev_observable}
 keys.f4={description="next_observable",action=next_observable}
+keys.f8={description="collision log",action=collision_log}
 keys.f9={description="entity log",action=entity_log}
 keys.f10={description="entity dump",action=full_dump}
 keys.f11={description="full dump",action=entity_dump}

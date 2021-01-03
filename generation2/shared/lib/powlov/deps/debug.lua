@@ -1,4 +1,4 @@
--- global Debug
+-- global Debug - wip
 
 -- requirements
 -- global Session (search code for usage)
@@ -63,7 +63,7 @@ channels.grow=newChannel("grow")
 local full_log=false
 
 if not full_log then
-	channels.collision.useConsole=false
+	channels.collision.useConsole=true
 	channels.entity.useConsole=false
 	channels.input.useConsole=false
 	channels.verbose.useConsole=false

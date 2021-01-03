@@ -87,6 +87,14 @@ love.load=function()
 		cleanSave()
 	end
 	
+	local seed=Pow.arg.get("seed=",nil)
+	if seed then
+		love.math.setRandomSeed(seed)
+	else
+		love.math.setRandomSeed(love.timer.getTime())
+	end
+	
+	
 	local netState=Pow.net.state
 	netState.isServer=true
 	netState.isClient=false

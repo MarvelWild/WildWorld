@@ -160,8 +160,8 @@ local craft_create_target=function(craftable,level_name,actor)
 	local entity_code=Entity.getCodeByName(result_name)
 	local created=entity_code.new()
 	created.quantity=result_quantity
-	created.x=actor.x
-	created.y=actor.y
+	created.x=actor.x+1
+	created.y=actor.y+1
 	Db.add(created,level_name)
 end
 
@@ -183,9 +183,7 @@ end
 
 -- удаляет исходные
 -- создаёт результирующее
--- wip отправить апдейт клиентам на уровне
 --  вещи уже отправились. сказать запросившему что крафт выполнен.
--- wip
 _.do_craft=function(craftable,actor,login)
 	local from=craftable.from
 	local level_name=actor.level_name
@@ -198,12 +196,10 @@ _.do_craft=function(craftable,actor,login)
 		craft_delete_source(craft_cost,level_name)
 		craft_create_target(craftable,level_name,actor)
 		
-		-- wip respond success
-		
 		craft_respond_success(login,level_name)
 		
 	else
-		-- wip cannot craft response, with new list of possibilities
+		-- todo cannot craft response, with new list of possibilities
 	end
 	
 end

@@ -1,3 +1,4 @@
+-- global CollisionService
 -- todo: make it part of pow
 -- цель - коллизии по уровням,
 -- следующий уровень абстракции: collision (одноуровневая модель)
@@ -6,6 +7,8 @@ local _entity_name='CollisionService'
 local _=BaseEntity.new(_entity_name, true)
 
 
+-- key: level name
+-- val: collision \server\shared\lib\powlov\module\collision.lua
 local _levelCollisions={}
 
 -- returns instance of shared\lib\powlov\module\collision.lua
@@ -117,6 +120,13 @@ _.onEntityMoved=function(entity)
 	local collision=getLevelCollisions(level_name)
 	collision.moved(entity)
 	log("collision.moved:".._ets(entity))
+end
+
+
+_.log_state=function()
+	local level_collision_system=_levelCollisions["start"]
+	level_collision_system.debug_print()
+	
 end
 
 return _

@@ -11,7 +11,7 @@ local land_area_start_y=32
 local land_area_end_x=144
 local land_area_end_y=110
 
-local plant_trees=function()
+local seed_items=function()
 --	log("plant trees")
 	
 	local x=love.math.random(land_area_start_x,land_area_end_x)
@@ -37,8 +37,8 @@ local plant_trees=function()
 		Db.add(entity,_.name)
 		
 		entity=Stick_1.new()
-		entity.x=x
-		entity.y=y
+		entity.x=x-1
+		entity.y=y-1
 		Db.add(entity,_.name)
 	-- end
 	
@@ -79,7 +79,7 @@ _.init=function()
 	
 	
 	
-	plant_trees()
+	seed_items()
 end
 
 

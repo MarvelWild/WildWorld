@@ -244,7 +244,7 @@ end
 
 _.debug_print=function()
 	_log("collisions debug_print start")
-	_log("ebs mem:"..get_mem_addr(_entityByShape))
+	_log("ebs mem:"..get_mem_addr(_entityByShape),"verbose")
 	for shape,entity in pairs(_entityByShape) do
 		_log("entity:".._ets(entity)..' shape:'..Pow.inspect(shape))
 	end
