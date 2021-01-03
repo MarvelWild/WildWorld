@@ -119,7 +119,7 @@ _.onEntityMoved=function(entity)
 	
 	local collision=getLevelCollisions(level_name)
 	collision.moved(entity)
-	log("collision.moved:".._ets(entity))
+	log("collision.moved:".._ets(entity),"collision")
 end
 
 

@@ -1,4 +1,4 @@
--- global Debug - wip
+-- global Debug
 
 -- requirements
 -- global Session (search code for usage)

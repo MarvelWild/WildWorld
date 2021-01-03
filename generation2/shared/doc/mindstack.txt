@@ -1,4 +1,12 @@
+
 выбрать что делать дальше
+
+
+
+
+
+
+
 
 
 
@@ -56,7 +64,7 @@
 
 
 
-
+многоместные маунты
 
 
 
@@ -97,71 +105,7 @@ inventory screen
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-19110   error: double add:craft_list
-stack traceback:
-        shared/lib/powlov/deps/debug.lua:105: in function 'log'
-        shared/lib/powlov/module/entity/entity.lua:49: in function 'add'
-        entity/service/client_service.lua:241: in function 'handler'
-        shared/lib/powlov/module/net/event.lua:174: in function 'doProcessEvent'
-        shared/lib/powlov/module/net/event.lua:209: in function 'processEvent'
-        shared/lib/powlov/module/net/event.lua:219: in function 'process'
-        shared/lib/powlov/module/net/client.lua:45: in function 'handler'
-        shared/lib/powlov/module/net/client.lua:80: in function 'recv'
-        shared/lib/powlov/deps/grease/grease/core.lua:122: in function 'update'
-        shared/lib/powlov/module/net/client.lua:175: in function 'update'
-        entity/service/client_service.lua:328: in function 'updateProc'
-        shared/lib/powlov/module/entity/entity.lua:225: in function 'update'
-        shared/lib/powlov/pow.lua:365: in function 'update'
-        main.lua:117: in function 'update'
-        [string "boot.lua"]:612: in function <[string "boot.lua"]:594>
-        [C]: in function 'xpcall'
-        [string "boot.lua"]:802: in function <[string "boot.lua"]:769>
-19129   animation start:idle for:humanoid id:6 xy:113.24,77.36 lvl:start
-
-
-
-
+qol: индикатор наличия ошибки
 
 
 
@@ -1201,7 +1145,7 @@ zbs bug: no breakpoint hit when 2 instances running
 
 
 
-
+индикатор что нечего крафтить
 
 
 
