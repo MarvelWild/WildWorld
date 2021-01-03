@@ -1,1 +1,1 @@
-"c:\Program Files\LOVE\love.exe" server
+"c:\Program Files\LOVE\love.exe" server seed=42

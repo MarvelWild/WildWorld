@@ -63,7 +63,7 @@ channels.grow=newChannel("grow")
 local full_log=false
 
 if not full_log then
-	channels.collision.useConsole=true
+	channels.collision.useConsole=false
 	channels.entity.useConsole=false
 	channels.input.useConsole=false
 	channels.verbose.useConsole=false

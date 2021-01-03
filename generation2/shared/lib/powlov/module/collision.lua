@@ -46,11 +46,25 @@ local _debugShape=nil
 
 
 -- фигура коллизии это не спрайт, а отдельное описание.
-_.getEntityShape=function(entity)
+_.create_entity_shape=function(entity)
 	local x,y,w,h=Entity.getCollisionBox(entity)
 	local shape = _hc:rectangle(x,y,w,h)
+	
+	log("shape created:xy:".._xy(x,y).." wh:".._xy(w,h), "collision")
+	
 	return shape
 end
+
+--_.get_or_create_entity_shape=function(entity)
+--	local existing = _shapeByEntity[entity]
+--	if existing then return existing end
+	
+--	-- wip
+--	local new=_.create_entity_shape(entity)
+	
+	
+	
+--end
 
 
 
@@ -65,7 +79,7 @@ _.add=function(entity)
 	end
 	
 	if not entity.shapeless then
-		local shape = _.getEntityShape(entity)
+		local shape = _.create_entity_shape(entity)
 		if shape==nil then 
 			_log("entity has no shape:"..Entity.toString(entity))
 			return 
@@ -193,7 +207,12 @@ _.getAtEntity=function(entity)
 	
 --	local x,y,w,h=Entity.getCollisionBox(entity)
 --	return _.getAtRect(x,y,w,h)
-	local shape=_.getEntityShape(entity)
+	local shape=_shapeByEntity[entity]
+	if not shape then
+		log("warn: entity has no shape:".._ets(entity))
+		return
+	end
+	
 	local collisions=_hc:collisions(shape)
 	
 	local result=nil
