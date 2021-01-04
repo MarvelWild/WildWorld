@@ -545,6 +545,8 @@ _.write_object=function(key,object)
 	love.filesystem.write(path, serialized)
 end
 
+
+-- десериализовать из сейва
 _.read_object=function(key)
 	local path=_.saveDir..key
 	local serialized=love.filesystem.read(path)

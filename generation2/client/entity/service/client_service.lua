@@ -133,7 +133,7 @@ local onEntityAdded=function(event)
 			--  сервер уже знает что игрок на новом уровне, а клиент ещё нет.
 			-- log("todo: do not send event like this")
 		else
-			log("onEntityAdded:".._ets(entity))
+			log("onEntityAdded:".._ets(entity),"verbose")
 			GameState.addEntity(entity)
 		end
 	end
@@ -209,7 +209,7 @@ local pickup=function(event)
 end
 
 local drop=function(event)
-	log("client_service.drop:"..Inspect(event))
+	log("client_service.drop:"..Inspect(event),"verbose")
 	
 	local actor=_deref(event.actor_ref)
 	local slot_name=event.slot_name

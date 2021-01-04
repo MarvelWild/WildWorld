@@ -37,7 +37,7 @@ local createPlayer=function(event)
 	local playerName=event.player_name
 	local login=event.login
 	
-	log('creating player:'..playerName..' login:'..login,'verbose',true)
+	log('creating player:'..playerName..' login:'..login,'verbose')
 	
 	local player=Player.new()
 	player.name=playerName
@@ -53,7 +53,7 @@ local createPlayer=function(event)
 	
 	_event.process(responseEvent)
 	
-	log('new event: create_player_response')
+--	log('new event: create_player_response')
 	
 end
 

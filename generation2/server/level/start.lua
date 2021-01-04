@@ -71,7 +71,7 @@ _.init=function()
 	
 	Db.each_entity(increment_counter)
 	
-	log("level before init. entity count:"..counter)
+	log("level before init. entity count:"..counter,"verbose")
 	
 	if counter>2 then
 		log("error: should not init loaded level")

@@ -10,9 +10,11 @@ local _isFetchingItems=false
 
 local _activeItem=nil
 
+-- 
 local _save=nil
 
 
+-- от сервера получен список сущностей редактора
 local onItemsReceived=function(event)
 	local items=event.items
 	_editorItems=items

@@ -61,12 +61,8 @@ local _login=function(data, clientId, requestId)
 end
 
 
-
-
-
-
-local connect=function()
-	log('client connected')
+local connect=function(clientId)
+	log('client connected:'..tostring(clientId))
 end
 
 

@@ -67,7 +67,7 @@ end
 local each_container=function(f)
 	for level_name, entities in pairs(_root_container) do
 		if not is_magic_container(level_name) then 
-			log("processing container:"..level_name)
+			log("processing container:"..level_name, "verbose")
 			f(entities,level_name)
 		end
 	end
@@ -176,9 +176,9 @@ end
 _.add=function(entity, level_name)
 	assert(entity)
 	
-	if level_name=="player" then
-		log("adding to player level:".._ets(entity))
-	end
+--	if level_name=="player" then
+--		log("adding to player level:".._ets(entity))
+--	end
 	
 	
 	if level_name==nil then
