@@ -44,6 +44,7 @@ DebugFlag=
 {
 --	create_tree=false,
 	create_camel=false,
+	create_horse_and_apple=true,
 	
 	
 	-- do not create trees
@@ -61,6 +62,7 @@ local loadEntities=function()
 	Growable=Pow.multirequire("shared.entity.trait.growable", "entity.trait.growable")
 	Mountable=Pow.multirequire("shared.entity.trait.mountable","entity.trait.mountable")
 	Colored=Pow.multirequire("shared.entity.trait.colored","entity.trait.colored")
+	Carrier=Pow.multirequire("entity.trait.carrier")
 	
 	WorldEntities=Pow.loadEntitiesFromDir("entity/world")
 	Pow.loadEntity("entity.level")

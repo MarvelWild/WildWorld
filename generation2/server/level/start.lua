@@ -31,15 +31,29 @@ local seed_items=function()
 	y=love.math.random(land_area_start_y,land_area_end_y)
 	
 	--if not DebugFlag.dev_mode then
-		entity=Stone_1.new()
-		entity.x=x
-		entity.y=y
+	local entity
+	
+	entity=Stone_1.new()
+	entity.x=x
+	entity.y=y
+	Db.add(entity,_.name)
+	
+	entity=Stick_1.new()
+	entity.x=x-1
+	entity.y=y-1
+	Db.add(entity,_.name)
+	
+	if DebugFlag.create_horse_and_apple then
+		entity=Apple.new()
+		entity.x=x+22
+		entity.y=y+2
 		Db.add(entity,_.name)
 		
-		entity=Stick_1.new()
-		entity.x=x-1
-		entity.y=y-1
+		entity=Horse.new()
+		entity.x=x+42
+		entity.y=y+2
 		Db.add(entity,_.name)
+	end
 	-- end
 	
 end

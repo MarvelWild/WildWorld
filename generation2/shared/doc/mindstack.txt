@@ -1,4 +1,66 @@
-clean
+collision: ignore item in hands?
+
+
+
+	
+	
+	чистить hand_slot на клиенте если вещь оттуда удалена
+	>подбирать яблоко
+feed apple to horse
+		horse
+		apple
+	tamed follow player
+tame animals
+
+
+
+
+
+
+ hand_slot = {entity_name = "apple", id
+= 2, level_name = "start"} --[[table: 0x3a992c80]], 
+
+
+hand_slot_2 = {entity_name = "apple", 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -37,7 +99,7 @@ clean
 
 
 
-
+apple tree
 
 
 
@@ -109,7 +171,6 @@ inventory screen
 
 
 
-qol: индикатор наличия ошибки
 
 
 
@@ -202,6 +263,7 @@ qol: индикатор наличия ошибки
 +рысь
 
 
+qol: индикатор наличия ошибки
 
 
 
@@ -212,7 +274,7 @@ qol: индикатор наличия ошибки
 
 
 
-
+multi action
 
 
 
@@ -253,31 +315,6 @@ qol: индикатор наличия ошибки
 	
 	
 	
-	
-	
-	
-	
-	
-	
-разлогинился на маунте, после повторного входа:
-Error: shared/entity/trait/movable.lua:96: attempt to index local 'actor' (a nil value)
-stack traceback:
-        [string "boot.lua"]:777: in function '__index'
-        shared/entity/trait/movable.lua:96: in function 'move'
-        entity/service/client_service.lua:82: in function 'handler'
-        shared/lib/powlov/module/net/event.lua:174: in function 'doProcessEvent'
-        shared/lib/powlov/module/net/event.lua:209: in function 'processEvent'
-        shared/lib/powlov/module/net/event.lua:219: in function 'process'
-        shared/lib/powlov/module/net/client.lua:45: in function 'handler'
-        shared/lib/powlov/module/net/client.lua:80: in function 'recv'
-        shared/lib/powlov/deps/grease/grease/core.lua:122: in function 'update'
-        shared/lib/powlov/module/net/client.lua:175: in function 'update'
-        entity/service/client_service.lua:328: in function 'updateProc'
-        shared/lib/powlov/module/entity/entity.lua:225: in function 'update'
-        shared/lib/powlov/pow.lua:365: in function 'update'
-        main.lua:117: in function 'update'
-        [string "boot.lua"]:612: in function <[string "boot.lua"]:594>
-        [C]: in function 'xpcall'
 	
 	
 	
@@ -320,30 +357,8 @@ stack traceback:
 	
 ритм анимации и музыки. мир танцует.	
 	
-	чтение логов
-	
-		вывести лог сети
-	трассировка клиента
-	если один движется - появляемся на нём.
-баг - сидим на двух верблюдах )
-	
-	
-	садится без команды
-	подходит но не садится
-	
-	
-			
-			с->к move (если не Mountable.is_mounting)
-		к->c intent_move
-	описать
-		шаги:
-	воспроизвести
-пофиксить баги с маунтами	
 
 
-
-
-попробовать LÖVE live coding
 
 
 
@@ -4444,12 +4459,7 @@ qol
 	
 	
 	
-apple tree
-		horse
-		apple
-	feed apple to horse
-	tamed follow player
-tame animals
+
 
 
 		
@@ -4608,7 +4618,7 @@ server pause for debug
 
 	для симуляции в фоне
 	для отладки сервера
-возможность прогружать мир на сервере без клиента
++возможность прогружать мир на сервере без клиента
 
 
 		+level_name to entity
@@ -4713,7 +4723,7 @@ hotbar ui
 
 
 
-
++попробовать LÖVE live coding
 
 
 

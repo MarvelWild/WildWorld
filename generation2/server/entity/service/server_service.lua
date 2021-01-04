@@ -392,37 +392,15 @@ local default_action_generic=function(actor,target,player)
 end
 
 
-local do_drop=function(actor)
-			-- drop
-			local item=_deref(actor.hand_slot)
-			Pin_service.unpin(item)
-			actor.hand_slot=nil
-			local item_x=item.x
-			
-			-- bug: если быстро поднимать - вещь ещё не в руке, а тут считается словно в руке
-			local dy=actor.foot_y-actor.hand_y
-			local item_y=item.y+dy
-			Movable.smooth_move(item,0.3,item_x,item_y)
-			
-			local event=Event.new("drop")
-			event.actor_ref=_ref(actor)
-			event.slot_name="hand_slot"
-			event.target="level"
-			event.level=actor.level_name
-			event.do_not_process_on_server=true
-			event.dy=dy
 
-			Event.process(event)	
-end
 
 
 local default_action_unmounted=function(controlled_entity,player)
 	-- todo: d button to drop
+	
+	-- todo: multi action
 
-	if controlled_entity.hand_slot~=nil then
-		do_drop(controlled_entity)
-		return
-	end
+
 	
 	
 	local collision_entities=CollisionService.getEntityCollisions(controlled_entity)
@@ -456,6 +434,12 @@ local default_action_unmounted=function(controlled_entity,player)
 			log("not interacted with:".._ets(entity))
 		end
 	end
+	
+	if controlled_entity.hand_slot~=nil then
+		Carrier.do_drop(controlled_entity)
+		return
+	end
+	
 end
 
 

@@ -13,6 +13,11 @@ local _event=Pow.net.event
 _.toggle_mount=function(rider,mount)
 	-- todo: checks can mount
 	
+	if mount==nil then
+		local a=1
+	end
+	
+	
 	local is_mounting=rider.mounted_on==nil
 	
 	if is_mounting then

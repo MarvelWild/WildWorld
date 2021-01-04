@@ -124,57 +124,19 @@ end
 --end
 
 
--- no checks
-local do_pickup=function(actor,pickable)
-	
-	-- todo: same code on client pickup handler
-	local hand_x
-	local hand_y
-	local slot_number
-	
-	if actor.hand_slot==nil then
-		hand_x=actor.hand_x
-		hand_y=actor.hand_y
-		actor.hand_slot=_ref(pickable)
-		slot_number=1
-	elseif actor.hand_slot_2==nil then
-		hand_x=actor.hand_x_2
-		hand_y=actor.hand_y_2
-		actor.hand_slot_2=_ref(pickable)
-		slot_number=2
-	else
-		-- no free slot
-		return
-	end
-	
-	Pin_service.pin(actor,pickable,hand_x,hand_y,pickable.origin_x,pickable.origin_y)
-	
-	-- todo: pin on load. now it does drop, but item not pinned
-	
-	-- emit event to pin on level on clients
-	local event=Event.new("pickup")
-	event.actor_ref=_ref(actor)
-	event.pick_ref=_ref(pickable)
-	event.target="level"
-	event.level=actor.level_name
-	event.slot_number=slot_number
-	event.do_not_process_on_server=true
-	
-	Event.process(event)
-	return true
-end
 
 
 local try_pickup=function(actor,entity)
 	log("try_pickup:".._ets(actor).." : ".._ets(entity))
 	-- todo: generic pickable
 	
-	if entity.is_item then
-		local result=do_pickup(actor,entity)
-		if result then return true end
-		
-	end
+	if entity.carried_by~=nil then return end
+
+	if not entity.is_item then return end
 	
+	
+	local result=Carrier.do_pickup(actor,entity)
+	return result
 end
 
 

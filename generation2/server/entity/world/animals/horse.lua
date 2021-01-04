@@ -26,7 +26,36 @@ _.updateAi=function(entity)
 	end
 end
 
-_.interact=Mountable.toggle_mount
+
+local eat_from_hand=function(actor, target)
+
+	Carrier.remove_from_hand(actor)
+	log("horse fed")
+	
+	-- +удалить из мира яблоко
+	-- todo: удалить из руки яблоко на клиенте - проверить
+	-- лошадь - увеличить привязанность
+	-- лошадь - показать сердечко
+end
+
+
+-- с нами взаимодействует entity
+_.interact=function(actor, target)
+	-- wip feed apple or
+	-- Mountable.toggle_mount
+	
+	local hand_ref=actor.hand_slot
+	if hand_ref then
+		-- todo: описать группу съедобных для лошади
+		if hand_ref.entity_name=="apple" then
+			eat_from_hand(actor, target)
+			return
+		end
+	end
+		
+	Mountable.toggle_mount(actor,target)
+	
+end
 
 
 

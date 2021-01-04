@@ -7,6 +7,7 @@ entity.level_name
 entity.shapeless - not present as drawable or collidable
 entity.animation - see panther
 entity.animation.state  - "walk","idle"
+entity.carried_by - ref
 
 
 Growable:
