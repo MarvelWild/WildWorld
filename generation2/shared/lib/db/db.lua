@@ -299,4 +299,15 @@ _.load=function()
 	self_test()
 end
 
+
+_.get_any=function(entity_name, level_name)
+	if not level_name then level_name="start" end
+	local level_container=getLevelContainer(level_name)
+	local entity_container=getEntityContainer(level_container, entity_name)
+	local index,first_entity=next(entity_container)
+	return first_entity
+ 
+	
+end
+
 return _

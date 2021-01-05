@@ -1,60 +1,7 @@
-	+try https://github.com/jumpsplat120/Console
-+qol: ingame console
+	
+	
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-+qol: git submodules? no, freeze specific versions.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+	
 	
 	
 	
@@ -4895,8 +4842,9 @@ events={
 }
 }#^#		
 
++qol: git submodules? no, freeze specific versions.
 
-
++console: give command
 
 
 
@@ -4988,7 +4936,8 @@ server:
 
 
 
-
+	+try https://github.com/jumpsplat120/Console
++qol: ingame console
 	
 				+think those handlers generic way - later
 			+it wont. implement single response handler on client

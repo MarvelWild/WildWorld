@@ -347,6 +347,7 @@ _.get_code=function(entity)
 	end
 end
 
+-- lowercase
 _.getCodeByName=function(entity_name)
 		local result=_entityCode[entity_name]
 		if (result==nil) then

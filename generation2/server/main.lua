@@ -6,6 +6,7 @@ if isDebug then require("mobdebug").start() end
 _traceback=debug.traceback
 
 require("shared.libs")
+require("console_commands")
 
 local cleanSave=function()
 	log('cleanSave','fs')
@@ -132,6 +133,7 @@ love.load=function()
 --	end
 	
 
+	give("apple")
 end
 
 love.update=function(dt)

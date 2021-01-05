@@ -21,13 +21,22 @@ end
 
 
 
-_.getById=function(playerId)
+
+local get_db_container=function()
 	-- special level for storing logged off players
 	local magicLevelContainer=Db.getLevelContainer("player")
 	local playerContainer=Db.getEntityContainer(magicLevelContainer, "player")
+	
+	return playerContainer
+end
+
+_.getById=function(playerId)
+	
+	local playerContainer=get_db_container()
 	local result = playerContainer[playerId]
 	return result
 end
+
 
 _.getByLogin=function(login)
 	local magicLevelContainer=Db.getLevelContainer("player")

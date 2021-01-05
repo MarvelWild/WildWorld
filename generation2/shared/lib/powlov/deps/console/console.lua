@@ -25,7 +25,7 @@ font = love.graphics.newFont(path_load .. "/font/FiraCode.ttf", 13)
 font_w = font:getWidth(" ")
 font_h = font:getHeight()
 
-background_color = util.to_rgb_table("#2929297F")
+background_color = util.to_rgb_table("#292929DF")
 selected_color = util.to_rgb_table("#ABABAB7F")
 
 cursor_block_color = util.to_rgb_table("#FFFFFF7F")
@@ -730,7 +730,7 @@ local commands = {
 	["$clear"] = clear,
 	["$exit"] = exit,
 	["$list"] = list,
-	["$set"] = set
+	["$set"] = set,
 }
 
 function exec_input_buffer()
