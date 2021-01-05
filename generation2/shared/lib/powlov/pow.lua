@@ -148,6 +148,9 @@ local initDeps=function(...)
 	_.timer=timerLib()
 	
 	_.hc=require(folderOfThisFile .. "/deps/HC/init")
+	
+	local console_toggle=require(folderOfThisFile .. "/deps/console/console")
+	_.console_toggle=console_toggle
 end
 
 
@@ -396,6 +399,7 @@ end
 
 
 _.load=function()
+	
 	-- todo: config scale, world size
 	_cam:setScale(_gameScale)
 	_cam:setWorld(0,0,4096,4096)

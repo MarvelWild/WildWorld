@@ -45,6 +45,7 @@ DebugFlag=
 --	create_tree=false,
 	create_camel=false,
 	create_horse_and_apple=true,
+	horse_do_not_move=true,
 	
 	
 	-- do not create trees
@@ -84,6 +85,7 @@ end
 
 
 love.load=function()
+	Pow.load()
 	local isClean=Pow.arg.get("clean",false)~=false
 	if isClean then
 		cleanSave()
@@ -180,3 +182,6 @@ end
 
 
 
+function love.textinput(text)
+	Pow.console_toggle(text)
+end

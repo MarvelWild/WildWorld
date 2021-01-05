@@ -21,6 +21,8 @@ _.new=function()
 end
 
 _.updateAi=function(entity)
+	if DebugFlag.horse_do_not_move then return end
+	
 	if entity.mounted_by==nil then
 		AiService.moveRandom(entity)
 	end

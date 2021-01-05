@@ -1,27 +1,79 @@
-collision: ignore item in hands?
+	+try https://github.com/jumpsplat120/Console
++qol: ingame console
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
++qol: git submodules? no, freeze specific versions.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
 	
 	
-	чистить hand_slot на клиенте если вещь оттуда удалена
-	>подбирать яблоко
-feed apple to horse
+	
+	show heart on client
+	bond up
+horse reaction to feeding
+
+	
+	
+	+подбирать яблоко
++feed apple to horse
+
+
+
+
 		horse
 		apple
 	tamed follow player
 tame animals
-
-
-
-
-
-
- hand_slot = {entity_name = "apple", id
-= 2, level_name = "start"} --[[table: 0x3a992c80]], 
-
-
-hand_slot_2 = {entity_name = "apple", 
 
 
 
@@ -363,7 +415,7 @@ multi action
 
 
 
-
+чистить hand_slot на клиенте если вещь оттуда удалена
 
 
 
