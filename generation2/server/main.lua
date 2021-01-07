@@ -65,6 +65,7 @@ local loadEntities=function()
 	Mountable=Pow.multirequire("shared.entity.trait.mountable","entity.trait.mountable")
 	Colored=Pow.multirequire("shared.entity.trait.colored","entity.trait.colored")
 	Carrier=Pow.multirequire("entity.trait.carrier")
+	Bond=Pow.multirequire("entity.trait.bond")
 	
 	WorldEntities=Pow.loadEntitiesFromDir("entity/world")
 	Pow.loadEntity("entity.level")
@@ -133,7 +134,7 @@ love.load=function()
 --	end
 	
 
-	give("apple")
+	-- give("apple")
 end
 
 love.update=function(dt)

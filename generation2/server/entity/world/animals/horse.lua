@@ -15,6 +15,9 @@ _.new=function()
 	result.mountX=17
 	result.mountY=16
 	
+	result.origin_x=17
+	result.origin_y=16
+	
 	result.move_speed=28
 	
 	return result
@@ -35,9 +38,18 @@ local eat_from_hand=function(actor, target)
 	log("horse fed")
 	
 	-- +удалить из мира яблоко
-	-- todo: удалить из руки яблоко на клиенте - проверить
-	-- лошадь - увеличить привязанность
-	-- лошадь - показать сердечко
+	-- +удалить из руки яблоко на клиенте - проверить
+	-- wip: лошадь - увеличить привязанность к кормящему
+	-- +лошадь - показать сердечко
+	
+	Bond.add(actor,target,1)
+	
+	local event=Event.new("creature_fed")
+	event.target="level"
+	event.level=actor.level_name
+	event.do_not_process_on_server=true
+	event.creature=_ref(target)
+	Event.process(event)
 end
 
 

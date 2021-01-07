@@ -425,7 +425,7 @@ _.unload_state=function()
 	end
 end
 
--- light reference
+-- reference with level
 -- reverse: find_by_ref
 _.get_reference=function(entity)
 	local result={}
@@ -440,6 +440,10 @@ _.get_reference=function(entity)
 end
 
 
+_.get_string_reference=function(entity)
+	local result=entity.entity_name.."_"..entity.id
+	return result
+end
 
 
 _.log=function()

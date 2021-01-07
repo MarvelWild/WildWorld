@@ -249,6 +249,17 @@ end
 
 
 -- 
+
+local creature_fed=function(event)
+	local creature=_deref(event.creature)
+	
+	local effect_x=creature.x+creature.origin_x
+	local effect_y=creature.y+creature.origin_x
+	
+	VfxService.flying("heart_small",effect_x,effect_y)
+end
+
+
 local afterLogin=function(response)
 	log('after login:'..Pow.pack(response), "net")
 	
@@ -268,6 +279,7 @@ local afterLogin=function(response)
 	_event.add_handler("drop", drop)
 	_event.add_handler("craft_list", craft_list)
 	_event.add_handler("craft_ok", craft_ok)
+	_event.add_handler("creature_fed", creature_fed)
 	
 	log("added handler of create_player_response",'event')
 	-- todo: remove handler on completion
