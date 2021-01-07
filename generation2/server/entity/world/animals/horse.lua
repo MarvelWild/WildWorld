@@ -28,10 +28,22 @@ _.updateAi=function(entity)
 	
 	if entity.mounted_by==nil then
 		AiService.moveRandom(entity)
+	else
+		local rider=_deref(entity.mounted_by)
+		
+		local bond=Bond.get(entity,rider)
+		
+		-- todo: уровни привязанности
+		if bond<1 then
+			AiService.moveRandom(entity)
+		end
+		
 	end
 end
 
 
+-- actor - humanoid
+-- target - horse
 local eat_from_hand=function(actor, target)
 
 	Carrier.remove_from_hand(actor)
@@ -39,10 +51,10 @@ local eat_from_hand=function(actor, target)
 	
 	-- +удалить из мира яблоко
 	-- +удалить из руки яблоко на клиенте - проверить
-	-- wip: лошадь - увеличить привязанность к кормящему
+	-- +лошадь - увеличить привязанность к кормящему
 	-- +лошадь - показать сердечко
 	
-	Bond.add(actor,target,1)
+	Bond.add(target,actor,1)
 	
 	local event=Event.new("creature_fed")
 	event.target="level"
@@ -54,6 +66,8 @@ end
 
 
 -- с нами взаимодействует entity
+-- actor: humanoid
+-- target: horse
 _.interact=function(actor, target)
 	-- wip feed apple or
 	-- Mountable.toggle_mount
@@ -68,7 +82,6 @@ _.interact=function(actor, target)
 	end
 		
 	Mountable.toggle_mount(actor,target)
-	
 end
 
 

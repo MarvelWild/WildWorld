@@ -46,18 +46,12 @@ DebugFlag=
 --	create_tree=false,
 	create_camel=false,
 	create_horse_and_apple=true,
-	horse_do_not_move=true,
-	
-	
+	-- horse_do_not_move=true,
 	-- do not create trees
 	dev_mode=true,
 }
 
-
-
-
 -- dirName sample: entity/world
-
 
 local loadEntities=function()
 	Movable=Pow.multirequire("shared.entity.trait.movable", "entity.trait.movable")

@@ -244,7 +244,6 @@ _.update=function(dt)
 				fnNextSimulation(entity)
 			end
 		end
-		
 	end
 end
 
