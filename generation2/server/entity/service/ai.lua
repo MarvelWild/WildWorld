@@ -69,16 +69,7 @@ _.moveRandom=function(entity,max_distance)
 	
 	--log("after clamp nextX:".._n(nextX).." nextY:".._n(nextY))
 	
-	
-	-- todo: event factory? same event produced for player
-	local responseEvent=_event.new("move")
-	responseEvent.target="level"
-	responseEvent.level=entity.level_name
-	responseEvent.x=nextX
-	responseEvent.y=nextY
-	responseEvent.duration=Movable.calc_move_duration(entity,nextX,nextY)
-	responseEvent.actorRef=BaseEntity.getReference(entity)
-	_event.process(responseEvent)
+	Movable.move_event(entity,nextX,nextY)
 end
 
 

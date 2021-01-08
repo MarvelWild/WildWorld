@@ -45,10 +45,11 @@ end
 -- get_at_point
 
 _.get_around=function(entity, margin)
+	if not margin then margin=100 end
 	local x=entity.x-margin
-	local w=entity.w+margin
+	local w=entity.w+margin+margin
 	local y=entity.y-margin
-	local h=entity.h+margin
+	local h=entity.h+margin+margin
 	
 	local level_name=entity.level_name
 

@@ -37,4 +37,18 @@ _.calc_move_duration=function(actor,x,y)
 	return duration
 end
 
+
+
+_.move_event=function(entity,x,y)
+	local event=Event.new("move")
+	event.target="level"
+	event.level=entity.level_name
+	event.x=x
+	event.y=y
+	event.duration=Movable.calc_move_duration(entity,x,y)
+	event.actorRef=BaseEntity.getReference(entity)
+	Event.process(event)
+end
+
+
 return _

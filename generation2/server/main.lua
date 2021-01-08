@@ -53,13 +53,19 @@ DebugFlag=
 
 -- dirName sample: entity/world
 
-local loadEntities=function()
+local load_traits=function()
 	Movable=Pow.multirequire("shared.entity.trait.movable", "entity.trait.movable")
 	Growable=Pow.multirequire("shared.entity.trait.growable", "entity.trait.growable")
 	Mountable=Pow.multirequire("shared.entity.trait.mountable","entity.trait.mountable")
 	Colored=Pow.multirequire("shared.entity.trait.colored","entity.trait.colored")
 	Carrier=Pow.multirequire("entity.trait.carrier")
 	Bond=Pow.multirequire("entity.trait.bond")
+	Eater=Pow.multirequire("entity.trait.eater")
+end
+
+
+local loadEntities=function()
+	load_traits()
 	
 	WorldEntities=Pow.loadEntitiesFromDir("entity/world")
 	Pow.loadEntity("entity.level")

@@ -23,19 +23,34 @@ _.new=function()
 	return result
 end
 
-_.updateAi=function(entity)
+_.updateAi=function(actor)
 	if DebugFlag.horse_do_not_move then return end
 	
-	if entity.mounted_by==nil then
-		AiService.moveRandom(entity)
-	else
-		local rider=_deref(entity.mounted_by)
+	if actor.mounted_by==nil then
 		
-		local bond=Bond.get(entity,rider)
+		-- todo: seek food if hungry
+		
+		local entities_can_see=CollisionService.get_around(actor,60)
+		
+		local food_can_see=Eater.get_edible(actor,entities_can_see)
+		
+		local chozen_food=Pow.lume.randomchoice(food_can_see)
+		if chozen_food then
+			log("see food:".._ets(chozen_food))
+			
+			Movable.move_event(actor,chozen_food.x,chozen_food.y)
+		else
+			log("see no food")
+			AiService.moveRandom(actor)
+		end
+	else
+		local rider=_deref(actor.mounted_by)
+		
+		local bond=Bond.get(actor,rider)
 		
 		-- todo: уровни привязанности
 		if bond<1 then
-			AiService.moveRandom(entity)
+			AiService.moveRandom(actor)
 		end
 		
 	end
