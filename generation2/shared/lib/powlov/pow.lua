@@ -151,6 +151,7 @@ local initDeps=function(...)
 	_.hc=require(folderOfThisFile .. "/deps/HC/init")
 	
 	local console=require(folderOfThisFile .. "/deps/console/console")
+	console.init(_)
 	local console_toggle=console.toggle
 	_.console=console
 	_.console_toggle=console_toggle

@@ -8,6 +8,8 @@ __VERSION = 0.6
 
 git_link = "https://github.com/rinqu-eu/love2d-console"
 
+local _pow
+
 path = ...
 path_req = path:sub(1, -9)
 path_load = path:sub(1, -9):gsub("%.", "/")
@@ -935,10 +937,17 @@ function convert_to_print_colors()
 end
 -- #endregion ui
 
+local get_save_path=function()
+	local save_root = love.filesystem.getSaveDirectory()
+	local path=save_root.."/".._pow.saveDir .. "console.txt"
+	return path
+end
+
+
 -- #region save/load files
 function save_history_to_file()
 	
-	local path=love.filesystem.getSource() .. "/" .. path_load .. "/history.txt"
+	local path=get_save_path()
 	local f_history = io.open(path, "w+")
 
 	if (f_history == nil) then
@@ -955,7 +964,8 @@ function save_history_to_file()
 end
 
 function load_history_from_files()
-	local f_history = io.open(love.filesystem.getSource() .. "/" .. path_load .. "/history.txt", "r")
+	local path=get_save_path()
+	local f_history = io.open(path, "r")
 
 	if (f_history == nil) then
 		return
@@ -1036,6 +1046,10 @@ console.quit=function()
 	save_history_to_file()
 	save_settings_to_file()
 end
+
+
+
+
 
 
 function console_update(dt)
@@ -1127,13 +1141,18 @@ function unhook()
 end
 -- #endregion hooks and overrides
 
-convert_to_print_colors()
-load_history_from_files()
-load_settings_from_file()
-clear_output_history()
-hook_print()
---hook_close()
-add_to_output(git_link)
-add_to_output("Press ` or type 'exit' to close")
+
+console.init=function(pow)
+	_pow=pow
+	
+	convert_to_print_colors()
+	load_history_from_files()
+	load_settings_from_file()
+	clear_output_history()
+	hook_print()
+	--hook_close()
+	add_to_output(git_link)
+	add_to_output("Press ` or type 'exit' to close")
+end
 
 return console

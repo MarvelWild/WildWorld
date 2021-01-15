@@ -97,6 +97,7 @@ _debug.log=function(message,channelName,forceConsole)
 --	if forceConsole then
 --	end
 	
+	message=tostring(message)
 	
 	
 	if string.find(message,"error") then
