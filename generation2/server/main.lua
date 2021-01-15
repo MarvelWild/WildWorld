@@ -45,7 +45,8 @@ DebugFlag=
 {
 --	create_tree=false,
 	create_camel=false,
-	create_horse_and_apple=true,
+	create_horse=false,
+	create_apple=true,
 	-- horse_do_not_move=true,
 	-- do not create trees
 	dev_mode=true,

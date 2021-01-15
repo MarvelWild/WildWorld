@@ -1,0 +1,14 @@
+cursor_line_color #ffffffff
+toggle_key `
+expose_output_functions false
+background_color #292929df
+selected_color #ababab7f
+scroll_output_on_exec true
+color_com #00CC00FF
+color_info #429BF4FF
+cursor_style block
+color_err #EA2A2AFF
+color_warn #CECB2FFF
+cursor_block_color #ffffff7f
+cursor_blink_duration 0.5
+output_jump_by 7

@@ -60,6 +60,7 @@ end
 _.quit=function()
 	_.id.save()
 	_.debug.writeLogs()
+	_.console.quit()
 end
 
 -- adds fields from parent to child
@@ -149,7 +150,9 @@ local initDeps=function(...)
 	
 	_.hc=require(folderOfThisFile .. "/deps/HC/init")
 	
-	local console_toggle=require(folderOfThisFile .. "/deps/console/console")
+	local console=require(folderOfThisFile .. "/deps/console/console")
+	local console_toggle=console.toggle
+	_.console=console
 	_.console_toggle=console_toggle
 end
 

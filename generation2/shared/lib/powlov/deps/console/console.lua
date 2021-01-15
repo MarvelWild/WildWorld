@@ -937,7 +937,9 @@ end
 
 -- #region save/load files
 function save_history_to_file()
-	local f_history = io.open(love.filesystem.getSource() .. "/" .. path_load .. "/history.txt", "w+")
+	
+	local path=love.filesystem.getSource() .. "/" .. path_load .. "/history.txt"
+	local f_history = io.open(path, "w+")
 
 	if (f_history == nil) then
 		return
@@ -1015,18 +1017,26 @@ function hook_print()
 	end
 end
 
-function hook_close()
-	unhooked.quit = love.quit
 
-	_G.love.quit = function(...)
-		save_history_to_file()
-		save_settings_to_file()
 
-		if (unhooked.quit ~= nil) then
-			unhooked.quit(...)
-		end
-	end
+--function hook_close()
+--	unhooked.quit = love.quit
+
+--	_G.love.quit = function(...)
+--		save_history_to_file()
+--		save_settings_to_file()
+
+--		if (unhooked.quit ~= nil) then
+--			unhooked.quit(...)
+--		end
+--	end
+--end
+
+console.quit=function()
+	save_history_to_file()
+	save_settings_to_file()
 end
+
 
 function console_update(dt)
 	if (unhooked.update ~= nil) then
@@ -1122,8 +1132,8 @@ load_history_from_files()
 load_settings_from_file()
 clear_output_history()
 hook_print()
-hook_close()
+--hook_close()
 add_to_output(git_link)
 add_to_output("Press ` or type 'exit' to close")
 
-return console.toggle
+return console

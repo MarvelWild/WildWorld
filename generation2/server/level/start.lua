@@ -43,14 +43,17 @@ local seed_items=function()
 	entity.y=y-1
 	Db.add(entity,_.name)
 	
-	if DebugFlag.create_horse_and_apple then
-		entity=Apple.new()
-		entity.x=x+22
-		entity.y=y+2
-		Db.add(entity,_.name)
-		
+	if DebugFlag.create_horse then
+	
 		entity=Horse.new()
 		entity.x=x+42
+		entity.y=y+2
+		Db.add(entity,_.name)
+	end
+	
+	if DebugFlag.create_apple then
+		entity=Apple.new()
+		entity.x=x+22
 		entity.y=y+2
 		Db.add(entity,_.name)
 	end
