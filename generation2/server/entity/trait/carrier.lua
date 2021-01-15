@@ -68,6 +68,7 @@ _.do_drop=function(actor)
 	local item=_deref(actor.hand_slot)
 	Pin_service.unpin(item)
 	actor.hand_slot=nil
+	item.carried_by=nil
 	local item_x=item.x
 	
 	-- bug: если быстро поднимать - вещь ещё не в руке, а тут считается словно в руке
