@@ -123,7 +123,7 @@ _.get_craftables_from_items=function(items)
 			local craftable=
 			{
 				name=craft_name,
-				quantity=42, -- wip
+				quantity=42, -- todo
 				from=from
 			}
 			table.insert(result, craftable)

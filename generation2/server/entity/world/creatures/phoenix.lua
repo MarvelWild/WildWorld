@@ -39,7 +39,7 @@ local build_animation=function()
 		}
 	}
 	
-	-- wip
+	-- todo
 --	result.idle=frames_walk
 	
 	return result

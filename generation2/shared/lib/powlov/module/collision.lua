@@ -59,7 +59,6 @@ end
 --	local existing = _shapeByEntity[entity]
 --	if existing then return existing end
 	
---	-- wip
 --	local new=_.create_entity_shape(entity)
 	
 	
@@ -177,8 +176,6 @@ _.getAtRect=function(x,y,w,h)
 		
 		if not entity then
 			log("error: entity not registered in _entityByShape. shape:"..serialize(shape))
-			
-			-- wip log all
 		end
 		
 		if result==nil then result={} end

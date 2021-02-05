@@ -34,7 +34,7 @@ _.new=function()
 end
 
 _.updateAi=function(entity)
-	-- wip
+	-- todo
 	-- AiService.moveRandom(entity, 10)
 
 end

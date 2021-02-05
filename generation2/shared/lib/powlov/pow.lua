@@ -331,7 +331,7 @@ _.draw=function()
 --		local h=love.graphics.getHeight()
 --		love.graphics.rectangle("fill",0,0,w,h)
 		
---		-- wip: lights
+--		-- todo: lights
 --		--love.graphics.setColor(0,0,0, 1)
 		
 --		love.graphics.pop()

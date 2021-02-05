@@ -99,7 +99,7 @@ end
 -- actor: humanoid
 -- target: horse
 _.interact=function(actor, target)
-	-- wip feed apple or
+	-- todo feed apple or
 	-- Mountable.toggle_mount
 	
 	local hand_ref=actor.hand_slot

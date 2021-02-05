@@ -70,7 +70,7 @@ _.set=function(state)
 	
 	
 	local prev_player=_.player
-	-- wip удалить > test
+
 	if prev_player then
 		Entity.remove(prev_player)
 	end
