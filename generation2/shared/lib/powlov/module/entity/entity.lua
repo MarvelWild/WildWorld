@@ -395,6 +395,8 @@ _.getCollisionBox=function(entity)
 	return collisionBoxX,collisionBoxY,collisionBoxW,collisionBoxH
 end
 
+
+--можно сравнивать как сущности так и референсы, и смешанно
 _.equals=function(entity1,entity2)
 	if entity1==nil or entity2==nil then 
 		return false 

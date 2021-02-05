@@ -7,22 +7,13 @@ duck typing:
 rider.riderX
 rider.riderY
 
-mount.mountX
-mount.mountY
+mount.mount_slots
 ]]--
-_.get_rider_point=function(mount, rider)
-	local riderX=mount.x+mount.mountX-rider.riderX
-	local riderY=mount.y+mount.mountY-rider.riderY
+_.get_rider_point=function(mount, rider,slot)
+	local rider_x=mount.x+slot.x-rider.riderX
+	local rider_y=mount.y+slot.y-rider.riderY
 	
---	log("get_rider_point calculation: riderX=mount.x+mount.mountX-rider.riderX"..
---		riderX.."="..mount.x.."+"..mount.mountX.."-"..rider.riderX
---		,"mount")
-	
---	log("get_rider_point calculation: riderY=mount.y+mount.mountY-rider.riderY"..
---		riderY.."="..mount.y.."+"..mount.mountY.."-"..rider.riderY
---		,"mount")
-	
-	return riderX,riderY 
+	return rider_x,rider_y
 end
 
 local _get_rider_point=_.get_rider_point
@@ -32,21 +23,29 @@ local _get_rider_point=_.get_rider_point
 подвинуть райдера в точку маунта
 
 ]]--
-_.do_mount=function(rider,mount,is_mounting)
+
+_.do_mount=function(rider,mount,is_mounting,slot_id)
 	log("shared mountable: do_toggle_mount start. rider:".._ets(rider)..
 		" mount:".._ets(mount).." is_mounting:"..tostring(is_mounting), "mount")
-	
+
 	-- todo: make this 1 time on create
 	rider.is_mountable=true
 	mount.is_mountable=true
-	-- todo: check mount.mounted_by for consistency too
+	
+	local slot=mount.mount_slots[slot_id]
+	
+	if slot==nil then
+		log("debug this")
+	end
+	
 	
 	if not is_mounting then
 		-- unmount
 		local prev_mount_ref=rider.mounted_on
 		if prev_mount_ref~=nil then
 			rider.mounted_on=nil
-			mount.mounted_by=nil
+			
+			slot.rider=nil
 			
 			log("mount references unset")
 		else
@@ -57,7 +56,7 @@ _.do_mount=function(rider,mount,is_mounting)
 			log("warn: was mounted but received mount")
 		else
 			rider.mounted_on=_ref(mount)
-			mount.mounted_by=_ref(rider)
+			slot.rider=_ref(rider)
 			
 			log("mount references set mounted_on:"..serialize(rider.mounted_on), "verbose")
 			
@@ -67,37 +66,60 @@ _.do_mount=function(rider,mount,is_mounting)
 			-- jump to seat
 			log("mounting. mount:".._ets(mount), "mount")
 			
-			local riderX,riderY=_get_rider_point(mount,rider)
+			
+			local riderX,riderY=_get_rider_point(mount,rider,slot)
 		
 			-- hop on mount
 			local duration=0.4
+
 			-- _.move=function(actor,x,y,duration,force_this,ignore_foot)
 			Movable.move(rider,riderX,riderY,duration,true,true)
 		end
 	end
 end
 
-
-
-
-
-
 -- вызывается по флагу is_mountable
-_.destroy=function(entity)
-	log("detach mountables from:".._ets(entity))
-	local rider_ref=entity.mounted_by
-	if rider_ref~=nil then
-		local rider=_deref(rider_ref)
-		entity.mounted_by=nil
-		rider.mounted_on=nil
+_.destroy=function(entity_destroying)
+	log("detach mountables from:".._ets(entity_destroying))
+	
+	-- удаляется маунт
+	local mount_slots=entity_destroying.mount_slots
+	if mount_slots~=nil then
+		for k,slot in pairs(mount_slots) do
+			local rider_ref=slot.rider
+			local rider=_deref(rider_ref)
+			rider.mounted_on=nil
+		end
 	end
 	
-	local mount_ref=entity.mounted_on
-	if mount_ref~=nil then
-		local mount=_deref(mount_ref)
-		entity.mounted_on=nil
-		mount.mounted_by=nil
+	-- удаляется наездник
+	local mount_ref=entity_destroying.mounted_on
+	local mount=_deref(mount_ref)
+	mount_slots=mount.mount_slots
+	
+	if mount_slots~=nil then
+		for k,slot in pairs(mount_slots) do
+			local rider_ref=slot.rider
+			if Entity.equals(rider_ref,entity_destroying) then
+				slot.rider=nil
+				break
+			end
+		end
 	end
+
 end
+
+
+_.is_mounted=function(mount)
+	local slots=mount.mount_slots
+	if slots==nil then return end
+	
+	for k,slot in pairs(slots) do
+		if slot.rider~=nil then return true end
+	end
+	
+	return false
+end
+
 
 return _

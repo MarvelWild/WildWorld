@@ -60,8 +60,15 @@ _.new=function()
 	result.foot_x=35
 	result.foot_y=28
 	
-	result.mountX=27
-	result.mountY=12
+	
+	result.mount_slots=
+	{
+		{
+			x=27,
+			y=12,
+			rider=nil,
+		},
+	}
 	
 	result.riderX=7
 	result.riderY=11

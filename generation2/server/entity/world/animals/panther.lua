@@ -35,8 +35,15 @@ _.new=function()
 	result.foot_x=15
 	result.foot_y=11
 	
-	result.mountX=12
-	result.mountY=5
+	result.mount_slots=
+	{
+		{
+			x=12,
+			y=5,
+			rider=nil,
+		},
+	}
+	
 	result.move_speed=30
 	
 	result.animation=build_animation()

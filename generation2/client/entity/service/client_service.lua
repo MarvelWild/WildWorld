@@ -157,8 +157,10 @@ local do_mount=function(event)
 	
 	local rider=_deref(rider_ref)
 	local mount=_deref(mount_ref)
+
+	local slot_id=event.mount_slot_id
 	
-	Mountable.do_mount(rider,mount,event.is_mounting)
+	Mountable.do_mount(rider,mount,event.is_mounting,slot_id)
 end
 
 

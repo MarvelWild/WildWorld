@@ -17,15 +17,17 @@ end
 local on_moved=function(moved_entity)
 	CollisionService.onEntityMoved(moved_entity)
 	
-	
-	if moved_entity.mounted_by~=nil then
-		local rider=_deref(moved_entity.mounted_by)
-		
-		-- rider could log off, should handle on delete
-		if rider~=nil then
-			local riderX,riderY=Mountable.get_rider_point(moved_entity,rider)
-		
-			_.instant_move(rider,riderX,riderY)
+	local mount_slots=moved_entity.mount_slots
+	if mount_slots~=nil then
+		for k,slot in pairs(mount_slots) do
+			local rider_ref=slot.rider
+			if rider_ref~=nil then
+				local rider=_deref(rider_ref)
+				
+				-- todo: если райдер в процессе посадки - плавно двигать
+				local riderX,riderY=Mountable.get_rider_point(moved_entity,rider,slot)
+				_.instant_move(rider,riderX,riderY)
+			end
 		end
 	end
 end

@@ -12,8 +12,16 @@ _.new=function()
 	result.foot_x=20
 	result.foot_y=29
 	
-	result.mountX=12
-	result.mountY=19
+	
+	result.mount_slots=
+	{
+		{
+			x=12,
+			y=19,
+			rider=nil,
+		},
+	}
+	
 	result.move_speed=27
 	
 	return result

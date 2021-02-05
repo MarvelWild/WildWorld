@@ -9,8 +9,14 @@ _.new=function()
 	
 	BaseEntity.init_bounds_from_sprite(result)
 	
-	result.mountX=15
-	result.mountY=23
+	result.mount_slots=
+	{
+		{
+			x=15,
+			y=23,
+			rider=nil,
+		},
+	}
 	
 	result.originX=15
 	result.originY=23

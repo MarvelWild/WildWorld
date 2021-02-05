@@ -1,9 +1,81 @@
 
+
+
+
+
+	+добавить кол-во маунт слотов
+	+mounted_by сделать таблицей
++кататься вдвоём
+
 	
 
 
-		
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+починить вход в портал
+0       [fs]    cleanSave
+0       level start init
+166     client connected:tcp{client}: 000000003FF95C20
+271     client connected:tcp{client}: 000000003FFCC8C0
+2756    mount references unset
+3205    try_pickup:humanoid id:16 xy:427.50,272.85 lvl:start : humanoid id:17 xy:421.26,281.52 lvl:start
+3205    not interacted with:humanoid id:17 xy:421.26,281.52 lvl:start
+3574    mount references unset
+3786    gotoLevel:space from:start
+3786    detach mountables from:humanoid id:16 xy:386.57,237.40 lvl:start
+Error: shared/lib/db/db.lua:257: attempt to index local 'ref' (a nil value)
+stack traceback:
+        [string "boot.lua"]:777: in function '__index'
+        shared/lib/db/db.lua:257: in function '_deref'
+        shared/entity/trait/mountable.lua:97: in function 'destroy'
+        main.lua:84: in function 'on_removed'
+        shared/lib/powlov/module/entity/entity.lua:166: in function 'remove'
+        shared/lib/db/db.lua:239: in function 'remove'
+        entity/player.lua:71: in function 'gotoLevel'
+        entity/world/buildings/portal.lua:36: in function 'fnInteract'
+        entity/service/server_service.lua:390: in function 'default_action_generic'
+        ...
+        shared/lib/powlov/module/net/server.lua:99: in function 'recv'
+        shared/lib/powlov/deps/grease/grease/core.lua:208: in function 'update'
+        shared/lib/powlov/module/net/server.lua:267: in function '_serverLateUpdate'
+        entity/service/server_service.lua:590: in function 'updateProc'
+        shared/lib/powlov/module/entity/entity.lua:253: in function 'lateUpdate'
+        shared/lib/powlov/pow.lua:377: in function 'update'
+        main.lua:142: in function 'update'
+        [string "boot.lua"]:612: in function <[string "boot.lua"]:594>
+        [C]: in function 'xpcall'
 
 
 
@@ -914,7 +986,7 @@ server  warn: trying to delete entity that is not presen
 	+result.is_item=true
 +возможность взять топор в руки
 
-
+плавно садиться на верблюда на скаку
 
 
 +сущность Axe

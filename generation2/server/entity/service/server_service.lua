@@ -408,22 +408,23 @@ local default_action_unmounted=function(controlled_entity,player)
 	
 	
 	-- 1 liner?
-	local collision_entities_filtered={}
+--	local collision_entities_filtered={}
+	local collision_entities_filtered=collision_entities
 	-- exclude mounted
 	
-	local is_excluded=function(entity)
-		if entity.mounted_by~=nil then
-			return true
-		end
+--	local is_excluded=function(entity)
+--		if entity.mounted_b~=nil then
+--			return true
+--		end
 		
-		return false
-	end
+--		return false
+--	end
 	
-	for k,entity in pairs(collision_entities) do
-		if not is_excluded(entity) then
-			table.insert(collision_entities_filtered, entity)
-		end
-	end
+--	for k,entity in pairs(collision_entities) do
+--		if not is_excluded(entity) then
+--			table.insert(collision_entities_filtered, entity)
+--		end
+--	end
 	-- /
 	
 	for k,entity in pairs(collision_entities_filtered) do
@@ -502,7 +503,9 @@ local do_mount=function(event)
 	local rider=_deref(rider_ref)
 	local mount=_deref(mount_ref)
 	
-	Mountable.do_mount(rider,mount, event.is_mounting)
+	local slot_id=event.mount_slot_id
+	
+	Mountable.do_mount(rider,mount, event.is_mounting,slot_id)
 end
 
 -- emitted on growable.start_grow

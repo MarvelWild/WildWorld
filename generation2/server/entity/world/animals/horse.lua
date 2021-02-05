@@ -12,9 +12,19 @@ _.new=function()
 	result.foot_x=17
 	result.foot_y=22
 	
-	result.mountX=17
-	result.mountY=16
-	
+	result.mount_slots=
+	{
+		{
+			x=21,
+			y=16,
+		},
+		{
+			x=10,
+			y=16,
+		},
+	}
+
+
 	result.origin_x=17
 	result.origin_y=16
 	
@@ -26,8 +36,7 @@ end
 _.updateAi=function(actor)
 	if DebugFlag.horse_do_not_move then return end
 	
-	if actor.mounted_by==nil then
-		
+	if not Mountable.is_mounted(actor) then
 		-- todo: seek food if hungry
 		
 		local entities_can_see=CollisionService.get_around(actor,60)
@@ -44,12 +53,18 @@ _.updateAi=function(actor)
 			AiService.moveRandom(actor)
 		end
 	else
-		local rider=_deref(actor.mounted_by)
+		local mount_slots=actor.mount_slots
 		
-		local bond=Bond.get(actor,rider)
+		local max_bond=0
+		
+		for k,slot in pairs(mount_slots) do
+			local rider=_deref(slot.rider)
+			local bond=Bond.get(actor,rider)
+			if bond>max_bond then max_bond=bond end
+		end
 		
 		-- todo: уровни привязанности
-		if bond<1 then
+		if max_bond<1 then
 			AiService.moveRandom(actor)
 		end
 		

@@ -12,9 +12,21 @@ _.new=function()
 	result.foot_x=33
 	result.foot_y=63
 	
-	result.mountX=28
-	result.mountY=44
-	
+	-- mount v2
+	result.mount_slots=
+	{
+		{
+			x=38,
+			y=44,
+			rider=nil,
+		},
+		{
+			x=18,
+			y=44,
+			rider=nil,
+		},
+	}
+
 	Mountable.init(result)
 	Colored.set_random_color(result)
 	
@@ -22,7 +34,8 @@ _.new=function()
 end
 
 _.updateAi=function(entity)
-	AiService.moveRandom(entity, 10)
+	-- wip
+	-- AiService.moveRandom(entity, 10)
 
 end
 

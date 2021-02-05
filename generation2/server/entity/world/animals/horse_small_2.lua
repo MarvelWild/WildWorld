@@ -12,8 +12,14 @@ _.new=function()
 	result.foot_x=18
 	result.foot_y=31
 	
-	result.mountX=22
-	result.mountY=23
+	result.mount_slots=
+	{
+		{
+			x=22,
+			y=23,
+			rider=nil,
+		},
+	}
 	
 	result.move_speed=24
 	
@@ -21,7 +27,7 @@ _.new=function()
 end
 
 _.updateAi=function(entity)
-	if entity.mounted_by==nil then
+	if not Mountable.is_mounted(actor) then
 		AiService.moveRandom(entity)
 	end
 end
