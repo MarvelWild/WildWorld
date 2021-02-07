@@ -1,3 +1,53 @@
+>crow
+
+spaceship interior
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+music
+
 client console
 
 
@@ -31,8 +81,9 @@ client console
 
 
 
+предмет часы
 
-
+время - со скоростью реального
 
 
 

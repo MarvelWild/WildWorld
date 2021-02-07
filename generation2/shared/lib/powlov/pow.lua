@@ -529,6 +529,10 @@ _.loadEntitiesFromDir=function(dirName)
 	for k,fileName in ipairs(dirItems) do
 		
 		local file_path=dirName.."/"..fileName
+		
+--		-- is dir check
+--		local fs_info = love.filesystem.getInfo( file_path )
+--		if fs_info.type=="file" then
 		if Pow.allen.endsWith(fileName, ".lua") then
 			local entity_name=Pow.replace(fileName,".lua","")
 			local entityPath=dirName.."."..entity_name
@@ -540,7 +544,8 @@ _.loadEntitiesFromDir=function(dirName)
 			-- Error: main.lua:75: attempt to call global 'loadEntitiesFromDir' (a nil value)
 			local sub_result=_.loadEntitiesFromDir(file_path)
 			table.append(result,sub_result)
-		end
+		end -- if not lua
+--		end -- if file
 	end
 	return result
 end
