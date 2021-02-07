@@ -94,15 +94,17 @@ _.destroy=function(entity_destroying)
 	
 	-- удаляется наездник
 	local mount_ref=entity_destroying.mounted_on
-	local mount=_deref(mount_ref)
-	mount_slots=mount.mount_slots
-	
-	if mount_slots~=nil then
-		for k,slot in pairs(mount_slots) do
-			local rider_ref=slot.rider
-			if Entity.equals(rider_ref,entity_destroying) then
-				slot.rider=nil
-				break
+	if mount_ref~=nil then
+		local mount=_deref(mount_ref)
+		mount_slots=mount.mount_slots
+		
+		if mount_slots~=nil then
+			for k,slot in pairs(mount_slots) do
+				local rider_ref=slot.rider
+				if Entity.equals(rider_ref,entity_destroying) then
+					slot.rider=nil
+					break
+				end
 			end
 		end
 	end

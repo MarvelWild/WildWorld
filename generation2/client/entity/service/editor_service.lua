@@ -200,4 +200,14 @@ end
 
 
 
+
+_.set_item_by_name=function(name)
+	for k,item in pairs(_editorItems) do
+		if item.name=="" then
+			setActiveItem(item)
+			break
+		end
+	end
+end
+
 return _
