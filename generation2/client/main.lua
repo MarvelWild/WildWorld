@@ -37,6 +37,7 @@ DebuggerService=require("shared.entity.service.debugger_service")
 GameService=require("entity.service.game")
 CollisionService=require("entity.service.collision_service")
 VfxService=require("entity.service.vfx_service")
+MusicService=require("entity.service.music_service")
 GameState=require("entity.service.game_state")
 
 Animation_service=Pow.multirequire("shared.entity.service.animation_service","entity.service.animation_service")
@@ -104,6 +105,7 @@ love.load=function()
 	Entity.add(Animation_service)
 	Entity.add(Pin_service)
 	Entity.add(VfxService)
+	Entity.add(MusicService)
 	GameService.start()
 	
 	Pow.load()
@@ -200,6 +202,9 @@ local logoff=function()
 	-- response: removed player entity
 end
 
+function love.textinput(text)
+	Pow.console_toggle(text)
+end
 
 
 love.quit=function()
@@ -216,3 +221,4 @@ love.quit=function()
 	-- proceed with quit
 	return false
 end
+

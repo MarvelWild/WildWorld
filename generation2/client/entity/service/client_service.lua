@@ -50,7 +50,7 @@ local unload_state=function()
 end
 
 
--- прилетает новый левел. 
+-- прилетает новый левел. нет ситуации когда прилетает текущий.
 local onStateReceived=function(response)
 	log('onStateReceived','verbose')
 	
@@ -61,6 +61,8 @@ local onStateReceived=function(response)
 	local level=state.level
 	GameState.level=level
 	GameState.set(state)
+	
+	MusicService.play_ambient("mixkit-birds-in-the-jungle-2434")
 	
 	local sprite_name=level.level.bg
 	

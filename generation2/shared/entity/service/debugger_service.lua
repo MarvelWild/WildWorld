@@ -233,8 +233,10 @@ local draw_observable=function()
 	local serialized=Pow.tserial.pack(_observable)
 	
 	local name=_ets(_observable)
-	love.graphics.print(name,0,90)
-	love.graphics.print(serialized,0,100)
+	
+	local x=580
+	love.graphics.print(name,x,90)
+	love.graphics.print(serialized,x,100)
 end
 
 

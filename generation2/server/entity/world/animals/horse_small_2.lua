@@ -27,9 +27,9 @@ _.new=function()
 end
 
 _.updateAi=function(entity)
-	if not Mountable.is_mounted(actor) then
-		AiService.moveRandom(entity)
-	end
+--	if not Mountable.is_mounted(actor) then
+--		AiService.moveRandom(entity)
+--	end
 end
 
 _.interact=Mountable.toggle_mount

@@ -30,11 +30,12 @@ _.do_pickup=function(actor,pickable)
 		hand_y=actor.hand_y
 		actor.hand_slot=_ref(pickable)
 		slot_number=1
-	elseif actor.hand_slot_2==nil then
-		hand_x=actor.hand_x_2
-		hand_y=actor.hand_y_2
-		actor.hand_slot_2=_ref(pickable)
-		slot_number=2
+-- пока что только 1 вещь можно носить		
+--	elseif actor.hand_slot_2==nil then
+--		hand_x=actor.hand_x_2
+--		hand_y=actor.hand_y_2
+--		actor.hand_slot_2=_ref(pickable)
+--		slot_number=2
 	else
 		-- no free slot
 		return
