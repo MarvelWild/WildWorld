@@ -1,19 +1,51 @@
 
-animation dragon_stand1
 
 
 	
 	
-	
-	
-		fantasy sounds
-	make
-		search free
-		free nature sounds
-	internet
-		buy hq mic
-	record
-atmosphere sounds
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 some test / automation scripting / ai assistant for player
@@ -107,7 +139,16 @@ spaceship interior
 
 
 
-
+	
+	
+		fantasy sounds
+	make
+		search free
+		free nature sounds
+	internet
+		buy hq mic
+	record
+atmosphere sounds
 
 
 
@@ -141,7 +182,7 @@ music
 
 
 
-
++animation dragon2
 
 
 

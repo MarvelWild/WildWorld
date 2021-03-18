@@ -43,7 +43,7 @@ local build_animation=function()
 --	result.idle=frames_walk
 	
 	return result
-end
+end -- build_animation
 
 
 
