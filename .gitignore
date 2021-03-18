@@ -12,5 +12,6 @@ generation2/shared/doc/sd.txt
 generation2/client/shared
 generation2/server/shared
 generation2/_in
+generation2/_tmp
 
 /task/*
