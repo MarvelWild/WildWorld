@@ -431,6 +431,11 @@ end
 _.get_reference=function(entity)
 	local result={}
 	
+	if not entity then
+		log("error: arg null")
+	end
+	
+	
 	result.id=entity.id
 	result.entity_name=entity.entity_name
 	

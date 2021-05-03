@@ -62,6 +62,12 @@ channels.grow=newChannel("grow")
 
 local full_log=false
 
+
+
+--if is_full_log_from_arg=="1" then
+--	full_log=true
+--end
+
 if not full_log then
 	channels.collision.useConsole=false
 	channels.entity.useConsole=false
@@ -86,6 +92,13 @@ channels.main=_mainChannel
 
 _debug.last_message=""
 _debug.prev_message=""
+
+_debug.set_full_log=function()
+	for k,channel in pairs(channels) do
+		channel.useConsole=true
+	end
+end
+
 
 -- forceConsole: show message in console even if its channel is disabled
 _debug.log=function(message,channelName,forceConsole)

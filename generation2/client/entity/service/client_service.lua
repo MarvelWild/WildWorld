@@ -150,6 +150,7 @@ local on_entity_updated=function(event)
 end
 
 
+-- handler to do_mount event
 local do_mount=function(event)
 	-- paste from server
 	log("client_service.do_mount start:"..Inspect(event))
@@ -330,7 +331,7 @@ _.start=function()
 	if isConnected then
 		login()
 	else
-		log("error:cannot connect to"..ConfigService.serverHost..":"..ConfigService.port)
+		log("error:cannot connect to:"..ConfigService.serverHost..":"..ConfigService.port)
 	end
 	
 end

@@ -93,6 +93,12 @@ end
 
 
 love.load=function()
+	local full_log_arg=Pow.arg.get("full_log=", "0")
+	if full_log_arg=="1" then
+		Debug.set_full_log()
+	end
+	
+	
 	local netState=Pow.net.state
 	netState.isServer=false
 	netState.isClient=true

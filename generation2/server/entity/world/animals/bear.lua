@@ -9,19 +9,19 @@ _.new=function()
 	
 	BaseEntity.init_bounds_from_sprite(result)
 	
-	result.foot_x=15
-	result.foot_y=31
+	result.foot_x=36
+	result.foot_y=48
 	
 	result.mount_slots=
 	{
 		{
-			x=20,
-			y=21,
+			x=41,
+			y=27,
 			rider=nil,
 		},
 		{
-			x=10,
-			y=21,
+			x=30,
+			y=29,
 			rider=nil,
 		},
 	}
@@ -30,7 +30,9 @@ _.new=function()
 end
 
 _.updateAi=function(entity)
-	AiService.moveRandom(entity)
+	
+	-- wip for portal tests
+	-- AiService.moveRandom(entity)
 
 end
 

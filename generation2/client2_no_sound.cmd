@@ -1,0 +1,1 @@
+"c:\Program Files\LOVE\love.exe" client login=client2 sound=0
