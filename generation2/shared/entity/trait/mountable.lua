@@ -19,6 +19,7 @@ end
 local _get_rider_point=_.get_rider_point
 
 --[[
+mount: 
 связать 2 сущности
 подвинуть райдера в точку маунта
 
@@ -27,15 +28,18 @@ local _get_rider_point=_.get_rider_point
 _.do_mount=function(rider,mount,is_mounting,slot_id)
 	log("shared mountable: do_toggle_mount start. rider:".._ets(rider)..
 		" mount:".._ets(mount).." is_mounting:"..tostring(is_mounting), "mount")
-
+	
 	-- todo: make this 1 time on create
 	rider.is_mountable=true
-	mount.is_mountable=true
+	local slot=nil
+	if mount~=nil then
+		mount.is_mountable=true
 	
-	local slot=mount.mount_slots[slot_id]
-	
-	if slot==nil then
-		log("debug this")
+		slot=mount.mount_slots[slot_id]
+		
+		if slot==nil then
+			log("debug this")
+		end
 	end
 	
 	
@@ -43,6 +47,12 @@ _.do_mount=function(rider,mount,is_mounting,slot_id)
 		-- unmount
 		local prev_mount_ref=rider.mounted_on
 		if prev_mount_ref~=nil then
+			if slot==nil then
+				local mount_prev=_deref(prev_mount_ref)
+				slot=mount_prev.mount_slots[slot_id]
+			end
+			
+			
 			rider.mounted_on=nil
 			
 			slot.rider=nil

@@ -50,20 +50,38 @@ _.updateAi=function(actor)
 			Movable.move_event(actor,chozen_food.x,chozen_food.y)
 		else
 			log("see no food")
+			
+			-- todo: подойти к существу с наивысшей привязанностью
+--			local max_bond_entity,bond_value=Bond.get_max_entity(actor)
+			
+--			if bond_value>0 then
+				
+--			end
+			
+			-- существо следует за тем к кому привязано
+			-- wip split distance
+			-- todo keep distance
+			local nextX = max_bond_entity.x
+			local nextY = max_bond_entity.y
+			Movable.move_event(actor,nextX,nextY)
+
 			AiService.moveRandom(actor)
 		end
 	else
 		local mount_slots=actor.mount_slots
 		
 		local max_bond=0
+		local max_bond_entity=nil
 		
 		for k,slot in pairs(mount_slots) do
-			local rider=_deref(slot.rider)
-			local bond=Bond.get(actor,rider)
-			if bond>max_bond then max_bond=bond end
+			local other=_deref(slot.rider)
+			local bond=Bond.get(actor,other)
+			if bond>max_bond then 
+				max_bond=bond 
+				max_bond_entity=other
+			end
 		end
 		
-		-- todo: уровни привязанности
 		if max_bond<1 then
 			AiService.moveRandom(actor)
 		end

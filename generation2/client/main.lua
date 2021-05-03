@@ -21,6 +21,9 @@ _G.common=nil
 
 require("shared.libs")
 
+Hacks={}
+Hacks.suppress_known_warns=true
+
 Pow.setup(
 	{
 		--"server",
@@ -114,6 +117,13 @@ love.load=function()
 	EditorService.load()
 	
 	initUi()
+	
+	local sound_volume=Pow.arg.get("sound=",nil)
+	
+	if sound_volume~=nil then
+		sound_volume=tonumber(sound_volume)
+		MusicService.set_volume(sound_volume)
+	end
 	
 end
 

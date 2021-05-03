@@ -3,6 +3,13 @@
 local isDebug=arg[#arg] == "-debug"
 if isDebug then require("mobdebug").start() end
 
+--[[
+package.cpath = package.cpath .. ';C:/Users/mw/AppData/Roaming/JetBrains/IntelliJIdea2021.1/plugins/EmmyLua/classes/debugger/emmy/windows/x64/?.dll'
+local dbg = require('emmy_core')
+dbg.tcpConnect('localhost', 9966)
+]]--
+
+
 _traceback=debug.traceback
 
 require("shared.libs")

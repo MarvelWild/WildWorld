@@ -142,7 +142,11 @@ end
 _.removeEntity=function(entityRef)
 	local entity=_.findEntity(entityRef,deleteOnFound)
 	if entity==nil then 
-		log("warn: trying remove entity that not exists:"..BaseEntity.refToSting(entityRef))
+		if not Hacks.suppress_known_warns then
+			-- todo: починить это. при выходе из игры сыпется
+			log("warn: trying remove entity that not exists:"..BaseEntity.refToSting(entityRef))
+		end
+		
 		return 
 	end
 	

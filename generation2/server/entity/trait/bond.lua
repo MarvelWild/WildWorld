@@ -1,5 +1,6 @@
 -- global Bond
 -- привязанность
+-- хранится в сущности от которой привязка в свойстве .bond={to_string_ref=value}
 
 local _={}
 
@@ -12,17 +13,17 @@ _.add=function(from,to,amount)
 	
 	local bond=from.bond
 	
-	local source_string_ref=Entity.get_string_reference(to)
+	local to_string_ref=Entity.get_string_reference(to)
 	
-	local bond_with_source=bond[source_string_ref]
+	local bond_value=bond[to_string_ref]
 	
-	if not bond_with_source then 
-		bond_with_source=0
+	if not bond_value then 
+		bond_value=0
 	end
 	
-	local new_bond=bond_with_source+amount
+	local new_bond=bond_value+amount
 	
-	bond[source_string_ref]=new_bond
+	bond[to_string_ref]=new_bond
 end
 
 -- from например horse
