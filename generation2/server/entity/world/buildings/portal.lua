@@ -34,7 +34,10 @@ _.interact=function(actor,target,player)
 	
 	if player then
 		Player.gotoLevel(player,level_name)
+		return true
 	end
+	
+	return false
 end
 
 
