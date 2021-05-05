@@ -62,6 +62,9 @@ DebugFlag=
 -- dirName sample: entity/world
 
 local load_traits=function()
+	
+	-- todo: autoload from traits dir
+	
 	Movable=Pow.multirequire("shared.entity.trait.movable", "entity.trait.movable")
 	Growable=Pow.multirequire("shared.entity.trait.growable", "entity.trait.growable")
 	Mountable=Pow.multirequire("shared.entity.trait.mountable","entity.trait.mountable")
@@ -69,6 +72,7 @@ local load_traits=function()
 	Carrier=Pow.multirequire("entity.trait.carrier")
 	Bond=Pow.multirequire("entity.trait.bond")
 	Eater=Pow.multirequire("entity.trait.eater")
+	Swap=Pow.multirequire("entity.trait.swap")
 end
 
 

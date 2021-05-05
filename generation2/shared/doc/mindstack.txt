@@ -1,79 +1,73 @@
-portal on mount test
-
-
-описать мин кейс
-	1p приехали, манут и портал в 1 точке
-	заходим в портал - краш клиента:
-
-
-
-
-
-4357    entity:unload_state. level:start
-4357    state set. level:space
-4357    client_service.do_mount start:{
-  code = "do_mount",
-  entity_name = "Event",
-  id = 316,
-  is_mounting = true,
-  mount_ref = {
-    entity_name = "bear",
-    id = 7,
-    level_name = "start"
-  },
-  mount_slot_id = 1,
-  rider_ref = {
-    entity_name = "humanoid",
-    id = 7,
-    level_name = "space"
-  },
-  target = "all"
-}
-Error: shared/lib/powlov/module/entity/entity.lua:434: attempt to index local 'entity' (a nil value)
-stack traceback:
-        [string "boot.lua"]:777: in function '__index'
-        shared/lib/powlov/module/entity/entity.lua:434: in function '_ref'
-        shared/entity/trait/mountable.lua:68: in function 'do_mount'
-        entity/service/client_service.lua:165: in function 'handler'
-        shared/lib/powlov/module/net/event.lua:174: in function 'doProcessEvent'
-        shared/lib/powlov/module/net/event.lua:209: in function 'processEvent'
-        shared/lib/powlov/module/net/event.lua:219: in function 'process'
-        shared/lib/powlov/module/net/client.lua:45: in function 'handler'
-        shared/lib/powlov/module/net/client.lua:80: in function 'recv'
-        shared/lib/powlov/deps/grease/grease/core.lua:122: in function 'update'
-        shared/lib/powlov/module/net/client.lua:175: in function 'update'
-        entity/service/client_service.lua:339: in function 'updateProc'
-        shared/lib/powlov/module/entity/entity.lua:225: in function 'update'
-        shared/lib/powlov/pow.lua:372: in function 'update'
-        main.lua:131: in function 'update'
-        [string "boot.lua"]:612: in function <[string "boot.lua"]:594>
-        [C]: in function 'xpcall'
-
-
-
-
-+изучить стек
-	mountable.do_mount
+priority 1: entity swap: become anything
+	+реакция на кнопку x
+	кто реагирует? игрок.
 	
-+неверно:не должно это событие прилететь с сервера. посмотреть что там происходит на default_action
-+	верно: смотря с чём взаимодействие первым. если с маунтом - то должно.
-
-+перестало воспроизводиться.
-+проверить без отладчика (sick!) - воспроизвелось
-+в отладчике тоже воспроизвелось (если ставить первым портал?)
-
-снова дебаг клиента
-включить подробный лог
+	отправлено событие entity_swap_request
+	>обработать на сервере
+		+кто обрабатывает? trait Swap
+		+выбрать цель свопа (сейчас первая попавшаяся)
+			+исключить себя
+		
+		+реализовать Swap.do_swap
+		+как привязан игрок к управляемой им сущности?
+			player.controlled_entity_ref - привязка
+			player.controlled_entity - кэш
+			
+		+где и как происходит привязка?
+			Player.attach
+			
+	обработать на клиенте (нужно ли? нужно. камера закреплена за прежним объектом)
+			
+		
+		
+		
+		
+		
+		
 	
 
-+qol: включение полного лога из консоли
 
-наблюдение: после краша при перезаходе видно что портал сработал.
-	но и маунт событие пришло. почитать полный лог сервера.
-	
->предположение: портал не возвращает true при обработке, и после него ещё срабатывает сесть на маунта. проверить код портала!	
-	подтвердилось - interact портала не возвращал результат
-	>тест
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -117,7 +111,7 @@ stack traceback:
 
 
 
-priority 1: entity swap: become anything
+
 
 explore new ideas
 zoom: center on origin

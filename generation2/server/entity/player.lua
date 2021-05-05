@@ -1,4 +1,7 @@
 -- controlling player.
+-- server.
+-- Надигровая сущность - описывает живого игрока.
+
 local _={}
 
 _.entity_name=Pow.currentFile()
@@ -15,8 +18,13 @@ _.new=function()
 end
 
 
+
+-- привязка игрока к управляемой сущности
 _.attach=function(player,entity_ref)
 	player.controlled_entity_ref=entity_ref
+	
+	-- кэш, чистим
+	player.controlled_entity=nil
 end
 
 
@@ -112,5 +120,9 @@ _.get_controlled_entity=function(player)
 	player.controlled_entity=fresh
 	return fresh
 end
+
+
+
+
 
 return _

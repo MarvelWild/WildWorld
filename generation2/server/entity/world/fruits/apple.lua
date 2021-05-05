@@ -8,6 +8,9 @@ _.new=function()
 	result.sprite=_.entity_name
 	result.is_item=true
 	
+	result.foot_x=1
+	result.foot_y=2
+	
 	result.origin_x=1
 	result.origin_y=1
 	

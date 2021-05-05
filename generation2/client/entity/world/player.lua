@@ -25,6 +25,13 @@ _.keyPressed=function(key)
 		event.code="craft"
 		event.target="server"
 		Event.process(event)
+	elseif key=="x" then
+		-- entity swap
+		log("entity swap request")
+		local event=Event.new()
+		event.code="entity_swap_request"
+		event.target="server"
+		Event.process(event)
 	end
 end
 

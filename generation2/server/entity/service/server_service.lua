@@ -550,6 +550,27 @@ local craft_request=function(event)
 	
 	Crafting_service.do_craft(craftable,controlled_entity,login)
 end
+
+local entity_swap_request=function(event)
+	local login=event.login
+	local player=Player.getByLogin(login)
+	
+	local controlled_entity=Player.get_controlled_entity(player)
+	
+	-- wip
+	local target=Swap.pick_target(controlled_entity,player)
+	
+	local is_swapped=Swap.do_swap(controlled_entity,target,player)
+		
+	if not is_swapped then
+		log("not swapped with:".._ets(target))
+		return 
+	end
+	
+	log("swapping with:".._ets(target))
+	-- wip уведомить клиента
+end
+
 	
 
 local connect_handlers=function()
@@ -567,6 +588,7 @@ local connect_handlers=function()
 	_event.add_handler("do_grow", do_grow)
 	_event.add_handler("craft", craft)
 	_event.add_handler("craft_request", craft_request)
+	_event.add_handler("entity_swap_request", entity_swap_request)
 end
 
 

@@ -1,1 +1,19 @@
-F11 editor mode
+** Game
+
+LMB		move
+c		craft
+F11		editor mode
+space	default action: mount, enter portal, pickup item
+-		zoom out
+=		zoom in
+x		entity swap
+
+
+** Editor
+num-	prev item
+num+	next item
+
+
+
+
+
