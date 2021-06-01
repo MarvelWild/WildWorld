@@ -70,7 +70,7 @@ priority 1: entity swap: become anything
 
 
 
-
+ingame distance based communicationo
 
 
 
