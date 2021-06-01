@@ -1,0 +1,1 @@
+love server clean=1 seed=42

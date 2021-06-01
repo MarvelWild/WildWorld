@@ -10,6 +10,9 @@ _.new=function()
 	
 	result.origin_x=3
 	result.origin_y=13
+  
+  result.foot_x=3
+  result.foot_y=13
 	
 	BaseEntity.init_bounds_from_sprite(result)
 	
