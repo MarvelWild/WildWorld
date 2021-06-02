@@ -33,7 +33,7 @@ _.beforeAdd=nil
 
 --добавить сущность в менеджер
 -- use Db.add
-_.add=function(entity)
+_.add=function(entity,is_alive)
 	log('adding entity:'.._.toString(entity),'entity')
 --	log(debug.traceback())
 	
@@ -141,7 +141,7 @@ local removeDrawable=function(entity,container)
 end
 
 -- chain: db,entity,collision
-_.remove=function(entity)
+_.remove=function(entity,keep_alive)
 	removeDrawable(entity,_drawable)
 	_all[entity]=nil
 	_updatable[entity]=nil
@@ -162,8 +162,11 @@ _.remove=function(entity)
 		CollisionService.removeEntity(entity)
 	end
 	
-	if _.on_removed~=nil then
-		_.on_removed(entity)
+	if not keep_alive then
+		-- deinit
+		if _.on_removed~=nil then
+			_.on_removed(entity)
+		end
 	end
 end
 

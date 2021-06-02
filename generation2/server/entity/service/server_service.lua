@@ -433,7 +433,8 @@ local default_action_select=function(controlled_entity,player,filter)
 	
 	-- todo получение списка сущностей, с которыми возможно взаимодействие
 	for k,entity in pairs(collision_entities_filtered) do
-		local can_interact=true -- wip
+		-- todo
+		local can_interact=true
 		if can_interact then 
 			table.insert(interact_candidates, entity)
 		else
@@ -459,6 +460,13 @@ local default_action_select=function(controlled_entity,player,filter)
 	
 end
 
+local filter_mounts=function(entity)
+	return entity.is_mountable
+end
+
+local filter_not_mounts=function(entity)
+	return not entity.is_mountable
+end
 
 local mount_dismount=function(event)
 	log("mount_dismount","verbose")
@@ -471,24 +479,17 @@ local mount_dismount=function(event)
 	
 	local target=nil
 	
-	-- todo drop item
-	
-	--- if carrying_item
-	
 	if mounted_on~=nil then
-		-- wip - вынести в отдельный обработчик
 		-- слезть с маунта
 		target=_deref(mounted_on)
 		default_action_generic(controlled_entity,target)
 	else
-		-- сесть на маунта wip - сейчас тут интеракт, нужно интеракт только с маунтами. 
-		default_action_select(controlled_entity,player)
+		-- сесть на маунта
+		default_action_select(controlled_entity,player,filter_not_mounts)
 	end
 end
 
-local filter_mounts=function(entity)
-	return entity.is_mountable
-end
+
 
 
 -- player press space, enter portal / pickup-drop item etc
@@ -589,7 +590,6 @@ local entity_swap_request=function(event)
 	
 	local controlled_entity=Player.get_controlled_entity(player)
 	
-	-- wip
 	local target=Swap.pick_target(controlled_entity,player)
 	
 	local is_swapped=Swap.do_swap(controlled_entity,target,player)
@@ -600,7 +600,7 @@ local entity_swap_request=function(event)
 	end
 	
 	log("swapping with:".._ets(target))
-	-- wip уведомить клиента
+	-- todo уведомить клиента, чтобы камеру перевесил
 end
 
 	

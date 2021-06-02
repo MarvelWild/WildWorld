@@ -24,9 +24,13 @@ local on_moved=function(moved_entity)
 			if rider_ref~=nil then
 				local rider=_deref(rider_ref)
 				
-				-- todo: если райдер в процессе посадки - плавно двигать
-				local riderX,riderY=Mountable.get_rider_point(moved_entity,rider,slot)
-				_.instant_move(rider,riderX,riderY)
+				if rider then
+					-- todo: если райдер в процессе посадки - плавно двигать
+					local riderX,riderY=Mountable.get_rider_point(moved_entity,rider,slot)
+					_.instant_move(rider,riderX,riderY)
+				else
+					log("warn:no rider to follow mount")
+				end
 			end
 		end
 	end

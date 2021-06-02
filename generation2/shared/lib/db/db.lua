@@ -173,7 +173,7 @@ end
 
 -- put entity into level
 -- level_name optional
-_.add=function(entity, level_name)
+_.add=function(entity, level_name,is_alive)
 	assert(entity)
 	
 --	if level_name=="player" then
@@ -202,20 +202,21 @@ _.add=function(entity, level_name)
 	assert(entityContainer[entityId]==nil)
 	entityContainer[entityId]=entity
 	
+	
 	if Level.isActive(level_name) then
 		-- todo: preevent double add
-		Entity.add(entity)
+		Entity.add(entity,is_alive)
 	end
 	
 	
 	if _.onAdded~=nil then
 		_.onAdded(entity, level_name)
-	end
+	end	
 	
 end
 
 -- remove entity from level
-_.remove=function(entity,level_name)
+_.remove=function(entity,level_name,keep_alive)
 	if level_name==nil then
 		level_name=entity.level_name
 		assert(level_name)
@@ -236,7 +237,7 @@ _.remove=function(entity,level_name)
 	entityContainer[entityId]=nil
 	
 	if Level.isActive(level_name) then
-		Entity.remove(entity)
+		Entity.remove(entity,keep_alive)
 	end
 	
 	if _onRemoved~=nil then
@@ -244,6 +245,9 @@ _.remove=function(entity,level_name)
 		_onRemoved(entity, level_name)
 	end
 end
+
+
+
 
 local get=function(level_name,entity_name, entityId)
 	local levelContainer=getLevelContainer(level_name)

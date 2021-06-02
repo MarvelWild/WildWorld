@@ -31,10 +31,7 @@ _.new=function()
 end
 
 _.updateAi=function(entity)
-	
-	-- wip for portal tests
-	-- AiService.moveRandom(entity)
-
+	AiService.moveRandom(entity)
 end
 
 -- todo: think easy mountable init, from prop

@@ -61,7 +61,7 @@ _.updateAi=function(actor)
 --			end
 			
 			-- существо следует за тем к кому привязано
-			-- wip split distance
+			-- todo split distance
 			-- todo keep distance
 			local nextX = max_bond_entity.x
 			local nextY = max_bond_entity.y
