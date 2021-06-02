@@ -380,6 +380,8 @@ local getCollisions=function(event)
 end
 
 
+
+-- вызвать interact у сущности actor
 local default_action_generic=function(actor,target,player)
 	log("default_action_generic","verbose")
 	
@@ -392,42 +394,56 @@ local default_action_generic=function(actor,target,player)
 end
 
 
-
-
-
-local default_action_unmounted=function(controlled_entity,player)
+-- пытается взаимодействовать со всеми
+-- filter - функция принимает сущность, возвращает учитывать ли её при взаимодействии (true-не учитывать, отфильтровать)
+local default_action_select=function(controlled_entity,player,filter)
 	-- todo: d button to drop
-	
 	-- todo: multi action
-
-
-	
 	
 	local collision_entities=CollisionService.getEntityCollisions(controlled_entity)
 	if collision_entities==nil then return end
 	
 	
-	-- 1 liner?
 --	local collision_entities_filtered={}
 	local collision_entities_filtered=collision_entities
 	-- exclude mounted
 	
+-- тут фильтровались маунты на которых есть наездник. сейчас неактуально?	
+-- фильтровать маунтов
 --	local is_excluded=function(entity)
---		if entity.mounted_b~=nil then
+--		if entity.mounted_by~=nil then
 --			return true
 --		end
 		
 --		return false
 --	end
 	
---	for k,entity in pairs(collision_entities) do
---		if not is_excluded(entity) then
---			table.insert(collision_entities_filtered, entity)
---		end
---	end
+	if filter then
+		collision_entities_filtered={}
+		for k,entity in pairs(collision_entities) do
+			if not filter(entity) then
+				table.insert(collision_entities_filtered, entity)
+			end
+		end
+	end
+	
 	-- /
 	
+	local interact_candidates={}
+	
+	-- todo получение списка сущностей, с которыми возможно взаимодействие
 	for k,entity in pairs(collision_entities_filtered) do
+		local can_interact=true -- wip
+		if can_interact then 
+			table.insert(interact_candidates, entity)
+		else
+			log("can not interact with:"..entity.entity_name,"verbose")
+		end
+	end
+	
+	-- todo: выбор кандидата через запрос клиенту
+	
+	for k,entity in pairs(interact_candidates) do
 		local is_interacted=default_action_generic(controlled_entity,entity,player)
 		if is_interacted then
 			return true
@@ -444,12 +460,8 @@ local default_action_unmounted=function(controlled_entity,player)
 end
 
 
-
--- player press space, enter portal / pickup-drop item etc
--- event handler "default_action"
-local default_action=function(event)
-	log("default_action","verbose")
-	
+local mount_dismount=function(event)
+	log("mount_dismount","verbose")
 	local login=event.login
 	local player=Player.getByLogin(login)
 	
@@ -464,12 +476,32 @@ local default_action=function(event)
 	--- if carrying_item
 	
 	if mounted_on~=nil then
+		-- wip - вынести в отдельный обработчик
+		-- слезть с маунта
 		target=_deref(mounted_on)
-    default_action_generic(controlled_entity,target)
+		default_action_generic(controlled_entity,target)
 	else
-		default_action_unmounted(controlled_entity,player)
-		
+		-- сесть на маунта wip - сейчас тут интеракт, нужно интеракт только с маунтами. 
+		default_action_select(controlled_entity,player)
 	end
+end
+
+local filter_mounts=function(entity)
+	return entity.is_mountable
+end
+
+
+-- player press space, enter portal / pickup-drop item etc
+-- event handler "default_action"
+local default_action=function(event)
+	log("default_action","verbose")
+	
+	local login=event.login
+	local player=Player.getByLogin(login)
+	
+	local controlled_entity=Player.get_controlled_entity(player)
+
+	default_action_select(controlled_entity,player,filter_mounts)
 end
 
 
@@ -584,6 +616,7 @@ local connect_handlers=function()
 	_event.add_handler("editor_place_item", editor_place_item)
 	_event.add_handler("collisions_get", getCollisions)
 	_event.add_handler("default_action", default_action)
+	_event.add_handler("mount_dismount", mount_dismount)
 	_event.add_handler("do_mount", do_mount)
 	_event.add_handler("do_grow", do_grow)
 	_event.add_handler("craft", craft)

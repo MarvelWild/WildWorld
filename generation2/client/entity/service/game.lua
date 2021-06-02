@@ -41,6 +41,8 @@ _.keyPressed=function(key)
 		Pow.zoomOut()
 	elseif key=="space" then
 		ClientService.defaultAction()
+	elseif key=="m" then
+		ClientService.mount_dismount()
 	end
 	
 end

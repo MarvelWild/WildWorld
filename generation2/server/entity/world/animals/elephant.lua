@@ -26,6 +26,8 @@ _.new=function()
 		},
 	}
 	
+	Mountable.init(result)
+	
 	return result
 end
 

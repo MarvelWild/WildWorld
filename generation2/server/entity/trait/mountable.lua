@@ -90,7 +90,7 @@ _.is_mounting=function(rider)
 	return false
 end
 
-
+-- вызывается из конструктора сущности
 _.init=function(entity)
 	if not entity.mount_slots then log("error: no mount_slots:".._ets(entity)) end
 	entity.is_mountable=true

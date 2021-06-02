@@ -18,6 +18,8 @@ _.new=function()
 		},
 	}
 	
+	Mountable.init(result)
+	
 	result.originX=15
 	result.originY=23
 	

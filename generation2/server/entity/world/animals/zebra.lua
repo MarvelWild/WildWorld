@@ -20,6 +20,8 @@ _.new=function()
 			rider=nil,
 		},
 	}
+	
+	Mountable.init(result)
 
 	result.move_speed=16
 	

@@ -23,6 +23,8 @@ _.new=function()
 			y=16,
 		},
 	}
+	
+	Mountable.init(result)
 
 
 	result.origin_x=17

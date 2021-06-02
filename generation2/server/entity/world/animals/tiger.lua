@@ -21,6 +21,8 @@ _.new=function()
 		},
 	}
 	
+	Mountable.init(result)
+	
 	result.move_speed=23
 	
 	return result

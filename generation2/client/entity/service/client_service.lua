@@ -367,4 +367,12 @@ _.defaultAction=function()
 	_event.process(event)
 end
 
+-- запросить сервер: операция маунт/дизмаунт
+_.mount_dismount=function()
+	local event=_event.new("mount_dismount")
+	event.target="server"
+	_event.process(event)
+end
+
+
 return _

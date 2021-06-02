@@ -71,6 +71,8 @@ _.new=function()
 		},
 	}
 	
+	Mountable.init(result)
+	
 	result.move_speed=100
 	
 	result.animation=build_animation()
