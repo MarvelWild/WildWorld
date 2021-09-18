@@ -393,7 +393,7 @@ local default_action_generic=function(actor,target,player)
 	return interact_result
 end
 
-
+-- Выбрать действие по умолчанию и выполнить его
 -- пытается взаимодействовать со всеми
 -- filter - функция принимает сущность, возвращает учитывать ли её при взаимодействии (true-не учитывать, отфильтровать)
 local default_action_select=function(controlled_entity,player,filter)

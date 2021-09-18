@@ -24,6 +24,13 @@ _.toggle_mount=function(rider,mount)
 	local slot_id=nil
 	local mount_slots=mount.mount_slots
 	
+	if mount_slots==nil then
+		-- warn?
+		log("warn:no mount slots")
+		return
+	end
+	
+	
 	if is_mounting then
 		local free_slot=nil
 		-- todo: slot order

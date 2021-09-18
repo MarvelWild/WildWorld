@@ -1,4 +1,137 @@
+бой
+	атака
+	хп
+	смерть
+	анимация потери здоровья
+	анимация меча
+	
+	
+дать еду существу
+дать бутерброд человеку
 
+
+картина убрал поставил - та же самая
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+горячие клавиши для русского языка
+
+
+
+
+
+в космосе своя музыка
+	
+	сервер в отладчике
+Баг - не слез с маунта
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+21728   swapping with:bear id:2 xy:1356.03,707.59 lvl:volcano
+Error: entity/trait/mountable.lua:30: bad argument #1 to 'pairs' (table expected, got nil)
+stack traceback:
+        [string "boot.lua"]:777: in function <[string "boot.lua"]:773>
+        [C]: in function 'pairs'
+        entity/trait/mountable.lua:30: in function 'fnInteract'
+        entity/service/server_service.lua:392: in function 'default_action_generic'
+        entity/service/server_service.lua:448: in function 'default_action_select'
+        entity/service/server_service.lua:505: in function 'handler'
+        shared/lib/powlov/module/net/event.lua:174: in function 'doProcessEvent'
+        shared/lib/powlov/module/net/event.lua:209: in function 'processEvent'
+        shared/lib/powlov/module/net/event.lua:219: in function 'process'
+        shared/lib/powlov/module/net/server.lua:292: in function 'handler'
+        shared/lib/powlov/module/net/server.lua:99: in function 'recv'
+        shared/lib/powlov/deps/grease/grease/core.lua:208: in function 'update'
+        shared/lib/powlov/module/net/server.lua:267: in function '_serverLateUpdate'
+        entity/service/server_service.lua:645: in function 'updateProc'
+        shared/lib/powlov/module/entity/entity.lua:256: in function 'lateUpdate'
+        shared/lib/powlov/pow.lua:377: in function 'update'
+        main.lua:153: in function 'update'
+        [string "boot.lua"]:612: in function <[string "boot.lua"]:594>
+        [C]: in function 'xpcall'
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+no music no life - сделать музыкальное наполнение постоянное.
+делать приватные модули - использовать в них любые материалы
+-
 
 
 
@@ -291,6 +424,15 @@ zoom: center on origin
 ai
 	bond: following another
 		start with horse
+	команды прирученным - следовать, свободно ходить, стоять на месте, помощь в бою
+	
+
+	
+	
+выбор цели
+атака-режим боя
+
+
 		
 
 

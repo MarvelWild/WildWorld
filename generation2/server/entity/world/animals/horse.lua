@@ -63,9 +63,11 @@ _.updateAi=function(actor)
 			-- существо следует за тем к кому привязано
 			-- todo split distance
 			-- todo keep distance
-			local nextX = max_bond_entity.x
-			local nextY = max_bond_entity.y
-			Movable.move_event(actor,nextX,nextY)
+			
+			-- wip
+			-- local nextX = max_bond_entity.x
+			--local nextY = max_bond_entity.y
+			-- Movable.move_event(actor,nextX,nextY)
 
 			AiService.moveRandom(actor)
 		end

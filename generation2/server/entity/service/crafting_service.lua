@@ -32,6 +32,19 @@ local _recipes=
 				name="stone_1"
 			}			
 		}
+	},
+	sword=
+	{
+		quantity=1,
+		from=
+		{
+			{
+				name="stick_1",
+			},
+			{
+				name="stone_1"
+			}			
+		}
 	}
 }
 
