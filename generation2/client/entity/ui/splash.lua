@@ -6,6 +6,7 @@ local _=BaseEntity.new("splash",true)
 
 local alpha=1
 
+
 local bgs=
 {
 	"splash/mira_2020_04_1",
@@ -20,6 +21,14 @@ local bgs=
 	{"splash/unk_2","jpg"},
 	{"splash/unk_3","jpg"},
 	{"splash/unk_4","jpg"},
+	{"splash/s2","jpg"},
+	{"splash/s3","jpg"},
+	{"splash/s4","jpg"},
+	{"splash/s5","jpg"},
+	{"splash/s6","jpg"},
+	{"splash/s7","jpg"},
+	{"splash/IMG_0614","jpg"},
+	{"splash/IMG_0756","jpg"},
 }
 
 local random_bg_data=Pow.lume.randomchoice(bgs)
