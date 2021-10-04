@@ -39,6 +39,7 @@ end
 
 
 
+-- Создаёт и запускает в обработку событие move - обрабатывается на сервере и клиенте
 _.move_event=function(entity,x,y)
 	local event=Event.new("move")
 	event.target="level"

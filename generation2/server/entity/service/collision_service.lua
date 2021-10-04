@@ -34,6 +34,7 @@ end
 --end
 
 
+-- коллиизии с сущностью
 -- returns array of entity - who collides with entity shape
 _.getEntityCollisions=function(entity)
 	local level_name=entity.level_name
@@ -44,6 +45,8 @@ end
 
 -- get_at_point
 
+-- вокруг сущности + прямоугольника с отступами margin от всех сторон
+-- что есть?
 _.get_around=function(entity, margin)
 	if not margin then margin=100 end
 	local x=entity.x-margin
@@ -59,11 +62,22 @@ _.get_around=function(entity, margin)
 	return result
 end
 
+-- по умолчанию не отдаёт сервисные сущности. по необходимости добавить опцию
 _.get_in_rect=function(x,y,w,h,level_name)
 	-- see shared\lib\powlov\module\collision.lua
 	local level_collisions=getLevelCollisions(level_name)
-	local result=level_collisions.getAtRect(x,y,w,h)
-	return result
+	
+	-- level_collisions instance of shared\lib\powlov\module\collision.lua
+	local all_collisions=level_collisions.getAtRect(x,y,w,h)
+	
+	local result_filtered={}
+	for k,collision in pairs(all_collisions) do
+		if not collision.is_service then
+			table.insert(result_filtered, collision)
+		end
+	end
+	
+	return result_filtered
 end
 
 

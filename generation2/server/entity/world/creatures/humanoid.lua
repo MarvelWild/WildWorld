@@ -79,6 +79,9 @@ _.new=function()
 	result.hand_slot=nil
 	result.hand_slot_2=nil
 	
+	result.origin_x=7
+	result.origin_y=7
+	
 	
 	
 	result.sprite="player_7"
