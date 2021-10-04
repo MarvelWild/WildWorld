@@ -14,7 +14,9 @@ _.update_simulation=function()
 		if entity.energy~=nil then 
 			
 			entity.energy=entity.energy-calc_energy_decrease(entity)
---			ServerService.entity_updated(entity)
+			
+-- почему было закомменчено тут?			
+			ServerService.entity_updated(entity)
 		end
 	end
 	

@@ -22,31 +22,50 @@ _.new=function()
 end
 
 local is_enemy=function(entity,other)
+	-- сейчас все кроме др зомби
+	
 	if other.entity_name==_entity_name then
-		return false -- except zombies, ok
+		return false
 	end
 		
 	
-	return true -- haha zombies so evil
+	return true
 end
 
 -- collisions are checked, do attack
 local attack=function(actor,target)
-	-- todo: finish implementing
-	local attack_event=Event.new('attack')
+
+
+
+	-- v1: через событие
 	
-	-- todo: think how to avoid this ref/deref on server,
-	-- exec with direct rf on server, then update to dto?
-	attack_event.actor=_ref(actor)
-	attack_event.target=_ref(target)
-	attack_event.damage=0.1
-	attack_event.target="level"
-	attack_event.level=actor.level_name
-	Event.process(attack_event)
+----	log("emit attack event:".._ets(actor).." on ".._ets(target))
 	
-	-- todo process on server
-	-- todo process on client
+--	-- обработка сервером: 
+--	-- клиентом:
+--	local attack_event=Event.new('attack')
 	
+--	-- todo: think how to avoid this ref/deref on server,
+--	-- exec with direct rf on server, then update to dto?
+--	attack_event.actor=_ref(actor)
+	
+--	attack_event.attack_target=_ref(target)
+--	attack_event.damage=0.1
+--	attack_event.target="level"
+--	attack_event.level=actor.level_name
+--	Event.process(attack_event)
+	
+--	-- todo process on server
+--	-- todo process on client
+	
+	
+	-- v2: апдейт свойства цели
+	
+	local damage=0.1
+	target.hp=target.hp-damage
+	
+	ServerService.entity_updated(target)
+	-- wip: есть ли уже апдейт сущности?
 	
 	
 	
@@ -60,7 +79,7 @@ local update_ai_combat=function(entity)
 	local collsions=CollisionService.getEntityCollisions(entity)
 	if collsions then
 		for k,collision_entity in pairs(collsions) do
-			log("combat ai collision:".._ets(collision_entity))
+--			log("combat ai collision:".._ets(collision_entity))
 			-- todo priority
 			
 			if is_enemy(entity,collision_entity) then

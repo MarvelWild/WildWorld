@@ -160,6 +160,7 @@ end
 
 
 
+-- для события найти хендлер и выполнить
 
 -- move processing logic outside? no, connect handlers to this module
 -- without queue, without checks

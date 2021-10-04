@@ -19,14 +19,13 @@ local onItemsReceived=function(event)
 	local items=event.items
 	_editorItems=items
 	
-	
 	_activeItem=Pow.lume.first(items)
 	
 	if _save then
 		local active_item_entity_name=_save.active_item_entity_name
 		if not active_item_entity_name then
 			-- todo: fix
-			log("error: save with no active item")
+			-- log("error: save with no active item")
 			return
 		end
 		
@@ -58,6 +57,14 @@ local initItems=function()
 	Event.process(requestItems,onItemsReceived)
 end
 
+
+-- ждём айтемов по сети
+local is_net_wait=function()
+	local result=_editorItems==nil or _isFetchingItems
+	return result
+end
+
+
 local toggleActive=function()
 	_isActive=not _isActive
 
@@ -76,6 +83,8 @@ end
 
 
 local nextItem=function()
+	if is_net_wait() then return end
+	
 	local currentItem=_activeItem
 	local items=_editorItems
 	
@@ -93,6 +102,8 @@ local nextItem=function()
 end
 
 local prevItem=function()
+	if is_net_wait() then return end
+	
 	local currentItem=_activeItem
 	local items=_editorItems
 	

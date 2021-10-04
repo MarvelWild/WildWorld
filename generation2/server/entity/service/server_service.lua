@@ -27,6 +27,7 @@ local send_updated_entities=function()
 	_updated_entities={}
 end
 
+-- защищена от двойного добавления
 -- notify server should send updated entity 
 _.entity_updated=function(entity)
 	_updated_entities[entity]=true
@@ -602,8 +603,6 @@ local entity_swap_request=function(event)
 	log("swapping with:".._ets(target))
 	-- todo уведомить клиента, чтобы камеру перевесил
 end
-
-	
 
 local connect_handlers=function()
 	_event.add_handler("create_player", createPlayer)

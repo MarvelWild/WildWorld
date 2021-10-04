@@ -1,3 +1,4 @@
+-- global: 
 -- todo: multi observables
 -- todo: observable sort
 -- todo: observable filter
@@ -86,6 +87,7 @@ local _state=state_show_all_entities
 
 
 
+-- todo: вероятно свойство быстрее, сделать тест
 _.is_active=function()
 	return _isActive
 end
