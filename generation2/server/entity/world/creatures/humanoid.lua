@@ -82,6 +82,8 @@ _.new=function()
 	result.origin_x=7
 	result.origin_y=7
 	
+	result.attack_damage=12
+	
 	
 	
 	result.sprite="player_7"

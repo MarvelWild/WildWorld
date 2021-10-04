@@ -80,19 +80,9 @@ end
 
 -- collisions are checked, do attack
 local attack=function(actor,target)
-	local damage=0.1
+	local damage=actor.attack_damage
 	
---	if target.hp==nil then
---		local a=1
---		log("x")
---		log(_ets(target))
---	end
-	
-	
-	target.hp=target.hp-damage
-	log("hp change:"..target.hp..":".._ets(target))
-	
-	ServerService.entity_updated(target)
+	Hp.change(target,-damage)
 end
 
 -- return: обработано ли (была ли атака или ход).

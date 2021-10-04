@@ -73,6 +73,7 @@ local load_traits=function()
 	Bond=Pow.multirequire("entity.trait.bond")
 	Eater=Pow.multirequire("entity.trait.eater")
 	Swap=Pow.multirequire("entity.trait.swap")
+	Hp=Pow.multirequire("entity.trait.hp")
 end
 
 

@@ -123,6 +123,9 @@ end
 
 -- todo: visual help
 _.keyPressed=function(key)
+	log("kp:"..key)
+	
+	
 	if key=="f11" then
 		toggleActive()
 	elseif _isActive then

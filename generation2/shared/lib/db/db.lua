@@ -34,6 +34,7 @@ local _saveDir=""
 _.onAdded=nil
 local _onRemoved=nil
 
+-- Цепляется
 _.setOnRemoved=function(hook)
 	assert(_onRemoved==nil)
 	_onRemoved=hook
@@ -216,6 +217,8 @@ _.add=function(entity, level_name,is_alive)
 end
 
 -- remove entity from level
+-- level_name-optional
+-- keep_alive-optional
 _.remove=function(entity,level_name,keep_alive)
 	if level_name==nil then
 		level_name=entity.level_name

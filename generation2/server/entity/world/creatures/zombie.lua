@@ -18,6 +18,7 @@ _.new=function()
 	result.origin_y=7
 	
 	result.hp=6
+	result.attack_damage=0.1
 	
 	result.move_speed=7
 	

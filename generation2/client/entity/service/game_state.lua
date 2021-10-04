@@ -201,11 +201,14 @@ end
 -- how to handle?
 -- copy props? ok try this.
 
+
+-- server event: entity_updated
 -- entity comes from server, and state may have local
 _.update_entity=function(entity)
 	local ref=_ref(entity)
 	local local_entity=_.findEntity(ref)
 	if local_entity==nil then
+		log("warn: entity add from server update:".._ets(entity))
 		_.addEntity(entity)
 	else
 		do_update_entity(entity,local_entity)

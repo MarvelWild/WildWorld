@@ -65,6 +65,7 @@ _.add=function(entity,is_alive)
 	
 	local draw=entityCode.draw
 	if draw~=nil then
+		log("drawable add:".._ets(entity))
 		table.insert(_drawable,{entity=entity,draw=draw})
 	end
 	
@@ -118,26 +119,24 @@ end
 
 -- drawables are array to make it sortable
 local removeDrawable=function(entity,container)
-	--local countBefore
-	-- log("drawables before remove:"..#container)
+	local is_removed=false
+	
+	
 	for k,info in ipairs(container) do
 		if info.entity==entity then 
+			
 			table.remove(container,k)
+			is_removed=true
 			-- container[k]=nil wrong way (sort crash on nil)
 			
-			--log("drawables after remove:"..#container)
 			return
 		end
 	end
-	
-	local count=#container
-	-- log("drawables after remove:"..count)
-	
-	if count>0 then
-		-- ok, some entities not drawable
-		-- opt: do not iter on such
-		--log("error: removeDrawable failed. Entity was not in drawables:".._ets(entity))
-	end
+
+-- ок на сервере таких много	
+--	if not is_removed then
+--		log("warn: removeDrawable did no work")
+--	end
 end
 
 -- chain: db,entity,collision
@@ -183,7 +182,11 @@ _.draw=function()
 	table.sort(_drawable,compareByDrawLayer)
 	
 	for k,drawInfo in ipairs(_drawable) do
-		--log("drawing:".._ets(drawInfo.entity))
+		
+--		if drawInfo.entity.entity_name=="zombie" then
+		
+--			log("drawing:".._ets(drawInfo.entity).." from container:"..tostring(_drawable))
+--		end
 		drawInfo.draw(drawInfo.entity)
 		
 	end
@@ -307,9 +310,11 @@ _.toString=function(entity)
 		
 		result=result..' xy:'.._xy(entity.x, entity.y)
 		.." lvl:"..tostring(entity.level_name)
-	else
-		-- service
---		nop()
+	end
+		
+		
+	if entity.hp~=nil then
+		result=result.." hp:"..entity.hp
 	end
 	
 	
