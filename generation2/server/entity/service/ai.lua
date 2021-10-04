@@ -1,4 +1,5 @@
-local _entity_name='AiService'
+-- global Ai
+local _entity_name='Ai'
 local _=BaseEntity.new(_entity_name, true)
 
 local _maxDistance=50
@@ -72,5 +73,77 @@ _.moveRandom=function(entity,max_distance)
 	Movable.move_event(entity,nextX,nextY)
 end
 
+
+
+
+
+
+-- collisions are checked, do attack
+local attack=function(actor,target)
+	local damage=0.1
+	
+--	if target.hp==nil then
+--		local a=1
+--		log("x")
+--		log(_ets(target))
+--	end
+	
+	
+	target.hp=target.hp-damage
+	log("hp change:"..target.hp..":".._ets(target))
+	
+	ServerService.entity_updated(target)
+end
+
+-- return: обработано ли (была ли атака или ход).
+_.update_combat=function(entity, is_enemy, options)
+	
+	
+	local attack_only=options~=nil and options.attack_only
+	
+	-- detect target in melee range (collision check)
+	local collsions=CollisionService.getEntityCollisions(entity)
+	if collsions then
+--		log("zombie melee action")
+		for k,collision_entity in pairs(collsions) do
+--			log("combat ai collision:".._ets(collision_entity))
+			-- todo priority
+			
+			if is_enemy(entity,collision_entity) then
+				attack(entity,collision_entity)
+				return true
+			end
+		end
+	else -- no collisions in melee range
+		-- поиск цели и ходьба к ней
+		
+		if attack_only then
+			return true
+		end
+		
+		
+--		log("zombie seek")
+		-- todo: свойство сущности
+		local seek_distance=45
+		local collisions_seek=CollisionService.get_around(entity,seek_distance)
+		
+		for k,seek_entity in pairs(collisions_seek) do
+			if is_enemy(entity,seek_entity) then
+				-- attack(entity,seek_entity)
+				
+				-- todo: Entity.get_center()
+				local attack_move_x=seek_entity.x+seek_entity.origin_x
+				local attack_move_y=seek_entity.y+seek_entity.origin_y
+				
+--				log("see enemy:".._ets(seek_entity).." me:".._ets(entity))
+				Movable.move_event(entity,attack_move_x,attack_move_y)
+				
+				return true
+			end
+		end
+	end
+	
+	return false
+end
 
 return _
