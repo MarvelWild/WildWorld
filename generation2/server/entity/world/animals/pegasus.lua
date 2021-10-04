@@ -33,7 +33,7 @@ _.updateAi=function(entity)
 --	log("pegasus update ai")
 	
 	-- todo: enable after mount
-	-- AiService.moveRandom(entity)
+	-- Ai.moveRandom(entity)
 
 end
 

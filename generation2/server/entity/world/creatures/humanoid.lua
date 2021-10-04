@@ -155,4 +155,22 @@ _.interact=function(entity,target,player)
 	end
 end
 
+
+
+
+local is_enemy=function(entity,other)
+	if other.entity_name=="zombie" then
+		return true
+	end
+	
+	return false
+end
+
+local ai_options={
+	attack_only=true
+}
+_.updateAi=function(entity)
+	if Ai.update_combat(entity, is_enemy, ai_options) then return end
+end
+
 return _

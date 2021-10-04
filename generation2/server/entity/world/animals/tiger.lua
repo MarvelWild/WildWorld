@@ -30,7 +30,7 @@ end
 
 _.updateAi=function(entity)
 	-- todo вкл
---	AiService.moveRandom(entity)
+--	Ai.moveRandom(entity)
 end
 
 _.interact=Mountable.toggle_mount

@@ -31,7 +31,7 @@ _.new=function()
 end
 
 _.updateAi=function(entity)
-	AiService.moveRandom(entity)
+	Ai.moveRandom(entity)
 end
 
 -- todo: think easy mountable init, from prop

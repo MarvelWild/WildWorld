@@ -69,7 +69,7 @@ _.updateAi=function(actor)
 			--local nextY = max_bond_entity.y
 			-- Movable.move_event(actor,nextX,nextY)
 
-			AiService.moveRandom(actor)
+			Ai.moveRandom(actor)
 		end
 	else
 		local mount_slots=actor.mount_slots
@@ -87,7 +87,7 @@ _.updateAi=function(actor)
 		end
 		
 		if max_bond<1 then
-			AiService.moveRandom(actor)
+			Ai.moveRandom(actor)
 		end
 		
 	end

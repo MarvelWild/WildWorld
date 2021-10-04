@@ -18,7 +18,7 @@ _.new=function()
 end
 
 _.updateAi=function(entity)
-	AiService.moveRandom(entity)
+	Ai.moveRandom(entity)
 
 end
 

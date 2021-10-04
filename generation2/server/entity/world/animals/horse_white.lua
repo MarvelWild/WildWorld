@@ -31,7 +31,7 @@ end
 _.updateAi=function(entity)
 	
 	if not Mountable.is_mounted(entity) then
-		AiService.moveRandom(entity)
+		Ai.moveRandom(entity)
 	end
 end
 

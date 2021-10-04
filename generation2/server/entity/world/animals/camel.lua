@@ -35,7 +35,7 @@ end
 
 _.updateAi=function(entity)
 	-- todo
-	-- AiService.moveRandom(entity, 10)
+	-- Ai.moveRandom(entity, 10)
 
 end
 
