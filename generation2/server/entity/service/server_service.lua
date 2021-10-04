@@ -168,12 +168,11 @@ end
 
 -- handler to intent_move
 local movePlayer=function(event)
-	local responseEvent=_event.new("move")
-	
 	local player=Player.getByLogin(event.login)
 	local controlled_entity_ref=player.controlled_entity_ref
 	local controlled_entity=_deref(controlled_entity_ref)
 	
+	-- todo: выловить этот баг
 	if controlled_entity==nil then
 		local a=1
 	end
@@ -184,32 +183,22 @@ local movePlayer=function(event)
 		return
 	end
 	
-	
-	responseEvent.target="level"
-	responseEvent.level=controlled_entity.level_name
 	local x=event.x
 	local y=event.y
-	
-	responseEvent.x=event.x
-	responseEvent.y=event.y
-	
-	responseEvent.duration=Movable.calc_move_duration(controlled_entity,x,y)
-	
-	responseEvent.actorRef=controlled_entity_ref
-
-	_event.process(responseEvent)
+	Movable.move_event(controlled_entity,x,y)
 end
 
 
 
 -- server handler to "move"
-local doMove=function(event)
+local do_move=function(event)
 	local actorRef=event.actorRef
 	
 	local actor=Db.getByRef(actorRef, actorRef.level_name)
 	
 	-- test not allow to move mount while rider still mounting
 
+	-- todo: duration не передаётся извне 
 	Movable.move(actor,event.x,event.y,event.duration)
 end
 
@@ -608,7 +597,7 @@ local connect_handlers=function()
 	_event.add_handler("create_player", createPlayer)
 	_event.add_handler("game_start", gameStart)
 	_event.add_handler("intent_move", movePlayer)
-	_event.add_handler("move", doMove)
+	_event.add_handler("move", do_move)
 	_event.add_handler("logoff", logoff)
 	_event.add_handler("list_players", listPlayers)
 	_event.add_handler("editor_items", editorItems)
