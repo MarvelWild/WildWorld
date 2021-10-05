@@ -16,7 +16,7 @@ _.change=function(entity,amount)
 		log("dead:".._ets(entity))
 		Db.remove(entity)
 	else
-		ServerService.entity_updated(target)
+		ServerService.entity_updated(entity)
 	end
 end
 
