@@ -16,8 +16,14 @@ local _save=nil
 
 -- от сервера получен список сущностей редактора
 local onItemsReceived=function(event)
+	
+	
 	local items=event.items
+	log("editor items received:"..#items)
 	_editorItems=items
+	
+	
+	log("1")
 	
 	_activeItem=Pow.lume.first(items)
 	
@@ -26,30 +32,28 @@ local onItemsReceived=function(event)
 		if not active_item_entity_name then
 			-- todo: fix
 			-- log("error: save with no active item")
-			return
+			-- return
 		end
 		
-		
-		log("load active item:"..active_item_entity_name)
-		for k,item in pairs(items) do
-			local entity_name=item.entity_name
-			if entity_name==active_item_entity_name then
-				_activeItem=item
-				break
+		if active_item_entity_name then
+			log("load active item:"..active_item_entity_name)
+			for k,item in pairs(items) do
+				local entity_name=item.entity_name
+				if entity_name==active_item_entity_name then
+					_activeItem=item
+					break
+				end
 			end
-			
-			
 		end
-		
-		
 	end
 	
-	
+	log("_isFetchingItems=false")
 	_isFetchingItems=false
 end
 
 
 local initItems=function()
+	log("_isFetchingItems=true ")
 	_isFetchingItems=true
 	local requestItems=Event.new()
 	requestItems.code="editor_items"

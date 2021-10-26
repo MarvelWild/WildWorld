@@ -14,6 +14,8 @@ local stop_tween=function(entity)
 	end
 end
 
+-- вызывается на каждом движении - каждый кадр при плавном движении.
+-- обновляются коллизии, связанные
 local on_moved=function(moved_entity)
 	CollisionService.onEntityMoved(moved_entity)
 	
@@ -48,7 +50,7 @@ _.instant_move=function(entity,new_x,new_y)
 end
 
 
-local smoothMove=function(actor,durationSec,x,y)
+local smoothMove=function(actor,durationSec,x,y,on_complete)
 	log("smoothMove:".._ets(actor).." to".._xy(x,y).." dur:"..durationSec, "move")
 	
 	Animation_service.set_state(actor,"walk")
@@ -57,6 +59,9 @@ local smoothMove=function(actor,durationSec,x,y)
 		_smooth_moving[actor]=nil
 		
 		Animation_service.set_state(actor,"idle")
+		if on_complete then 
+			on_complete()
+		end
 	end
 
 	local existing_tween=_smooth_moving[actor]
@@ -95,7 +100,22 @@ _.destroy=function(entity)
 end
 
 
--- only moves locally, no event
+-- если для сущности нужно действие - например взорвать фейрверк
+local get_on_move_complete=function(entity)
+	local on_complete=nil
+	if entity.entity_name=="firework_rocket" then
+		on_complete=function()
+			-- wip
+			log("rocket boom")
+		end
+		
+	end
+	
+	return on_complete
+end
+
+
+-- shared. only moves locally, no event
 -- todo: refactor params to table
 -- force_this: resolve mount or not
 _.move=function(actor,x,y,duration,force_this,ignore_foot)
@@ -132,9 +152,8 @@ _.move=function(actor,x,y,duration,force_this,ignore_foot)
 	-- face direction
 	actor.is_watching_left=finalX<actor.x
 	
-	
-	
-	smoothMove(actor,duration,finalX,finalY)
+	local on_complete=get_on_move_complete(actor)
+	smoothMove(actor,duration,finalX,finalY,on_complete)
 end
 
 

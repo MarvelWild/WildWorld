@@ -65,7 +65,7 @@ _.add=function(entity,is_alive)
 	
 	local draw=entityCode.draw
 	if draw~=nil then
-		log("drawable add:".._ets(entity))
+--		log("drawable add:".._ets(entity))
 		table.insert(_drawable,{entity=entity,draw=draw})
 	end
 	

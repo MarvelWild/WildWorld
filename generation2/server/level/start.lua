@@ -32,6 +32,7 @@ local seed_items=function()
 	
 	--if not DebugFlag.dev_mode then
 	local entity
+	local level_name=_.name
 	
 	entity=Stone_1.new()
 	entity.x=x
@@ -56,6 +57,22 @@ local seed_items=function()
 		entity.x=x+22
 		entity.y=y+2
 		Db.add(entity,_.name)
+	end
+	
+	if DebugFlag.fireworks then
+		
+		x=love.math.random(land_area_start_x,land_area_end_x)
+		y=love.math.random(land_area_start_y,land_area_end_y)
+	
+		entity=Lighter.new()
+		entity.x=x
+		entity.y=y+2
+		Db.add(entity,level_name)
+		
+		entity=Firework_rocket.new()
+		entity.x=x+27
+		entity.y=y+2
+		Db.add(entity,level_name)
 	end
 	-- end
 	

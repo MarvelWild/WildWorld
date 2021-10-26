@@ -64,7 +64,7 @@ _.updateAi=function(actor)
 			-- todo split distance
 			-- todo keep distance
 			
-			-- wip
+			-- todo
 			-- local nextX = max_bond_entity.x
 			--local nextY = max_bond_entity.y
 			-- Movable.move_event(actor,nextX,nextY)

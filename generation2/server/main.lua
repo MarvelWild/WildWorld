@@ -50,6 +50,7 @@ Pin_service=require("shared.entity.service.pin_service")
 WorldEntities=nil
 DebugFlag=
 {
+	fireworks=true,
 --	create_tree=false,
 	create_camel=false,
 	create_horse=false,

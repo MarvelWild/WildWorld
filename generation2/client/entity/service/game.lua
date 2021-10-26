@@ -43,6 +43,8 @@ _.keyPressed=function(key)
 		ClientService.defaultAction()
 	elseif key=="m" then
 		ClientService.mount_dismount()
+	elseif key=="u" then
+		ClientService.use_item()
 	end
 	
 end

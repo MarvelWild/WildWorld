@@ -197,8 +197,8 @@ local do_move=function(event)
 	local actor=Db.getByRef(actorRef, actorRef.level_name)
 	
 	-- test not allow to move mount while rider still mounting
-
-	-- todo: duration не передаётся извне 
+	
+	-- todo: duration не передаётся извне ?
 	Movable.move(actor,event.x,event.y,event.duration)
 end
 
@@ -479,7 +479,30 @@ local mount_dismount=function(event)
 	end
 end
 
-
+local use_item=function(event)
+	log("use_item","verbose")
+	local login=event.login
+	
+	-- meta player
+	local player=Player.getByLogin(login)
+	
+	-- humanoid
+	local controlled_entity=Player.get_controlled_entity(player)
+	
+	local item_in_hand_ref=controlled_entity.hand_slot
+	if item_in_hand_ref then
+		local item_in_hand=_deref(item_in_hand_ref)
+		
+		local item_code=Entity.get_code(item_in_hand)
+		
+		local use_function=item_code.use
+		if use_function then 
+			use_function(item_in_hand)
+		end
+	else
+		-- no item in hand, nothing to use
+	end
+end
 
 
 -- player press space, enter portal / pickup-drop item etc
@@ -605,6 +628,7 @@ local connect_handlers=function()
 	_event.add_handler("collisions_get", getCollisions)
 	_event.add_handler("default_action", default_action)
 	_event.add_handler("mount_dismount", mount_dismount)
+	_event.add_handler("use_item", use_item)
 	_event.add_handler("do_mount", do_mount)
 	_event.add_handler("do_grow", do_grow)
 	_event.add_handler("craft", craft)

@@ -374,5 +374,11 @@ _.mount_dismount=function()
 	_event.process(event)
 end
 
+_.use_item=function()
+	local event=_event.new("use_item")
+	event.target="server"
+	_event.process(event)
+end
+
 
 return _
