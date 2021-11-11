@@ -8,7 +8,7 @@ local _=BaseEntity.new(_entity_name, true)
 -- тут храним активные эффекты
 local _vfx={}
 
-
+-- duration - кол-во фреймов, за которое происходит эффект
 local new_effect=function(name,x,y,duration)
 	
 	if not duration then duration=60 end

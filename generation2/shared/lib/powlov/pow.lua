@@ -522,7 +522,7 @@ _.loadEntity=function(path)
 	return entity
 end
 
--- todo: move to proper place
+-- рекурсивно
 _.loadEntitiesFromDir=function(dirName)
 	local result={}
 	local dirItems=love.filesystem.getDirectoryItems(dirName)

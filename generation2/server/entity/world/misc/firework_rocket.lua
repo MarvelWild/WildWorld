@@ -1,4 +1,7 @@
 -- global Firework_rocket
+-- \server\entity\world\misc\firework_rocket.lua
+
+-- загружается из 
 local _={}
 
 _.entity_name=Pow.currentFile()
@@ -55,5 +58,12 @@ _.ignite=function(rocket)
 end
 
 
+
+
+-- вызов из \server\shared\entity\trait\movable
+_.on_move_complete=function(entity)
+	-- тут можно уведомить что ракета взорвалась для реакции
+	Db.remove(entity)
+end
 
 return _

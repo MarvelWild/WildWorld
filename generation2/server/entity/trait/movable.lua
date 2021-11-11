@@ -1,4 +1,4 @@
--- server
+-- server\entity\trait\movable
 
 local _={}
 

@@ -71,7 +71,17 @@ local seed_items=function()
 		
 		entity=Firework_rocket.new()
 		entity.x=x+27
-		entity.y=y+2
+		entity.y=y+200
+		Db.add(entity,level_name)
+		
+		entity=Firework_rocket.new()
+		entity.x=x+127
+		entity.y=y+200
+		Db.add(entity,level_name)
+		
+		entity=Firework_rocket.new()
+		entity.x=x+87
+		entity.y=y+200
 		Db.add(entity,level_name)
 	end
 	-- end

@@ -139,6 +139,7 @@ local removeDrawable=function(entity,container)
 --	end
 end
 
+-- удаляется из реалтайм системы сущностей, но не из бд
 -- chain: db,entity,collision
 _.remove=function(entity,keep_alive)
 	removeDrawable(entity,_drawable)

@@ -1,3 +1,64 @@
+Фейрверк - взрыв ракеты на клиенте
+	on_move_complete на клиенте
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 Запуск ракеты
 
 	lighter.use
@@ -22,7 +83,6 @@
 	Movable.move
 	
 	+отловить момент окончания этого мува
-		-- todo архитектура
 		C:\dev\WildWorld\generation2\server\shared\entity\trait\movable.lua
 		
 

@@ -268,7 +268,6 @@ end
 local afterLogin=function(response)
 	log('after login:'..Pow.pack(response), "net")
 	
-	-- todo: move to pow
 	Pow.net.state.login=response.login
 	love.window.setTitle(love.window.getTitle().." l:"..response.login)
 	
@@ -285,10 +284,6 @@ local afterLogin=function(response)
 	_event.add_handler("craft_list", craft_list)
 	_event.add_handler("craft_ok", craft_ok)
 	_event.add_handler("creature_fed", creature_fed)
-	
-	log("added handler of create_player_response",'event')
-	-- todo: remove handler on completion
-	-- generic way? single response
 	
 	local event=_event.new("list_players")
 	event.target="server"

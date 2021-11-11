@@ -1,4 +1,4 @@
--- shared movable
+-- \shared\entity\trait\movable
 
 local _={}
 
@@ -60,7 +60,7 @@ local smoothMove=function(actor,durationSec,x,y,on_complete)
 		
 		Animation_service.set_state(actor,"idle")
 		if on_complete then 
-			on_complete()
+			on_complete(actor)
 		end
 	end
 
@@ -100,19 +100,6 @@ _.destroy=function(entity)
 end
 
 
--- если для сущности нужно действие - например взорвать фейрверк
-local get_on_move_complete=function(entity)
-	local on_complete=nil
-	if entity.entity_name=="firework_rocket" then
-		on_complete=function()
-			-- wip
-			log("rocket boom")
-		end
-		
-	end
-	
-	return on_complete
-end
 
 
 -- shared. only moves locally, no event
@@ -152,7 +139,8 @@ _.move=function(actor,x,y,duration,force_this,ignore_foot)
 	-- face direction
 	actor.is_watching_left=finalX<actor.x
 	
-	local on_complete=get_on_move_complete(actor)
+	local entity_code=Entity.get_code(actor)
+	local on_complete=entity_code.on_move_complete
 	smoothMove(actor,duration,finalX,finalY,on_complete)
 end
 
