@@ -90,13 +90,18 @@ local getPlayerState=function(player_id)
 end
 
 
-
+-- полное состояние уровня которое используется клиентом при входе на уровень
+-- возможно синх в будущем
 local getFullState=function(playerId)
-  local player=getPlayerState(playerId)
+	local player=getPlayerState(playerId)
+	local level_name=player.level_name
 	local levelState=getLevelState(player.level_name)
 	local result={}
+	
 	result.level=levelState
+	result.pins=Pin_service.get_state(level_name)
 	result.player=player
+	
 	return result
 end
 

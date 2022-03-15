@@ -51,6 +51,7 @@ end
 
 
 -- прилетает новый левел. нет ситуации когда прилетает текущий.
+-- в будущем может быть ресинк, нужно разделить приём данных от начала уровня
 local onStateReceived=function(response)
 	log('onStateReceived','verbose')
 	

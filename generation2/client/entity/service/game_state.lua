@@ -3,6 +3,7 @@
 
 local _={}
 
+-- заполняется извне в onStateReceived
 _.level=nil
 
 _.player=nil
@@ -81,6 +82,8 @@ _.set=function(state)
 	
 	log("state set. level:"..state.level.level_name)
 	register_state_entities()
+	
+	Pin_service.load_pins_from_dto(state.pins)
 end
 
 _.get=function()

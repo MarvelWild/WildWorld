@@ -45,6 +45,7 @@ nop=function()
 end
 
 
+--todo:describe console 1 liner?
 _strc=function(s)
 	local result=_str(s)
 	result=Pow.allen.substitute("\n","")

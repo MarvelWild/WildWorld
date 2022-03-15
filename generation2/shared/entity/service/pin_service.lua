@@ -143,6 +143,7 @@ end
 
 
 
+-- на сервере получить состояние
 _.get_state=function(level_name)
 	local result={}
 
@@ -158,6 +159,9 @@ _.get_state=function(level_name)
 	return result
 end
 
+
+
+
 _.save=function(level_name)
 	local pin_dtos={}
 	
@@ -171,19 +175,26 @@ _.save=function(level_name)
 	_log("pins save")
 end
 
+
+_.load_pins_from_dto=function(dtos)
+	_pins={}
+	
+	for k,dto in pairs(dtos) do
+		local pin,follow=dto_to_pin(dto)
+		assert(pin~=nil)
+		_pins[follow]=pin
+	end
+	
+	_log("pins loaded from dto")
+end
+
+
 _.load=function(level_name)
 	local serialized=love.filesystem.read(_saveDir.._saveName)
 		
 	if serialized~=nil then
 		local pin_dtos=Pow.deserialize(serialized)
-		_pins={}
-		
-		for k,dto in pairs(pin_dtos) do
-			local pin,follow=dto_to_pin(dto)
-			assert(pin~=nil)
-			_pins[follow]=pin
-		end
-		_log("pins loaded")
+		_.load_pins_from_dto(pin_dtos)
 	else
 		_pins={}
 		_log("pins new")

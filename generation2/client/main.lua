@@ -35,7 +35,12 @@ Event=Pow.net.event
 ConfigService=require("shared.entity.service.config")
 ClientService=require("entity.service.client_service")
 EditorService=require("entity.service.editor_service")
-Pin_service=require("shared.entity.service.pin_service")
+Pin_service=Pow.multirequire(
+	"shared.entity.service.pin_service",
+	"entity.service.pin_service"
+)
+
+
 DebuggerService=require("shared.entity.service.debugger_service")
 GameService=require("entity.service.game")
 CollisionService=require("entity.service.collision_service")
