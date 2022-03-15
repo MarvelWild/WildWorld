@@ -10,6 +10,7 @@ _.update=Generic.update
 _.on_move_complete=function(entity)
 	log("on_move_complete rocket client")
 	VfxService.flying("firework_explosion",entity.x,entity.y)
+	MusicService.fx("explosion", "mp3")
 end
 
 return _

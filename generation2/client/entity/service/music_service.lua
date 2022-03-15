@@ -3,6 +3,7 @@ local _=BaseEntity.new("music_service",true)
 
 
 local _source_ambient=nil
+local _source_fx=nil
 
 local _sound_enabled=true
 
@@ -25,6 +26,19 @@ _.play_ambient=function(name)
 	
 	_source_ambient = love.audio.newSource(path, "stream")
 	love.audio.play(_source_ambient)
+end
+
+_.fx=function(name, ext)
+	if not _sound_enabled then 
+		return 
+	end
+	
+	if not ext then ext="ogg" end
+	
+	local path="shared/res/sound/fx/"..name.."."..ext
+	
+	_source_fx = love.audio.newSource(path, "stream")
+	love.audio.play(_source_fx)
 end
 
 

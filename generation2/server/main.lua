@@ -138,6 +138,8 @@ love.load=function()
 	
 	Level.activate("start")
 	
+	Pin_service.load()
+	
 --	if DebugFlag.create_tree then
 		
 --		local tree=Tree_birch.new()
@@ -194,10 +196,9 @@ end
 love.quit=function()
 	Db.set_var("frame", _frm())
 	Db.save()
+	Pin_service.save()
 	Pow.quit()
 end
-
-
 
 function love.textinput(text)
 	Pow.console_toggle(text)

@@ -1,3 +1,30 @@
++Запуск ракеты
+
+	lighter.use
+	firework_rocket.ignite
+	Movable.move_event
+	
+	Movable server
+
+	-- Создаёт и запускает в обработку событие move - обрабатывается на сервере и клиенте
+	_.move_event=function(entity,x,y)
+		local event=Event.new("move")
+		event.target="level"
+		event.level=entity.level_name
+		event.x=x
+		event.y=y
+		event.duration=Movable.calc_move_duration(entity,x,y)
+		event.actorRef=BaseEntity.getReference(entity)
+		Event.process(event)
+	end
+	
+	server_service.do_move
+	Movable.move
+	
+	+отловить момент окончания этого мува
+		C:\dev\WildWorld\generation2\server\shared\entity\trait\movable.lua
+		
+
 portal on mount test
 
 
