@@ -1,20 +1,29 @@
 -- client main
-local isDebug=arg[#arg] == "-debug"
-if isDebug then require("mobdebug").start() end
-
--- globals
-_traceback=debug.traceback
-Pow=require("lib.pow2.pow")
-
-Entity_service=require("service.entity_service")
-
+if (arg[#arg] == "-debug") then require("mobdebug").start() end
 love.load=function()
+	
+	-- globals
+	_traceback=debug.traceback
+
+	Pow=require("lib.pow2.pow")
+	Res=require("res.res")
+
+	Entity=require("service.entity_service")
+
+	Player=require("entity.player")
+	Level=require("level.level1.level")
+
+	-- globals end
+	
+	Entity.add(Player)
+	Entity.add(Level)
 end
 
 
 love.draw=function()
+	Entity.draw()
 end
 
 love.update=function(dt)
-	Entity_service.update()
+	Entity.update()
 end
