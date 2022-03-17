@@ -10,13 +10,13 @@ love.load=function()
 
 	Entity=require("service.entity_service")
 
-	Player=require("entity.player")
+	Player=require("entity.player.player")
 	Level=require("level.level1.level")
-
 	-- globals end
 	
-	Entity.add(Player)
 	Entity.add(Level)
+	Entity.add(Player)
+	
 end
 
 
