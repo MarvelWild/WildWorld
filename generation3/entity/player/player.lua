@@ -1,11 +1,19 @@
+-- виртуальная сущность - физический игрок. 
+-- управляет игровой сущностью - гуманоид, животное,...
+
 local _={}
 
-_.x=0
-_.y=0
 
-_.layer=2
+_.controlled=nil
+
 
 local image
+
+_.mouse_pressed=function(x,y,button)
+	_.x=x
+	_.y=y
+end
+
 
 _.load=function()
 	image=love.graphics.newImage("entity/player/res/player.png")
