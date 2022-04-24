@@ -68,7 +68,7 @@ riding
 
 
 
-![Screenshot](http://z3.by/static/img/Blog-ULR-1.jpg)
+![Screenshot](http://109.207.194.113/static/img/Blog-ULR-1.jpg)
 
 
 
@@ -99,6 +99,6 @@ riding
 
 <details>
  <summary>Support</summary>
- http://z3.by/support
+ http://109.207.194.113/support
 </details>
 
