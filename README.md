@@ -3,7 +3,7 @@ Freestyle/multiplayer/sandbox/experimental game written with [LÖVE ](https://lo
 
 Influenced by Sketch Tales, World of Warcraft, Minecraft, Stardew Valley, Don't Starve, Realm of the Mad God, Atari 2600 games, and 
 
-Current state: early development. Generation: 2 (rewrite from gen1).
+Current state: early development. Generation: 3 (rewrite from gen2, no networking). Self-funding in progress.
 
 <details>
  <summary>Controls</summary>
