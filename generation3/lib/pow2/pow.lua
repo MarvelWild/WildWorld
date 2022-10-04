@@ -28,13 +28,18 @@ end
 
 -- "@entity/world/t/tree1/tree1.lua"
 local current_path=function()
-	local debug_info=debug.getinfo(2, "S")
-    local source = debug_info.source	
+	-- 3 - stack level
+		-- 1- this, 2 - caller from pow, 3 - outside pow
+	-- S	selects fields source, short_src, what, and linedefined
+	local debug_info=debug.getinfo(3, "S")
+    local source = debug_info.source
 	return source
 end
 
-_.current_path=current_path
+-- stack level different, so internal
+--_.current_path=current_path
 
+-- filename, no ext
 -- entity\world\panther.lua -> panther
 _.current_file=function()
 	local source=current_path()
@@ -45,10 +50,12 @@ _.current_file=function()
     end
 end
 
--- example: @entity/world/t/tree1/tree1.lua
+
+-- example: entity/world/t/tree1/
 _.current_dir=function()
-	-- wip
 	local full_path=current_path()
+	local result=full_path:match("@(.*/)")
+	return result
 end
 
 
