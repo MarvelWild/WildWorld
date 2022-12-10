@@ -44,6 +44,9 @@ love.load=function()
 	Entity.add(Simulation,Simulation)
 	
 	load_start_level()
+	
+	local version=love.getVersion()
+	log("love ver:"..version)
 end
 
 
