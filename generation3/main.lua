@@ -5,6 +5,12 @@ if (arg[#arg] == "-debug") then require("mobdebug").start() end
 _traceback=debug.traceback
 _frame=0
 
+--internalization
+local _pow_update=nil
+local _pow_draw=nil
+local _pow_mousepressed=nil
+--internalization end
+
 
 local load_start_level=function()
 	local tree1_instance=world.tree1.new()
@@ -12,16 +18,20 @@ local load_start_level=function()
 end
 
 
+
 love.load=function()
 	
 	-- globals 2
 	Pow=require("lib.pow2.pow")
 	log=Pow.log
+	_pow_update=Pow.update
+	_pow_draw=Pow.draw
+	_pow_mousepressed=Pow.mousepressed
 	
 	Res=require("res.res")
 
 	BaseEntity=require("entity.base.base_entity")
-	Entity=require("service.entity_service")
+	Entity=Pow.entity
 	
 
 	Player=require("entity.player.player")
@@ -48,14 +58,13 @@ end
 
 
 love.draw=function()
-	Entity.draw()
+	_pow_draw()
 end
 
 love.update=function(dt)
-	Pow.update()
-	Entity.update()
+	_pow_update(dt)
 end
 
 love.mousepressed=function(x,y,button,istouch)
-	Entity.mouse_pressed(x,y,button)
+	_pow_mousepressed(x,y,button)
 end
