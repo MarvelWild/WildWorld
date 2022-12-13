@@ -55,8 +55,8 @@ love.load=function()
 	
 	load_start_level()
 	
-	local version=love.getVersion()
-	log("love ver:"..version)
+	local version,minor,rev=love.getVersion()
+	log("love ver:"..version.."."..minor)
 end
 
 
