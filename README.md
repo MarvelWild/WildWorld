@@ -1,9 +1,12 @@
 # Wild World
+
+Project on pause, requires funding, have to pay rent.
+
 Freestyle/multiplayer/sandbox/experimental game written with [LÖVE ](https://love2d.org/)
 
-Influenced by Sketch Tales, World of Warcraft, Minecraft, Stardew Valley, Don't Starve, Realm of the Mad God, Atari 2600 games, and 
+Influenced by Sketch Tales, World of Warcraft, Minecraft, Stardew Valley, Don't Starve, Realm of the Mad God, Atari 2600 games, and more.
 
-Current state: early development. Generation: 2 (rewrite from gen1).
+Current state: early development. Generation: 3 (rewrite from gen2, no networking). Self-funding in progress.
 
 <details>
  <summary>Controls</summary>
@@ -30,7 +33,7 @@ scale: -,=
  <summary>Features</summary>
 	
 
-2d multiplayer world
+2d world
 
 Ingame editor
 
