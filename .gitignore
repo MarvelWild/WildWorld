@@ -16,3 +16,7 @@ generation2/_tmp
 
 /task/*
 /_archive/*
+/game_engine_test/net/perftest/.vscode/*
+/game_engine_test/net/perftest/Content/obj/*
+/game_engine_test/net/perftest/bin/*
+/game_engine_test/net/perftest/obj/*
