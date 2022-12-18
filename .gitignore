@@ -25,3 +25,7 @@ generation2/_tmp
 /game_engine_test/gd/.import/*
 /game_engine_test/net/perftest/Content/bin/*
 /generation3_net/_src/obj/*
+
+/generation3_net/_src/bin/*
+/generation3_net/_src/Content/obj/*
+/generation3_net/_src/Content/bin/*
