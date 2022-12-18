@@ -1,14 +1,3 @@
-﻿using System;
-
-namespace WW3
-{
-    public static class Program
-    {
-        [STAThread]
-        static void Main()
-        {
-            using (var game = new GameWw())
-                game.Run();
-        }
-    }
-}
+﻿
+using var game = new src.Game1();
+game.Run();
