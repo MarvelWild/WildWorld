@@ -8,4 +8,5 @@ function love.conf(t)
 	t.window.x=200
 	t.window.y=20
 	t.identity="pt"
+	--t.vsync = false
 end
