@@ -2,14 +2,15 @@ local entities={}
 local sprite=nil
 
 local custom_run=true
-local object_count=1000
+custom_run=false
+local entity_count=50000
 
 local rnd_x=function()
 	return math.random(1,800)
 end
 
 local rnd_y=function()
-	return math.random(1,600)
+	return math.random(10,600)
 end
 
 
@@ -18,7 +19,7 @@ local make_entity=function()
 	
 	entity.x=rnd_x()
 	entity.y=rnd_y()
-	
+	entity.sprite=sprite
 	
 	table.insert(entities,entity)
 end
@@ -28,7 +29,11 @@ end
 love.load=function()
 
 	love.window.setVSync(0)
-	sprite=love.graphics.newImage("./test64.png")
+	sprite=love.graphics.newImage("test64.png")
+	
+	for i=1,entity_count do
+		make_entity()
+	end
 end
 
 
@@ -40,6 +45,11 @@ love.draw=function()
 	local fps = love.timer.getFPS( )
 	love.graphics.print("fps:"..fps)
 	--love.graphics.print("count:"..#entities)
+	
+	for k,entity in ipairs(entities) do
+		love.graphics.draw(entity.sprite,entity.x,entity.y)
+	end
+	
 end
 
 

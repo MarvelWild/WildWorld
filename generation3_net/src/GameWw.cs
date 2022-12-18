@@ -4,7 +4,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace WW3
 {
-    public class Game1 : Game
+    public class GameWw : Game
     {
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
@@ -12,7 +12,7 @@ namespace WW3
         Texture2D _human;
         Vector2 _humanPos=new Vector2();
 
-        public Game1()
+        public GameWw()
         {
             _graphics = new GraphicsDeviceManager(this);
 

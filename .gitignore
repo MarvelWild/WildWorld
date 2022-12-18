@@ -20,3 +20,7 @@ generation2/_tmp
 /game_engine_test/net/perftest/Content/obj/*
 /game_engine_test/net/perftest/bin/*
 /game_engine_test/net/perftest/obj/*
+
+/game_engine_test/gd/.mono/*
+/game_engine_test/gd/.import/*
+/game_engine_test/net/perftest/Content/bin/*

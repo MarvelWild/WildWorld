@@ -25,7 +25,5 @@ end
 
 
 love.draw=function()
-	local fps = love.timer.getFPS( )
-	love.graphics.print("fps:"..fps)
-	--love.graphics.print("count:"..#entities)
+	love.graphics.print("count:"..#entities)
 end
