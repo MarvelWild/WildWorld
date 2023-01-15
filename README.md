@@ -2,7 +2,7 @@
 
 Freestyle/multiplayer/sandbox/experimental game written with [LÖVE ](https://love2d.org/)
 
-State: rewriting in monogame (better performance and tools).
+State: monogame rewrite.
 
 Influenced by Sketch Tales, World of Warcraft, Minecraft, Stardew Valley, Don't Starve, Realm of the Mad God, Atari 2600 games, and more.
 
