@@ -69,7 +69,7 @@ riding
 
 
 
-![Screenshot](http://109.207.194.113/static/img/Blog-ULR-1.jpg)
+![Screenshot](https://mwld.win/static/img/Blog-ULR-1.jpg)
 
 
 
