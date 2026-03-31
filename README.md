@@ -100,6 +100,6 @@ riding
 
 <details>
  <summary>Support</summary>
- http://109.207.194.113/support
+ https://mwld.win/support
 </details>
 
